@@ -1,16 +1,18 @@
-const School = require('../schemas/schoolSchema');
+const fs = require("fs");
+const csv = require("fast-csv");
+const School = require("../schemas/schoolSchema");
 
-const seedSchools = async (collection) => {
-  const file = reader.readFile(
-    "./seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/SCH/CRDC/CSV/School Characteristics.csv"
-  );
-
-  const sheets = file.SheetNames;
-  for (let i = 0; i < sheets.length; i++) {
-    const schools = reader.utils.sheet_to_json(file.Sheets[file.SheetNames[i]]);
-    for (let j = 0; j < schools.length; j++) {
-      const school = schools[j];
-      const cleanedSchool = new School({
+const seedSchoolsStream = async (collection) => {
+  console.log('STARTING SEEDING SCHOOLS')
+  const schools = [];
+  const filepath =
+    "./seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/SCH/CRDC/CSV/School Characteristics.csv";
+  await fs
+    .createReadStream(filepath)
+    .pipe(csv.parse({ headers: true }))
+    .on("error", (err) => console.error(err))
+    .on("data", (school) => {
+      const newSchool = new School({
         id: school["SCHID"],
         comboKey: school["COMBOKEY"],
         name: school["SCH_NAME"],
@@ -38,11 +40,16 @@ const seedSchools = async (collection) => {
         stateAbbreviation: school["LEA_STATE"],
         districtId: school["LEAID"],
         districtName: school["LEA_NAME"],
-        disabilities: {}
+        disabilities: {},
       });
-      await collection.insertOne(cleanedSchool);
-    }
-  }
+      schools.push(newSchool);
+    })
+    .on("end", async () => {
+      await collection
+        .insertMany(schools)
+        .then(console.log('SCHOOLS SEEDED SUCCESSFULLY'))
+        .catch((error) => console.error(error));
+    });
 };
 
-module.exports = seedSchools;
+module.exports = seedSchoolsStream;

@@ -6,7 +6,7 @@ const districtSchema = new mongoose.Schema({
   city: { type: String, required: true },
   stateName: { type: String, required: true },
   stateAbbreviation: { type: String, required: true },
-  enrollment: { type: String, required: true }
+  enrollment: { type: String, required: true },
 });
 
 const District = mongoose.model("District", districtSchema);
