@@ -1,0 +1,23 @@
+{
+  "name": "gridt-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.0.0-alpha.8",
+    "mongodb": "^4.0.0",
+    "mongoose": "^5.13.2",
+    "xlsx": "^0.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
