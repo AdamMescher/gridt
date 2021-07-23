@@ -6,7 +6,7 @@ const seedSchoolsStream = async (collection) => {
   console.log('STARTING SEEDING SCHOOLS')
   const schools = [];
   const filepath =
-    "./seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/SCH/CRDC/CSV/School Characteristics.csv";
+    "./db/seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/SCH/CRDC/CSV/School Characteristics.csv";
   await fs
     .createReadStream(filepath)
     .pipe(csv.parse({ headers: true }))

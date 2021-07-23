@@ -1,3 +1,4 @@
+const { pipeline } = require("stream");
 const MongoClient = require("mongodb").MongoClient;
 
 const url = "mongodb://localhost/gridt";
@@ -10,6 +11,8 @@ const seedDisabilities = require("./seedFiles/seedDisabilities");
 const seedDistrictsStream = require("./seedFiles/seedDistrictsStream");
 const seedSchoolsStream = require("./seedFiles/seedSchoolsStream");
 const updateSchoolStream = require("./seedFiles/updateSchoolsStream");
+
+
 
 async function seedDb() {
   try {
@@ -35,7 +38,7 @@ async function seedDb() {
     // await seedDisabilities(disabilitiesCollection);
     // await seedDistrictsStream(districtsCollection);
     // await seedSchoolsStream(schoolsCollection);
-    await updateSchoolStream(schoolsCollection);
+    await updateSchoolStream(schoolsCollection).catch();
 
     // client.close();
   } catch (error) {

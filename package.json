@@ -1,18 +1,22 @@
 {
-  "name": "gridt-db",
-  "version": "1.0.0",
+  "name": "gridt",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/nodemon server.js"
+    "dev": "./node_modules/.bin/nodemon server.js",
+    "seed:all": "node db/seedDb.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adam Mescher",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "csv": "^5.5.0",
+    "csv-parser": "^3.0.0",
     "express": "^5.0.0-alpha.8",
+    "fast-csv": "^4.3.6",
     "mongodb": "^4.0.0",
     "mongoose": "^5.13.2",
     "xlsx": "^0.17.0"

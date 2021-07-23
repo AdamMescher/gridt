@@ -4,7 +4,7 @@ const District = require("../schemas/districtSchema");
 
 const seedDistrictsStream = async (collection) => {
   const filepath =
-    "./seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/LEA/CRDC/CSV/LEA Characteristics.csv";
+    "./db/seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/LEA/CRDC/CSV/LEA Characteristics.csv";
   const districts = [];
   await fs
     .createReadStream(filepath)
