@@ -36,6 +36,17 @@ app.get("/api/v1/genders", async (request, response) => {
   }
 });
 
+app.get('/api/v1/genders/:id', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const gender = await Gender.find({ id });
+    response.status(200).json({ gender });
+  } catch (err) {
+    console.error(err);
+    res.status(400).end();
+  }
+});
+
 // RACES
 app.get("/api/v1/races", async (request, response) => {
   try {
@@ -43,6 +54,17 @@ app.get("/api/v1/races", async (request, response) => {
     response.status(200).json({ races }).end();
   } catch (err) {
     console.error(err);
+    res.status(400).end();
+  }
+});
+
+app.get('/api/v1/races/:id', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const race = await Race.find({ id });
+    response.status(200).json({ race });
+  } catch (err) {
+    console.error(err)
     res.status(400).end();
   }
 });
@@ -58,6 +80,17 @@ app.get("/api/v1/disabilities", async (request, response) => {
   }
 });
 
+app.get('/api/v1/disabilities/:id', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const disabilities = await Disability.find({ id });
+    response.status(200).json(disabilities);
+  } catch (err) {
+    console.error(err)
+    res.status(400).end();
+  }
+});
+
 // DISTRICTS
 app.get("/api/v1/districts", async (request, response) => {
   try {
@@ -69,7 +102,18 @@ app.get("/api/v1/districts", async (request, response) => {
   }
 });
 
-// SCHOOL
+app.get('/api/v1/districts/:id', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const district = await District.find({ id });
+    response.status(200).json(district);
+  } catch (err) {
+    console.error(err)
+    res.status(400).end();
+  }
+})
+
+// SCHOOLS
 app.get("/api/v1/schools", async (request, response) => {
   try {
     const schools = await School.find({});
@@ -85,6 +129,7 @@ app.get('/api/v1/schools/:id', async (request, response) => {
   try {
     const id = request.params.id;
     const school = await School.find({ comboKey: id });
+    response.status(200).json(school);
   } catch (err) {
     console.error(err)
     res.status(400).end();
