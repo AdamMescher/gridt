@@ -70,7 +70,7 @@ app.get("/api/v1/districts", async (request, response) => {
 });
 
 // SCHOOL
-app.get("/api/v1/schools", async function (request, response) {
+app.get("/api/v1/schools", async (request, response) => {
   try {
     const schools = await School.find({});
     response.status(200).json({ schools });
@@ -80,6 +80,16 @@ app.get("/api/v1/schools", async function (request, response) {
     res.status(400).end();
   }
 });
+
+app.get('/api/v1/schools/:id', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const school = await School.find({ comboKey: id });
+  } catch (err) {
+    console.error(err)
+    res.status(400).end();
+  }
+})
 
 app.listen(app.get("port"), () => {
   console.log(`${app.locals.title} is running on port ${app.get("port")}`);
