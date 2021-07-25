@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const genderSchema = new mongoose.Schema({
+  id: { type: Number, require: true },
   name: { type: String, required: true },
   abbreviation: { type: String, required: true },
 });
