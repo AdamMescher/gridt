@@ -36,10 +36,9 @@ const updateSchoolStream = async (collection) => {
   ];
 
   var promises = filepaths.map(
-    (file) =>
+    async (file) =>
       new Promise((resolve, reject) => {
-        await fs
-          .createReadStream(filepaths[i])
+        fs.createReadStream(filepaths[i])
           .pipe(csv.parse({ headers: true }))
           .on("error", (err) => console.error(err))
           .on("data", async (school) => {

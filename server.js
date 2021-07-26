@@ -32,18 +32,17 @@ app.get("/api/v1/genders", async (request, response) => {
     response.status(200).json({ genders }).end();
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
-app.get('/api/v1/genders/:id', async (request, response) => {
+app.get("/api/v1/genders/:id", async (request, response) => {
   try {
-    const id = request.params.id;
-    const gender = await Gender.find({ id });
+    const gender = await Gender.find({ id: request.params.id });
     response.status(200).json({ gender });
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
@@ -54,18 +53,17 @@ app.get("/api/v1/races", async (request, response) => {
     response.status(200).json({ races }).end();
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
-app.get('/api/v1/races/:id', async (request, response) => {
+app.get("/api/v1/races/:id", async (request, response) => {
   try {
-    const id = request.params.id;
-    const race = await Race.find({ id });
+    const race = await Race.find({ id: request.params.id });
     response.status(200).json({ race });
   } catch (err) {
-    console.error(err)
-    res.status(400).end();
+    console.error(err);
+    response.status(400).end();
   }
 });
 
@@ -76,18 +74,17 @@ app.get("/api/v1/disabilities", async (request, response) => {
     response.status(200).json({ disabilities });
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
-app.get('/api/v1/disabilities/:id', async (request, response) => {
+app.get("/api/v1/disabilities/:id", async (request, response) => {
   try {
-    const id = request.params.id;
-    const disabilities = await Disability.find({ id });
+    const disabilities = await Disability.find({ id: request.params.id });
     response.status(200).json(disabilities);
   } catch (err) {
-    console.error(err)
-    res.status(400).end();
+    console.error(err);
+    response.status(400).end();
   }
 });
 
@@ -98,20 +95,19 @@ app.get("/api/v1/districts", async (request, response) => {
     response.status(200).json({ districts });
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
-app.get('/api/v1/districts/:id', async (request, response) => {
+app.get("/api/v1/districts/:id", async (request, response) => {
   try {
-    const id = request.params.id;
-    const district = await District.find({ id });
+    const district = await District.find({ id: request.params.id });
     response.status(200).json(district);
   } catch (err) {
-    console.error(err)
-    res.status(400).end();
+    console.error(err);
+    response.status(400).end();
   }
-})
+});
 
 // SCHOOLS
 app.get("/api/v1/schools", async (request, response) => {
@@ -121,20 +117,38 @@ app.get("/api/v1/schools", async (request, response) => {
     response.end();
   } catch (err) {
     console.error(err);
-    res.status(400).end();
+    response.status(400).end();
   }
 });
 
-app.get('/api/v1/schools/:id', async (request, response) => {
+app.get("/api/v1/schools/:id", async (request, response) => {
   try {
-    const id = request.params.id;
-    const school = await School.find({ comboKey: id });
+    const school = await School.find({ comboKey: request.params.id });
     response.status(200).json(school);
   } catch (err) {
-    console.error(err)
-    res.status(400).end();
+    console.error(err);
+    response.status(400).end();
   }
-})
+});
+
+app.get("api/v1/schools/state/:abbreviation", async (request, response) => {
+  try {
+    const school = await School.find({
+      stateAbbreviation: request.params.abbreviation,
+    });
+    response.status(200).json(school);
+  } catch (err) {
+    console.error(err);
+    response.status(400).end();
+  }
+});
+
+app.get("api/v1/schools/district/:id", (request, response) => {
+  try {
+  } catch (err) {}
+});
+
+app.get("api/v1/schools/name/:name", (request, response) => {});
 
 app.listen(app.get("port"), () => {
   console.log(`${app.locals.title} is running on port ${app.get("port")}`);

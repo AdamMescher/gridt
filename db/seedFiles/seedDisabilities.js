@@ -3,8 +3,7 @@ const Disability = require("../schemas/disabilitySchema");
 
 const seedDisabilities = async (collection) => {
   for (let i = 0; i < disabilities.length; i++) {
-    const disability = new Disability(disabilities[i]);
-    await collection.insertOne(disability);
+    await collection.insertOne(new Disability(disabilities[i]));
   }
 };
 
