@@ -1,8 +1,8 @@
-const app = require("./server");
-const supertest = require("supertest");
+const app = require('./server');
+const supertest = require('supertest');
 // const request = supertest(app);
 
-console.log(app)
+console.log(app);
 
 // describe("Server", () => {
 //   test("Gets the test endpoint", async (done) => {

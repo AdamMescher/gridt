@@ -1,2 +1,3 @@
-const start = require("./server");
+import start from './bin/www';
+
 start();
