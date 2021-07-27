@@ -8,6 +8,8 @@ import gendersRouter from './routes/genders';
 import racesRouter from './routes/races';
 import disabilitiesRouter from './routes/disabilities';
 import statesRouter from './routes/states';
+import districtsRouter from './routes/districts';
+import schoolsRouter from './routes/schools';
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.use('/api/v1/genders', gendersRouter);
 app.use('/api/v1/races', racesRouter);
 app.use('/api/v1/disabilities', disabilitiesRouter);
 app.use('/api/v1/states', statesRouter);
+app.use('api/v1/districts', districtsRouter);
+app.use('/api/v1/schools', schoolsRouter);
 
 app.use((request, response, next) => {
   next(createError(404));
