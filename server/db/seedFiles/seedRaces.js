@@ -13,4 +13,4 @@ const seedRaces = async (collection) => {
   await collection.insertMany(allRaces);
 };
 
-export default seedRaces;
+module.exports = seedRaces;

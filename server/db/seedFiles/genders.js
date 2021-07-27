@@ -3,4 +3,4 @@ const genders = [
   { id: 1, name: 'male', abbreviation: 'm' },
 ];
 
-export default genders;
+module.exports = genders;

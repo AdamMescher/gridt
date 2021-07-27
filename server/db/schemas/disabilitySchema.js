@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const disabilitySchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -8,4 +8,4 @@ const disabilitySchema = new mongoose.Schema({
 
 const Disability = mongoose.model('Disability', disabilitySchema);
 
-export default Disability;
+module.exports = Disability;

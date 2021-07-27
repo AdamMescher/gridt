@@ -1,4 +1,5 @@
 #!/user/bin/env node
+/* eslint-disable no-console */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import mongoose from 'mongoose';
@@ -26,12 +27,10 @@ const onError = (error) => {
   const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
   switch (error.code) {
     case 'EACCES':
-      // eslint-disable-next-line no-console
       console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      // eslint-disable-next-line no-console
       console.error(`${bind} is already in use`);
       process.exit(1);
       break;
@@ -53,11 +52,9 @@ const onListening = async () => {
     // eslint-disable-next-line no-console
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', () => {
-      // eslint-disable-next-line no-console
       console.log('CONNECTED TO GRID-T DB');
     });
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error(err);
   }
 };

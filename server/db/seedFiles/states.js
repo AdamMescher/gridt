@@ -56,4 +56,4 @@ const states = [
   { name: 'WYOMING', standard: 'Wyo.', postal: 'WY' },
 ];
 
-export default states;
+module.exports = states;

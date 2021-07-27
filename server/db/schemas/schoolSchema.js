@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const schoolSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -32,4 +32,4 @@ const schoolSchema = new mongoose.Schema({
 
 const School = mongoose.model('School', schoolSchema);
 
-export default School;
+module.exports = School;

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const stateSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -9,4 +9,4 @@ const stateSchema = new mongoose.Schema({
 
 const State = mongoose.model('State', stateSchema);
 
-export default State;
+module.exports = State;

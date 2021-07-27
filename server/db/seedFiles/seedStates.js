@@ -1,5 +1,5 @@
-import states from './states';
-import State from '../schemas/stateSchema';
+const states = require('./states');
+const State = require('../schemas/stateSchema');
 
 const seedStates = async (collection) => {
   const allStates = states.map(
@@ -13,4 +13,4 @@ const seedStates = async (collection) => {
   await collection.insertMany(allStates);
 };
 
-export default seedStates;
+module.exports = seedStates;

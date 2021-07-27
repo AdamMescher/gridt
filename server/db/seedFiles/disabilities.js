@@ -18,4 +18,4 @@ const disabilities = [
   },
 ];
 
-export default disabilities;
+module.exports = disabilities;

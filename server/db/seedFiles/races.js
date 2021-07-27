@@ -8,4 +8,4 @@ const races = [
   { id: 6, name: 'two or more races', abbreviation: 'tr' },
 ];
 
-export default races;
+module.exports = races;

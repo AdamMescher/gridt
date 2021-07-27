@@ -1,5 +1,5 @@
-import disabilities from './disabilities';
-import Disability from '../schemas/disabilitySchema';
+const disabilities = require('./disabilities');
+const Disability = require('../schemas/disabilitySchema');
 
 const seedDisabilities = async (collection) => {
   const allDisabilities = disabilities.map(
@@ -13,4 +13,4 @@ const seedDisabilities = async (collection) => {
   await collection.insertMany(allDisabilities);
 };
 
-export default seedDisabilities;
+module.exports = seedDisabilities;
