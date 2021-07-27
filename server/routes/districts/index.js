@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import District from '../../../db/schemas/districtSchema';
+import District from '../../db/schemas/districtSchema';
 
 const router = express.Router();
 

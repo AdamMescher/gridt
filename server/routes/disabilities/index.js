@@ -1,5 +1,5 @@
 import express from 'express';
-import Disability from '../../../db/schemas/disabilitySchema';
+import Disability from '../../db/schemas/disabilitySchema';
 
 const router = express.Router();
 

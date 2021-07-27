@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const schoolSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -30,6 +30,6 @@ const schoolSchema = new mongoose.Schema({
   districtName: { type: String, required: true },
 });
 
-const School = mongoose.model("School", schoolSchema);
+const School = mongoose.model('School', schoolSchema);
 
-module.exports = School;
+export default School;

@@ -1,5 +1,5 @@
 import express from 'express';
-import Race from '../../../db/schemas/raceSchema';
+import Race from '../../db/schemas/raceSchema';
 
 const router = express.Router();
 

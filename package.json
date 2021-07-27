@@ -7,7 +7,7 @@
     "node": "^16.5.0"
   },
   "scripts": {
-    "db:seed": "node db/seedDb.js",
+    "db:seed": "node server/db/seedDb.js",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
     "dev": "babel-node ./server/index.js",
     "clean:server": "rimraf ./server/dist",

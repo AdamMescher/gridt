@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const genderSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -6,6 +6,6 @@ const genderSchema = new mongoose.Schema({
   abbreviation: { type: String, required: true },
 });
 
-const Gender = mongoose.model("Gender", genderSchema);
+const Gender = mongoose.model('Gender', genderSchema);
 
-module.exports = Gender;
+export default Gender;

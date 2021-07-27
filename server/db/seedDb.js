@@ -39,7 +39,7 @@ async function seedDb() {
     await seedStates(statesCollection);
     await seedDistrictsStream(districtsCollection);
     await seedSchoolsStream(schoolsCollection);
-    await updateSchoolStream(schoolsCollection).catch();
+    // await updateSchoolStream(schoolsCollection).catch();
 
     client.close();
   } catch (error) {

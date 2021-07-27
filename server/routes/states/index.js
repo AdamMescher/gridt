@@ -1,5 +1,5 @@
 import express from 'express';
-import State from '../../../db/schemas/stateSchema';
+import State from '../../db/schemas/stateSchema';
 
 const router = express.Router();
 

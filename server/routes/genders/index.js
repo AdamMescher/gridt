@@ -1,5 +1,5 @@
 import express from 'express';
-import Gender from '../../../db/schemas/genderSchema';
+import Gender from '../../db/schemas/genderSchema';
 
 const router = express.Router();
 

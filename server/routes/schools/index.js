@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import School from '../../../db/schemas/schoolSchema';
+import School from '../../db/schemas/schoolSchema';
 
 const router = express.Router();
 

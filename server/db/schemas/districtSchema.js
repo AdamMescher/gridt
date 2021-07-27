@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const districtSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -9,6 +9,6 @@ const districtSchema = new mongoose.Schema({
   enrollment: { type: String, required: true },
 });
 
-const District = mongoose.model("District", districtSchema);
+const District = mongoose.model('District', districtSchema);
 
-module.exports = District;
+export default District;

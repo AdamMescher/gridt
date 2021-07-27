@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const disabilitySchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -6,6 +6,6 @@ const disabilitySchema = new mongoose.Schema({
   abbreviation: { type: String, required: true },
 });
 
-const Disability = mongoose.model("Disability", disabilitySchema);
+const Disability = mongoose.model('Disability', disabilitySchema);
 
-module.exports = Disability;
+export default Disability;

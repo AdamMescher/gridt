@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const raceSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -6,6 +6,6 @@ const raceSchema = new mongoose.Schema({
   abbreviation: { type: String, required: true },
 });
 
-const Race = mongoose.model("Race", raceSchema);
+const Race = mongoose.model('Race', raceSchema);
 
-module.exports = Race;
+export default Race;
