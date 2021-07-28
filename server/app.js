@@ -11,8 +11,11 @@ import statesRouter from './routes/states';
 import districtsRouter from './routes/districts';
 import schoolsRouter from './routes/schools';
 
-const app = express();
+const cors = require('cors');
 
+const app = express();
+app.disable('x-powered-by');
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
