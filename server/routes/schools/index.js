@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import express from 'express';
-import School from '../../db/schemas/schoolSchema';
+const express = require('express');
+const School = require('../../db/schemas/schoolSchema');
 
 const router = express.Router();
 
@@ -17,7 +17,9 @@ router.get('/', async (request, response) => {
 
 router.get('/:id', async (request, response) => {
   try {
-    const school = await School.find({ comboKey: request.params.id });
+    const school = await School.find({
+      COMBOKEY: '010000601585',
+    });
     response.status(200).json(school);
   } catch (err) {
     console.error(err);
@@ -25,4 +27,4 @@ router.get('/:id', async (request, response) => {
   }
 });
 
-export default router;
+module.exports = router;

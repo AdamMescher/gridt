@@ -6,6 +6,9 @@
   "engines": {
     "node": "^16.5.0"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "db:seed": "node server/db/seedDb.js",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",

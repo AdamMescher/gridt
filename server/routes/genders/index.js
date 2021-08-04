@@ -1,5 +1,5 @@
-import express from 'express';
-import Gender from '../../db/schemas/genderSchema';
+const express = require('express');
+const Gender = require('../../db/schemas/genderSchema');
 
 const router = express.Router();
 
@@ -25,4 +25,4 @@ router.get('/:id', async (request, response) => {
   }
 });
 
-export default router;
+module.exports = router;

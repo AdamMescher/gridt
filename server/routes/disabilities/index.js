@@ -1,5 +1,5 @@
-import express from 'express';
-import Disability from '../../db/schemas/disabilitySchema';
+const express = require('express');
+const Disability = require('../../db/schemas/disabilitySchema');
 
 const router = express.Router();
 
@@ -25,4 +25,4 @@ router.get('/:id', async (request, response) => {
   }
 });
 
-export default router;
+module.exports = router;

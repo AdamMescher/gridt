@@ -1,3 +1,3 @@
-import start from './bin/www';
+const start = require('./bin/www');
 
 start();

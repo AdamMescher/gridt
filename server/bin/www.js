@@ -1,10 +1,11 @@
 #!/user/bin/env node
 /* eslint-disable no-console */
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import mongoose from 'mongoose';
-import http from 'http';
-import app from '../app';
+require('core-js/stable');
+require('regenerator-runtime/runtime');
+
+const mongoose = require('mongoose');
+const http = require('http');
+const app = require('../app');
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -17,7 +18,7 @@ const normalizePort = (val) => {
   return false;
 };
 
-const port = normalizePort(process.env.PORT || '3333n');
+const port = normalizePort(process.env.PORT || '3333');
 app.set('port', port);
 const server = http.createServer(app);
 const onError = (error) => {
@@ -65,4 +66,4 @@ const start = () => {
   server.on('listening', onListening);
 };
 
-export default start;
+module.exports = start;

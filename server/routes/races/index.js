@@ -1,5 +1,5 @@
-import express from 'express';
-import Race from '../../db/schemas/raceSchema';
+const express = require('express');
+const Race = require('../../db/schemas/raceSchema');
 
 const router = express.Router();
 
@@ -25,4 +25,4 @@ router.get('/:id', async (request, response) => {
   }
 });
 
-export default router;
+module.exports = router;

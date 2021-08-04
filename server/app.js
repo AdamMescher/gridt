@@ -1,17 +1,16 @@
-import express from 'express';
-import path from 'path';
-import createError from 'http-errors';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import indexRouter from './routes/index';
-import gendersRouter from './routes/genders';
-import racesRouter from './routes/races';
-import disabilitiesRouter from './routes/disabilities';
-import statesRouter from './routes/states';
-import districtsRouter from './routes/districts';
-import schoolsRouter from './routes/schools';
-
+const express = require('express');
+const path = require('path');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const cors = require('cors');
+const indexRouter = require('./routes/index');
+const gendersRouter = require('./routes/genders');
+const racesRouter = require('./routes/races');
+const disabilitiesRouter = require('./routes/disabilities');
+const statesRouter = require('./routes/states');
+const districtsRouter = require('./routes/districts');
+const schoolsRouter = require('./routes/schools');
 
 const app = express();
 app.disable('x-powered-by');
@@ -27,7 +26,7 @@ app.use('/api/v1/genders', gendersRouter);
 app.use('/api/v1/races', racesRouter);
 app.use('/api/v1/disabilities', disabilitiesRouter);
 app.use('/api/v1/states', statesRouter);
-app.use('api/v1/districts', districtsRouter);
+app.use('/api/v1/districts', districtsRouter);
 app.use('/api/v1/schools', schoolsRouter);
 
 app.use((request, response, next) => {
@@ -42,4 +41,4 @@ app.use((error, request, response, next) => {
   response.render('error');
 });
 
-export default app;
+module.exports = app;

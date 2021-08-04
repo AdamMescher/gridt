@@ -1,9 +1,9 @@
-import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 
 router.get('/', (request, response) => {
-  response.status(200).json({ message: 'sign from above' });
+  response.status(200).json({ message: 'this is the way' });
 });
 
-export default router;
+module.exports = router;
