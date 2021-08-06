@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.0",
+    "title": "hi?",
+    "description": "this is bullshit"
+  },
+  "servers": [{ "url": "http://localhost:3333" }],
+  "tags": [
+    {
+      "name": "gender",
+      "description": "this is a gender"
+    },
+    {
+      "name": "race",
+      "description": "this is a race"
+    },
+    {
+      "name": "disability",
+      "description": "this is a disability"
+    },
+    {
+      "name": "state",
+      "description": "this is a state"
+    },
+    {
+      "name": "district",
+      "description": "this is a district"
+    },
+    {
+      "name": "school",
+      "description": "this is a school"
+    }
+  ],
+  "paths": {
+      "/genders": {},
+      "/races": {},
+      "/disabilities": {},
+      "/states": {},
+      "/districts": {},
+      "/schools"
+  }
+}

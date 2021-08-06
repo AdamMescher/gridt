@@ -4,6 +4,8 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger/swaggerSpec');
 const indexRouter = require('./routes/index');
 const gendersRouter = require('./routes/genders');
 const racesRouter = require('./routes/races');
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/', indexRouter);
 app.use('/api/v1/genders', gendersRouter);

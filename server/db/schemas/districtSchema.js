@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const districtSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
-  name: { type: String, required: true },
-  city: { type: String, required: true },
-  stateName: { type: String, required: true },
-  stateAbbreviation: { type: String, required: true },
-  enrollment: { type: String, required: true },
+  id: { type: Number, required: true, unique: true },
+  name: { type: String, required: true, unique: true },
+  city: { type: String, required: true, unique: true },
+  stateName: { type: String, required: true, unique: true },
+  stateAbbreviation: { type: String, required: true, unique: true },
+  enrollment: { type: String, required: true, unique: true },
 });
 
 const District = mongoose.model('District', districtSchema);

@@ -29,6 +29,7 @@ const seedSchoolsStream = async (collection) => {
       console.error(err);
     })
     .on('data', (school) => {
+      school.COMBOKEY.toString();
       schools.push(school);
     })
     .on('end', async () => {

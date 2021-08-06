@@ -18,8 +18,9 @@ router.get('/', async (request, response) => {
 router.get('/:id', async (request, response) => {
   try {
     const school = await School.find({
-      COMBOKEY: '010000601585',
+      COMBOKEY: parseInt(request.params.id, 10),
     });
+    console.log({ school });
     response.status(200).json(school);
   } catch (err) {
     console.error(err);
