@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger/swaggerSpec');
+const swaggerSpec = require('../openapi.json');
 const indexRouter = require('./routes/index');
 const gendersRouter = require('./routes/genders');
 const racesRouter = require('./routes/races');
@@ -13,6 +13,8 @@ const disabilitiesRouter = require('./routes/disabilities');
 const statesRouter = require('./routes/states');
 const districtsRouter = require('./routes/districts');
 const schoolsRouter = require('./routes/schools');
+
+console.log('HELP', swaggerUi.setup(swaggerSpec));
 
 const app = express();
 app.disable('x-powered-by');

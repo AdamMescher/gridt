@@ -3,17 +3,6 @@ const Gender = require('../../db/schemas/genderSchema');
 
 const router = express.Router();
 
-/**
- * @openapi
- * /genders:
- *   get:
- *     summary: Retrieve a list of JSONPlaceholder users
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
- *     responses:
- *       200:
- *         description: this is it
- */
-
 router.get('/', async (request, response) => {
   try {
     const genders = await Gender.find({});

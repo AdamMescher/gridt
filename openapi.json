@@ -33,11 +33,35 @@
     }
   ],
   "paths": {
-      "/genders": {},
-      "/races": {},
-      "/disabilities": {},
-      "/states": {},
-      "/districts": {},
-      "/schools"
+    "/genders": {
+      "get": {
+        "description": "Returns all genders",
+        "responses": {
+          "200": { "description": "OK" },
+          "400": { "description": "this is a 400 error" },
+          "500": { "description": "this is a 500 error" }
+        }
+      }
+    },
+    "/races": {
+      "summary": "this is a summary",
+      "description": "this is a description"
+    },
+    "/disabilities": {
+      "summary": "this is a summary",
+      "description": "this is a description"
+    },
+    "/states": {
+      "summary": "this is a summary",
+      "description": "this is a description"
+    },
+    "/districts": {
+      "summary": "this is a summary",
+      "description": "this is a description"
+    },
+    "/schools": {
+      "summary": "this is a summary",
+      "description": "this is a description"
+    }
   }
 }
