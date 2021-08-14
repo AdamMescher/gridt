@@ -14,8 +14,6 @@ const statesRouter = require('./routes/states');
 const districtsRouter = require('./routes/districts');
 const schoolsRouter = require('./routes/schools');
 
-console.log('HELP', swaggerUi.setup(swaggerSpec));
-
 const app = express();
 app.disable('x-powered-by');
 app.use(cors());

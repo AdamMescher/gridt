@@ -20,7 +20,6 @@ const {
 const seedSchoolsStream = async (collection) => {
   // eslint-disable-next-line no-console
   console.log('[6/6] STARTING SEEDING SCHOOLS');
-  const schools = [];
   const files = [aut, db, dd, emn, hi, md, mr, ohi, oi, sld, sli, tbi, vi];
   fs.createReadStream(allSchools)
     .pipe(csv.parse({ headers: true }))
@@ -28,12 +27,10 @@ const seedSchoolsStream = async (collection) => {
       // eslint-disable-next-line no-console
       console.error(err);
     })
-    .on('data', (school) => {
-      school.COMBOKEY.toString();
-      schools.push(school);
+    .on('data', async (school) => {
+      await collection.insertOne(school);
     })
     .on('end', async () => {
-      await collection.insertMany(schools);
       // eslint-disable-next-line no-console
       console.log('- ALL SCHOOLS SEEDED');
       // eslint-disable-next-line no-console

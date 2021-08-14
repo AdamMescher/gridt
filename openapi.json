@@ -2,36 +2,11 @@
   "openapi": "3.0.3",
   "info": {
     "version": "1.0.0",
-    "title": "hi?",
-    "description": "this is bullshit"
+    "title": "GRIDT API Documentation",
+    "description": "this is a description of the API that will be written at some point"
   },
-  "servers": [{ "url": "http://localhost:3333" }],
-  "tags": [
-    {
-      "name": "gender",
-      "description": "this is a gender"
-    },
-    {
-      "name": "race",
-      "description": "this is a race"
-    },
-    {
-      "name": "disability",
-      "description": "this is a disability"
-    },
-    {
-      "name": "state",
-      "description": "this is a state"
-    },
-    {
-      "name": "district",
-      "description": "this is a district"
-    },
-    {
-      "name": "school",
-      "description": "this is a school"
-    }
-  ],
+  "servers": [{ "url": "http://localhost:3333/api/v1" }],
+  "tags": [],
   "paths": {
     "/genders": {
       "get": {
@@ -43,25 +18,97 @@
         }
       }
     },
+    "/genders/{id}": {
+      "get": {
+        "description": "Returns one gender by id",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": [{ "in": "path", "name": "id" }]
+      }
+    },
     "/races": {
       "summary": "this is a summary",
-      "description": "this is a description"
+      "description": "this is a description",
+      "get": {
+        "description": "Returns all races",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/races/{id}": {
+      "summary": "this is a summary",
+      "description": "Returns one race by id",
+      "get": {
+        "description": "Returns one race by id",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": [{ "in": "path", "name": "id" }]
+      }
     },
     "/disabilities": {
       "summary": "this is a summary",
-      "description": "this is a description"
+      "description": "this is a description",
+      "get": {
+        "description": "Returns all disabilities",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/disabilities/{id}": {
+      "summary": "this is a summary",
+      "description": "this is a description",
+      "get": {
+        "description": "Returns one disability by ID",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": [{ "in": "path", "name": "id" }]
+      }
     },
     "/states": {
       "summary": "this is a summary",
-      "description": "this is a description"
+      "description": "this is a description",
+      "get": {
+        "description": "Retunrs all states",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/states/{id}": {
+      "summary": "this is a summary",
+      "description": "this is a description",
+      "get": {
+        "description": "Retunrs one state by ID",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": [{ "in": "path", "name": "id" }]
+      }
     },
     "/districts": {
       "summary": "this is a summary",
-      "description": "this is a description"
+      "description": "this is a description",
+      "get": {
+        "description": "Returns one all districts",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/districts/{id}": {
+      "summary": "this is a summary",
+      "description": "this is a description",
+      "get": {
+        "description": "Returns one all districts",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": { "in": "path", "name": "id" }
+      }
     },
     "/schools": {
       "summary": "this is a summary",
-      "description": "this is a description"
+      "description": "this is a description",
+      "get": {
+        "description": "Returns one all districts",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/schools/{id}": {
+      "summary": "this is a summary",
+      "description": "this is a description",
+      "get": {
+        "description": "Returns one school by id",
+        "responses": { "200": { "description": "OK" } },
+        "parameters": { "in": "path", "name": "id" }
+      }
     }
   }
 }
