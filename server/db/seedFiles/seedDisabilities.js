@@ -1,7 +1,8 @@
 const disabilities = require('./disabilities');
 const Disability = require('../schemas/disabilitySchema');
 
-const seedDisabilities = async (collection) => {
+const seedDisabilities = async () => {
+  await Disability.deleteMany({});
   // eslint-disable-next-line no-console
   console.log('[3/6] SEEDING DISABILITIES');
   const allDisabilities = disabilities.map(
@@ -12,7 +13,7 @@ const seedDisabilities = async (collection) => {
         abbreviation,
       }),
   );
-  await collection.insertMany(allDisabilities);
+  await Disability.insertMany(allDisabilities);
   // eslint-disable-next-line no-console
   console.log('[3/6] ALL DISABILITIES SEEDED SUCCESSFULLY');
 };

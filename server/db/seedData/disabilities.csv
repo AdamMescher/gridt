@@ -1,0 +1,13 @@
+﻿id,name,abbreviation
+0,autism,aut
+1,deaf-blindness,db
+2,deafness,dd
+3,emotional disturbance,emn
+4,hearing impairment,hi
+5,mr,mr
+6,multiple disabilities,md
+7,orthopedic impairment,oi
+8,other health impairment,ohi
+9,specific learning disability,sld
+10,speech or language impairment,sli
+11,traumatic brain injury,tbi

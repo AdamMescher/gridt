@@ -1,158 +1,74 @@
 const fs = require('fs');
 const csv = require('fast-csv');
+const School = require('../schemas/schoolSchema');
+const {
+  aut,
+  db,
+  dd,
+  emn,
+  hi,
+  md,
+  mr,
+  ohi,
+  oi,
+  sld,
+  sli,
+  tbi,
+  vi,
+} = require('./filepaths');
 
-const updateSchoolsWithDisabilityData = async (collection) => {
-  const basePath =
-    './seedData/2017-18-crdc-data-corrected-publication 2/2017-18 Public-Use Files/Data/SCH/EDFacts/CSV/ID 74 SCH - Race by Sex by Disability plus LEP';
-  const plusAut = reader.readFile(`${basePath}_AUT.csv`);
-  const plusDb = reader.readFile(`${basePath}_DB.csv`);
-  const plusDd = reader.readFile(`${basePath}_DD.csv`);
-  const plusEmn = reader.readFile(`${basePath}_EMN.csv`);
-  const plusHi = reader.readFile(`${basePath}_HI.csv`);
-  const plusMd = reader.readFile(`${basePath}_MD.csv`);
-  const plusMr = reader.readFile(`${basePath}_MR.csv`);
-  const plusOhi = reader.readFile(`${basePath}_OHI.csv`);
-  const plusOi = reader.readFile(`${basePath}_OI.csv`);
-  const plusSld = reader.readFile(`${basePath}_SLD.csv`);
-  const plusSli = reader.readFile(`${basePath}_SLI.csv`);
-  const plusTbi = reader.readFile(`${basePath}_TBI.csv`);
-  const plusVi = reader.readFile(`${basePath}_VI.csv`);
-  const files = [
-    plusAut,
-    plusDb,
-    plusDd,
-    plusEmn,
-    plusHi,
-    plusMd,
-    plusMr,
-    plusOhi,
-    plusOi,
-    plusSld,
-    plusSli,
-    plusTbi,
-    plusVi,
-  ];
-  for (let i = 0; i < files.length; i++) {
-    console.log(`PROCESSING FILE [${i + 1} OF ${files.length}]`);
-    const file = files[i];
-    const sheets = file.SheetNames;
-    for (let j = 0; j < sheets.length; j++) {
-      const schools = reader.utils.sheet_to_json(file.Sheets[sheets[j]]);
-      for (let q = 0; q < schools.length; q++) {
-        if (q % 10000 === 0) {
-          console.log(`BATCH ${q} / ${q + 10000}`);
-        }
-        const school = schools[q];
-        const query = { comboKey: school.NCESSCH };
-        const options = { new: true };
+const updateSchoolsWithDisabilityData = async () => {
+  let completedFiles = 0;
+  const files = [aut, db, dd, emn, hi, md, mr, ohi, oi, sld, sli, tbi, vi];
+  files.forEach((file, idx, arr) => {
+    fs.createReadStream(file)
+      .pipe(csv.parse({ headers: true }))
+      .on('error', (error) => console.error(error))
+      .on('data', async (school) => {
         const stats = {
-          am: { m: school.AM_M_7, f: school.AM_F_7 },
-          as: { m: school.AS_M_7, f: school.AS_F_7 },
-          bl: { m: school.BL_M_7, f: school.BL_F_7 },
-          hi: { m: school.HI_M_7, f: school.HI_F_7 },
-          mu: { m: school.MU_M_7, f: school.MU_F_7 },
-          pi: { m: school.PI_M_7, f: school.PI_F_7 },
-          wh: { m: school.WH_M_7, f: school.WH_F_7 },
+          [school.DISABILITY_CATEGORY]: {
+            DISABILITY_CATEGORY: school.DISABILITY_CATEGORY,
+            TOTAL_STUDENTS_REPORTED: school.TOTAL_STUDENTS_REPORTED,
+            TOT_ENR_M: school.TOT_ENR_M,
+            TOT_ENR_F: school.TOT_ENR_F,
+            AM_M_7: school.AM_M_7,
+            AS_M_7: school.AS_M_7,
+            BL_M_7: school.BL_M_7,
+            HI_M_7: school.HI_M_7,
+            PI_M_7: school.PI_M_7,
+            TR_M_7: school.TR_M_7,
+            WH_M_7: school.WH_M_7,
+            AM_F_7: school.AM_F_7,
+            AS_F_7: school.AS_F_7,
+            BL_F_7: school.BL_F_7,
+            HI_F_7: school.HI_F_7,
+            PI_F_7: school.PI_F_7,
+            TR_F_7: school.TR_F_7,
+            WH_F_7: school.WH_F_7,
+          },
         };
-        const update = {
-          $set: { disability: stats },
-        };
-        switch (i) {
-          case 0:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.aut': stats } },
-              options,
-            );
-            break;
-          case 1:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.db': stats } },
-              options,
-            );
-            break;
-          case 2:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.dd': stats } },
-              options,
-            );
-            break;
-          case 3:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.emn': stats } },
-              options,
-            );
-            break;
-          case 4:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.hi': stats } },
-              options,
-            );
-            break;
-          case 5:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.md': stats } },
-              options,
-            );
-            break;
-          case 6:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.mr': stats } },
-              options,
-            );
-            break;
-          case 7:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.ohi': stats } },
-              options,
-            );
-            break;
-          case 8:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.oi': stats } },
-              options,
-            );
-            break;
-          case 9:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.sld': stats } },
-              options,
-            );
-            break;
-          case 10:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.sli': stats } },
-              options,
-            );
-            break;
-          case 11:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.tbi': stats } },
-              options,
-            );
-            break;
-          case 12:
-            await collection.findOneAndUpdate(
-              query,
-              { $set: { 'disabilities.vi': stats } },
-              options,
-            );
-            break;
+        const query = { COMBOKEY: school.NCESSCH };
+        const update = { $set: stats };
+        const options = { new: true };
+      })
+      .on('end', () => {
+        completedFiles += 1;
+        console.log(`- [${completedFiles}/${arr.length}] FILES COMPLETED`);
+        if (completedFiles === arr.length) {
+          // eslint-disable-next-line no-console
+          console.log('DISABILITY DATA UPDATED FOR ALL SCHOOLS');
+          // eslint-disable-next-line no-console
+          console.log('ALL SCHOOLS SEEDED');
+          // eslint-disable-next-line no-console
+          console.log('------------------------------');
+          // eslint-disable-next-line no-console
+          console.log('- GRIDT SEEDED SUCCESSFULLY! -');
+          // eslint-disable-next-line no-console
+          console.log('------------------------------', '\n');
+          // eslint-disable-next-line no-console
         }
-      }
-    }
-  }
+      });
+  });
 };
 
 module.exports = updateSchoolsWithDisabilityData;

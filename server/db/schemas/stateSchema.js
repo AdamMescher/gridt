@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const stateSchema = new mongoose.Schema({
-  id: { type: Number, required: true, unique: true },
-  name: { type: String, required: true, unique: true },
-  standard: { type: Number, required: true, unique: true },
-  postal: { type: Number, required: true, unique: true },
+  id: { type: Number },
+  name: { type: String },
+  standard: { type: Number },
+  postal: { type: Number },
 });
 
 const State = mongoose.model('State', stateSchema);

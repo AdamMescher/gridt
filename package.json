@@ -10,9 +10,9 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "db:seed": "node server/db/seedDb.js",
+    "db:seed": "node --max-old-space-size=8192 server/db/seedDb.js",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
-    "dev": "babel-node ./server/index.js",
+    "dev": "nodemon ./server/index.js",
     "clean:server": "rimraf ./server/dist",
     "build:server": "npm run clean:server && babel ./server --out-dir ./server/dist --copy-files",
     "start:server": "nodemon --exec babel-node server/bin/www.js",
@@ -49,6 +49,7 @@
     "jest": "^26.6.0",
     "mongodb": "^4.0.0",
     "mongoose": "^5.13.2",
+    "mongoose-long": "^0.4.1",
     "morgan": "^1.10.0",
     "multistream": "^4.1.0",
     "react": "^17.0.2",

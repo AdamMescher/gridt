@@ -2,7 +2,8 @@ const fs = require('fs');
 const csv = require('fast-csv');
 const District = require('../schemas/districtSchema');
 
-const seedDistrictsStream = (collection) => {
+const seedDistrictsStream = async () => {
+  await District.deleteMany({});
   // eslint-disable-next-line no-console
   console.log('[5/6] SEEDING DISTRICTS');
   const filepath =
@@ -24,8 +25,7 @@ const seedDistrictsStream = (collection) => {
       districts.push(cleanedDistrict);
     })
     .on('end', async () => {
-      await collection
-        .insertMany(districts)
+      await District.insertMany(districts)
         // eslint-disable-next-line no-console
         .then(console.log('[5/6] ALL DISTRICTS SEEDED SUCCESSFULLY'))
         // eslint-disable-next-line no-console

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
+require('mongoose-long');
 const District = require('../../db/schemas/districtSchema');
 
 const router = express.Router();
@@ -15,8 +16,12 @@ router.get('/', async (request, response) => {
 });
 
 router.get('/:id', async (request, response) => {
+  const { id } = request.params;
+  console.log({ count: District.count() });
   try {
-    const district = await District.find({ id: request.params.id });
+    const district = await District.find({
+      LEAID: id,
+    });
     response.status(200).json(district);
   } catch (err) {
     console.error(err);

@@ -16,8 +16,10 @@ const {
   tbi,
   vi,
 } = require('./filepaths');
+const School = require('../schemas/schoolSchema');
 
-const seedSchoolsStream = async (collection) => {
+const seedSchoolsStream = async () => {
+  await School.deleteMany({});
   // eslint-disable-next-line no-console
   console.log('[6/6] STARTING SEEDING SCHOOLS');
   const files = [aut, db, dd, emn, hi, md, mr, ohi, oi, sld, sli, tbi, vi];
@@ -27,8 +29,8 @@ const seedSchoolsStream = async (collection) => {
       // eslint-disable-next-line no-console
       console.error(err);
     })
-    .on('data', async (school) => {
-      await collection.insertOne(school);
+    .on('data', (school) => {
+      School.create(school);
     })
     .on('end', async () => {
       // eslint-disable-next-line no-console
@@ -64,10 +66,10 @@ const seedSchoolsStream = async (collection) => {
                 WH_F_7: school.WH_F_7,
               },
             };
-            const query = { COMBOKEY: school.NCESSCH };
+            const query = { COMBOKEY: school.COMBOKEY };
             const update = { $set: stats };
             const options = { new: true };
-            await collection.findOneAndUpdate(query, update, options);
+            await School.findOneAndUpdate(query, update, options);
           })
           .on('end', () => {
             completedFiles += 1;

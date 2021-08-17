@@ -1,8 +1,9 @@
 const races = require('./races');
 const Race = require('../schemas/raceSchema');
 
-const seedRaces = async (collection) => {
+const seedRaces = async () => {
   // eslint-disable-next-line no-console
+  await Race.deleteMany({});
   console.log('[2/6] SEEDING RACES');
   const allRaces = races.map(
     ({ id, name, abbreviation }) =>
@@ -12,7 +13,7 @@ const seedRaces = async (collection) => {
         abbreviation,
       }),
   );
-  await collection.insertMany(allRaces);
+  await Race.insertMany(allRaces).catch((err) => console.error(err));
   // eslint-disable-next-line no-console
   console.log('[2/6] ALL RACES SEEDED SUCCESSFULLY');
 };

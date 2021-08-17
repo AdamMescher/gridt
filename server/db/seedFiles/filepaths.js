@@ -15,7 +15,7 @@ const tbi = `${basePath}_TBI.csv`;
 const vi = `${basePath}_VI.csv`;
 
 const filepaths = {
-  allSchools: './server/db/seedData/Dissertation_RAW_2_EDIT.csv',
+  allSchools: './server/db/seedData/Dissertation_RAW_2_GRIDT.csv',
   aut,
   db,
   dd,
