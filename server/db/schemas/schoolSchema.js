@@ -1,4 +1,9 @@
 const mongoose = require('mongoose');
+require('mongoose-long')(mongoose);
+
+const {
+  Types: { Long },
+} = mongoose;
 
 const schoolSchema = new mongoose.Schema({
   LEA_STATE: { type: String },
@@ -7,7 +12,7 @@ const schoolSchema = new mongoose.Schema({
   LEA_NAME: { type: String },
   SCHID: { type: String },
   SCH_NAME: { type: String },
-  COMBOKEY: { type: String },
+  COMBOKEY: { type: Long },
   SCH_IDEAENR_HI_M: { type: String },
   SCH_ENR_HI_M: { type: String },
   RI_HI_M: { type: String },
