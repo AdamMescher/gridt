@@ -9,27 +9,27 @@
   "tags": [
     {
       "name": "gender",
-      "description": "Can be either Female or Male"
+      "description": "All possible operations for Gender documents"
     },
     {
       "name": "race",
-      "description": "this is a race"
+      "description": "All operations for Race documents"
     },
     {
       "name": "disability",
-      "description": "This is a disability"
+      "description": "All operations for Disability documents"
     },
     {
       "name": "state",
-      "description": "This is a state"
+      "description": "All operations for State documents"
     },
     {
       "name": "district",
-      "description": "This is a district"
+      "description": "All operations for District documents"
     },
     {
       "name": "school",
-      "description": "This is a school"
+      "description": "All operations for School documents"
     }
   ],
   "paths": {
