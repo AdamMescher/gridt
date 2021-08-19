@@ -4,7 +4,7 @@ require('mongoose-long')(mongoose);
 const {
   Types: { Long },
 } = mongoose;
-
+const { Mixed } = mongoose;
 const schoolSchema = new mongoose.Schema({
   LEA_STATE: { type: String },
   LEA_STATE_NAME: { type: String },
@@ -12,7 +12,7 @@ const schoolSchema = new mongoose.Schema({
   LEA_NAME: { type: String },
   SCHID: { type: String },
   SCH_NAME: { type: String },
-  COMBOKEY: { type: Long },
+  COMBOKEY: { type: Mixed, required: true, unique: true },
   SCH_IDEAENR_HI_M: { type: String },
   SCH_ENR_HI_M: { type: String },
   RI_HI_M: { type: String },

@@ -47,7 +47,11 @@ const onListening = async () => {
   console.log(`Listening on ${bind}`);
   try {
     const path = 'mongodb://localhost/gridt';
-    const options = { useNewUrlParser: true, useUnifiedTopology: true };
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    };
     await mongoose.connect(path, options);
     const db = mongoose.connection;
     // eslint-disable-next-line no-console

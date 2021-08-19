@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
+const { Mixed } = mongoose;
 const districtSchema = new mongoose.Schema({
   LEA_STATE: { type: String, required: true },
   LEA_STATE_NAME: { type: String, required: true },
-  LEAID: { type: Number, required: true },
+  LEAID: { type: Mixed, required: true, unique: true },
   LEA_NAME: { type: String, required: true },
   LEA_ADDRESS: { type: String, required: true },
   LEA_CITY: { type: String, required: true },

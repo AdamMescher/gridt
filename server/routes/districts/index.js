@@ -16,9 +16,11 @@ router.get('/', async (request, response) => {
 });
 
 router.get('/:id', async (request, response) => {
+  const { id } = request.params;
   try {
+    console.log(typeof request.params.id);
     const district = await District.find({
-      LEAID: request.params.id,
+      LEAID: { $in: [id.toString(), parseInt(id, 10)] },
     });
     response.status(200).json(district);
   } catch (err) {
