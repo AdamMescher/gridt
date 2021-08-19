@@ -6,11 +6,38 @@
     "description": "this is a description of the API that will be written at some point"
   },
   "servers": [{ "url": "http://localhost:3333/api/v1" }],
-  "tags": [],
+  "tags": [
+    {
+      "name": "gender",
+      "description": "Can be either Female or Male"
+    },
+    {
+      "name": "race",
+      "description": "this is a race"
+    },
+    {
+      "name": "disability",
+      "description": "This is a disability"
+    },
+    {
+      "name": "state",
+      "description": "This is a state"
+    },
+    {
+      "name": "district",
+      "description": "This is a district"
+    },
+    {
+      "name": "school",
+      "description": "This is a school"
+    }
+  ],
   "paths": {
     "/genders": {
       "get": {
-        "description": "Returns all genders",
+        "tags": ["gender"],
+        "summary": "Find all Genders",
+        "description": "Returns all Gender documents in genders collection of GRIDT",
         "responses": {
           "200": { "description": "OK" },
           "400": { "description": "this is a 400 error" },
@@ -20,94 +47,96 @@
     },
     "/genders/{id}": {
       "get": {
-        "description": "Returns one gender by id",
+        "tags": ["gender"],
+        "summary": "Find one Gender by ID",
+        "description": "Returns one Gender document by ID in genders collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/races": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns all races",
+        "tags": ["race"],
+        "summary": "Find all Races",
+        "description": "Returns all Race documents by ID in races collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
       }
     },
     "/races/{id}": {
-      "summary": "this is a summary",
-      "description": "Returns one race by id",
       "get": {
-        "description": "Returns one race by id",
+        "tags": ["race"],
+        "summary": "Find one Race by ID",
+        "description": "Find one Race document by ID in races collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/disabilities": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns all disabilities",
+        "tags": ["disability"],
+        "summary": "Find all Disabilities",
+        "description": "Find all Disability documents in disabilities collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
       }
     },
     "/disabilities/{id}": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns one disability by ID",
+        "tags": ["disability"],
+        "summary": "Returns one Disability by ID",
+        "description": "Find one Disability document by ID in disabilities collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/states": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Retunrs all states",
+        "tags": ["state"],
+        "summary": "Find all States",
+        "description": "Find all State documents in states collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
       }
     },
     "/states/{id}": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Retunrs one state by ID",
+        "tags": ["state"],
+        "summary": "Find one State by ID",
+        "description": "Returns one State document by ID in states collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/districts": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns one all districts",
+        "tags": ["district"],
+        "summary": "Find all Districts",
+        "description": "Returns all District documents in districts collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
       }
     },
     "/districts/{id}": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns one all districts",
+        "tags": ["district"],
+        "summary": "Find one District by ID",
+        "description": "Returns one District document by ID in disctricts collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
-        "parameters": { "in": "path", "name": "id" }
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/schools": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns one all districts",
+        "tags": ["school"],
+        "summary": "Find all Schools",
+        "description": "Returns all School documents in schools collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
       }
     },
     "/schools/{id}": {
-      "summary": "this is a summary",
-      "description": "this is a description",
       "get": {
-        "description": "Returns one school by id",
+        "tags": ["school"],
+        "summary": "Find one School by ID",
+        "description": "Returns one School document by ID in schools collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
-        "parameters": { "in": "path", "name": "id" }
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     }
   }
