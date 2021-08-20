@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MongoPaging = require('mongo-cursor-pagination');
 
 const { Mixed } = mongoose;
 const districtSchema = new mongoose.Schema({
@@ -57,6 +58,7 @@ const districtSchema = new mongoose.Schema({
   LEA_KG_PARTDAYCOST: { type: Number, required: true },
 });
 
+districtSchema.plugin(MongoPaging.mongoosePlugin);
 const District = mongoose.model('District', districtSchema);
 
 module.exports = District;

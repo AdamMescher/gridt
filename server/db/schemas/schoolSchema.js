@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
-require('mongoose-long')(mongoose);
+const MongoPaging = require('mongo-cursor-pagination');
 
-const {
-  Types: { Long },
-} = mongoose;
 const { Mixed } = mongoose;
 const schoolSchema = new mongoose.Schema({
   LEA_STATE: { type: String },
@@ -152,6 +149,8 @@ const schoolSchema = new mongoose.Schema({
   RI_WH_M: { type: String },
   RI_WH_F: { type: String },
 });
+
+schoolSchema.plugin(MongoPaging.mongoosePlugin);
 const School = mongoose.model('School', schoolSchema);
 
 module.exports = School;

@@ -1,26 +1,23 @@
 /* eslint-disable no-console */
 const express = require('express');
 const School = require('../../db/schemas/schoolSchema');
+const checkLimit = require('../../utils/checkLimit');
 
 const router = express.Router();
 
 router.get('/', async (request, response) => {
+  const limit = parseInt(request.query.limit, 10) || 1000;
+  const text = request.query?.text;
   try {
-    // const schoolsCount = await School.countDocuments({});
-    // let page = parseInt(request.query.page);
-    // if (!page) {
-    //   page = 1;
-    // }
-    // if (page > schoolsCount) {
-    //   page = pageCount;
-    // }
-    // const schools = await School.find()
-    //   .limit(perPage)
-    //   .skip(perPage * page)
-    // response.send(200).json({ schools }).end();
+    if (text) {
+      return response.json({ message: text });
+    }
+    checkLimit(response, limit, 10000);
+    const schools = await School.paginate({ limit });
+    return response.json({ schools }).end();
   } catch (err) {
     console.error(err);
-    response.status(400).end();
+    return response.status(400).end();
   }
 });
 

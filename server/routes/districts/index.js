@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
 const express = require('express');
-require('mongoose-long');
 const District = require('../../db/schemas/districtSchema');
+const checkLimit = require('../../utils/checkLimit');
 
 const router = express.Router();
 
 router.get('/', async (request, response) => {
+  const limit = parseInt(request.query.limit, 10) || 1000;
+  checkLimit(response, limit, 10000);
   try {
-    const districts = await District.find({});
-    response.status(200).json({ districts });
+    const districts = await District.paginate({ limit });
+    return response.status(200).json({ districts });
   } catch (err) {
     console.error(err);
-    response.status(400).end();
+    return response.status(400).end();
   }
 });
 
