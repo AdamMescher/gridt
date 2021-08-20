@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get('/', async (request, response) => {
   const limit = parseInt(request.query.limit, 10) || 1000;
-  const text = request.query?.text;
+  const name = request.query?.name;
   try {
-    if (text) {
+    if (name) {
       const results = await School.find({
-        SCH_NAME: { $regex: new RegExp(text), $options: 'i' },
+        SCH_NAME: { $regex: new RegExp(name), $options: 'i' },
       }).limit(10);
       return response.json(results);
     }
@@ -34,18 +34,6 @@ router.get('/:id', async (request, response) => {
   } catch (err) {
     console.error(err);
     response.status(400).end();
-  }
-});
-
-router.post('/', async (request, response) => {
-  const school = request.body;
-  console.log({ school });
-  try {
-    await School.create(school);
-    response.status(201).json(school).end();
-  } catch (err) {
-    console.error(err);
-    response.status(500).end();
   }
 });
 
