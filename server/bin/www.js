@@ -51,6 +51,7 @@ const onListening = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      autoIndex: false,
     };
     await mongoose.connect(path, options);
     const db = mongoose.connection;

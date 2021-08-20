@@ -1,15 +1,12 @@
 /* eslint-disable no-console */
 const express = require('express');
 const District = require('../../db/schemas/districtSchema');
-const checkLimit = require('../../utils/checkLimit');
 
 const router = express.Router();
 
 router.get('/', async (request, response) => {
-  const limit = parseInt(request.query.limit, 10) || 1000;
-  checkLimit(response, limit, 10000);
   try {
-    const districts = await District.paginate({ limit });
+    const districts = await District.find({});
     return response.status(200).json({ districts });
   } catch (err) {
     console.error(err);

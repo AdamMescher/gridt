@@ -10,7 +10,10 @@ router.get('/', async (request, response) => {
   const text = request.query?.text;
   try {
     if (text) {
-      return response.json({ message: text });
+      const results = await School.find({
+        SCH_NAME: { $regex: new RegExp(text) },
+      }).limit(2);
+      return response.json(results);
     }
     checkLimit(response, limit, 10000);
     const schools = await School.paginate({ limit });
