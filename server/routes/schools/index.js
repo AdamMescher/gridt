@@ -11,8 +11,8 @@ router.get('/', async (request, response) => {
   try {
     if (text) {
       const results = await School.find({
-        SCH_NAME: { $regex: new RegExp(text) },
-      }).limit(2);
+        SCH_NAME: { $regex: new RegExp(text), $options: 'i' },
+      }).limit(10);
       return response.json(results);
     }
     checkLimit(response, limit, 10000);

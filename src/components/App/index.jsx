@@ -6,9 +6,8 @@ const App = () => {
   const [races, setRaces] = useState([]);
   const [disabilities, setDisabilites] = useState([]);
   const [states, setStates] = useState([]);
-  const [districts, setDistricts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  // const [schools, setSchools] = useState([]);
+  const [schoolSearchResults, setSchoolSearchResults] = useState([]);
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -35,17 +34,10 @@ const App = () => {
       );
       setStates(statesResult.data.states);
     };
-    const fetchDistricts = async () => {
-      const districtsResult = await axios.get(
-        'http://localhost:3333/api/v1/districts',
-      );
-      setDistricts(districtsResult.data.districts);
-    };
     fetchGenders();
     fetchRaces();
     fetchDisabilities();
     fetchStates();
-    fetchDistricts();
   }, []);
 
   return (
@@ -71,11 +63,6 @@ const App = () => {
       ) : (
         <h2>{`Total states: Loading...`}</h2>
       )}
-      {districts.length > 1 ? (
-        <h2>{`Total districts: ${districts.length}`}</h2>
-      ) : (
-        <h2>{`Total districts: Loading...`}</h2>
-      )}
       <form>
         <input type="text" placeholder="school name" onChange={handleChange} />
         <input
@@ -84,14 +71,25 @@ const App = () => {
             event.preventDefault();
             // query DB with search term
             console.log('BUTTON CLICKED!');
-            const searchResult = await axios.get(
-              `http://localhost:3333/api/v1/schools?text=${searchTerm}&limit=10`,
+            const searchResults = await axios.get(
+              `http://localhost:3333/api/v1/schools?text=${searchTerm}`,
             );
-            console.log(searchTerm);
-            console.log(searchResult);
+            console.log(searchResults);
+            setSchoolSearchResults(searchResults.data);
           }}
         />
       </form>
+      {schoolSearchResults.length > 1 ? (
+        <ul>
+          {schoolSearchResults.map((school) => (
+            <li>
+              <p>{`School Name: ${school.SCH_NAME}`}</p>
+              <p>{`School State: ${school.LEA_STATE}`}</p>
+              <p>{`District Name: ${school.LEA_NAME}`}</p>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 };
