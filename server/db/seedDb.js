@@ -11,7 +11,7 @@ const connection = mongoose.connect(url, options);
 
 const seedDb = async () => {
   try {
-    updateSchoolsWithDisabilityData();
+    await updateSchoolsWithDisabilityData();
   } catch (error) {
     console.log(error.stack);
   }

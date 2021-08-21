@@ -3,23 +3,23 @@ const csv = require('fast-csv');
 const School = require('../schemas/schoolSchema');
 const {
   aut,
-  db,
-  dd,
-  emn,
-  hi,
-  md,
-  mr,
-  ohi,
-  oi,
-  sld,
-  sli,
-  tbi,
-  vi,
+  // db,
+  // dd,
+  // emn,
+  // hi,
+  // md,
+  // mr,
+  // ohi,
+  // oi,
+  // sld,
+  // sli,
+  // tbi,
+  // vi,
 } = require('./filepaths');
 
 const updateSchoolsWithDisabilityData = async () => {
   let completedFiles = 0;
-  const files = [aut, db, dd, emn, hi, md, mr, ohi, oi, sld, sli, tbi, vi];
+  const files = [aut];
   files.forEach((file, idx, arr) => {
     fs.createReadStream(file)
       .pipe(csv.parse({ headers: true }))
@@ -47,9 +47,18 @@ const updateSchoolsWithDisabilityData = async () => {
             WH_F_7: school.WH_F_7,
           },
         };
-        const query = { COMBOKEY: school.NCESSCH };
+        const query = {
+          COMBOKEY: {
+            $in: [parseInt(school.NCESSCH, 10), school.NCESSCH.toString()],
+          },
+        };
         const update = { $set: stats };
         const options = { new: true };
+        await School.findOneAndUpdate({
+          query,
+          update,
+          options,
+        });
       })
       .on('end', () => {
         completedFiles += 1;
