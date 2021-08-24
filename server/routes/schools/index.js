@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const express = require('express');
 const School = require('../../db/schemas/schoolSchema');
 const checkLimit = require('../../utils/checkLimit');
@@ -6,7 +5,7 @@ const checkLimit = require('../../utils/checkLimit');
 const router = express.Router();
 
 router.get('/', async (request, response) => {
-  const limit = parseInt(request.query.limit, 10) || 1000;
+  const limit = parseInt(request.query.limit, 10) || 500;
   const name = request.query?.name;
   try {
     if (name) {
@@ -15,10 +14,11 @@ router.get('/', async (request, response) => {
       }).limit(10);
       return response.json(results);
     }
-    checkLimit(response, limit, 10000);
+    checkLimit(response, limit, 1000);
     const schools = await School.paginate({ limit });
     return response.json({ schools }).end();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return response.status(400).end();
   }
@@ -32,6 +32,7 @@ router.get('/:id', async (request, response) => {
     });
     response.status(200).json(school).end();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     response.status(400).end();
   }
