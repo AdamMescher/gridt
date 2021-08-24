@@ -46,7 +46,7 @@
       },
       "post": {
         "tags": ["gender"],
-        "summary": "Add new Gender",
+        "summary": "Add one new Gender",
         "description": "Add one Gender document in genders collection of GRIDT",
         "requestBody": {
           "content": {
@@ -86,7 +86,7 @@
       },
       "put": {
         "tags": ["gender"],
-        "summary": "Update Gender by ID",
+        "summary": "Update one Gender by ID",
         "description": "Updates one Gender document by ID in genders collection of GRIDT",
         "responses": {
           "200": { "description": "ok" },
