@@ -30,6 +30,10 @@
     {
       "name": "school",
       "description": "All operations for School documents"
+    },
+    {
+      "name": "risk",
+      "description": "Finds and returns either School or District risk ratios that match given search criteria"
     }
   ],
   "paths": {
@@ -81,25 +85,38 @@
         "tags": ["gender"],
         "summary": "Find one Gender by ID",
         "description": "Returns one Gender document by ID in genders collection of GRIDT",
-        "responses": { "200": { "description": "OK" } },
-        "parameters": [{ "in": "path", "name": "id" }]
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": { "200": { "description": "OK" } }
       },
       "put": {
         "tags": ["gender"],
         "summary": "Update one Gender by ID",
         "description": "Updates one Gender document by ID in genders collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
         "responses": {
-          "200": { "description": "ok" },
+          "204": { "description": "Successful update" },
           "400": { "description": "user error" },
           "500": { "description": "server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gender"
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": ["gender"],
         "summary": "Delete one Gender by ID",
         "description": "Deletes one Gender document by ID in genders collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
         "responses": {
-          "200": { "description": "OK" }
+          "202": { "description": "Deletion successful" },
+          "400": { "description": "Error" },
+          "404": { "description": "No item found" }
         }
       }
     },
@@ -186,6 +203,20 @@
         "description": "Returns one School document by ID in schools collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
+      }
+    },
+    "/risk": {
+      "get": {
+        "tags": ["risk"],
+        "summary": "Find collective risk ratio of schools via search criteria",
+        "description": "Returns many School documents which match search criteria for risk ratio",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/risk/{id}": {
+      "get": {
+        "tags": ["risk"],
+        "summary": "Finds risk ratio for one school "
       }
     }
   },
