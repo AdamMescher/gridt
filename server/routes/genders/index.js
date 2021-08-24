@@ -77,6 +77,28 @@ router.delete('/', async (request, response) => {
   }
 });
 
+router.put('/:id', async (request, response) => {
+  try {
+    const { name, abbreviation } = request.body;
+    const found = await Gender.find({ id: request.params.id });
+    if (found.length === 0) {
+      response
+        .status(404)
+        .json({ message: `No gender with ID: ${request.params.id} found` });
+    } else {
+      const query = { id: request.params.id };
+      const update = { $set: Object.assign(found[0], { name, abbreviation }) };
+      const options = { useFindAndModify: false };
+      await Gender.findOneAndUpdate(query, update, options);
+      response.status(204).json({ message: 'Updated Successfully' });
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    response.status(400).end();
+  }
+});
+
 router.delete('/:id', async (request, response) => {
   try {
     const toDelete = await Gender.find({ id: request.params.id });
