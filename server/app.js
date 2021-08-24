@@ -13,6 +13,7 @@ const disabilitiesRouter = require('./routes/disabilities');
 const statesRouter = require('./routes/states');
 const districtsRouter = require('./routes/districts');
 const schoolsRouter = require('./routes/schools');
+const riskRouter = require('./routes/risk');
 
 const app = express();
 app.disable('x-powered-by');
@@ -31,6 +32,7 @@ app.use('/api/v1/disabilities', disabilitiesRouter);
 app.use('/api/v1/states', statesRouter);
 app.use('/api/v1/districts', districtsRouter);
 app.use('/api/v1/schools', schoolsRouter);
+app.use('/api/v1/risk', riskRouter);
 
 app.use((request, response, next) => {
   next(createError(404));
