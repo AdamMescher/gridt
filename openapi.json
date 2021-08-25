@@ -63,6 +63,7 @@
         },
         "responses": {
           "201": { "description": "successful submission" },
+          "400": { "description": "Bad Request" },
           "409": {
             "description": "id, name, and abbreviation properties must be unique"
           },

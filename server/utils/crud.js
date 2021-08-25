@@ -1,3 +1,5 @@
+const queryOptions = require('./queryOptions');
+
 const createOne = (model) => async (request, response) => {
   try {
     // check for duplicates, return error if duplicate
@@ -12,14 +14,17 @@ const createOne = (model) => async (request, response) => {
 
 const getOne = (model) => async (request, response) => {
   try {
-    const doc = await model.find({ id: request.params.id });
+    const doc = await model.find({
+      [queryOptions[model.modelName.toLowerCase()]]:
+        request.params[queryOptions[model.modelName.toLowerCase()]],
+    });
     if (!doc) {
       response.status(404).end();
     }
     response.status(200).json({ data: doc });
   } catch (error) {
     console.error(error);
-    response.status(400).end();
+    response.status(400).json({ message: 'Bad request' });
   }
 };
 
@@ -40,7 +45,10 @@ const getMany = (model) => async (request, response) => {
 
 const removeOne = (model) => async (request, response) => {
   try {
-    const removed = await model.findOneAndRemove({ id: request.params.id });
+    const removed = await model.findOneAndRemove({
+      [queryOptions[model.modelName.toLowerCase()]]:
+        request.params[queryOptions[model.modelName.toLowerCase()]],
+    });
     if (!removed) {
       response
         .status(404)
@@ -70,7 +78,14 @@ const removeMany = (model) => async (request, response) => {
 const updateOne = (model) => async (request, response) => {
   try {
     const updatedDoc = await model
-      .findOneAndUpdate({ id: request.params.id }, request.body, { new: true })
+      .findOneAndUpdate(
+        {
+          [queryOptions[model.modelName.toLowerCase()]]:
+            request.params[queryOptions[model.modelName.toLowerCase()]],
+        },
+        request.body,
+        { new: true },
+      )
       .lean()
       .exec();
     if (!updatedDoc) {
