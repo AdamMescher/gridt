@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../../app');
 
-const path = 'mongodb://localhost/test';
+const path = 'mongodb://localhost/gridt';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,15 +22,15 @@ afterEach(() => {
 describe('/api/v1/genders Routes', () => {
   test('GET /api/v1/genders returns all genders', async (done) => {
     const expected = {
-      genders: [
+      data: [
         {
-          _id: '611f1e46d09d28f1064f1763',
+          _id: '61258ee7bdb4610e40cf0d34',
           id: 0,
           name: 'female',
           abbreviation: 'f',
         },
         {
-          _id: '611f1e46d09d28f1064f1764',
+          _id: '61258ee7bdb4610e40cf0d35',
           id: 1,
           name: 'male',
           abbreviation: 'm',
@@ -44,9 +44,9 @@ describe('/api/v1/genders Routes', () => {
   });
   test('GET /api/v1/genders/:id', async (done) => {
     const expected = {
-      gender: [
+      data: [
         {
-          _id: '611f1e46d09d28f1064f1764',
+          _id: '61258ee7bdb4610e40cf0d35',
           id: 1,
           name: 'male',
           abbreviation: 'm',
