@@ -9,7 +9,6 @@ router
   .post(controllers.createOne)
   .put(controllers.updateOne)
   .delete(controllers.removeMany);
-//   .post(controllers.createOne)
 
 router.route('/:id').get(controllers.getOne).delete(controllers.removeOne);
 
