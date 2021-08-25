@@ -1,14 +1,41 @@
 const queryOptions = require('./queryOptions');
+const requiredParameters = require('./requiredParameters');
 
 const createOne = (model) => async (request, response) => {
   try {
-    // check for duplicates, return error if duplicate
-    // check for null, do not return null values
-    const doc = await model.create({ ...request.body });
-    response.status(201).json({ data: doc });
+    const required = requiredParameters[model.modelName.toLowerCase()];
+    for (let i = 0; i < required.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      const found = await model.countDocuments({
+        [required[i]]: request.body[required[i]],
+      });
+      if (found > 0) {
+        response
+          .status(409)
+          .json({
+            message: `A ${model.modelName} with ${required[i]}: ${
+              request.body[required[i]]
+            } already exists.`,
+          })
+          .end();
+        break;
+      }
+      if (!Object.prototype.hasOwnProperty.call(request.body, required[i])) {
+        return response
+          .status(422)
+          .json({
+            error: `Request body is missing the required '${required[i]}' property`,
+          })
+          .end();
+      }
+      // eslint-disable-next-line no-await-in-loop
+      const doc = await model.create({ ...request.body });
+      return response.status(201).json({ data: doc });
+    }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).end();
+    return response.status(400).json({ error }).end();
   }
 };
 
@@ -23,8 +50,9 @@ const getOne = (model) => async (request, response) => {
     }
     response.status(200).json({ data: doc });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ message: 'Bad request' });
+    response.status(400).json({ error });
   }
 };
 
@@ -38,8 +66,9 @@ const getMany = (model) => async (request, response) => {
     }
     response.status(200).json({ data: docs });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).end();
+    response.status(400).json({ error });
   }
 };
 
@@ -58,8 +87,9 @@ const removeOne = (model) => async (request, response) => {
       message: `${model.modelName} with ID: ${request.params.id} deleted successfully`,
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).end();
+    response.status(400).json({ error });
   }
 };
 
@@ -70,8 +100,9 @@ const removeMany = (model) => async (request, response) => {
       .status(202)
       .json({ message: `All ${model.modelName}s deleted successfully` });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).end();
+    response.status(400).json({ error });
   }
 };
 
@@ -97,8 +128,9 @@ const updateOne = (model) => async (request, response) => {
       message: `Updated ${model.modelName} with ID: ${request.params.id} successfully`,
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).end();
+    response.status(400).json({ error });
   }
 };
 

@@ -43,9 +43,9 @@
         "summary": "Find all Genders",
         "description": "Returns all Gender documents in genders collection of GRIDT",
         "responses": {
-          "200": { "description": "OK" },
-          "400": { "description": "this is a 400 error" },
-          "500": { "description": "this is a 500 error" }
+          "200": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
         }
       },
       "post": {
@@ -62,7 +62,7 @@
           }
         },
         "responses": {
-          "201": { "description": "successful submission" },
+          "201": { "description": "Success" },
           "400": { "description": "Bad Request" },
           "409": {
             "description": "id, name, and abbreviation properties must be unique"
@@ -72,32 +72,15 @@
           }
         }
       },
-      "delete": {
-        "tags": ["gender"],
-        "summary": "Delete all Genders",
-        "description": "Delete all Gender documents in the genders collection of GRIDT",
-        "responses": {
-          "202": { "description": "Successfuly delete" }
-        }
-      }
-    },
-    "/genders/{id}": {
-      "get": {
-        "tags": ["gender"],
-        "summary": "Find one Gender by ID",
-        "description": "Returns one Gender document by ID in genders collection of GRIDT",
-        "parameters": [{ "in": "path", "name": "id" }],
-        "responses": { "200": { "description": "OK" } }
-      },
       "put": {
         "tags": ["gender"],
         "summary": "Update one Gender by ID",
         "description": "Updates one Gender document by ID in genders collection of GRIDT",
         "parameters": [{ "in": "path", "name": "id" }],
         "responses": {
-          "204": { "description": "Successful update" },
-          "400": { "description": "user error" },
-          "500": { "description": "server error" }
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
         },
         "requestBody": {
           "content": {
@@ -111,13 +94,34 @@
       },
       "delete": {
         "tags": ["gender"],
-        "summary": "Delete one Gender by ID",
-        "description": "Deletes one Gender document by ID in genders collection of GRIDT",
+        "summary": "Delete all Genders",
+        "description": "Delete all Gender documents in the genders collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" }
+        }
+      }
+    },
+    "/genders/{id}": {
+      "get": {
+        "tags": ["gender"],
+        "summary": "Find one Gender by ID",
+        "description": "Returns one Gender document by ID in genders collection of GRIDT",
         "parameters": [{ "in": "path", "name": "id" }],
         "responses": {
-          "202": { "description": "Deletion successful" },
-          "400": { "description": "Error" },
-          "404": { "description": "No item found" }
+          "200": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "delete": {
+        "tags": ["gender"],
+        "summary": "Delete one Gender by ID",
+        "description": "Deletes one Gender document by ID in genders collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
         }
       }
     },
