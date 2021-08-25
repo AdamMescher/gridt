@@ -32,9 +32,9 @@ const getMany = (model) => async (request, response) => {
   try {
     const docs = await model.find({}).lean().exec();
     if (!docs) {
-      return response
-        .status(404)
-        .json({ message: `No ${model} with ID: ${request.params.id} found` });
+      return response.status(404).json({
+        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+      });
     }
     response.status(200).json({ data: docs });
   } catch (error) {
@@ -50,12 +50,12 @@ const removeOne = (model) => async (request, response) => {
         request.params[queryOptions[model.modelName.toLowerCase()]],
     });
     if (!removed) {
-      response
-        .status(404)
-        .json({ message: `No ${model} with ID: ${request.params.id} found` });
+      response.status(404).json({
+        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+      });
     }
     response.status(202).json({
-      message: `${model} with ID: ${request.params.id} deleted successfully`,
+      message: `${model.modelName} with ID: ${request.params.id} deleted successfully`,
     });
   } catch (error) {
     console.error(error);
@@ -68,7 +68,7 @@ const removeMany = (model) => async (request, response) => {
     await model.deleteMany({});
     response
       .status(202)
-      .json({ message: `All ${model}s deleted successfully` });
+      .json({ message: `All ${model.modelName}s deleted successfully` });
   } catch (error) {
     console.error(error);
     response.status(400).end();
@@ -89,12 +89,12 @@ const updateOne = (model) => async (request, response) => {
       .lean()
       .exec();
     if (!updatedDoc) {
-      response
-        .status(404)
-        .json({ message: `No ${model} with ID: ${request.params.id} found` });
+      response.status(404).json({
+        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+      });
     }
     response.status(204).json({
-      message: `Updated ${model} with ID: ${request.params.id} successfully`,
+      message: `Updated ${model.modelName} with ID: ${request.params.id} successfully`,
     });
   } catch (error) {
     console.error(error);
