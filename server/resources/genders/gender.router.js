@@ -7,8 +7,7 @@ router
   .route('/')
   .get(controllers.getMany)
   .post(controllers.createOne)
-  .put(controllers.updateOne)
-  .delete(controllers.removeMany);
+  .put(controllers.updateOne);
 
 router.route('/:id').get(controllers.getOne).delete(controllers.removeOne);
 

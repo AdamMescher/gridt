@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../openapi.json');
-const indexRouter = require('./routes/index');
 const gendersRouter = require('./resources/genders/gender.router');
 const racesRouter = require('./resources/races/race.router');
 const disabilitiesRouter = require('./resources/disabilities/disability.router');
@@ -24,7 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use('/', indexRouter);
 app.use('/api/v1/genders', gendersRouter);
 app.use('/api/v1/races', racesRouter);
 app.use('/api/v1/disabilities', disabilitiesRouter);
