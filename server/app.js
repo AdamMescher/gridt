@@ -8,12 +8,11 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../openapi.json');
 const indexRouter = require('./routes/index');
 const gendersRouter = require('./resources/genders/gender.router');
-const racesRouter = require('./routes/races');
-const disabilitiesRouter = require('./routes/disabilities');
-const statesRouter = require('./routes/states');
-const districtsRouter = require('./routes/districts');
-const schoolsRouter = require('./routes/schools');
-const riskRouter = require('./routes/risk');
+const racesRouter = require('./resources/races/race.router');
+const disabilitiesRouter = require('./resources/disabilities/disability.router');
+const statesRouter = require('./resources/states/state.router');
+const districtsRouter = require('./resources/districts/district.router');
+const schoolsRouter = require('./resources/schools/school.router');
 
 const app = express();
 app.disable('x-powered-by');
@@ -32,7 +31,6 @@ app.use('/api/v1/disabilities', disabilitiesRouter);
 app.use('/api/v1/states', statesRouter);
 app.use('/api/v1/districts', districtsRouter);
 app.use('/api/v1/schools', schoolsRouter);
-app.use('/api/v1/risk', riskRouter);
 
 app.use((request, response, next) => {
   next(createError(404));

@@ -91,15 +91,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": ["gender"],
-        "summary": "Delete all Genders",
-        "description": "Delete all Gender documents in the genders collection of GRIDT",
-        "responses": {
-          "202": { "description": "Success" },
-          "400": { "description": "Bad request" }
-        }
       }
     },
     "/genders/{id}": {
@@ -131,6 +122,50 @@
         "summary": "Find all Races",
         "description": "Returns all Race documents by ID in races collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["race"],
+        "summary": "Add one new Race",
+        "description": "Add one Race document in races collection of GRIDT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Race"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "409": {
+            "description": "id, name, and abbreviation properties must be unique"
+          },
+          "422": {
+            "description": "id, name, and abbreviation properties are required"
+          }
+        }
+      },
+      "put": {
+        "tags": ["race"],
+        "summary": "Update one Race by ID",
+        "description": "Updates one Race document by ID in races collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": {
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Race"
+              }
+            }
+          }
+        }
       }
     },
     "/races/{id}": {
@@ -140,6 +175,17 @@
         "description": "Find one Race document by ID in races collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
+      },
+      "delete": {
+        "tags": ["race"],
+        "summary": "Delete one Race by ID",
+        "description": "Deletes one Race document by ID in races collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
+        },
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/disabilities": {
@@ -148,6 +194,50 @@
         "summary": "Find all Disabilities",
         "description": "Find all Disability documents in disabilities collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["disability"],
+        "summary": "Add one new Disability",
+        "description": "Add one Disability document in disabilities collection of GRIDT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Disability"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "409": {
+            "description": "id, name, and abbreviation properties must be unique"
+          },
+          "422": {
+            "description": "id, name, and abbreviation properties are required"
+          }
+        }
+      },
+      "put": {
+        "tags": ["disability"],
+        "summary": "Update one Disability by ID",
+        "description": "Updates one Disability document by ID in disabilities collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": {
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Disability"
+              }
+            }
+          }
+        }
       }
     },
     "/disabilities/{id}": {
@@ -157,6 +247,17 @@
         "description": "Find one Disability document by ID in disabilities collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
+      },
+      "delete": {
+        "tags": ["disability"],
+        "summary": "Delete one Disability by ID",
+        "description": "Deletes one Disability document by ID in disabilities collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
+        },
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/states": {
@@ -165,6 +266,50 @@
         "summary": "Find all States",
         "description": "Find all State documents in states collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["state"],
+        "summary": "Add one new State",
+        "description": "Add one State document in states collection of GRIDT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/State"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "409": {
+            "description": "id, name, and abbreviation properties must be unique"
+          },
+          "422": {
+            "description": "id, name, and abbreviation properties are required"
+          }
+        }
+      },
+      "put": {
+        "tags": ["state"],
+        "summary": "Update one State by ID",
+        "description": "Updates one State document by ID in states collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": {
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/State"
+              }
+            }
+          }
+        }
       }
     },
     "/states/{id}": {
@@ -174,6 +319,17 @@
         "description": "Returns one State document by ID in states collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
+      },
+      "delete": {
+        "tags": ["state"],
+        "summary": "Delete one State by ID",
+        "description": "Deletes one State document by ID in states collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
+        },
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/districts": {
@@ -182,6 +338,50 @@
         "summary": "Find all Districts",
         "description": "Returns all District documents in districts collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["district"],
+        "summary": "Add one new District",
+        "description": "Add one District document in districts collection of GRIDT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/District"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "409": {
+            "description": "id, name, and abbreviation properties must be unique"
+          },
+          "422": {
+            "description": "id, name, and abbreviation properties are required"
+          }
+        }
+      },
+      "put": {
+        "tags": ["district"],
+        "summary": "Update one District by ID",
+        "description": "Updates one District document by ID in districts collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": {
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/District"
+              }
+            }
+          }
+        }
       }
     },
     "/districts/{id}": {
@@ -191,6 +391,17 @@
         "description": "Returns one District document by ID in disctricts collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
         "parameters": [{ "in": "path", "name": "id" }]
+      },
+      "delete": {
+        "tags": ["district"],
+        "summary": "Delete one district by ID",
+        "description": "Deletes one district document by ID in districts collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
+        },
+        "parameters": [{ "in": "path", "name": "id" }]
       }
     },
     "/schools": {
@@ -199,6 +410,50 @@
         "summary": "Find all Schools",
         "description": "Returns all School documents in schools collection of GRIDT",
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["school"],
+        "summary": "Add one new School",
+        "description": "Add one School document in schools collection of GRIDT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/School"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "409": {
+            "description": "COMBOKEY property must be unique"
+          },
+          "422": {
+            "description": "name, COMBOKEY, and SCH_NAME properties are required"
+          }
+        }
+      },
+      "put": {
+        "tags": ["school"],
+        "summary": "Update one School by ID",
+        "description": "Updates one School document by ID in schools collection of GRIDT",
+        "parameters": [{ "in": "path", "name": "id" }],
+        "responses": {
+          "204": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Server error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/School"
+              }
+            }
+          }
+        }
       }
     },
     "/schools/{id}": {
@@ -207,6 +462,17 @@
         "summary": "Find one School by ID",
         "description": "Returns one School document by ID in schools collection of GRIDT",
         "responses": { "200": { "description": "OK" } },
+        "parameters": [{ "in": "path", "name": "id" }]
+      },
+      "delete": {
+        "tags": ["school"],
+        "summary": "Delete one School by ID",
+        "description": "Deletes one School document by ID in schools collection of GRIDT",
+        "responses": {
+          "202": { "description": "Success" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Item not found" }
+        },
         "parameters": [{ "in": "path", "name": "id" }]
       }
     },
@@ -239,6 +505,261 @@
           }
         },
         "required": ["id", "name", "abbreviation"]
+      },
+      "Race": {
+        "title": "Race",
+        "type": "object",
+        "properties": {
+          "id": { "type": "number", "description": "unique race ID" },
+          "name": { "type": "string", "description": "unique race name" },
+          "abbreviation": {
+            "type": "string",
+            "description": "unique gender abbreviation"
+          }
+        },
+        "required": ["id", "name", "abbreviation"]
+      },
+      "Disability": {
+        "title": "Disability",
+        "type": "object",
+        "properties": {
+          "id": { "type": "number", "description": "unique Disability ID" },
+          "name": { "type": "string", "description": "unique Disability name" },
+          "abbreviation": {
+            "type": "string",
+            "description": "unique Disability abbreviation"
+          }
+        },
+        "required": ["id", "name", "abbreviation"]
+      },
+      "State": {
+        "title": "State",
+        "type": "object",
+        "properties": {
+          "id": { "type": "number", "description": "unique State ID" },
+          "name": { "type": "string", "description": "unique State name" },
+          "standard": {
+            "type": "string",
+            "description": "unique State USGP (United States Government Publishing Office) State abbreviation"
+          },
+          "postal": {
+            "type": "string",
+            "description": "unique USPS (United States Postal Service) State abbreviation"
+          }
+        },
+        "required": ["id", "name", "standard", "postal"]
+      },
+      "District": {
+        "title": "District",
+        "type": "object",
+        "required": ["LEAID", "LEA_NAME"],
+        "properties": {
+          "LEA_STATE": { "type": "string" },
+          "LEA_STATE_NAME": { "type": "string" },
+          "LEAID": { "type": "number" },
+          "LEA_NAME": { "type": "string" },
+          "LEA_ADDRESS": { "type": "string" },
+          "LEA_CITY": { "type": "string" },
+          "LEA_ZIP": { "type": "number" },
+          "CJJ": { "type": "string" },
+          "LEA_ENR": { "type": "number" },
+          "LEA_ENR_NONLEAFAC": { "type": "number" },
+          "LEA_SCHOOLS": { "type": "number" },
+          "LEA_CRCOORD_SEX_IND": { "type": "string" },
+          "LEA_CRCOORD_RAC_IND": { "type": "string" },
+          "LEA_CRCOORD_DIS_IND": { "type": "string" },
+          "LEA_CRCOORD_SEX_FN": { "type": "string" },
+          "LEA_CRCOORD_SEX_LN": { "type": "string" },
+          "LEA_CRCOORD_SEX_PH": { "type": "string" },
+          "LEA_CRCOORD_SEX_EM": { "type": "string" },
+          "LEA_CRCOORD_RAC_FN": { "type": "string" },
+          "LEA_CRCOORD_RAC_LN": { "type": "string" },
+          "LEA_CRCOORD_RAC_PH": { "type": "string" },
+          "LEA_CRCOORD_RAC_EM": { "type": "string" },
+          "LEA_CRCOORD_DIS_FN": { "type": "string" },
+          "LEA_CRCOORD_DIS_LN": { "type": "string" },
+          "LEA_CRCOORD_DIS_PH": { "type": "string" },
+          "LEA_CRCOORD_DIS_EM": { "type": "string" },
+          "LEA_DESEGPLAN": { "type": "string" },
+          "LEA_HBPOLICY_IND": { "type": "string" },
+          "LEA_HBPOLICYURL_IND": { "type": "string" },
+          "LEA_HBPOLICY_URL": { "type": "string" },
+          "LEA_ECE_IND": { "type": "string" },
+          "LEA_ECE_NONIDEA": { "type": "number" },
+          "LEA_PS_IND": { "type": "string" },
+          "LEA_PS_FULLDAYFREE": { "type": "string" },
+          "LEA_PS_FULLDAYCOST": { "type": "string" },
+          "LEA_PS_PARTDAYFREE": { "type": "string" },
+          "LEA_PS_PARTDAYCOST": { "type": "string" },
+          "LEA_PSENR_NONIDEA_A3": { "type": "string" },
+          "LEA_PSENR_NONIDEA_A4": { "type": "string" },
+          "LEA_PSENR_NONIDEA_A5": { "type": "string" },
+          "LEA_PSENR_A2": { "type": "number" },
+          "LEA_PSENR_A3": { "type": "number" },
+          "LEA_PSENR_A4": { "type": "number" },
+          "LEA_PSENR_A5": { "type": "number" },
+          "LEA_PSELIG_ALL": { "type": "string" },
+          "LEA_PSELIG_IDEA": { "type": "string" },
+          "LEA_PSELIG_TITLEI": { "type": "string" },
+          "LEA_PSELIG_LOWINC": { "type": "string" },
+          "LEA_KG_IND": { "type": "string" },
+          "LEA_KG_FULLDAYFREE": { "type": "number" },
+          "LEA_KG_FULLDAYCOST": { "type": "number" },
+          "LEA_KG_PARTDAYFREE": { "type": "number" },
+          "LEA_KG_PARTDAYCOST": { "type": "number" }
+        }
+      },
+      "School": {
+        "title": "School",
+        "type": "object",
+        "required": ["COMBOKEY", "SCH_NAME"],
+        "properties": {
+          "LEA_STATE": { "type": "string" },
+          "LEA_STATE_NAME": { "type": "string" },
+          "LEAID": { "type": "string" },
+          "LEA_NAME": { "type": "string" },
+          "SCHID": { "type": "string" },
+          "SCH_NAME": { "type": "string" },
+          "COMBOKEY": { "type": "number" },
+          "SCH_IDEAENR_HI_M": { "type": "string" },
+          "SCH_ENR_HI_M": { "type": "string" },
+          "RI_HI_M": { "type": "string" },
+          "TOT_IDEA_W/O_HI_M": { "type": "string" },
+          "TOT_ENR_W/O_HI_M": { "type": "string" },
+          "RI_W/O_HI_M": { "type": "string" },
+          "RR_HI_M_POP": { "type": "string" },
+          "RR_HI_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_HI_F": { "type": "string" },
+          "SCH_ENR_HI_F": { "type": "string" },
+          "RI_HI_F": { "type": "string" },
+          "TOT_IDEA_W/O_HI_F": { "type": "string" },
+          "TOT_ENR_W/O_HI_F": { "type": "string" },
+          "RI_W/O_HI_F": { "type": "string" },
+          "RR_HI_F_POP": { "type": "string" },
+          "RR_HI_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_AM_M": { "type": "string" },
+          "SCH_ENR_AM_M": { "type": "string" },
+          "RI_AM_M": { "type": "string" },
+          "TOT_IDEA_W/O_AM_M": { "type": "string" },
+          "TOT_ENR_W/O_AM_M": { "type": "string" },
+          "RI_W/O_AM_M": { "type": "string" },
+          "RR_AM_M_POP": { "type": "string" },
+          "RR_AM_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_AM_F": { "type": "string" },
+          "SCH_ENR_AM_F": { "type": "string" },
+          "RI_AM_F": { "type": "string" },
+          "TOT_IDEA_W/O_AM_F": { "type": "string" },
+          "TOT_ENR_W/O_AM_F": { "type": "string" },
+          "RI_W/O_AM_F": { "type": "string" },
+          "RR_AM_F_POP": { "type": "string" },
+          "RR_AM_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_AS_M": { "type": "string" },
+          "SCH_ENR_AS_M": { "type": "string" },
+          "RI_AS_M": { "type": "string" },
+          "TOT_IDEA_W/O_AS_M": { "type": "string" },
+          "TOT_ENR_W/O_AS_M": { "type": "string" },
+          "RI_W/O_AS_M": { "type": "string" },
+          "RR_AS_M_POP": { "type": "string" },
+          "RR_AS_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_AS_F": { "type": "string" },
+          "SCH_ENR_AS_F": { "type": "string" },
+          "RI_AS_F": { "type": "string" },
+          "TOT_IDEA_W/O_AS_F": { "type": "string" },
+          "TOT_ENR_W/O_AS_F": { "type": "string" },
+          "RI_W/O_AS_F": { "type": "string" },
+          "RR_AS_F_POP": { "type": "string" },
+          "RR_AS_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_HP_M": { "type": "string" },
+          "SCH_ENR_HP_M": { "type": "string" },
+          "RI_HP_M": { "type": "string" },
+          "TOT_IDEA_W/O_HP_M": { "type": "string" },
+          "TOT_ENR_W/O_HP_M": { "type": "string" },
+          "RI_W/O_HP_M": { "type": "string" },
+          "RR_HP_M_POP": { "type": "string" },
+          "RR_HP_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_HP_F": { "type": "string" },
+          "SCH_ENR_HP_F": { "type": "string" },
+          "RI_HP_F": { "type": "string" },
+          "TOT_IDEA_W/O_HP_F": { "type": "string" },
+          "TOT_ENR_W/O_HP_F": { "type": "string" },
+          "RI_W/O_HP_F": { "type": "string" },
+          "RR_HP_F_POP": { "type": "string" },
+          "RR_HP_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_BL_M": { "type": "string" },
+          "SCH_ENR_BL_M": { "type": "string" },
+          "RI_BL_M": { "type": "string" },
+          "TOT_IDEA_W/O_BL_M": { "type": "string" },
+          "TOT_ENR_W/O_BL_M": { "type": "string" },
+          "RI_W/O_BL_M": { "type": "string" },
+          "RR_BL_M_POP": { "type": "string" },
+          "RR_BL_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_BL_F": { "type": "string" },
+          "SCH_ENR_BL_F": { "type": "string" },
+          "RI_BL_F": { "type": "string" },
+          "TOT_IDEA_W/O_BL_F": { "type": "string" },
+          "TOT_ENR_W/O_BL_F": { "type": "string" },
+          "RI_W/O_BL_F": { "type": "string" },
+          "RR_BL_F_POP": { "type": "string" },
+          "RR_BL_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_TR_M": { "type": "string" },
+          "SCH_ENR_TR_M": { "type": "string" },
+          "RI_TR_M": { "type": "string" },
+          "TOT_IDEA_W/O_TR_M": { "type": "string" },
+          "TOT_ENR_W/O_TR_M": { "type": "string" },
+          "RI_W/O_TR_M": { "type": "string" },
+          "RR_TR_M_POP": { "type": "string" },
+          "RR_TR_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_TR_F": { "type": "string" },
+          "SCH_ENR_TR_F": { "type": "string" },
+          "RI_TR_F": { "type": "string" },
+          "TOT_IDEA_W/O_TR_F": { "type": "string" },
+          "TOT_ENR_W/O_TR_F": { "type": "string" },
+          "RI_W/O_TR_F": { "type": "string" },
+          "RR_TR_F_POP": { "type": "string" },
+          "RR_TR_F_WH_F": { "type": "string" },
+          "SCH_IDEAENR_WH_M": { "type": "string" },
+          "SCH_ENR_WH_M": { "type": "string" },
+          "TOT_IDEA_W/O_WH_M": { "type": "string" },
+          "TOT_ENR_W/O_WH_M": { "type": "string" },
+          "RI_W/O_WH_M": { "type": "string" },
+          "RR_WH_M_POP": { "type": "string" },
+          "RR_WH_M_WH_M": { "type": "string" },
+          "SCH_IDEAENR_WH_F": { "type": "string" },
+          "SCH_ENR_WH_F": { "type": "string" },
+          "TOT_IDEA_W/O_WH_F": { "type": "string" },
+          "TOT_ENR_W/O_WH_F": { "type": "string" },
+          "RI_W/O_WH_F": { "type": "string" },
+          "RR_WH_F_POP": { "type": "string" },
+          "RR_WH_F_WH_F": { "type": "string" },
+          "TOT_IDEAENR_M": { "type": "string" },
+          "TOT_IDEAENR_F": { "type": "string" },
+          "TOT_IDEA_ENR": { "type": "string" },
+          "TOT_ENR_M": { "type": "string" },
+          "TOT_ENR_F": { "type": "string" },
+          "TOT_ENR": { "type": "string" },
+          "SCH_IDEA_WH_TOT": { "type": "string" },
+          "SCH_ENR_WH_TOT": { "type": "string" },
+          "RI_WH_TOT": { "type": "string" },
+          "TOT_IDEA_W/O_WH_TOT": { "type": "string" },
+          "TOT_ENR_W/O_WH_TOT": { "type": "string" },
+          "RI_W/O_WH_TOT": { "type": "string" },
+          "RR_WH_TOT_POP": { "type": "string" },
+          "RR_WH_TOT_WH_TOT": { "type": "string" },
+          "RR_HI_M_WH_TOT": { "type": "string" },
+          "RR_HI_F_WH_TOT": { "type": "string" },
+          "RR_AM_M_WH_TOT": { "type": "string" },
+          "RR_AM_F_WH_TOT": { "type": "string" },
+          "RR_AS_M_WH_TOT": { "type": "string" },
+          "RR_AS_F_WH_TOT": { "type": "string" },
+          "RR_HP_M_WH_TOT": { "type": "string" },
+          "RR_HP_F_WH_TOT": { "type": "string" },
+          "RR_BL_M_WH_TOT": { "type": "string" },
+          "RR_BL_F_WH_TOT": { "type": "string" },
+          "RR_TR_M_WH_TOT": { "type": "string" },
+          "RR_TR_F_WH_TOT": { "type": "string" },
+          "RI_WH_M": { "type": "string" },
+          "RI_WH_F": { "type": "string" }
+        }
       }
     }
   }

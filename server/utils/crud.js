@@ -1,37 +1,35 @@
 const queryOptions = require('./queryOptions');
 const requiredParameters = require('./requiredParameters');
+const uniqueParameters = require('./uniqueParameters');
 
 const createOne = (model) => async (request, response) => {
   try {
     const required = requiredParameters[model.modelName.toLowerCase()];
+    const unique = uniqueParameters[model.modelName.toLowerCase()];
     for (let i = 0; i < required.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
+      if (!Object.prototype.hasOwnProperty.call(request.body, required[i])) {
+        return response.status(422).json({
+          error: `Request body is missing the required '${required[i]}' property`,
+        });
+      }
+    }
+    for (let j = 0; j < unique.length; j += 1) {
+      // eslint-disable-next-line no-await-in-loop
       const found = await model.countDocuments({
-        [required[i]]: request.body[required[i]],
+        [unique[j]]: request.body[unique[j]],
       });
       if (found > 0) {
-        response
-          .status(409)
-          .json({
-            message: `A ${model.modelName} with ${required[i]}: ${
-              request.body[required[i]]
-            } already exists.`,
-          })
-          .end();
-        break;
+        return response.status(409).json({
+          message: `A ${model.modelName} with ${unique[j]}: ${
+            request.body[unique[j]]
+          } already exists.`,
+        });
       }
-      if (!Object.prototype.hasOwnProperty.call(request.body, required[i])) {
-        return response
-          .status(422)
-          .json({
-            error: `Request body is missing the required '${required[i]}' property`,
-          })
-          .end();
-      }
-      // eslint-disable-next-line no-await-in-loop
-      const doc = await model.create({ ...request.body });
-      return response.status(201).json({ data: doc });
     }
+    // eslint-disable-next-line no-await-in-loop
+    const doc = await model.create({ ...request.body });
+    return response.status(201).json({ data: doc });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);

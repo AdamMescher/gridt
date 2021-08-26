@@ -1,4 +1,4 @@
-const crudControllers = require('../../utils/crud');
+const crud = require('../../utils/crud');
 const Gender = require('./gender.model');
 
-module.exports = crudControllers(Gender);
+module.exports = crud(Gender);
