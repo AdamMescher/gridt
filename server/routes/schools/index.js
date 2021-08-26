@@ -5,7 +5,7 @@ const checkLimit = require('../../utils/checkLimit');
 const router = express.Router();
 
 router.get('/', async (request, response) => {
-  const limit = parseInt(request.query.limit, 10) || 500;
+  const limit = parseInt(request.query.limit, 10) || 1000;
   const name = request.query?.name;
   try {
     if (name) {

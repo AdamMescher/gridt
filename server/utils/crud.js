@@ -44,29 +44,31 @@ const getOne = (model) => async (request, response) => {
         request.params[queryOptions[model.modelName.toLowerCase()]],
     });
     if (!doc) {
-      response.status(404).end();
+      return response.status(404).end();
     }
-    response.status(200).json({ data: doc });
+    return response.status(200).json({ data: doc });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ error });
+    return response.status(400).json({ error });
   }
 };
 
 const getMany = (model) => async (request, response) => {
   try {
-    const docs = await model.find({}).lean().exec();
+    const limit = parseInt(request.query.limit, 10) || 1000;
+
+    const docs = await model.paginate({ limit });
     if (!docs) {
       return response.status(404).json({
         message: `No ${model.modelName} with ID: ${request.params.id} found`,
       });
     }
-    response.status(200).json({ data: docs });
+    return response.status(200).json({ data: docs });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ error });
+    return response.status(400).json({ error });
   }
 };
 
@@ -77,30 +79,30 @@ const removeOne = (model) => async (request, response) => {
         request.params[queryOptions[model.modelName.toLowerCase()]],
     });
     if (!removed) {
-      response.status(404).json({
+      return response.status(404).json({
         message: `No ${model.modelName} with ID: ${request.params.id} found`,
       });
     }
-    response.status(202).json({
+    return response.status(202).json({
       message: `${model.modelName} with ID: ${request.params.id} deleted successfully`,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ error });
+    return response.status(400).json({ error });
   }
 };
 
 const removeMany = (model) => async (request, response) => {
   try {
     await model.deleteMany({});
-    response
+    return response
       .status(202)
       .json({ message: `All ${model.modelName}s deleted successfully` });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ error });
+    return response.status(400).json({ error });
   }
 };
 
@@ -118,17 +120,17 @@ const updateOne = (model) => async (request, response) => {
       .lean()
       .exec();
     if (!updatedDoc) {
-      response.status(404).json({
+      return response.status(404).json({
         message: `No ${model.modelName} with ID: ${request.params.id} found`,
       });
     }
-    response.status(204).json({
+    return response.status(204).json({
       message: `Updated ${model.modelName} with ID: ${request.params.id} successfully`,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    response.status(400).json({ error });
+    return response.status(400).json({ error });
   }
 };
 

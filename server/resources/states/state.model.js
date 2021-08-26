@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MongoPaging = require('mongo-cursor-pagination');
 
 const stateSchema = new mongoose.Schema({
   id: { type: Number },
@@ -7,6 +8,7 @@ const stateSchema = new mongoose.Schema({
   postal: { type: Number },
 });
 
+stateSchema.plugin(MongoPaging.mongoosePlugin);
 const State = mongoose.model('State', stateSchema);
 
 module.exports = State;
