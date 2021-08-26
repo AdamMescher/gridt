@@ -43,8 +43,12 @@ const getOne = (model) => async (request, response) => {
       [queryOptions[model.modelName.toLowerCase()]]:
         request.params[queryOptions[model.modelName.toLowerCase()]],
     });
-    if (!doc) {
-      return response.status(404).end();
+    if (!doc.length) {
+      return response.status(404).json({
+        message: `No ${model.modelName} with ID: ${
+          request.params.id
+        } found in ${model.modelName.toLowerCase()}s collection`,
+      });
     }
     return response.status(200).json({ data: doc });
   } catch (error) {
@@ -59,9 +63,11 @@ const getMany = (model) => async (request, response) => {
     const limit = parseInt(request.query.limit, 10) || 1000;
 
     const docs = await model.paginate({ limit });
-    if (!docs) {
+    if (!docs.results.length) {
       return response.status(404).json({
-        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+        message: `No ${model.modelName}s with ID: ${
+          request.params.id
+        } found in ${model.modelName.toLowerCase()}s collection`,
       });
     }
     return response.status(200).json({ data: docs });
@@ -80,7 +86,9 @@ const removeOne = (model) => async (request, response) => {
     });
     if (!removed) {
       return response.status(404).json({
-        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+        message: `No ${model.modelName} with ID: ${
+          request.params.id
+        } found in ${model.modelName.toLowerCase()}s collection`,
       });
     }
     return response.status(202).json({
@@ -119,9 +127,11 @@ const updateOne = (model) => async (request, response) => {
       )
       .lean()
       .exec();
-    if (!updatedDoc) {
+    if (!updatedDoc.length) {
       return response.status(404).json({
-        message: `No ${model.modelName} with ID: ${request.params.id} found`,
+        message: `No ${model.modelName} with ID: ${
+          request.params.id
+        } found in ${model.modelName.toLowerCase()}s collection`,
       });
     }
     return response.status(204).json({

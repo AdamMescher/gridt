@@ -12,6 +12,11 @@ const options = {
   useCreateIndex: true,
   autoIndex: false,
 };
+const mockGender = { id: 3, name: 'kiume', abbreviation: 'k' };
+const mockGenders = [
+  { id: 0, name: 'female', abbreviation: 'f' },
+  { id: 1, name: 'male', abbreviation: 'm' },
+];
 
 beforeEach((done) => {
   mongoose.connect(path, options, () => done());
@@ -40,21 +45,40 @@ describe('Gender router', () => {
 });
 
 describe('/api/v1/genders Routes', () => {
-  test.only('GET /api/v1/genders returns all genders', async (done) => {
-    const genderFiller = [
-      { id: 0, name: 'female', abbreviation: 'f' },
-      { id: 1, name: 'male', abbreviation: 'm' },
-    ];
-    genderFiller.forEach(async (gender) => {
-      await Gender.create(gender);
-    });
+  test('GET /api/v1/genders returns all Gender documents', async (done) => {
+    await Gender.insertMany(mockGenders);
     const response = await supertest(app).get('/api/v1/genders');
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body.data.results)).toBeTruthy();
-    // expect(response.body.data[0]._id).toBe();
-    // expect(response.body.data[0].id).toBe();
-    // expect(response.body.data[0].name).toBe();
-    // expect(response.body.data[0].abbreviation).toBe();
+    expect(response.body.data.results.length).toBe(2);
+    expect(response.body.data.results[0].name).toBeTruthy();
+    expect(response.body.data.results[0].abbreviation).toBeTruthy();
+    expect(response.body.data.results[1].name).toBeTruthy();
+    expect(response.body.data.results[1].abbreviation).toBeTruthy();
     done();
   });
+  test('GET /api/v1/genders/:id returns one Gender document', async (done) => {
+    await Gender.insertMany(mockGenders);
+    const response = await supertest(app).get('/api/v1/genders/1');
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body.data)).toBeTruthy();
+    expect(response.body.data.length).toBe(1);
+    expect(response.body.data[0].name).toBeTruthy();
+    expect(response.body.data[0].abbreviation).toBeTruthy();
+    done();
+  });
+  test.only('POST /api/v1/genders creates a new Gender document', async (done) => {
+    let response = await supertest(app).get('/api/v1/genders/0').expect(404);
+    expect(response.body.message).toBe(
+      'No Gender with ID: 0 found in genders collection',
+    );
+    response = await supertest(app).post('/api/v1/genders').send(mockGender);
+    expect(response.status).toBe(201);
+    expect(response.body.data.id).toBe(mockGender.id);
+    expect(response.body.data.name).toBe(mockGender.name);
+    expect(response.body.data.abbreviation).toBe(mockGender.abbreviation);
+    done();
+  });
+  test('PUT /api/v1/genders updates an existing Gender document by ID', async (done) => {});
+  test('DELETE /api/v1/genders/:id removes an existing Gender document by ID', async (done) => {});
 });

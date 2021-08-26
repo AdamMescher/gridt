@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const helmet = require('helmet');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../openapi.json');
 const gendersRouter = require('./resources/genders/gender.router');
@@ -14,7 +15,7 @@ const districtsRouter = require('./resources/districts/district.router');
 const schoolsRouter = require('./resources/schools/school.router');
 
 const app = express();
-app.disable('x-powered-by');
+app.use(helmet());
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
