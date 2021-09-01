@@ -46,6 +46,7 @@ describe('Gender router', () => {
 
 describe('/api/v1/genders Routes', () => {
   test('GET /api/v1/genders returns all Gender documents', async (done) => {
+    // 200
     await Gender.insertMany(mockGenders);
     const response = await supertest(app).get('/api/v1/genders');
     expect(response.status).toBe(200);
@@ -58,8 +59,15 @@ describe('/api/v1/genders Routes', () => {
     done();
   });
   test('GET /api/v1/genders/:id returns one Gender document', async (done) => {
+    let response = await supertest(app).get('/api/v1/genders/abc');
+    expect(response.status).toBe(400);
+    response = await supertest(app).get('/api/v1/genders/100');
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe(
+      'No Gender with ID: 100 found in genders collection',
+    );
     await Gender.insertMany(mockGenders);
-    const response = await supertest(app).get('/api/v1/genders/1');
+    response = await supertest(app).get('/api/v1/genders/1');
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body.data)).toBeTruthy();
     expect(response.body.data.length).toBe(1);
@@ -67,8 +75,11 @@ describe('/api/v1/genders Routes', () => {
     expect(response.body.data[0].abbreviation).toBeTruthy();
     done();
   });
-  test.only('POST /api/v1/genders creates a new Gender document', async (done) => {
-    let response = await supertest(app).get('/api/v1/genders/0').expect(404);
+  test('POST /api/v1/genders creates a new Gender document', async (done) => {
+    let response = await supertest(app).get('/api/v1/genders/q');
+    expect(response.status).toBe(400);
+    response = await supertest(app).get('/api/v1/genders/0');
+    expect(response.status).toBe(404);
     expect(response.body.message).toBe(
       'No Gender with ID: 0 found in genders collection',
     );
@@ -79,6 +90,4 @@ describe('/api/v1/genders Routes', () => {
     expect(response.body.data.abbreviation).toBe(mockGender.abbreviation);
     done();
   });
-  test('PUT /api/v1/genders updates an existing Gender document by ID', async (done) => {});
-  test('DELETE /api/v1/genders/:id removes an existing Gender document by ID', async (done) => {});
 });

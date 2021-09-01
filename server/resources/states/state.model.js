@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MongoPaging = require('mongo-cursor-pagination');
+const { composeMongoose } = require('graphql-compose-mongoose');
 
 const stateSchema = new mongoose.Schema({
   id: { type: Number },
@@ -8,7 +8,7 @@ const stateSchema = new mongoose.Schema({
   postal: { type: Number },
 });
 
-stateSchema.plugin(MongoPaging.mongoosePlugin);
 const State = mongoose.model('State', stateSchema);
+const StateTC = composeMongoose(State);
 
-module.exports = State;
+module.exports = { State, StateTC };

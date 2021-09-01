@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MongoPaging = require('mongo-cursor-pagination');
+const { composeMongoose } = require('graphql-compose-mongoose');
 
 const disabilitySchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -7,7 +7,7 @@ const disabilitySchema = new mongoose.Schema({
   abbreviation: { type: String, required: true },
 });
 
-disabilitySchema.plugin(MongoPaging.mongoosePlugin);
 const Disability = mongoose.model('Disability', disabilitySchema);
+const DisabilityTC = composeMongoose(Disability);
 
-module.exports = Disability;
+module.exports = { Disability, DisabilityTC };

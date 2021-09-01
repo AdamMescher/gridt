@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MongoPaging = require('mongo-cursor-pagination');
+const { composeMongoose } = require('graphql-compose-mongoose');
 
 const raceSchema = new mongoose.Schema({
   id: { type: Number, required: true },
@@ -8,6 +8,6 @@ const raceSchema = new mongoose.Schema({
 });
 
 const Race = mongoose.model('Race', raceSchema);
+const RaceTC = composeMongoose(Race);
 
-raceSchema.plugin(MongoPaging.mongoosePlugin);
-module.exports = Race;
+module.exports = { Race, RaceTC };

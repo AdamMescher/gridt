@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MongoPaging = require('mongo-cursor-pagination');
+const { composeMongoose } = require('graphql-compose-mongoose');
 
 const genderSchema = new mongoose.Schema({
   id: { type: Number, required: true, unique: true, immutable: true },
@@ -7,7 +7,7 @@ const genderSchema = new mongoose.Schema({
   abbreviation: { type: String, required: true },
 });
 
-genderSchema.plugin(MongoPaging.mongoosePlugin);
 const Gender = mongoose.model('Gender', genderSchema);
+const GenderTC = composeMongoose(Gender);
 
-module.exports = Gender;
+module.exports = { Gender, GenderTC };

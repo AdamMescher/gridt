@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const MongoPaging = require('mongo-cursor-pagination');
+const { composeMongoose } = require('graphql-compose-mongoose');
 
-const { Mixed } = mongoose;
 const districtSchema = new mongoose.Schema({
   LEA_STATE: { type: String, required: true },
   LEA_STATE_NAME: { type: String, required: true },
-  LEAID: { type: Mixed, required: true, unique: true },
+  LEAID: { type: String, required: true, unique: true },
   LEA_NAME: { type: String, required: true },
   LEA_ADDRESS: { type: String, required: true },
   LEA_CITY: { type: String, required: true },
@@ -58,7 +57,7 @@ const districtSchema = new mongoose.Schema({
   LEA_KG_PARTDAYCOST: { type: Number, required: true },
 });
 
-districtSchema.plugin(MongoPaging.mongoosePlugin);
 const District = mongoose.model('District', districtSchema);
+const DistrictTC = composeMongoose(District);
 
-module.exports = District;
+module.exports = { District, DistrictTC };
