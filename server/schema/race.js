@@ -1,4 +1,4 @@
-const { Race, RaceTC } = require('../resources/races/race.model');
+const { RaceTC } = require('../resources/races/race.model');
 
 const RaceQuery = {
   race: RaceTC.mongooseResolvers.findOne(),

@@ -7,7 +7,7 @@ const schoolSchema = new mongoose.Schema({
   LEAID: { type: Number },
   LEA_NAME: { type: String },
   SCHID: { type: Number },
-  SCH_NAME: { type: String },
+  SCH_NAME: { type: String, text: true },
   COMBOKEY: { type: String },
   SCH_IDEAENR_HI_M: { type: Number },
   SCH_ENR_HI_M: { type: Number },
