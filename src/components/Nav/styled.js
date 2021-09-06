@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const StyledNav = styled.nav`
   height: 100%;
-  background: green;
   ul {
     display: flex;
     align-items: center;
@@ -17,7 +16,7 @@ const StyledNav = styled.nav`
     color: black;
   }
   a:hover {
-    color: red;
+    color: gray;
   }
 `;
 

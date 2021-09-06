@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
+  grid-area: header;
   display: flex;
   justify-content: space-between;
-  background: pink;
+  align-items: center;
   a {
     color: black;
     text-decoration: none;
+    font-size: 2em;
   }
   a:hover {
-    color: red;
+    color: gray;
   }
 `;
 

@@ -15,7 +15,7 @@ const StyledAutocomplete = styled.div`
     flex-direction: column;
   }
   input {
-      width: 100%;
+    border-radius: 10px;
       padding: 10px;
       border: 0;
       font-size: 2rem;
@@ -25,12 +25,18 @@ const StyledAutocomplete = styled.div`
     }
   }
   ul {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    border: 1px solid var(--lightGrey);
+    list-style: none;
+    background: white;
   }
   li {
-    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    border-bottom: 1px solid var(--lightGrey);
   }
 `;
 

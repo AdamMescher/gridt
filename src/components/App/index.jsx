@@ -1,10 +1,10 @@
 import * as React from 'react';
-// import { useQuery, gql } from '@apollo/client';
 import Select from 'react-select';
 import Page from '../Page';
 import GlobalStyle from '../GlobalStyle';
-import StyledApp from './styled';
 import Autocomplete from '../Autocomplete';
+import Histogram from '../Histogram';
+import StyledApp from './styled';
 
 const genderOptions = [
   { value: 'f', label: 'Female' },
@@ -33,20 +33,52 @@ const disabilityOptions = [
   { value: 'tbi', label: 'traumatic brain injury' },
 ];
 
-const App = () => (
-  <StyledApp>
-    <GlobalStyle />
-    <Page>
-      <h3>Gender</h3>
-      <Select options={genderOptions} isClearable />
-      <h3>Race</h3>
-      <Select options={raceOptions} isClearable />
-      <h3>Disability</h3>
-      <Select options={disabilityOptions} isClearable />
-      <h3>School Name</h3>
-      <Autocomplete />
-    </Page>
-  </StyledApp>
-);
+const App = () => {
+  const [gender, setGender] = React.useState('');
+  const [race, setRace] = React.useState('');
+  const [disability, setDisability] = React.useState('');
+  return (
+    <StyledApp>
+      <GlobalStyle />
+      <Page>
+        <div class="content-container">
+          <div class="select-container">
+            <div className="select">
+              <h3>Gender</h3>
+              <Select
+                options={genderOptions}
+                isClearable
+                onChange={setGender}
+              />
+            </div>
+            <div className="select">
+              <h3>Race</h3>
+              <Select options={raceOptions} isClearable onChange={setRace} />
+            </div>
+            <div className="select">
+              <h3>Disability</h3>
+              <Select
+                options={disabilityOptions}
+                isClearable
+                onChange={setDisability}
+              />
+            </div>
+            <p>
+              Gender: {gender.value || ''} Race: {race.value || ''} Disability:
+              {disability.value || ''}
+            </p>
+          </div>
+          <div class="autocomplete-container">
+            <h3>Search School By Name</h3>
+            <Autocomplete />
+          </div>
+          <div class="graph-container">
+            <Histogram />
+          </div>
+        </div>
+      </Page>
+    </StyledApp>
+  );
+};
 
 export default App;

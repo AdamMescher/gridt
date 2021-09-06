@@ -16,38 +16,42 @@ const SCHOOLS_BY_NAME = gql`
 const Autocomplete = () => {
   resetIdCounter();
   const [schoolSearchTerm, setSchoolSearchTerm] = React.useState('');
-  const [findSchools, { loading, data, error }] = useLazyQuery(
-    SCHOOLS_BY_NAME,
-    {
-      fetchPolicy: 'no-cache',
-      variables: {
-        schoolsLimit: 10,
-        schoolsFilter: {
-          _operators: {
-            SCH_NAME: {
-              regex: `/${schoolSearchTerm}/i`,
-            },
+  const [findSchools, { loading, data }] = useLazyQuery(SCHOOLS_BY_NAME, {
+    fetchPolicy: 'no-cache',
+    variables: {
+      schoolsLimit: 10,
+      schoolsFilter: {
+        _operators: {
+          SCH_NAME: {
+            regex: `/${schoolSearchTerm}/i`,
           },
         },
       },
     },
-  );
-  const schools = data?.schools || [];
-  console.log({ loading, data, error });
+  });
+  const items = data?.schools || [];
   const findSchoolsDebounced = debounce(findSchools, 350);
-  const { inputValue, getMenuProps, getInputProps, getComboboxProps } =
-    useCombobox({
-      items: [],
-      onInputValueChange() {
-        setSchoolSearchTerm(inputValue);
-        findSchoolsDebounced({
-          searchTerm: inputValue,
-        });
-      },
-      onSelectedItemChange() {
-        console.log('Selected item change!');
-      },
-    });
+  const {
+    isOpen,
+    inputValue,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    getItemProps,
+    highlightedIndex,
+  } = useCombobox({
+    items,
+    onInputValueChange() {
+      setSchoolSearchTerm(inputValue);
+      findSchoolsDebounced({
+        searchTerm: inputValue,
+      });
+    },
+    onSelectedItemChange({ selectedItem }) {
+      console.log('FIRED!');
+      console.log(selectedItem);
+    },
+  });
   return (
     <StyledAutoComplete>
       <div {...getComboboxProps()}>
@@ -60,9 +64,19 @@ const Autocomplete = () => {
           })}
         />
         <ul {...getMenuProps()}>
-          {schools.map((school) => (
-            <li>{school.SCH_NAME}</li>
-          ))}
+          {isOpen &&
+            items.map((item, index) => (
+              <li
+                {...getItemProps({ item })}
+                key={item.COMBOKEY}
+                highlighted={index === highlightedIndex}
+              >
+                {item.SCH_NAME}
+              </li>
+            ))}
+          {isOpen && !items.length && !loading && (
+            <li>Sorry, no schools found with {inputValue} in the name</li>
+          )}
         </ul>
       </div>
     </StyledAutoComplete>
