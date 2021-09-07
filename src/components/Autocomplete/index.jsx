@@ -48,8 +48,7 @@ const Autocomplete = () => {
       });
     },
     onSelectedItemChange({ selectedItem }) {
-      console.log('FIRED!');
-      console.log(selectedItem);
+      console.log({ item: selectedItem?.SCH_NAME.toString() });
     },
   });
   return (
@@ -75,7 +74,9 @@ const Autocomplete = () => {
               </li>
             ))}
           {isOpen && !items.length && !loading && (
-            <li>Sorry, no schools found with {inputValue} in the name</li>
+            <li>
+              Sorry, no schools found with {`"${inputValue}"`} in the name
+            </li>
           )}
         </ul>
       </div>

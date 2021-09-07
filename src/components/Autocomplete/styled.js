@@ -38,6 +38,9 @@ const StyledAutocomplete = styled.div`
     margin-top: 15px;
     border-bottom: 1px solid var(--lightGrey);
   }
+  .highlighted {
+    background: red;s
+  }
 `;
 
 export default StyledAutocomplete;
