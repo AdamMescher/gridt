@@ -2,7 +2,6 @@ import * as React from 'react';
 import Select from 'react-select';
 import Page from '../Page';
 import GlobalStyle from '../GlobalStyle';
-import Autocomplete from '../Autocomplete';
 import Histogram from '../Histogram';
 import StyledApp from './styled';
 
@@ -63,14 +62,9 @@ const App = () => {
                 onChange={setDisability}
               />
             </div>
-            <p>
-              Gender: {gender.value || ''} Race: {race.value || ''} Disability:
-              {disability.value || ''}
-            </p>
           </div>
           <div class="autocomplete-container">
             <h3>Search School By Name</h3>
-            <Autocomplete />
           </div>
           <div class="graph-container">
             <Histogram />
