@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
+import { gql, useQuery } from '@apollo/client';
 import Select from 'react-select';
-import Page from '../Page';
+import AsyncSelectInput from '../AsyncSelectInput';
 import GlobalStyle from '../GlobalStyle';
+import Page from '../Page';
 import Histogram from '../Histogram';
 import StyledApp from './styled';
 
@@ -36,12 +39,14 @@ const App = () => {
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [selectedSchool, setSelectedSchool] = React.useState(null);
   return (
     <StyledApp>
       <GlobalStyle />
       <Page>
-        <div class="content-container">
-          <div class="select-container">
+        <div className="content-container">
+          <div className="select-container">
             <div className="select">
               <h3>Gender</h3>
               <Select
@@ -63,10 +68,14 @@ const App = () => {
               />
             </div>
           </div>
-          <div class="autocomplete-container">
+          <div className="autocomplete-container">
             <h3>Search School By Name</h3>
+            <AsyncSelectInput setSelectedSchool={setSelectedSchool} />
+            <p>{`Selected School: ${
+              selectedSchool ? selectedSchool.label : 'none'
+            }`}</p>
           </div>
-          <div class="graph-container">
+          <div className="graph-container">
             <Histogram />
           </div>
         </div>

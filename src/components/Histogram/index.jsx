@@ -8,14 +8,16 @@ const ALL_SCHOOLS = gql`
   query Query($schoolsLimit: Int) {
     schools(limit: $schoolsLimit) {
       SCH_NAME
-      TOT_ENR
+      COMBOKEY
+      RI_HI_F
+      RI_HI_M
     }
   }
 `;
 
 const Histogram = () => {
   const { loading, data } = useQuery(ALL_SCHOOLS, {
-    variables: { schoolsLimit: 10 },
+    variables: { schoolsLimit: 100 },
   });
   if (loading) {
     return <Ring />;
@@ -25,12 +27,8 @@ const Histogram = () => {
     <StyledHistogram>
       <VictoryChart>
         <VictoryHistogram
-          bins={[
-            0, 50, 100, 150, 200, 250, 300, 450, 500, 600, 700, 800, 900, 1000,
-            1200, 1400, 1600, 2000,
-          ]}
           data={data.schools.map((school) => ({
-            x: school.TOT_ENR,
+            x: school.RI_HI_F,
           }))}
         />
       </VictoryChart>

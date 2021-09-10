@@ -18,7 +18,7 @@ const StyledApp = styled.div`
     margin-right: 50px;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 400px;
   }
   .autocomplete-container {
     display: flex;
