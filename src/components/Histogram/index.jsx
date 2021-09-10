@@ -9,27 +9,37 @@ const ALL_SCHOOLS = gql`
     schools(limit: $schoolsLimit) {
       SCH_NAME
       COMBOKEY
-      RI_HI_F
-      RI_HI_M
+      RI_HI_F_POP
+      RI_HI_M_POP
     }
   }
 `;
 
 const Histogram = () => {
   const { loading, data } = useQuery(ALL_SCHOOLS, {
-    variables: { schoolsLimit: 100 },
+    variables: { schoolsLimit: 500 },
   });
   if (loading) {
     return <Ring />;
   }
-  localStorage.setItem('schools', data.schools);
+  if (data) {
+    console.log({
+      hello: data.schools.filter((school) => ({
+        x: school.RR_HI_F_POP === 'number' && school.RR_HI_F_POP > 1,
+      })),
+    });
+  }
   return (
     <StyledHistogram>
       <VictoryChart>
         <VictoryHistogram
-          data={data.schools.map((school) => ({
-            x: school.RI_HI_F,
-          }))}
+          data={
+            data
+              ? data.schools.filter((school) => ({
+                  x: school.RI_HI_F === 'number' && school.RI_HI_F > 1,
+                }))
+              : []
+          }
         />
       </VictoryChart>
     </StyledHistogram>
