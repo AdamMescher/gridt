@@ -38,6 +38,7 @@ const startApolloServer = async () => {
   });
 
   app.listen({ port: process.env.GQL_PORT }, () => {
+    // eslint-disable-next-line no-console
     console.log(`🚀 Server listening on port ${process.env.GQL_PORT}`);
   });
 };

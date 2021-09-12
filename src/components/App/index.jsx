@@ -76,7 +76,7 @@ const App = () => {
             }`}</p>
           </div>
           <div className="graph-container">
-            <Histogram />
+            <Histogram race={race || ''} gender={gender || ''} />
           </div>
         </div>
       </Page>
