@@ -9,6 +9,7 @@ const SCHOOLS_BY_NAME = gql`
     schools(filter: $schoolsFilter, limit: $schoolsLimit) {
       SCH_NAME
       COMBOKEY
+      RR_HI_M_POP
     }
   }
 `;

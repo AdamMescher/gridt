@@ -33,7 +33,6 @@ const SimpleSearch = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  console.log({ findSchools });
   return (
     <StyledSimpleSearch>
       <input
