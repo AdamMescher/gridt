@@ -9,14 +9,15 @@ import Histogram from '../Histogram';
 import StyledApp from './styled';
 
 const genderOptions = [
-  { value: 'f', label: 'Female' },
-  { value: 'm', label: 'Male' },
+  { value: 'F', label: 'Female' },
+  { value: 'M', label: 'Male' },
 ];
 const raceOptions = [
   { value: 'AM', label: 'American Indian / Alaskan Native' },
+  { value: 'AS', label: 'Asian' },
   { value: 'BL', label: 'Black' },
   { value: 'HI', label: 'Hispanic' },
-  { value: 'PI', label: 'Pacific Islander' },
+  { value: 'HP', label: 'Pacific Islander' },
   { value: 'TR', label: 'Two or More Races' },
   { value: 'WH', label: 'White' },
 ];
@@ -39,7 +40,6 @@ const App = () => {
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
-  const [searchTerm, setSearchTerm] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
   return (
     <StyledApp>
@@ -71,12 +71,13 @@ const App = () => {
           <div className="autocomplete-container">
             <h3>Search School By Name</h3>
             <AsyncSelectInput setSelectedSchool={setSelectedSchool} />
-            <p>{`Selected School: ${
-              selectedSchool ? selectedSchool.label : 'none'
-            }`}</p>
           </div>
           <div className="graph-container">
-            <Histogram race={race || ''} gender={gender || ''} />
+            <Histogram
+              selectedSchool={selectedSchool}
+              race={race}
+              gender={gender}
+            />
           </div>
         </div>
       </Page>

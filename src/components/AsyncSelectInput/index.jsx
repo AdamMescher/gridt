@@ -9,7 +9,20 @@ const SCHOOLS_BY_NAME = gql`
     schools(filter: $schoolsFilter, limit: $schoolsLimit) {
       SCH_NAME
       COMBOKEY
+      RR_AM_F_POP
+      RR_AM_M_POP
+      RR_AS_F_POP
+      RR_AS_M_POP
+      RR_BL_F_POP
+      RR_BL_M_POP
+      RR_HI_F_POP
       RR_HI_M_POP
+      RR_HP_F_POP
+      RR_HP_M_POP
+      RR_TR_F_POP
+      RR_TR_M_POP
+      RR_WH_F_POP
+      RR_WH_M_POP
     }
   }
 `;
@@ -34,6 +47,7 @@ const AsyncSelectInput = ({ setSelectedSchool }) => {
       ? data.schools.map((school) => ({
           label: school.SCH_NAME,
           value: school.COMBOKEY,
+          ...school,
         }))
       : [];
   };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledHistogram = styled.div`
   display: flex;
+  padding-top: 50px;
   height: 60vh;
   .all-buttons-container {
     width: 400px;
@@ -25,6 +26,17 @@ const StyledHistogram = styled.div`
     cursor: pointer;
     background: blue;
     color: white;
+  }
+
+  button:disabled {
+    background: gray;
+    border: black;
+    color: darkgray;
+  }
+
+  .chart {
+    border: 2px solid blue;
+    background: yellow;
   }
 `;
 
