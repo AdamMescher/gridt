@@ -190,11 +190,11 @@ const Histogram = ({ selectedSchool, race, gender }) => {
       <VictoryChart className="chart">
         <VictoryLabel text={graphTitle} textAnchor="middle" x={225} y={10} />
         <VictoryHistogram
+          style={{ data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' } }}
           data={graphData}
           bins={[
-            0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6,
-            0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65, 1.8, 1.95, 2.1, 2.25, 2.4,
-            2.55, 2.7, 2.85, 3, 3.15, 3.3, 3.45, 3.6, 3.75, 3.9, 4,
+            0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2, 25, 2.5, 2.75, 3,
+            3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75, 5,
           ]}
         />
         {selectedSchool && race.value && gender.value ? (
