@@ -153,6 +153,20 @@ const Histogram = ({ selectedSchool, race, gender }) => {
     setGraphTitle(`${race} ${gender} risk ratio`);
     setGraphData(await fetchSchools(gender, race));
   };
+  const calcMean = (arr) => {
+    const sum = arr.reduce((accum, school) => {
+      return (accum += school.x);
+    }, 0);
+    return sum / arr.length;
+  };
+  const calcMedian = (arr) => {
+    if (arr.length % 2 === 0) {
+      console.log(arr[arr.length]);
+      return (arr[arr.length / 2]['x'] + arr[arr.length / 2 - 1]['x']) / 2;
+    } else {
+      return arr[Math.floor(arr.length / 2)]['x'];
+    }
+  };
   return (
     <StyledHistogram>
       <div className="all-buttons-container">
@@ -218,6 +232,17 @@ const Histogram = ({ selectedSchool, race, gender }) => {
           />
         ) : null}
       </VictoryChart>
+      <h4 style={{ textAlign: 'center' }}>stats</h4>
+      <div style={{ display }}>
+        <p style={{ textAlign: 'center' }}>N: {graphData.length}</p>
+        <p style={{ textAlign: 'center' }}>
+          Mean: {calcMean(graphData)}
+        </p>
+        <p style={{ textAlign: 'center' }}>
+          Median:{' '}
+          {calcMedian(graphData)}
+        </p>
+      </div>
     </StyledHistogram>
   );
 };
