@@ -233,7 +233,7 @@ const Histogram = ({ selectedSchool, race, gender }) => {
         ) : null}
       </VictoryChart>
       <h4 style={{ textAlign: 'center' }}>stats</h4>
-      <div style={{ display }}>
+      <div>
         <p style={{ textAlign: 'center' }}>N: {graphData.length}</p>
         <p style={{ textAlign: 'center' }}>
           Mean: {calcMean(graphData)}
