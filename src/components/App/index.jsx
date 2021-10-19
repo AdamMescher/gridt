@@ -2,11 +2,12 @@
 import * as React from 'react';
 import { useApolloClient } from '@apollo/client';
 import { Ring } from 'react-awesome-spinners';
-import AsyncSelectInput from '../AsyncSelectInput';
-import GlobalStyle from '../GlobalStyle';
-import Page from '../Page';
 import Select from 'react-select';
+import GlobalStyle from '../GlobalStyle';
+import AsyncSelectInput from '../AsyncSelectInput';
+import Page from '../Page';
 import Histogram from '../Histogram';
+import Stats from '../Stats';
 import StyledApp from './styled';
 import selectOptions from '../../utils/selectOptions';
 import queries from '../../utils/queries';
@@ -18,7 +19,7 @@ const App = () => {
   const [selectedSchool, setSelectedSchool] = React.useState(null);
   const [graphData, setGraphData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentGraph, setCurrentGraph] = React.useState('');
+  const [graphTitle, setGraphTitle] = React.useState('');
   const client = useApolloClient();
   const fetchSchools = async () => {
     setIsLoading(true);
@@ -26,7 +27,7 @@ const App = () => {
     const { data } = await client.query({
       query,
       variables: {
-        schoolsLimit: -1,
+        schoolsLimit: 50,
         schoolsFilter: {
           _operators: {
             [`RR_${race.value}_${gender.value}_POP`]: {
@@ -40,54 +41,22 @@ const App = () => {
     return data ? data.schools.map((school) => ({ x: school[key] })) : [];
   };
   React.useEffect(async () => {
-    if (
-      gender &&
-      race &&
-      disability &&
-      selectedSchool &&
-      currentGraph !==
-        `${race.value}_${gender.value}_${disability.value}_${selectedSchool?.COMBOKEY}`
-    ) {
-      setCurrentGraph(
-        `${race.value}_${gender.value}_${disability.value}_${selectedSchool?.COMBOKEY}`,
-      );
-      const schools = await fetchSchools();
-      setGraphData(schools);
-      setIsLoading(false);
-    } else if (
-      gender &&
-      race &&
-      disability &&
-      currentGraph !== `${race.value}_${gender.value}_${disability.value}`
-    ) {
-      const newCurrentGraph = `${race.value}_${gender.value}_${disability.value}`;
-      setCurrentGraph(`${race.value}_${gender.value}_${disability.value}`);
-      const schools = await fetchSchools();
-      setGraphData(schools);
-      setIsLoading(false);
-    } else if (
-      gender &&
-      race &&
-      selectedSchool &&
-      currentGraph !==
-        `${race.value}_${gender.value}_${selectedSchool.COMBOKEY}`
-    ) {
-      console.log('FIRED GENDER RACE SELECTEDSCHOOL');
-      setCurrentGraph(
-        `${race.value}_${gender.value}_${selectedSchool.COMBOKEY}`,
-      );
-      const schools = await fetchSchools();
-      setGraphData(schools);
-      setIsLoading(false);
-    } else if (
-      gender &&
-      race &&
-      currentGraph !== `${race?.value}_${gender?.value}`
-    ) {
-      setCurrentGraph(`${race.value}_${gender.value}`);
-      const schools = await fetchSchools();
-      setGraphData(schools);
-      setIsLoading(false);
+    if (gender && race && disability) {
+      const newGraphTitle = `${race.label}_${gender.label}_${disability.label}`;
+      if (newGraphTitle !== graphTitle) {
+        setGraphTitle(`${race.label}_${gender.label}_${disability.label}`);
+        const schools = await fetchSchools();
+        setGraphData(schools);
+        setIsLoading(false);
+      }
+    } else if (gender && race) {
+      const newGraphTitle = `${race.label}_${gender.label}`;
+      if (newGraphTitle !== graphTitle) {
+        setGraphTitle(`${race.label}_${gender.label}`);
+        const schools = await fetchSchools();
+        setGraphData(schools);
+        setIsLoading(false);
+      }
     }
   });
   return (
@@ -101,7 +70,12 @@ const App = () => {
               <Select
                 options={selectOptions.genderOptions}
                 isClearable
-                onChange={setGender}
+                onChange={(option) => {
+                  setGender(option);
+                  if (!option) {
+                    setGraphTitle(null);
+                  }
+                }}
               />
             </div>
             <div className="select">
@@ -109,7 +83,12 @@ const App = () => {
               <Select
                 options={selectOptions.raceOptions}
                 isClearable
-                onChange={setRace}
+                onChange={(option) => {
+                  setRace(option);
+                  if (!option) {
+                    setGraphTitle(null);
+                  }
+                }}
               />
             </div>
             <div className="select">
@@ -123,12 +102,28 @@ const App = () => {
           </div>
           <div className="autocomplete-container">
             <h3>Search School By Name</h3>
-            <AsyncSelectInput setSelectedSchool={setSelectedSchool} />
+            <AsyncSelectInput
+              setSelectedSchool={setSelectedSchool}
+              race={race}
+              gender={gender}
+            />
           </div>
           <div className="graph-container">
-            {isLoading ? <Ring /> : <Histogram data={graphData} />}
+            {isLoading ? (
+              <Ring />
+            ) : (
+              <Histogram
+                data={graphData}
+                title={graphTitle}
+                gender={gender}
+                race={race}
+                disability={disability}
+                selectedSchool={selectedSchool}
+              />
+            )}
           </div>
         </div>
+        <Stats data={graphData}/>
       </Page>
     </StyledApp>
   );
