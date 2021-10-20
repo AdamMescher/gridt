@@ -7,11 +7,11 @@ const Stats = ({ data }) => {
   const mode = d3.mode(raw);
   const deviation = d3.deviation(raw);
   const quartiles = {
-    zero: d3.quantile(raw, 0),
+    min: d3.quantile(raw, 0),
     first: d3.quantile(raw, 0.25),
     median,
     third: d3.quantile(raw, 0.75),
-    one: d3.quantile(raw, 1),
+    max: d3.quantile(raw, 1),
   };
   return data.length > 1 ? (
     <div>

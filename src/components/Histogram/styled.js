@@ -13,30 +13,13 @@ const StyledHistogram = styled.div`
     margin-top: 15px;
   }
 
-  button {
-    margin-left: 10px;
-    width: 100px;
-    padding: 10px 0 10px 0;
-    border: 2px solid blue;
-    background: white;
-    color: blue;
-  }
-
-  button:hover {
-    cursor: pointer;
-    background: blue;
-    color: white;
-  }
-
-  button:disabled {
-    background: gray;
-    border: black;
-    color: darkgray;
-  }
-
   .chart {
     border: 2px solid blue;
     background: yellow;
+  }
+
+  .school-bar:hover {
+    cursor: pointer;
   }
 `;
 

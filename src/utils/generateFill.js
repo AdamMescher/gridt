@@ -1,16 +1,20 @@
 const generateFill = (riskRatio) => {
-  switch (riskRatio) {
-    case riskRatio >= 0 && riskRatio < 1:
-      return 'white';
-    case riskRatio >= 1 && riskRatio <= 3:
-      return 'green';
-    case riskRatio > 3 && riskRatio <= 4:
-      return 'orange';
-    case riskRatio > 4:
-      return 'red';
-    default:
-      return 'black';
+  if (riskRatio >= 0 && riskRatio <= 0.33) {
+    return 'cyan';
   }
+  if (riskRatio > 0.33 && riskRatio <= 0.6) {
+    return 'steelblue';
+  }
+  if (riskRatio > 0.6 && riskRatio <= 2) {
+    return 'green';
+  }
+  if (riskRatio > 2 && riskRatio <= 3.5) {
+    return 'lightcoral';
+  }
+  if (riskRatio > 3.5) {
+    return '#8C001A';
+  }
+  return 'black';
 };
 
 export default generateFill;

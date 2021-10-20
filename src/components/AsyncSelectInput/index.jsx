@@ -4,29 +4,16 @@ import { useApolloClient, gql } from '@apollo/client';
 import AsyncSelect from 'react-select/async';
 import StyledAsyncSelectInput from './styled';
 
-const SCHOOLS_BY_NAME = gql`
+const AsyncSelectInput = ({ setSelectedSchool, race, gender }) => {
+  const SCHOOLS_BY_NAME = gql`
   query Query($schoolsFilter: FilterFindManySchoolInput, $schoolsLimit: Int) {
     schools(filter: $schoolsFilter, limit: $schoolsLimit) {
       SCH_NAME
       COMBOKEY
-      RR_AM_F_POP
-      RR_AM_M_POP
-      RR_AS_F_POP
-      RR_AS_M_POP
-      RR_BL_F_POP
-      RR_BL_M_POP
-      RR_HI_F_POP
-      RR_HI_M_POP
-      RR_HP_F_POP
-      RR_HP_M_POP
-      RR_TR_F_POP
-      RR_TR_M_POP
-      RR_WH_F_POP
-      RR_WH_M_POP
+      RR_${race.value}_${gender.value}_POP
     }
   }
 `;
-const AsyncSelectInput = ({ setSelectedSchool }) => {
   const client = useApolloClient();
   const [searchTerm, setSearchTerm] = React.useState('');
   const fetchOptions = async () => {
@@ -38,6 +25,9 @@ const AsyncSelectInput = ({ setSelectedSchool }) => {
           _operators: {
             SCH_NAME: {
               regex: `/${searchTerm}/i`,
+            },
+            [`RR_${race.value}_${gender.value}_POP`]: {
+              gt: 0,
             },
           },
         },

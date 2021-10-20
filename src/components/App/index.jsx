@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from 'react';
 import { useApolloClient } from '@apollo/client';
 import { Ring } from 'react-awesome-spinners';
@@ -27,7 +26,7 @@ const App = () => {
     const { data } = await client.query({
       query,
       variables: {
-        schoolsLimit: 50,
+        schoolsLimit: -1,
         schoolsFilter: {
           _operators: {
             [`RR_${race.value}_${gender.value}_POP`]: {
@@ -37,8 +36,12 @@ const App = () => {
         },
       },
     });
-    let key = Object.keys(data.schools[0])[0];
-    return data ? data.schools.map((school) => ({ x: school[key] })) : [];
+    const key = Object.keys(data.schools[0])[0];
+    return data
+      ? data.schools.map((school) => ({
+          x: school[key],
+        }))
+      : [];
   };
   React.useEffect(async () => {
     if (gender && race && disability) {
@@ -101,29 +104,36 @@ const App = () => {
             </div>
           </div>
           <div className="autocomplete-container">
-            <h3>Search School By Name</h3>
-            <AsyncSelectInput
-              setSelectedSchool={setSelectedSchool}
-              race={race}
-              gender={gender}
-            />
+            {race && gender ? (
+              <div>
+                <h3>Search School By Name</h3>
+                <AsyncSelectInput
+                  setSelectedSchool={setSelectedSchool}
+                  race={race}
+                  gender={gender}
+                />
+              </div>
+            ) : null}
           </div>
           <div className="graph-container">
+            {/* eslint-disable-next-line no-nested-ternary */}
             {isLoading ? (
               <Ring />
-            ) : (
-              <Histogram
-                data={graphData}
-                title={graphTitle}
-                gender={gender}
-                race={race}
-                disability={disability}
-                selectedSchool={selectedSchool}
-              />
-            )}
+            ) : graphTitle ? (
+              <div>
+                <Histogram
+                  data={graphData}
+                  title={graphTitle}
+                  gender={gender}
+                  race={race}
+                  disability={disability}
+                  selectedSchool={selectedSchool}
+                />
+                <Stats data={graphData} />
+              </div>
+            ) : null}
           </div>
         </div>
-        <Stats data={graphData}/>
       </Page>
     </StyledApp>
   );

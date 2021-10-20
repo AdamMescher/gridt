@@ -1,6 +1,4 @@
-/* eslint-disable */
 import * as React from 'react';
-import * as d3 from 'd3';
 import {
   VictoryChart,
   VictoryLabel,
@@ -10,12 +8,17 @@ import {
 } from 'victory';
 import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
+import generateBins from '../../utils/generateBins';
 
 const Histogram = ({ data, title, race, gender, selectedSchool }) => {
   const bins = [
     0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5,
     3.75, 4, 4.25, 4.5, 4.75, 5,
   ];
+  const raw = data.map((school) => school.x);
+  const binSizes = generateBins(raw);
+  const arr = Object.values(binSizes);
+  const maxBinSize = Math.max(...arr);
   return (
     <StyledHistogram>
       <VictoryChart>
@@ -31,17 +34,26 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
           style={{ data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' } }}
           data={data}
           bins={bins}
+          tickLabels={[1.3, 7]}
         />
         {selectedSchool && gender && race ? (
           <VictoryBar
+            labelComponent={<VictoryTooltip />}
             data={[
               {
                 x: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
-                y: 10,
+                y: maxBinSize,
                 label: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
               },
             ]}
-            labelComponent={<VictoryTooltip />}
+            style={{
+              data: {
+                cursor: 'pointer',
+                fill: generateFill(
+                  selectedSchool[`RR_${race.value}_${gender.value}_POP`],
+                ),
+              },
+            }}
           />
         ) : null}
       </VictoryChart>
