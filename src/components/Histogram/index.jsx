@@ -7,6 +7,7 @@ import {
   VictoryHistogram,
 } from 'victory';
 import StyledHistogram from './styled';
+import Stats from '../Stats';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
 
@@ -57,6 +58,7 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
           />
         ) : null}
       </VictoryChart>
+      {data.length ? <Stats data={data} /> : null}
     </StyledHistogram>
   );
 };

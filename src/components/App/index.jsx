@@ -6,7 +6,6 @@ import GlobalStyle from '../GlobalStyle';
 import AsyncSelectInput from '../AsyncSelectInput';
 import Page from '../Page';
 import Histogram from '../Histogram';
-import Stats from '../Stats';
 import StyledApp from './styled';
 import selectOptions from '../../utils/selectOptions';
 import queries from '../../utils/queries';
@@ -129,7 +128,6 @@ const App = () => {
                   disability={disability}
                   selectedSchool={selectedSchool}
                 />
-                <Stats data={graphData} />
               </div>
             ) : null}
           </div>

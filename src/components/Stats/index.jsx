@@ -1,4 +1,6 @@
+import * as React from 'react';
 import * as d3 from 'd3';
+import Table from '../Table';
 
 const Stats = ({ data }) => {
   const raw = data.map((item) => item.x);
@@ -13,22 +15,60 @@ const Stats = ({ data }) => {
     third: d3.quantile(raw, 0.75),
     max: d3.quantile(raw, 1),
   };
-  return data.length > 1 ? (
-    <div>
-      <h3>Stats</h3>
-      <p>N: {data.length}</p>
-      <p>Mean: {mean}</p>
-      <p>Median: {median}</p>
-      <p>Mode: {mode}</p>
-      <p>Deviation: {deviation}</p>
-      <p>Quartiles</p>
-      <p>min: {quartiles.min}</p>
-      <p>First: {quartiles.first}</p>
-      <p>Median: {quartiles.median}</p>
-      <p>Third: {quartiles.third}</p>
-      <p>max: {quartiles.max}</p>
-    </div>
-  ) : null;
+  const columns = React.useMemo(() => [
+    {
+      Header: 'Metric',
+      accessor: 'metric',
+    },
+    {
+      Header: 'Value',
+      accessor: 'value',
+    },
+  ]);
+  const rows = React.useMemo(() => [
+    {
+      metric: 'N',
+      value: data.length,
+    },
+    {
+      metric: 'Mean',
+      value: mean,
+    },
+    {
+      metric: 'Median',
+      value: median,
+    },
+    {
+      metric: 'Mode',
+      value: mode,
+    },
+    {
+      metric: 'Standard Deviation',
+      value: deviation,
+    },
+    {
+      metric: 'Quartiles Min',
+      value: quartiles.min,
+    },
+    {
+      metric: 'First',
+      value: quartiles.first,
+    },
+    {
+      metric: 'Median',
+      value: quartiles.median,
+    },
+    {
+      metric: 'Third',
+      value: quartiles.third,
+    },
+    {
+      metric: 'Quartiles Max',
+      value: quartiles.max,
+    },
+  ]);
+
+  return data.length > 1 ? <Table data={rows} columns={columns} /> : null;
 };
 
 export default Stats;
