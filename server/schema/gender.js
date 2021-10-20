@@ -1,4 +1,4 @@
-const { GenderTC } = require('../resources/genders/gender.model');
+const { GenderTC } = require('../models/gender.model');
 
 const GenderQuery = {
   gender: GenderTC.mongooseResolvers.findOne(),

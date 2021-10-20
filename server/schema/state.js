@@ -1,4 +1,4 @@
-const { StateTC } = require('../resources/states/state.model');
+const { StateTC } = require('../models/state.model');
 
 const StateQuery = {
   state: StateTC.mongooseResolvers.findOne(),

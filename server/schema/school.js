@@ -1,4 +1,4 @@
-const { SchoolTC } = require('../resources/schools/school.model');
+const { SchoolTC } = require('../models/school.model');
 
 const SchoolQuery = {
   school: SchoolTC.mongooseResolvers.findOne(),

@@ -1,4 +1,4 @@
-const { DisabilityTC } = require('../resources/disabilities/disability.model');
+const { DisabilityTC } = require('../models/disability.model');
 
 const DisabilityQuery = {
   disability: DisabilityTC.mongooseResolvers.findOne(),

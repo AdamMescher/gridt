@@ -1,4 +1,4 @@
-const { DistrictTC } = require('../resources/districts/district.model');
+const { DistrictTC } = require('../models/district.model');
 
 const DistrictQuery = {
   district: DistrictTC.mongooseResolvers.findOne(),
