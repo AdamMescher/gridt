@@ -3,7 +3,6 @@ const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const express = require('express');
 const http = require('http');
 const types = require('./schema');
-const resolverss = require('./resolvers');
 
 async function startApolloServer(typeDefs, resolvers) {
   const app = express();
@@ -19,4 +18,4 @@ async function startApolloServer(typeDefs, resolvers) {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 
-startApolloServer(types, resolverss);
+startApolloServer(types);

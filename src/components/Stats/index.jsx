@@ -21,11 +21,11 @@ const Stats = ({ data }) => {
       <p>Mode: {mode}</p>
       <p>Deviation: {deviation}</p>
       <p>Quartiles</p>
-      <p>0: {quartiles.zero}</p>
+      <p>min: {quartiles.min}</p>
       <p>First: {quartiles.first}</p>
       <p>Median: {quartiles.median}</p>
       <p>Third: {quartiles.third}</p>
-      <p>1: {quartiles.one}</p>
+      <p>max: {quartiles.max}</p>
     </div>
   ) : null;
 };
