@@ -16,6 +16,7 @@ const Stats = ({ data }) => {
   return data.length > 1 ? (
     <div>
       <h3>Stats</h3>
+      <p>N: {data.length}</p>
       <p>Mean: {mean}</p>
       <p>Median: {median}</p>
       <p>Mode: {mode}</p>
