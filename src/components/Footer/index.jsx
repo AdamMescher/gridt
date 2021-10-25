@@ -2,7 +2,10 @@ import * as React from 'react';
 
 const Footer = () => (
   <footer>
-    <h3>this is a footer</h3>
+    <p>
+      Suggested citation: Ford, A.J. (2021). Gender and Race Intersectional
+      Disproportionality-Tool. grid-t.com
+    </p>
   </footer>
 );
 
