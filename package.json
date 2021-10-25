@@ -51,6 +51,7 @@
     "apollo-server": "^3.3.0",
     "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
+    "apollo-server-lambda": "^2.25.2",
     "axios": "^0.21.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
