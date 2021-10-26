@@ -1,7 +1,10 @@
-# gridt
-Audrey Ford GRIDT
+# Gender and Race Intersectional Disproportionality-Tool
 
-Live Site: https://priceless-wilson-fee0d4.netlify.app
+Audrey Ford's GRID-T
+
+Suggested citation: Ford, A.J. (2021). Gender and Race Intersectional Disproportionality-Tool. grid-t.com
+
+Live Site: grid-t.com
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys)
 
