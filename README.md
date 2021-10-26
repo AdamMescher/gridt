@@ -7,6 +7,10 @@ Live Site: https://priceless-wilson-fee0d4.netlify.app
 
 ![](https://heroku-status-badges.herokuapp.com/gridt-apollo)
 
+Built with Create React App
+
 Database hosted on Mongo Atlast
+
 Apollo Server hosted on Heroku
+
 Frontend hosted on Netlify
