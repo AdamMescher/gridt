@@ -13,6 +13,7 @@
     "db:seed": "node --max-old-space-size=8192 server/db/seedDb.js",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
     "dev": "nodemon ./server/index.js",
+    "heroku:deploy": "node ./server/index.js",
     "clean:server": "rimraf ./server/dist",
     "build:server": "npm run clean:server && babel ./server --out-dir ./server/dist --copy-files",
     "start:server": "nodemon --exec babel-node server/bin/www.js",
