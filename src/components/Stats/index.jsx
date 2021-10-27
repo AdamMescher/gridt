@@ -47,23 +47,23 @@ const Stats = ({ data }) => {
       value: deviation,
     },
     {
-      metric: 'Quartiles Min',
+      metric: 'IQR Min',
       value: quartiles.min,
     },
     {
-      metric: 'First',
+      metric: 'IQR First',
       value: quartiles.first,
     },
     {
-      metric: 'Median',
+      metric: 'IQR Median',
       value: quartiles.median,
     },
     {
-      metric: 'Third',
+      metric: 'IQR Third',
       value: quartiles.third,
     },
     {
-      metric: 'Quartiles Max',
+      metric: 'IQR Max',
       value: quartiles.max,
     },
   ]);
