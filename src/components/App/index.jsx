@@ -1,13 +1,22 @@
 import * as React from 'react';
-import { useApolloClient } from '@apollo/client';
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  useApolloClient,
+} from '@apollo/client';
+import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 import { Ring } from 'react-awesome-spinners';
 import Select from 'react-select';
 import GlobalStyle from '../GlobalStyle';
 import AsyncSelectInput from '../AsyncSelectInput';
-import Page from '../Page';
+import Meta from '../Meta';
+import Header from '../Header';
+import Footer from '../Footer';
+import Controls from '../Controls';
 import Histogram from '../Histogram';
+import Stats from '../Stats';
 import StyledApp from './styled';
-import selectOptions from '../../utils/selectOptions';
 import queries from '../../utils/queries';
 
 const App = () => {
@@ -15,16 +24,18 @@ const App = () => {
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
+  const [comparison, setComparison] = React.useState('pop');
   const [graphData, setGraphData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
   const [graphTitle, setGraphTitle] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
   const client = useApolloClient();
   const fetchSchools = async () => {
     setIsLoading(true);
-    const query = queries[`SCHOOLS_${race.value}_${gender.value}_QUERY`];
-    const { data } = await client.query({
-      query,
-      variables: {
+    let query;
+    let variables = {};
+    if (comparison === 'pop') {
+      query = queries[`SCHOOLS_${race.value}_${gender.value}_QUERY`];
+      variables = {
         schoolsLimit: -1,
         schoolsFilter: {
           _operators: {
@@ -33,7 +44,27 @@ const App = () => {
             },
           },
         },
-      },
+      };
+    }
+    if (comparison === 'wh') {
+      query =
+        queries[
+          `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`
+        ];
+      variables = {
+        schoolsLimit: -1,
+        schoolsFilter: {
+          _operators: {
+            [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
+              gt: 0,
+            },
+          },
+        },
+      };
+    }
+    const { data } = await client.query({
+      query,
+      variables,
     });
     const key = Object.keys(data.schools[0])[0];
     return data
@@ -43,18 +74,12 @@ const App = () => {
       : [];
   };
   React.useEffect(async () => {
-    if (gender && race && disability) {
-      const newGraphTitle = `${race.label}_${gender.label}_${disability.label}`;
+    if (gender && race) {
+      const newGraphTitle = `${race.label}_${gender.label} Compared to ${comparison}`;
       if (newGraphTitle !== graphTitle) {
-        setGraphTitle(`${race.label}_${gender.label}_${disability.label}`);
-        const schools = await fetchSchools();
-        setGraphData(schools);
-        setIsLoading(false);
-      }
-    } else if (gender && race) {
-      const newGraphTitle = `${race.label}_${gender.label}`;
-      if (newGraphTitle !== graphTitle) {
-        setGraphTitle(`${race.label}_${gender.label}`);
+        setGraphTitle(
+          `${race.label}_${gender.label} Compared to ${comparison}`,
+        );
         const schools = await fetchSchools();
         setGraphData(schools);
         setIsLoading(false);
@@ -64,75 +89,42 @@ const App = () => {
   return (
     <StyledApp>
       <GlobalStyle />
-      <Page>
-        <div className="content-container">
-          <div className="select-container">
-            <div className="select">
-              <h3>Gender</h3>
-              <Select
-                options={selectOptions.genderOptions}
-                isClearable
-                onChange={(option) => {
-                  setGender(option);
-                  if (!option) {
-                    setGraphTitle(null);
-                  }
-                }}
-              />
-            </div>
-            <div className="select">
-              <h3>Race</h3>
-              <Select
-                options={selectOptions.raceOptions}
-                isClearable
-                onChange={(option) => {
-                  setRace(option);
-                  if (!option) {
-                    setGraphTitle(null);
-                  }
-                }}
-              />
-            </div>
-            <div className="select">
-              <h3>Disability</h3>
-              <Select
-                options={selectOptions.disabilityOptions}
-                isClearable
-                onChange={setDisability}
-              />
-            </div>
-          </div>
-          <div className="autocomplete-container">
-            {race && gender ? (
-              <div>
-                <h3>Search School By Name</h3>
-                <AsyncSelectInput
-                  setSelectedSchool={setSelectedSchool}
-                  race={race}
-                  gender={gender}
-                />
-              </div>
-            ) : null}
-          </div>
-          <div className="graph-container">
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {isLoading ? (
-              <Ring />
-            ) : graphTitle ? (
-              <div>
-                <Histogram
-                  data={graphData}
-                  title={graphTitle}
-                  gender={gender}
-                  race={race}
-                  disability={disability}
-                  selectedSchool={selectedSchool}
-                />
-              </div>
-            ) : null}
-          </div>
+      <Meta />
+      <div className="header-container">
+        <Header />
+      </div>
+      <div className="controls-container">
+        <Controls
+          race={race}
+          gender={gender}
+          setRace={setRace}
+          setGender={setGender}
+          setSelectedSchool={setSelectedSchool}
+          setComparison={setComparison}
+          setGraphTitle={setGraphTitle}
+        />
+      </div>
+      <div className="content-container">
+        <div className="graph-container">
+          {isLoading ? (
+            <Ring />
+          ) : (
+            <Histogram
+              data={graphData}
+              title={graphTitle}
+              race={race}
+              gender={gender}
+              selectedSchool={selectedSchool}
+            />
+          )}
         </div>
-      </Page>
+        <div className="stats-container">
+          {isLoading ? <Ring /> : <Stats data={graphData} />}
+        </div>
+      </div>
+      <div className="footer-container">
+        <Footer />
+      </div>
     </StyledApp>
   );
 };

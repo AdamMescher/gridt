@@ -1,6 +1,6 @@
 {
   "name": "gridt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Audrey Ford dissertation tool to analyze data set",
   "main": "index.js",
   "engines": {
@@ -53,6 +53,7 @@
     "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
     "apollo-server-lambda": "^2.25.2",
+    "apollo3-cache-persist": "^0.13.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",

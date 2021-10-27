@@ -58,7 +58,6 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
           />
         ) : null}
       </VictoryChart>
-      {data.length ? <Stats data={data} /> : null}
     </StyledHistogram>
   );
 };

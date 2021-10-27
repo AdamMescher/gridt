@@ -37,13 +37,18 @@ const startApolloServer = async () => {
       }),
   });
 
-  app.listen({ port: process.env.PORT || 4000 }, () => {
-    // eslint-disable-next-line no-console
-    console.log(`
-    🚀  Server is ready on port ${process.env.PORT || 4000}
+  app.listen(
+    {
+      port: process.env.PORT || 3333,
+    },
+    () => {
+      // eslint-disable-next-line no-console
+      console.log(`
+    🚀  Server is ready on ${process.env.PORT || 'http://localhost:3333/'}
     📭  Query at https://studio.apollographql.com/dev
   `);
-  });
+    },
+  );
 };
 
 startApolloServer();

@@ -3,37 +3,44 @@ import styled from 'styled-components';
 const StyledApp = styled.div`
   height: 100vh;
   width: 100%;
-  .content-container {
+  display: grid;
+  grid-template-columns: 50px 1fr 3fr 50px;
+  grid-template-rows: 100px 1fr 100px;
+  .header-container {
+    grid-area: 1 / 1 / 2 / 4;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .select-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .select {
-    margin-left: 50px;
-    margin-right: 50px;
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-  }
-  .autocomplete-container {
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
-  .autocomplete-container input {
-    border: 2px solid blue;
-    width: 500px;
+  .controls-container {
+    grid-area: 2 / 2 / 3 / 3;
+    border-right: 2px solid black;
+    padding-right: 10px;
+  }
+  .content-container {
+    grid-area: 2 / 3 / 3 / 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  .footer-container {
+    grid-area: 3 / 1 / 4 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .graph-container {
-    width: 100%;
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  h3 {
-    margin-top: 2rem;
+  .stats-container {
+    grid-area: 1 / 3 / 2 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 50px;
   }
 `;
 

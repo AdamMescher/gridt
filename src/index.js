@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import App from './components/App';
 
+const cache = new InMemoryCache();
+const uri =
+  process.env.NODE_ENV === 'production'
+    ? 'https://gridt-apollo.herokuapp.com/'
+    : 'http://localhost:3333/';
+
 const client = new ApolloClient({
-  uri: `https://gridt-apollo.herokuapp.com/`,
-  cache: new InMemoryCache(),
+  uri,
+  cache,
 });
 
 ReactDOM.render(
