@@ -6,7 +6,7 @@ import {
   useApolloClient,
 } from '@apollo/client';
 import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
-import { Ring } from 'react-awesome-spinners';
+import { Grid, Ellipsis } from 'react-awesome-spinners';
 import Select from 'react-select';
 import GlobalStyle from '../GlobalStyle';
 import AsyncSelectInput from '../AsyncSelectInput';
@@ -107,7 +107,7 @@ const App = () => {
       <div className="content-container">
         <div className="graph-container">
           {isLoading ? (
-            <Ring />
+            <Grid />
           ) : (
             <Histogram
               data={graphData}
@@ -119,7 +119,7 @@ const App = () => {
           )}
         </div>
         <div className="stats-container">
-          {isLoading ? <Ring /> : <Stats data={graphData} />}
+          {isLoading ? <Ellipsis /> : <Stats data={graphData} />}
         </div>
       </div>
       <div className="footer-container">
