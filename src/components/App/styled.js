@@ -15,13 +15,14 @@ const StyledApp = styled.div`
   .controls-container {
     grid-area: 2 / 2 / 3 / 3;
     border-right: 2px solid black;
-    padding-right: 10px;
+    padding-right: 20px;
   }
   .content-container {
     grid-area: 2 / 3 / 3 / 4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+    padding-left: 15px;
   }
   .footer-container {
     grid-area: 3 / 1 / 4 / 5;
