@@ -16,6 +16,7 @@ import Footer from '../Footer';
 import Controls from '../Controls';
 import Histogram from '../Histogram';
 import Stats from '../Stats';
+import Recommendation from '../Recommendation';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
 

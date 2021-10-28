@@ -5,9 +5,7 @@ import Meta from '../Meta';
 const Header = () => (
   <StyledHeader>
     <Meta />
-    <h1>
-      <a href="#">Gender and Race Intersectional Disproportionality-Tool</a>
-    </h1>
+    <h1>Gender and Race Intersectional Disproportionality-Tool</h1>
   </StyledHeader>
 );
 

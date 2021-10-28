@@ -22,9 +22,12 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
   const maxBinSize = Math.max(...arr);
   return (
     <StyledHistogram>
-      <VictoryChart>
+      <VictoryChart
+        style={{ data: { fontFamily: `'Open Sans', sans-serif` } }}
+      >
         {title ? (
           <VictoryLabel
+            style={{ fontFamily: `'Open Sans', sans-serif` }}
             text={`${title.replaceAll('_', ' ')} Risk Ratio`}
             textAnchor="middle"
             x={225}
@@ -39,7 +42,11 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
         />
         {selectedSchool && gender && race ? (
           <VictoryBar
-            labelComponent={<VictoryTooltip />}
+            labelComponent={
+              <VictoryTooltip
+                style={{ fontFamily: `'Open Sans', sans-serif` }}
+              />
+            }
             data={[
               {
                 x: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
@@ -49,6 +56,7 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
             ]}
             style={{
               data: {
+                fontFamily: `'Open Sans', sans-serif`,
                 cursor: 'pointer',
                 fill: generateFill(
                   selectedSchool[`RR_${race.value}_${gender.value}_POP`],

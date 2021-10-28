@@ -6,14 +6,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  a {
-    color: black;
-    text-decoration: none;
-    font-size: 2em;
-  }
-  a:hover {
-    color: gray;
-  }
+  font-size: 1.5rem;
 `;
 
 export default StyledHeader;

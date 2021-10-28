@@ -2,6 +2,18 @@ import Select from 'react-select';
 import StyledControls from './styled.js';
 import AsyncSelectInput from '../AsyncSelectInput';
 import selectOptions from '../../utils/selectOptions.js';
+
+const customStyles = {
+  option: (styles, state) => ({
+    ...styles,
+    cursor: 'pointer',
+  }),
+  control: (styles) => ({
+    ...styles,
+    cursor: 'pointer',
+  })
+};
+
 const Controls = ({
   race,
   gender,
@@ -15,6 +27,7 @@ const Controls = ({
     <StyledControls>
       <h3>Select Gender</h3>
       <Select
+        styles={customStyles}
         isClearable
         options={selectOptions.genderOptions}
         onChange={(option) => {
@@ -26,6 +39,7 @@ const Controls = ({
       />
       <h3>Select Race</h3>
       <Select
+        styles={customStyles}
         isClearable
         options={selectOptions.raceOptions}
         onChange={(option) => {
@@ -42,9 +56,13 @@ const Controls = ({
         className="radio-container"
         onChange={(event) => setComparison(event.target.value)}
       >
-        <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
-        Rest of Population
-        <input type="radio" value="wh" name="comparison" /> White
+        <div className="">
+          <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
+          Rest of Population
+        </div>
+        <div>
+          <input type="radio" value="wh" name="comparison" /> White
+        </div>
       </div>
     </StyledControls>
   );

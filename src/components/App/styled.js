@@ -32,6 +32,7 @@ const StyledApp = styled.div`
   .graph-container {
     grid-area: 1 / 1 / 2 / 3;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }

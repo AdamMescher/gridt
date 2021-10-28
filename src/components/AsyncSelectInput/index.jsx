@@ -23,6 +23,20 @@ const SCHOOLS_BY_NAME = gql`
       RR_TR_M_POP
       RR_WH_F_POP
       RR_WH_M_POP
+      RR_AM_F_WH_F
+      RR_AM_M_WH_M
+      RR_AS_F_WH_F
+      RR_AS_M_WH_M
+      RR_BL_F_WH_F
+      RR_BL_M_WH_M
+      RR_HI_F_WH_F
+      RR_HI_M_WH_M
+      RR_HP_F_WH_F
+      RR_HP_M_WH_M
+      RR_TR_F_WH_F
+      RR_TR_M_WH_M
+      RR_WH_F_WH_F
+      RR_WH_M_WH_M
     }
   }
 `;
