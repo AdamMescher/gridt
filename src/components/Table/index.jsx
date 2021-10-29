@@ -8,6 +8,7 @@ const StyledTable = styled.table`
   th {
     padding: 0.5rem;
     border: 1px solid #ccc;
+    white-space: nowrap;
   }
   tbody tr:nth-child(odd) {
     background: #eee;
