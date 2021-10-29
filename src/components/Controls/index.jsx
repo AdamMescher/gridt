@@ -63,7 +63,7 @@ const Controls = ({
           Rest of Population
         </div>
         <div className="radio">
-          <input type="radio" value="wh" name="comparison" /> White
+          <input type="radio" value="wh" name="comparison" /> White Population
         </div>
       </div>
     </StyledControls>

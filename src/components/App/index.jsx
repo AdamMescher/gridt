@@ -79,7 +79,7 @@ const App = () => {
       const newGraphTitle = `${race.label}_${gender.label} Compared to ${comparison}`;
       if (newGraphTitle !== graphTitle) {
         setGraphTitle(
-          `${race.label}_${gender.label} Compared to ${comparison}`,
+          `${race.label}_${gender.label} Compared to ${comparison === 'wh' ? 'White population' : 'Rest of Popuation'}`,
         );
         const schools = await fetchSchools();
         setGraphData(schools);
