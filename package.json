@@ -17,8 +17,6 @@
     "prod:server": "node ./server/dist/bin/www.js",
     "test": "node --trace-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test:watch": "jest --watch",
-    "test:e2e": "npx playwright test && npx playwright show-report",
-    "test:e2e-update-snapshots": "npx playwright test --update-snapshots && npx playwright show-report",
     "lint:server": "eslint \"server/**/*.js\"",
     "format:server": "prettier --write \"server/**/*.js\""
   },
