@@ -30,7 +30,9 @@ const App = () => {
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const client = useApolloClient();
+  console.log({ client });
   const fetchSchools = async () => {
+    console.log('FIRED UE');
     setIsLoading(true);
     let query;
     let variables = {};
@@ -76,10 +78,14 @@ const App = () => {
   };
   React.useEffect(async () => {
     if (gender && race) {
-      const newGraphTitle = `${race.label}_${gender.label} Compared to ${comparison}`;
+      const newGraphTitle = `${race.label}_${gender.label} Compared to ${
+        comparison === 'wh' ? 'White population' : 'Rest of Popuation'
+      }`;
       if (newGraphTitle !== graphTitle) {
         setGraphTitle(
-          `${race.label}_${gender.label} Compared to ${comparison === 'wh' ? 'White population' : 'Rest of Popuation'}`,
+          `${race.label}_${gender.label} Compared to ${
+            comparison === 'wh' ? 'White population' : 'Rest of Popuation'
+          }`,
         );
         const schools = await fetchSchools();
         setGraphData(schools);
