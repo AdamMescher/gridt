@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Background,
   VictoryAxis,
+  VictoryContainer,
   VictoryChart,
   VictoryLabel,
   VictoryBar,
@@ -24,7 +25,17 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
   const maxBinSize = Math.max(...arr);
   return (
     <StyledHistogram>
-      <VictoryChart>
+      <VictoryChart
+        containerComponent={
+          <VictoryContainer
+            style={{
+              pointerEvents: 'auto',
+              userSelect: 'auto',
+              touchAction: 'auto',
+            }}
+          />
+        }
+      >
         <VictoryAxis
           dependentAxis
           style={{
