@@ -44,6 +44,10 @@ const StyledApp = styled.div`
     justify-content: center;
     padding-left: 50px;
   }
+  @media (max-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export default StyledApp;

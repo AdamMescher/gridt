@@ -11,7 +11,7 @@ const customStyles = {
   control: (styles) => ({
     ...styles,
     cursor: 'pointer',
-  })
+  }),
 };
 
 const Controls = ({
@@ -27,6 +27,7 @@ const Controls = ({
     <StyledControls>
       <h3>Select Gender</h3>
       <Select
+        className="select"
         styles={customStyles}
         isClearable
         options={selectOptions.genderOptions}
@@ -39,6 +40,7 @@ const Controls = ({
       />
       <h3>Select Race</h3>
       <Select
+        className="select"
         styles={customStyles}
         isClearable
         options={selectOptions.raceOptions}
@@ -56,11 +58,11 @@ const Controls = ({
         className="radio-container"
         onChange={(event) => setComparison(event.target.value)}
       >
-        <div className="">
+        <div className="radio">
           <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
           Rest of Population
         </div>
-        <div>
+        <div className="radio">
           <input type="radio" value="wh" name="comparison" /> White
         </div>
       </div>
