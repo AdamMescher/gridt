@@ -11,6 +11,12 @@ const StyledHeader = styled.header`
     padding-top: 15px;
     font-size: 0.8rem;
   }
+   @media (max-width: 700px) {
+     font-size: 0.6rem;
+   }
+  @media (max-width: 625px) {
+    font-size: 0.55rem;
+  }
 `;
 
 export default StyledHeader;

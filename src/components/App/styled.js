@@ -47,6 +47,19 @@ const StyledApp = styled.div`
   @media (max-width: 1280px) {
     display: flex;
     flex-direction: column;
+    .controls-container {
+      padding: 0;
+    }
+    .content-container {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .stats-container {
+      padding: 0;
+    }
   }
 `;
 

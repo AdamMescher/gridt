@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
-  margin-right: 200px;
   td,
   th {
     padding: 0.5rem;
@@ -12,6 +11,9 @@ const StyledTable = styled.table`
   }
   tbody tr:nth-child(odd) {
     background: #eee;
+  }
+  @media (max-width: 1280px) {
+    font-size: 0.8rem;
   }
 `;
 
