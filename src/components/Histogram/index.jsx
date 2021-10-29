@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  VictoryAxis,
   VictoryChart,
   VictoryLabel,
   VictoryBar,
@@ -22,9 +23,24 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
   const maxBinSize = Math.max(...arr);
   return (
     <StyledHistogram>
-      <VictoryChart
-        style={{ data: { fontFamily: `'Open Sans', sans-serif` } }}
-      >
+      <VictoryChart style={{ tick: { fontSize: '50px' } }}>
+        <VictoryAxis
+          dependentAxis
+          style={{
+            tickLabels: {
+              fontFamily: `'Open Sans', sans-serif`,
+              fontSize: 11,
+            },
+          }}
+        />
+        <VictoryAxis
+          style={{
+            tickLabels: {
+              fontFamily: `'Open Sans', sans-serif`,
+              fontSize: 12,
+            },
+          }}
+        />
         {title ? (
           <VictoryLabel
             style={{ fontFamily: `'Open Sans', sans-serif` }}
@@ -38,7 +54,6 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
           style={{ data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' } }}
           data={data}
           bins={bins}
-          tickLabels={[1.3, 7]}
         />
         {selectedSchool && gender && race ? (
           <VictoryBar
