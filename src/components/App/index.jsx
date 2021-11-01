@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import {
   ApolloProvider,
   ApolloClient,
   InMemoryCache,
   useApolloClient,
+  gql,
 } from '@apollo/client';
-import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
+import localForage from 'localforage';
 import { Grid, Ellipsis } from 'react-awesome-spinners';
 import Select from 'react-select';
 import GlobalStyle from '../GlobalStyle';
@@ -16,7 +18,6 @@ import Footer from '../Footer';
 import Controls from '../Controls';
 import Histogram from '../Histogram';
 import Stats from '../Stats';
-import Recommendation from '../Recommendation';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
 
@@ -30,14 +31,14 @@ const App = () => {
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const client = useApolloClient();
-  console.log({ client });
   const fetchSchools = async () => {
-    console.log('FIRED UE');
     setIsLoading(true);
     let query;
     let variables = {};
+    let idb;
     if (comparison === 'pop') {
-      query = queries[`SCHOOLS_${race.value}_${gender.value}_QUERY`];
+      idb = `SCHOOLS_${race.value}_${gender.value}_QUERY`;
+      query = queries[idb];
       variables = {
         schoolsLimit: -1,
         schoolsFilter: {
@@ -50,10 +51,8 @@ const App = () => {
       };
     }
     if (comparison === 'wh') {
-      query =
-        queries[
-          `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`
-        ];
+      idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
+      query = queries[idb];
       variables = {
         schoolsLimit: -1,
         schoolsFilter: {
@@ -70,14 +69,19 @@ const App = () => {
       variables,
     });
     const key = Object.keys(data.schools[0])[0];
-    return data
+    const alteredData = data
       ? data.schools.map((school) => ({
           x: school[key],
         }))
       : [];
+    return alteredData;
   };
   React.useEffect(async () => {
     if (gender && race) {
+      const idbKey =
+        comparison === 'pop'
+          ? `SCHOOLS_${race.value}_${gender.value}_QUERY`
+          : `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
       const newGraphTitle = `${race.label}_${gender.label} Compared to ${
         comparison === 'wh' ? 'White population' : 'Rest of Popuation'
       }`;
@@ -87,9 +91,18 @@ const App = () => {
             comparison === 'wh' ? 'White population' : 'Rest of Popuation'
           }`,
         );
-        const schools = await fetchSchools();
-        setGraphData(schools);
-        setIsLoading(false);
+        const local = await localForage.getItem(idbKey);
+        if (!local) {
+          const schools = await fetchSchools();
+          await localForage.setItem(idbKey, schools);
+          setGraphData(schools);
+          setIsLoading(false);
+          return;
+        } else {
+          setGraphData(local);
+          setIsLoading(false);
+          return;
+        }
       }
     }
   });
