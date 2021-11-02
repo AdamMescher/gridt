@@ -15,13 +15,14 @@ const StyledApp = styled.div`
   .controls-container {
     grid-area: 2 / 2 / 3 / 3;
     border-right: 2px solid black;
-    padding-right: 20px;
+    width: 350px;
+    padding-right: 15px;
   }
   .content-container {
     grid-area: 2 / 3 / 3 / 4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     padding-left: 15px;
   }
   .footer-container {
@@ -31,18 +32,24 @@ const StyledApp = styled.div`
     align-items: center;
   }
   .graph-container {
-    grid-area: 1 / 1 / 2 / 3;
+    grid-area: 1 / 1 / 4 / 3;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .stats-container {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area: 1 / 3 / 4 / 4;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-left: 50px;
+    font-size: 0.8rem;
+  }
+  .school-card-container {
+    grid-area: 4 / 1 / 5 / 4 ;
+    font-size: 0.8rem;
+    height: 10vh;
   }
   @media (max-width: 1280px) {
     display: flex;

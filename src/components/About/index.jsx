@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-const About = ({ text }) => (
+const About = () => (
   <article>
-    <p>{text}</p>
+    <button>View Data</button>
   </article>
 );
 

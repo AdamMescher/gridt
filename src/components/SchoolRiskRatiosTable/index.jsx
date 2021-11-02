@@ -1,8 +1,7 @@
 import * as React from 'react';
-import StyledCard from './styled.js';
 import Table from '../Table';
 
-const SchoolCard = ({ school }) => {
+const SchoolRiskRatiosTable = ({ school }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -83,14 +82,9 @@ const SchoolCard = ({ school }) => {
         wh: school.RR_WH_M_WH_M || 'N/A',
       },
     ],
-    [],
+    [school],
   );
-  return (
-    <div>
-      <h3>All School Risk Ratios for {school.SCH_NAME}</h3>
-      <Table data={data} columns={columns} />
-    </div>
-  );
+  return <Table data={data} columns={columns} />;
 };
 
-export default SchoolCard;
+export default SchoolRiskRatiosTable;

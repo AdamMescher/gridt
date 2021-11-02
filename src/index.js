@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './components/App';
+import SingleSchool from './pages/SingleSchool';
+import PageNotFound from './pages/PageNotFound';
 
 const cache = new InMemoryCache();
 const uri =
@@ -14,12 +17,22 @@ const client = new ApolloClient({
   cache,
 });
 
-console.log({ uri });
-
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <App />
+          </Route>
+          <Route path="/school/:id">
+            <SingleSchool />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+      </Router>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root'),

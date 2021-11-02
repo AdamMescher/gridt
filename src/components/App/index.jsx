@@ -69,12 +69,11 @@ const App = () => {
       variables,
     });
     const key = Object.keys(data.schools[0])[0];
-    const alteredData = data
+    return data
       ? data.schools.map((school) => ({
           x: school[key],
         }))
       : [];
-    return alteredData;
   };
   React.useEffect(async () => {
     if (gender && race) {
