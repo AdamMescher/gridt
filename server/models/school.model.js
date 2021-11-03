@@ -8,7 +8,7 @@ const schoolSchema = new mongoose.Schema({
   LEA_NAME: { type: String },
   SCHID: { type: Number },
   SCH_NAME: { type: String, text: true },
-  COMBOKEY: { type: String },
+  COMBOKEY: { type: String, index: true },
   SCH_IDEAENR_HI_M: { type: Number },
   SCH_ENR_HI_M: { type: Number },
   RI_HI_M: { type: Number },

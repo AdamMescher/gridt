@@ -14,7 +14,14 @@ import Stats from '../Stats';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
 
-const Histogram = ({ data, title, race, gender, selectedSchool }) => {
+const Histogram = ({
+  data,
+  title,
+  race,
+  gender,
+  comparison = 'pop',
+  selectedSchool,
+}) => {
   const bins = [
     0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5,
     3.75, 4, 4.25, 4.5, 4.75, 5,
@@ -67,7 +74,9 @@ const Histogram = ({ data, title, race, gender, selectedSchool }) => {
           data={data}
           bins={bins}
         />
-        {selectedSchool && gender && race ? (
+        {selectedSchool?.[`RR_${race.value}_${gender.value}_POP`] > 0 &&
+        gender &&
+        race ? (
           <VictoryBar
             labelComponent={
               <VictoryTooltip

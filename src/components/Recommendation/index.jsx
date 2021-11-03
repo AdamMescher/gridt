@@ -20,7 +20,6 @@ const Recommendation = ({ isLoading, race, gender, comparison, school }) => {
     comparison === 'pop'
       ? school[`RR_${race.value}_${gender.value}_POP`]
       : school[`RR_${race.value}_${gender.value}_WH_${gender.value}`];
-  console.log({ riskRatio });
   return (
     <div>
       {!isLoading && school ? (
