@@ -290,7 +290,7 @@ const HistogramGrid = ({
         ) : null}
         {WHMWHM ? (
           <Histogram
-            data={WHM}
+            data={WHMWHM}
             selectedSchool={school}
             race={{ value: 'WH' }}
             gender={{ value: 'M' }}
