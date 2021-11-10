@@ -37,3 +37,7 @@ Districts
 ```bash
 mongoimport --uri mongodb+srv://usename:password@url/gridt --drop --collection districts --type csv --file ~/dev/gridt/server/db/seedData/districts.csv --columnsHaveTypes --fields "LEA_STATE.string(), LEA_STATE_NAME.string(), LEAID.string(), LEA_NAME.string(), LEA_ADDRESS.string(), LEA_CITY.string(), LEA_ZIP.string(), CJJ.string(), LEA_ENR.auto(), LEA_ENR_NONLEAFAC.auto(), LEA_SCHOOLS.auto()"
 ```
+Schools
+```
+mongoimport --uri mongodb+srv://username:password@url/gridt --drop --collection schools --type csv --headerline --file ~/dev/gridt/server/db/seedData/schools.csv
+```
