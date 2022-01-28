@@ -1,17 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  useApolloClient,
-  gql,
-} from '@apollo/client';
+import { useApolloClient } from '@apollo/client';
 import localForage from 'localforage';
 import { Grid, Ellipsis } from 'react-awesome-spinners';
-import Select from 'react-select';
 import GlobalStyle from '../GlobalStyle';
-import AsyncSelectInput from '../AsyncSelectInput';
 import Meta from '../Meta';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -26,6 +17,8 @@ const App = () => {
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
+  const [selectedSchoolDistrict, setSelectedSchoolDistrict] =
+    React.useState(null);
   const [comparison, setComparison] = React.useState('pop');
   const [graphData, setGraphData] = React.useState([]);
   const [graphTitle, setGraphTitle] = React.useState('');
@@ -119,6 +112,7 @@ const App = () => {
           setRace={setRace}
           setGender={setGender}
           setSelectedSchool={setSelectedSchool}
+          setSelectedSchoolDistrict={setSelectedSchoolDistrict}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
         />

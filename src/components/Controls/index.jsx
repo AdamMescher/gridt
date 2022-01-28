@@ -1,3 +1,4 @@
+import React from 'react';
 import Select from 'react-select';
 import StyledControls from './styled.js';
 import AsyncSelectInput from '../AsyncSelectInput';
