@@ -9,14 +9,16 @@ import Footer from '../Footer';
 import Controls from '../Controls';
 import Histogram from '../Histogram';
 import Stats from '../Stats';
+import RiskRatioDescription from '../RiskRatioDescription';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
 
 const App = () => {
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
-  const [disability, setDisability] = React.useState('');
+  // const [disability, setDisability] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [selectedSchoolDistrict, setSelectedSchoolDistrict] =
     React.useState(null);
   const [comparison, setComparison] = React.useState('pop');
@@ -24,6 +26,7 @@ const App = () => {
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const client = useApolloClient();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchSchools = async () => {
     setIsLoading(true);
     let query;
@@ -68,6 +71,7 @@ const App = () => {
         }))
       : [];
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     if (gender && race) {
       const idbKey =
@@ -97,7 +101,7 @@ const App = () => {
         }
       }
     }
-  });
+  }, [gender, race, comparison, graphTitle, fetchSchools]);
   return (
     <StyledApp>
       <GlobalStyle />
@@ -116,6 +120,9 @@ const App = () => {
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
         />
+      </div>
+      <div className="description-container">
+        <RiskRatioDescription />
       </div>
       <div className="content-container">
         <div className="graph-container">

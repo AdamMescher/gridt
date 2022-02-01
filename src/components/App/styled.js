@@ -5,38 +5,44 @@ const StyledApp = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 50px 1fr 3fr 50px;
-  grid-template-rows: 100px 1fr 100px;
+  grid-template-rows: 75px 150px 3fr 50px;
   .header-container {
-    grid-area: 1 / 1 / 2 / 4;
+    grid-area: 1 / 2 / 2 / 4;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: white;
+  }
+  .description-container {
+    border: 2px solid white;
+    grid-area: 2 / 2 / 3 / 4;
+    z-index: 2;
   }
   .controls-container {
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 3 / 2 / 4 / 3;
     border-right: 2px solid black;
-    width: 350px;
-    padding-right: 15px;
+    padding-right: 25px;
   }
   .content-container {
-    grid-area: 2 / 3 / 3 / 4;
+    grid-area: 3 / 3 / 4 / 4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    padding-left: 15px;
+    background: aliceblue;
   }
   .footer-container {
-    grid-area: 3 / 1 / 4 / 5;
+    grid-area: 4 / 1 / 5 / 5;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .graph-container {
-    grid-area: 1 / 1 / 4 / 3;
+    grid-area: 1 / 1 / 5 / 4;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: white;
   }
   .stats-container {
     grid-area: 1 / 3 / 4 / 4;
@@ -45,11 +51,6 @@ const StyledApp = styled.div`
     justify-content: center;
     padding-left: 50px;
     font-size: 0.8rem;
-  }
-  .school-card-container {
-    grid-area: 4 / 1 / 5 / 4 ;
-    font-size: 0.8rem;
-    height: 10vh;
   }
   @media (max-width: 1280px) {
     display: flex;
