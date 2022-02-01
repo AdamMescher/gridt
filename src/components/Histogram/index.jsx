@@ -9,6 +9,7 @@ import {
   VictoryTooltip,
   VictoryHistogram,
 } from 'victory';
+import * as Comlink from 'comlink';
 import StyledHistogram from './styled';
 import Stats from '../Stats';
 import generateFill from '../../utils/generateFill';
@@ -62,7 +63,7 @@ const Histogram = ({
         />
         {title ? (
           <VictoryLabel
-            style={{ fontFamily: `'Open Sans', sans-serif` }}
+            style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}
             text={`${title.replaceAll('_', ' ')} Risk Ratio`}
             textAnchor="middle"
             x={225}
