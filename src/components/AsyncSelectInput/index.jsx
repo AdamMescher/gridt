@@ -9,6 +9,8 @@ const SCHOOLS_BY_NAME = gql`
     schools(filter: $schoolsFilter, limit: $schoolsLimit) {
       SCH_NAME
       COMBOKEY
+      LEA_NAME
+      LEA_STATE
       RR_AM_F_POP
       RR_AM_M_POP
       RR_AS_F_POP
@@ -40,7 +42,7 @@ const SCHOOLS_BY_NAME = gql`
     }
   }
 `;
-const AsyncSelectInput = ({ setSelectedSchool }) => {
+const AsyncSelectInput = ({ setSelectedSchool, styles }) => {
   const client = useApolloClient();
   const [searchTerm, setSearchTerm] = React.useState('');
   const fetchOptions = async () => {
@@ -57,9 +59,10 @@ const AsyncSelectInput = ({ setSelectedSchool }) => {
         },
       },
     });
+    console.log({ schools: data.schools });
     return data
       ? data.schools.map((school) => ({
-          label: school.SCH_NAME,
+          label: `${school.SCH_NAME} | ${school.LEA_STATE} | ${school.LEA_NAME}`,
           value: school.COMBOKEY,
           ...school,
         }))
@@ -69,6 +72,7 @@ const AsyncSelectInput = ({ setSelectedSchool }) => {
     <StyledAsyncSelectInput>
       <AsyncSelect
         isClearable
+        styles={styles}
         loadOptions={fetchOptions}
         onInputChange={(inputValue) => setSearchTerm(inputValue)}
         onChange={(option) => setSelectedSchool(option)}
