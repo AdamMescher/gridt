@@ -16,8 +16,6 @@ const customStyles = {
 };
 
 const Controls = ({
-  race,
-  gender,
   setRace,
   setGender,
   setSelectedSchool,
@@ -26,39 +24,66 @@ const Controls = ({
 }) => {
   return (
     <StyledControls>
-      <h3>Select Gender</h3>
-      <Select
-        className="select"
-        styles={customStyles}
-        isClearable
-        options={selectOptions.genderOptions}
-        onChange={(option) => {
-          setGender(option);
-          if (!option) {
-            setGraphTitle(null);
-          }
-        }}
-      />
-      <h3>Select Race</h3>
-      <Select
-        className="select"
-        styles={customStyles}
-        isClearable
-        options={selectOptions.raceOptions}
-        onChange={(option) => {
-          setRace(option);
-          if (!option) {
-            setGraphTitle(null);
-          }
-        }}
-      />
-      <h3>Search School By Name</h3>
-      <AsyncSelectInput setSelectedSchool={setSelectedSchool} />
-      <h3>Comparison</h3>
+      <div className="grd-select-container">
+        <label htmlFor="gender">Select Gender</label>
+        <Select
+          className="select"
+          styles={customStyles}
+          isClearable
+          name="gender"
+          inputId="gender"
+          options={selectOptions.genderOptions}
+          onChange={(option) => {
+            setGender(option);
+            if (!option) {
+              setGraphTitle(null);
+            }
+          }}
+        />
+        <label htmlFor="race">Select Race</label>
+        <Select
+          className="select"
+          styles={customStyles}
+          isClearable
+          name="race"
+          inputId="race"
+          options={selectOptions.raceOptions}
+          onChange={(option) => {
+            setRace(option);
+            if (!option) {
+              setGraphTitle(null);
+            }
+          }}
+        />
+        <label htmlFor="disability">Select Disability</label>
+        <Select
+          className="select"
+          styles={customStyles}
+          isClearable
+          name="disability"
+          inputId="disability"
+          options={selectOptions.disabilityOptions}
+          onChange={(option) => {
+            setRace(option);
+            if (!option) {
+              setGraphTitle(null);
+            }
+          }}
+        />
+      </div>
+      <div className="school-select-container" style={{ flexGrow: 1 }}>
+        <label>Search School By Name</label>
+        <AsyncSelectInput
+          styles={customStyles}
+          setSelectedSchool={setSelectedSchool}
+        />
+      </div>
       <div
+        style={{ flexGrow: 1 }}
         className="radio-container"
         onChange={(event) => setComparison(event.target.value)}
       >
+        <h3>Comparison</h3>
         <div className="radio">
           <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
           Rest of Population
