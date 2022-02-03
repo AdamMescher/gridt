@@ -20,17 +20,17 @@ const RiskRatioDescription = () => {
   const data = React.useMemo(
     () => [
       {
-        riskRatio: '<1',
+        riskRatio: <div style={{ textAlign: 'center' }}>{'<'}1</div>,
         interpretation:
           'The outcome is less likely for the target group vs. the comparison group',
       },
       {
-        riskRatio: '1',
+        riskRatio: <div style={{ textAlign: 'center' }}>1</div>,
         interpretation:
           'The outcome is the same for the target group vs. the comparison group',
       },
       {
-        riskRatio: '>1',
+        riskRatio: <div style={{ textAlign: 'center' }}>{'>'}1</div>,
         interpretation:
           'The outcome is the more likely for the target group vs. the comparison group',
       },
@@ -60,6 +60,20 @@ const RiskRatioDescription = () => {
             });
           }}
           onMouseLeave={(e) => {
+            setStyle({
+              top: y ?? '',
+              position: strategy,
+              display: 'none',
+            });
+          }}
+          onClick={(e) => {
+            setStyle({
+              top: y ?? '',
+              position: strategy,
+              display: 'block',
+            });
+          }}
+          onBlur={() => {
             setStyle({
               top: y ?? '',
               position: strategy,

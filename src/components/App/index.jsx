@@ -10,6 +10,7 @@ import Controls from '../Controls';
 import Histogram from '../Histogram';
 import Stats from '../Stats';
 import RiskRatioDescription from '../RiskRatioDescription';
+import RiskRatioKey from '../RiskRatioKey';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
 
@@ -125,6 +126,9 @@ const App = () => {
         <RiskRatioDescription />
       </div>
       <div className="content-container">
+        <div className="legend-container">
+          <RiskRatioKey />
+        </div>
         <div className="graph-container">
           {isLoading ? (
             <Grid />

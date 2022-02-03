@@ -5,59 +5,67 @@ const StyledApp = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 50px 1fr 3fr 50px;
-  grid-template-rows: 75px 150px 3fr 50px;
+  grid-template-rows: 75px 1fr 1fr 3fr 50px;
+
   .header-container {
     grid-area: 1 / 2 / 2 / 4;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
   }
+
   .description-container {
-    border: 2px solid white;
+    padding-top: 20px;
     grid-area: 2 / 2 / 3 / 4;
-    z-index: 2;
   }
+
   .controls-container {
-    grid-area: 3 / 2 / 4 / 3;
-    border-right: 2px solid black;
-    padding-right: 25px;
+    padding-top: 20px;
+    grid-area: 3 / 2 / 4 / 4;
   }
+
   .content-container {
-    grid-area: 3 / 3 / 4 / 4;
+    padding-top: 20px;
+    grid-area: 4 / 2 / 5 / 4;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    background: aliceblue;
   }
-  .footer-container {
-    grid-area: 4 / 1 / 5 / 5;
+
+  .legend-container {
+    grid-area: 1 / 1 / 5 / 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .graph-container {
+    grid-area: 1 / 2 / 5 / 3;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
-  .graph-container {
-    grid-area: 1 / 1 / 5 / 4;
+
+  .stats-container {
+    grid-area: 1 / 3 / 5 / 4;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: white;
   }
-  .stats-container {
-    grid-area: 1 / 3 / 4 / 4;
+
+  .footer-container {
+    grid-area: 5 / 1 / 6 / 5;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding-left: 50px;
-    font-size: 0.8rem;
+    align-items: center;
   }
+
   @media (max-width: 1280px) {
     display: flex;
     flex-direction: column;
+
     .controls-container {
       padding: 0;
     }
+
     .content-container {
       padding: 0;
       display: flex;
@@ -65,6 +73,7 @@ const StyledApp = styled.div`
       justify-content: center;
       align-items: center;
     }
+
     .stats-container {
       padding: 0;
     }
