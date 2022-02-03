@@ -10,6 +10,10 @@ Live Site: https://grid-t.com/
 | ------------- | ------------- |
 | [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys)  | ![](https://heroku-status-badges.herokuapp.com/gridt-apollo)  |
 
+#### Screenshot
+
+<img width="1680" alt="Screen Shot 2022-02-03 at 12 35 47 PM" src="https://user-images.githubusercontent.com/6540117/152431599-ae904630-00c5-475d-b47c-d94079d55973.png">
+
 Built with
 - Create React App (https://create-react-app.dev/)
 - Apollo GraphQL (https://www.apollographql.com/)
