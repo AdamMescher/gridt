@@ -1,8 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('basic test', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-  await page.locator('text=Get started').click();
-  await expect(page).toHaveTitle(/Getting started/);
+test.describe('E2E_APP', () => {
+  test('First Load Snapshot', async ({ page }) => {
+    await page.goto('localhost:3000');
+    expect(await page.screenshot()).toMatchSnapshot('landing.png');
+  });
 });
