@@ -4,9 +4,9 @@ const { composeMongoose } = require('graphql-compose-mongoose');
 const schoolSchema = new mongoose.Schema({
   LEA_STATE: { type: String },
   LEA_STATE_NAME: { type: String },
-  LEAID: { type: Number },
+  LEAID: { type: String, text: true, index: true },
   LEA_NAME: { type: String },
-  SCHID: { type: Number },
+  SCHID: { type: String, text: true, index: true },
   SCH_NAME: { type: String, text: true },
   COMBOKEY: { type: String, index: true },
   SCH_IDEAENR_HI_M: { type: Number },
