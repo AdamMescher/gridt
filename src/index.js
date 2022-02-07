@@ -17,6 +17,11 @@ const client = new ApolloClient({
   cache,
 });
 
+if (process.env.USE_MSW_MOCK_API === 'yes') {
+  const { worker } = require('./mocks/browser');
+  worker.start();
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
