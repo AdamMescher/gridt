@@ -88,31 +88,34 @@ mongoimport --uri mongodb+srv://username:password@uri --drop --collection intell
 #### MULTIPLE DISABILITIES
 
 ```bash
-mongoimport --uri mongodb+srv://username:password@uri --drop --collection developmentaldelays --type csv --file ~/dev/gridt/server/db/seedData/development-delay.csv --columnsHaveTypes --fields=""
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection multipledisabilities --type csv --file ~/dev/gridt/server/db/seedData/multiple-disabilities.csv --columnsHaveTypes --fields=""
 ```
 
 #### ORTHOPEDIC IMPAIRMENT
 
 ```bash
-mongoimport --uri mongodb+srv://username:password@uri --drop --collection developmentaldelays --type csv --file ~/dev/gridt/server/db/seedData/development-delay.csv --columnsHaveTypes --fields=""
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection orthopedicimpairments --type csv --file ~/dev/gridt/server/db/seedData/orthopedic-impairment.csv --columnsHaveTypes --fields=""
 ```
 
 #### OTHER HEALTH IMPAIRMENT
 
 ```bash
-mongoimport --uri mongodb+srv://username:password@uri --drop --collection developmentaldelays --type csv --file ~/dev/gridt/server/db/seedData/development-delay.csv --columnsHaveTypes --fields=
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection otherhealthimpairments --type csv --file ~/dev/gridt/server/db/seedData/other-health-impairment.csv --columnsHaveTypes --fields=""
 ```
 
 #### SPECIFIC LEARNING DISABILITY
 ```bash
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection specificlearningdisabilities --type csv --file ~/dev/gridt/server/db/seedData/specific-learning-disabilitiy.csv --columnsHaveTypes --fields=""
 ```
 
 #### SPEECH-LANGUAGE IMPAIRMENT
 ```bash
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection speechlanguageimpairments --type csv --file ~/dev/gridt/server/db/seedData/speech-language-impairment.csv --columnsHaveTypes --fields=""
 ```
 
 #### TRAUMATIC BRAIN INJURY
 ```bash
+mongoimport --uri mongodb+srv://username:password@uri --drop --collection traumaticbraininjuries --type csv --file ~/dev/gridt/server/db/seedData/traumatic-brain-injury.csv --columnsHaveTypes --fields=""
 ```
 
 #### VISUAL IMPAIRMENT
