@@ -25,6 +25,7 @@ const {
   HearingimpairmentQuery,
   HearingimpairmentMutation,
 } = require('./hearingimpairment');
+
 const schemaComposer = new SchemaComposer();
 
 schemaComposer.Query.addFields({
