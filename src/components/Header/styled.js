@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
-  height: 5vh;
+  height: 4vh;
   grid-area: header;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   @media (max-width: 1280px) {
     text-align: center;
     padding-top: 15px;
