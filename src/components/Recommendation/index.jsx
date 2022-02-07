@@ -1,5 +1,4 @@
 const generteRecommendationText = (riskRatio) => {
-  console.log({ riskRatio });
   if (riskRatio >= 0 && riskRatio <= 0.33) {
     return 'Recommendation for risk ratio greater than 0 and less than or equal to 0.33.';
   } else if (riskRatio > 0.33 && riskRatio <= 0.6) {
