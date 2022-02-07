@@ -21,7 +21,10 @@ const {
   EmotionaldisturbanceQuery,
   EmotionaldisturbanceMutation,
 } = require('./emotionaldisturbance');
-
+const {
+  HearingimpairmentQuery,
+  HearingimpairmentMutation,
+} = require('./hearingimpairment');
 const schemaComposer = new SchemaComposer();
 
 schemaComposer.Query.addFields({
@@ -35,6 +38,7 @@ schemaComposer.Query.addFields({
   ...VisualimpairmentQuery,
   ...DevelopmentaldelayQuery,
   ...EmotionaldisturbanceQuery,
+  ...HearingimpairmentQuery,
 });
 
 schemaComposer.Mutation.addFields({
@@ -48,6 +52,7 @@ schemaComposer.Mutation.addFields({
   ...VisualimpairmentMutate,
   ...DevelopmentaldelayMutation,
   ...EmotionaldisturbanceMutation,
+  ...HearingimpairmentMutation,
 });
 
 const schema = schemaComposer.buildSchema();
