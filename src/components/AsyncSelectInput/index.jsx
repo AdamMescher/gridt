@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useApolloClient, gql } from '@apollo/client';
 import AsyncSelect from 'react-select/async';
+import { components } from 'react-select';
 import StyledAsyncSelectInput from './styled';
 
 const SCHOOLS_BY_NAME = gql`
@@ -42,6 +43,13 @@ const SCHOOLS_BY_NAME = gql`
     }
   }
 `;
+
+const SingleValue = (props) => (
+  <components.SingleValue {...props}>
+    {props.data.selectedSchoolLabel}
+  </components.SingleValue>
+);
+
 const AsyncSelectInput = ({ setSelectedSchool, styles }) => {
   const client = useApolloClient();
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -59,10 +67,30 @@ const AsyncSelectInput = ({ setSelectedSchool, styles }) => {
         },
       },
     });
-    console.log({ schools: data.schools });
     return data
       ? data.schools.map((school) => ({
-          label: `${school.SCH_NAME} | ${school.LEA_STATE} | ${school.LEA_NAME}`,
+          label: (
+            <div>
+              <p>{school.SCH_NAME}</p>
+              <p style={{ color: 'darkgray', fontSize: '11px' }}>
+                District: {school.LEA_NAME}, State: {school.LEA_STATE}
+              </p>
+            </div>
+          ),
+          selectedSchoolLabel: (
+            <p>
+              {school.SCH_NAME}
+              <span
+                style={{
+                  marginLeft: '5px',
+                  color: 'darkgray',
+                  fontSize: '11px',
+                }}
+              >
+                {school.LEA_NAME} {school.LEA_STATE}
+              </span>
+            </p>
+          ),
           value: school.COMBOKEY,
           ...school,
         }))
@@ -73,6 +101,7 @@ const AsyncSelectInput = ({ setSelectedSchool, styles }) => {
       <AsyncSelect
         isClearable
         styles={styles}
+        components={{ SingleValue }}
         loadOptions={fetchOptions}
         onInputChange={(inputValue) => setSearchTerm(inputValue)}
         onChange={(option) => setSelectedSchool(option)}
