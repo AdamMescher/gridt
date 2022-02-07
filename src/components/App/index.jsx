@@ -17,11 +17,8 @@ import queries from '../../utils/queries';
 const App = () => {
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
-  // const [disability, setDisability] = React.useState('');
+  const [disability, setDisability] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [selectedSchoolDistrict, setSelectedSchoolDistrict] =
-    React.useState(null);
   const [comparison, setComparison] = React.useState('pop');
   const [graphData, setGraphData] = React.useState([]);
   const [graphTitle, setGraphTitle] = React.useState('');
@@ -34,20 +31,50 @@ const App = () => {
     let variables = {};
     let idb;
     if (comparison === 'pop') {
-      idb = `SCHOOLS_${race.value}_${gender.value}_QUERY`;
+      if (race && gender && disability) {
+        idb = `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`;
+      } else {
+        idb = `SCHOOLS_${race.value}_${gender.value}_QUERY`;
+      }
+      query = queries[idb];
+      if (gender && race && disability) {
+        variables = {
+          schoolsLimit: -1,
+          schoolsFilter: {
+            _operators: {
+              [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
+                gt: 0,
+              },
+            },
+          },
+        };
+      } else {
+        variables = {
+          schoolsLimit: -1,
+          schoolsFilter: {
+            _operators: {
+              [`RR_${race.value}_${gender.value}_POP`]: {
+                gt: 0,
+              },
+            },
+          },
+        };
+      }
+    }
+    if (comparison === 'wh' && disability) {
+      idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
       query = queries[idb];
       variables = {
         schoolsLimit: -1,
         schoolsFilter: {
           _operators: {
-            [`RR_${race.value}_${gender.value}_POP`]: {
+            [`RR_${race.value}_${gender.value}_WH_${disability.value}`]: {
               gt: 0,
             },
           },
         },
       };
-    }
-    if (comparison === 'wh') {
+    } else {
       idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
       query = queries[idb];
       variables = {
@@ -65,16 +92,50 @@ const App = () => {
       query,
       variables,
     });
-    const key = Object.keys(data.schools[0])[0];
+    const dataTypeKey = Object.keys(data)[0];
+    const key = Object.keys(data[dataTypeKey][0])[0];
     return data
-      ? data.schools.map((school) => ({
-          x: school[key],
+      ? data[dataTypeKey].map((institution) => ({
+          x: institution[key],
         }))
       : [];
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
-    if (gender && race) {
+    if (gender && race && disability) {
+      const idbKey =
+        comparison === 'pop'
+          ? `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`
+          : `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
+      setGraphTitle(
+        `${race.label}_${gender.label}_${disability.label} Compared to Rest of Population`,
+      );
+      const newGraphTitle = `${race.label}_${gender.label}_${
+        disability.label
+      } Compared to ${
+        comparison === 'wh' ? 'White population' : 'Rest of Popuation'
+      }`;
+      if (newGraphTitle !== graphTitle) {
+        setGraphTitle(
+          `${race.label}_${gender.label}_${disability.label} Compared to ${
+            comparison === 'wh' ? 'White population' : 'Rest of Population'
+          }`,
+        );
+      }
+      const local = await localForage.getItem(idbKey);
+      if (!local) {
+        const schools = await fetchSchools();
+        await localForage.setItem(idbKey, schools);
+        setGraphData(schools);
+        setIsLoading(false);
+        return;
+      } else {
+        setGraphData(local);
+        setIsLoading(false);
+        return;
+      }
+    }
+    if (gender && race && !disability) {
       const idbKey =
         comparison === 'pop'
           ? `SCHOOLS_${race.value}_${gender.value}_QUERY`
@@ -102,7 +163,7 @@ const App = () => {
         }
       }
     }
-  }, [gender, race, comparison, graphTitle, fetchSchools]);
+  }, [comparison, disability, fetchSchools, gender, graphTitle, race]);
   return (
     <StyledApp>
       <GlobalStyle />
@@ -116,8 +177,8 @@ const App = () => {
           gender={gender}
           setRace={setRace}
           setGender={setGender}
+          setDisability={setDisability}
           setSelectedSchool={setSelectedSchool}
-          setSelectedSchoolDistrict={setSelectedSchoolDistrict}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
         />
