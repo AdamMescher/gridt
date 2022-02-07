@@ -50,7 +50,7 @@ const RiskRatioDescription = () => {
         greater than zero that describes the likelihood for one group to be at a
         higher risk for an{' '}
         <span
-          class="word"
+          className="word"
           ref={reference}
           onMouseEnter={(e) => {
             setStyle({
@@ -84,9 +84,9 @@ const RiskRatioDescription = () => {
           outcome
         </span>{' '}
         than a comparison group.
-        <div className="definition" ref={floating} style={style}>
+        <span className="definition" ref={floating} style={style}>
           special education placement
-        </div>
+        </span>
       </p>
       <Table columns={columns} data={data} />
     </StyledRiskRatioDescription>
