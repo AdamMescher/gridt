@@ -17,6 +17,10 @@ const {
   DevelopmentaldelayQuery,
   DevelopmentaldelayMutation,
 } = require('./developmentaldelay');
+const {
+  EmotionaldisturbanceQuery,
+  EmotionaldisturbanceMutation,
+} = require('./emotionaldisturbance');
 
 const schemaComposer = new SchemaComposer();
 
@@ -30,6 +34,7 @@ schemaComposer.Query.addFields({
   ...DeafBlindnessQuery,
   ...VisualimpairmentQuery,
   ...DevelopmentaldelayQuery,
+  ...EmotionaldisturbanceQuery,
 });
 
 schemaComposer.Mutation.addFields({
@@ -42,6 +47,7 @@ schemaComposer.Mutation.addFields({
   ...DeafBlindnessMutation,
   ...VisualimpairmentMutate,
   ...DevelopmentaldelayMutation,
+  ...EmotionaldisturbanceMutation,
 });
 
 const schema = schemaComposer.buildSchema();
