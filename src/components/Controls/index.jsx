@@ -18,13 +18,14 @@ const customStyles = {
 const Controls = ({
   setRace,
   setGender,
+  setDisability,
   setSelectedSchool,
   setComparison,
   setGraphTitle,
 }) => {
   return (
     <StyledControls>
-      <div className="grd-select-container">
+      <div className="grd-select-container" style={{ paddingRight: '25px' }}>
         <label htmlFor="gender">Select Gender</label>
         <Select
           className="select"
@@ -64,32 +65,35 @@ const Controls = ({
           inputId="disability"
           options={selectOptions.disabilityOptions}
           onChange={(option) => {
-            setRace(option);
+            setDisability(option);
             if (!option) {
               setGraphTitle(null);
             }
           }}
         />
       </div>
-      <div className="school-select-container" style={{ flexGrow: 1 }}>
+      <div
+        className="school-select-container"
+        style={{ flexGrow: 1, paddingLeft: '25px' }}
+      >
         <label>Search School By Name</label>
         <AsyncSelectInput
           styles={customStyles}
           setSelectedSchool={setSelectedSchool}
         />
-      </div>
-      <div
-        style={{ flexGrow: 1 }}
-        className="radio-container"
-        onChange={(event) => setComparison(event.target.value)}
-      >
-        <h3>Comparison</h3>
-        <div className="radio">
-          <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
-          Rest of Population
-        </div>
-        <div className="radio">
-          <input type="radio" value="wh" name="comparison" /> White Population
+        <div
+          style={{ flexGrow: 1 }}
+          className="radio-container"
+          onChange={(event) => setComparison(event.target.value)}
+        >
+          <h3 style={{ marginTop: '10px' }}>Comparison</h3>
+          <div className="radio">
+            <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
+            Rest of Population
+          </div>
+          <div className="radio">
+            <input type="radio" value="wh" name="comparison" /> White Population
+          </div>
         </div>
       </div>
     </StyledControls>

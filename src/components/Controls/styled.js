@@ -21,10 +21,7 @@ const StyledControls = styled.div`
     flex-grow: 1;
   }
 
-  .school-select-container {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
+  .school-select-container {}
 
   .radio-container {
     display: flex;
