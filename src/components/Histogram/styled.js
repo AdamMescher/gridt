@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 const StyledHistogram = styled.div`
-  display: flex;
-  padding-top: 50px;
-  height: 50vh;
   font-family: 'Open Sans', sans-serif;
   @media (max-width: 1280px) {
     align-items: center;

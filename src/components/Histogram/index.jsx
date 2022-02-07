@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  Background,
   VictoryAxis,
   VictoryContainer,
   VictoryChart,
@@ -9,9 +8,7 @@ import {
   VictoryTooltip,
   VictoryHistogram,
 } from 'victory';
-import * as Comlink from 'comlink';
 import StyledHistogram from './styled';
-import Stats from '../Stats';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
 
