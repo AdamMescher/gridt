@@ -2,9 +2,21 @@ const { SchemaComposer } = require('graphql-compose');
 const { GenderQuery, GenderMutation } = require('./gender');
 const { RaceQuery, RaceMutation } = require('./race');
 const { DisabilityQuery, DisabilityMutation } = require('./disability');
-const { StateQuery, StateMutation } = require('./state');
 const { DistrictQuery, DistrictMutation } = require('./district');
 const { SchoolQuery, SchoolMutation } = require('./school');
+const { AutismQuery, AutismMutation } = require('./autism');
+const {
+  DeafBlindnessQuery,
+  DeafBlindnessMutation,
+} = require('./deafblindness');
+const {
+  VisualimpairmentQuery,
+  VisualimpairmentMutate,
+} = require('./visualimpairment');
+const {
+  DevelopmentaldelayQuery,
+  DevelopmentaldelayMutation,
+} = require('./developmentaldelay');
 
 const schemaComposer = new SchemaComposer();
 
@@ -12,18 +24,24 @@ schemaComposer.Query.addFields({
   ...GenderQuery,
   ...RaceQuery,
   ...DisabilityQuery,
-  ...StateQuery,
   ...DistrictQuery,
   ...SchoolQuery,
+  ...AutismQuery,
+  ...DeafBlindnessQuery,
+  ...VisualimpairmentQuery,
+  ...DevelopmentaldelayQuery,
 });
 
 schemaComposer.Mutation.addFields({
   ...GenderMutation,
   ...RaceMutation,
   ...DisabilityMutation,
-  ...StateMutation,
   ...DistrictMutation,
   ...SchoolMutation,
+  ...AutismMutation,
+  ...DeafBlindnessMutation,
+  ...VisualimpairmentMutate,
+  ...DevelopmentaldelayMutation,
 });
 
 const schema = schemaComposer.buildSchema();
