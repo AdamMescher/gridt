@@ -19,8 +19,8 @@
     "test:watch": "jest --watch",
     "test:e2e": "npx playwright test && npx playwright show-report",
     "test:e2e-update-snapshots": "npx playwright test --update-snapshots && npx playwright show-report",
-    "start": "craco start",
-    "build": "craco build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint:server": "eslint \"server/**/*.js\"",
     "format:server": "prettier --write \"server/**/*.js\""
@@ -34,6 +34,7 @@
     "@babel/runtime": "^7.16.7",
     "@babel/types": "^7.15.4",
     "@craco/craco": "^6.4.0",
+    "@floating-ui/react-dom": "^0.4.3",
     "@graphql-tools/merge": "^8.2.1",
     "@graphql-tools/mock": "^8.4.3",
     "@react-aria/button": "^3.3.3",
