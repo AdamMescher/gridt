@@ -12,6 +12,14 @@ const selectOptions = {
     { value: 'TR', label: 'Two or More Races' },
     { value: 'WH', label: 'White' },
   ],
+  raceOptionsWhiteComparison: [
+    { value: 'AM', label: 'American Indian / Alaskan Native' },
+    { value: 'AS', label: 'Asian' },
+    { value: 'BL', label: 'Black' },
+    { value: 'HI', label: 'Hispanic' },
+    { value: 'HP', label: 'Pacific Islander' },
+    { value: 'TR', label: 'Two or More Races' },
+  ],
   disabilityOptions: [
     { value: 'AUT', label: 'Autism' },
     { value: 'DD', label: 'Developmental Delay' },

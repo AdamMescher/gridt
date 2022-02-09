@@ -16,6 +16,7 @@ const customStyles = {
 };
 
 const Controls = ({
+  comparison,
   setRace,
   setGender,
   setDisability,
@@ -48,7 +49,11 @@ const Controls = ({
           isClearable
           name="race"
           inputId="race"
-          options={selectOptions.raceOptions}
+          options={
+            comparison === 'wh'
+              ? selectOptions.raceOptionsWhiteComparison
+              : selectOptions.raceOptions
+          }
           onChange={(option) => {
             setRace(option);
             if (!option) {

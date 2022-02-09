@@ -39,8 +39,8 @@ const App = () => {
       query = queries[idb];
       if (gender && race && disability) {
         variables = {
-          schoolsLimit: -1,
-          schoolsFilter: {
+          limit: -1,
+          filter: {
             _operators: {
               [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
                 gt: 0,
@@ -50,8 +50,8 @@ const App = () => {
         };
       } else {
         variables = {
-          schoolsLimit: -1,
-          schoolsFilter: {
+          limit: -1,
+          filter: {
             _operators: {
               [`RR_${race.value}_${gender.value}_POP`]: {
                 gt: 0,
@@ -65,21 +65,22 @@ const App = () => {
       idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
       query = queries[idb];
       variables = {
-        schoolsLimit: -1,
-        schoolsFilter: {
+        limit: -1,
+        filter: {
           _operators: {
-            [`RR_${race.value}_${gender.value}_WH_${disability.value}`]: {
-              gt: 0,
-            },
+            [`RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`]:
+              {
+                gt: 0,
+              },
           },
         },
       };
-    } else {
+    } else if (comparison === 'wh' && !disability) {
       idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
       query = queries[idb];
       variables = {
-        schoolsLimit: -1,
-        schoolsFilter: {
+        limit: -1,
+        filter: {
           _operators: {
             [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
               gt: 0,
@@ -88,10 +89,12 @@ const App = () => {
         },
       };
     }
+    console.log({ query, variables });
     const { data } = await client.query({
       query,
       variables,
     });
+
     const dataTypeKey = Object.keys(data)[0];
     const key = Object.keys(data[dataTypeKey][0])[0];
     return data
@@ -164,6 +167,7 @@ const App = () => {
       }
     }
   }, [comparison, disability, fetchSchools, gender, graphTitle, race]);
+  console.log({ comparison });
   return (
     <StyledApp>
       <GlobalStyle />
@@ -173,8 +177,7 @@ const App = () => {
       </div>
       <div className="controls-container">
         <Controls
-          race={race}
-          gender={gender}
+          comparison={comparison}
           setRace={setRace}
           setGender={setGender}
           setDisability={setDisability}
