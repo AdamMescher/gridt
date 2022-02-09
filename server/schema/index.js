@@ -25,6 +25,34 @@ const {
   HearingimpairmentQuery,
   HearingimpairmentMutation,
 } = require('./hearingimpairment');
+const {
+  IntellectualdisabilityQuery,
+  IntellectualdisabilityMutation,
+} = require('./intellectualdisability');
+const {
+  MultipledisabilitiesQuery,
+  MultipledisabilitiesMutation,
+} = require('./multipledisability');
+const {
+  OrthopedicimpairmentQuery,
+  OrthopedicimpairmentMutation,
+} = require('./orthopedicimpairment');
+const {
+  OtherhealthimpairmentQuery,
+  OtherhealthimpairmentMutation,
+} = require('./otherhealthimpairment');
+const {
+  SpecificlearningdisabilityQuery,
+  SpecificlearningdisabilityMutation,
+} = require('./specificlearningdisability');
+const {
+  SpeechlanguageimpairmentQuery,
+  SpeechlanguageimpairmentMutation,
+} = require('./speechlanguageimpairment');
+const {
+  TraumaticbraininjuryQuery,
+  TraumaticbraininjuryMutation,
+} = require('./traumaticbraininjury');
 
 const schemaComposer = new SchemaComposer();
 
@@ -40,6 +68,13 @@ schemaComposer.Query.addFields({
   ...DevelopmentaldelayQuery,
   ...EmotionaldisturbanceQuery,
   ...HearingimpairmentQuery,
+  ...IntellectualdisabilityQuery,
+  ...MultipledisabilitiesQuery,
+  ...OrthopedicimpairmentQuery,
+  ...OtherhealthimpairmentQuery,
+  ...SpecificlearningdisabilityQuery,
+  ...SpeechlanguageimpairmentQuery,
+  ...TraumaticbraininjuryQuery,
 });
 
 schemaComposer.Mutation.addFields({
@@ -54,6 +89,13 @@ schemaComposer.Mutation.addFields({
   ...DevelopmentaldelayMutation,
   ...EmotionaldisturbanceMutation,
   ...HearingimpairmentMutation,
+  ...IntellectualdisabilityMutation,
+  ...MultipledisabilitiesMutation,
+  ...OrthopedicimpairmentMutation,
+  ...OtherhealthimpairmentMutation,
+  ...SpecificlearningdisabilityMutation,
+  ...SpeechlanguageimpairmentMutation,
+  ...TraumaticbraininjuryMutation,
 });
 
 const schema = schemaComposer.buildSchema();

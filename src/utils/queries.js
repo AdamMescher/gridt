@@ -379,6 +379,20 @@ const queries = {
       }
     }
   `,
+  SCHOOLS_AM_F_DD_QUERY: gql``,
+  SCHOOLS_AM_M_DD_QUERY: gql``,
+  SCHOOLS_AS_F_DD_QUERY: gql``,
+  SCHOOLS_AS_M_DD_QUERY: gql``,
+  SCHOOLS_BL_F_DD_QUERY: gql``,
+  SCHOOLS_BL_M_DD_QUERY: gql``,
+  SCHOOLS_HI_F_DD_QUERY: gql``,
+  SCHOOLS_HI_M_DD_QUERY: gql``,
+  SCHOOLS_HP_F_DD_QUERY: gql``,
+  SCHOOLS_HP_M_DD_QUERY: gql``,
+  SCHOOLS_TR_F_DD_QUERY: gql``,
+  SCHOOLS_TR_M_DD_QUERY: gql``,
+  SCHOOLS_WH_F_DD_QUERY: gql``,
+  SCHOOLS_WH_M_DD_QUERY: gql``,
 };
 
 export default queries;
