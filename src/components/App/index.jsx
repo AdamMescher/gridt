@@ -43,7 +43,7 @@ const App = () => {
           filter: {
             _operators: {
               [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
-                gt: 0,
+                gte: 0,
               },
             },
           },
@@ -54,7 +54,7 @@ const App = () => {
           filter: {
             _operators: {
               [`RR_${race.value}_${gender.value}_POP`]: {
-                gt: 0,
+                gte: 0,
               },
             },
           },
@@ -70,7 +70,7 @@ const App = () => {
           _operators: {
             [`RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`]:
               {
-                gt: 0,
+                gte: 0,
               },
           },
         },
@@ -83,7 +83,7 @@ const App = () => {
         filter: {
           _operators: {
             [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
-              gt: 0,
+              gte: 0,
             },
           },
         },
@@ -167,7 +167,6 @@ const App = () => {
       }
     }
   }, [comparison, disability, fetchSchools, gender, graphTitle, race]);
-  console.log({ comparison });
   return (
     <StyledApp>
       <GlobalStyle />
