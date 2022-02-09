@@ -14,7 +14,7 @@ const selectOptions = {
   ],
   disabilityOptions: [
     { value: 'AUT', label: 'Autism' },
-    { value: 'DD', label: 'Deafness' },
+    { value: 'DD', label: 'Developmental Delay' },
     { value: 'DB', label: 'Deaf-Blindness' },
     { value: 'HI', label: 'Hearing Impairment' },
     { value: 'MD', label: 'Multiple Disabilities' },
