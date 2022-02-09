@@ -45,6 +45,9 @@ const App = () => {
               [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
                 gte: 0,
               },
+              [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
+                gt: 3,
+              },
             },
           },
         };
@@ -55,6 +58,9 @@ const App = () => {
             _operators: {
               [`RR_${race.value}_${gender.value}_POP`]: {
                 gte: 0,
+              },
+              [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+                gt: 3,
               },
             },
           },
@@ -72,6 +78,9 @@ const App = () => {
               {
                 gte: 0,
               },
+            [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
+              gt: 3,
+            },
           },
         },
       };
@@ -84,6 +93,9 @@ const App = () => {
           _operators: {
             [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
               gte: 0,
+            },
+            [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+              gt: 3,
             },
           },
         },
