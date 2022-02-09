@@ -17,11 +17,14 @@
     "prod:server": "node ./server/dist/bin/www.js",
     "test": "node --trace-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test:watch": "jest --watch",
+<<<<<<< HEAD
     "test:e2e": "npx playwright test && npx playwright show-report",
     "test:e2e-update-snapshots": "npx playwright test --update-snapshots && npx playwright show-report",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+=======
+>>>>>>> e4ba018ba598b7e4f9f1d7507246958368f468c4
     "lint:server": "eslint \"server/**/*.js\"",
     "format:server": "prettier --write \"server/**/*.js\""
   },
