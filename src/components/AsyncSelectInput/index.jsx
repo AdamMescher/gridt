@@ -57,8 +57,8 @@ const AsyncSelectInput = ({ setSelectedSchool, styles }) => {
     const { data } = await client.query({
       query: SCHOOLS_BY_NAME,
       variables: {
-        schoolsLimit: 10,
-        schoolsFilter: {
+        limit: 10,
+        filter: {
           _operators: {
             SCH_NAME: {
               regex: `/${searchTerm}/i`,
