@@ -29,4 +29,6 @@ yarn-error.log*
 .netlify
 *.csv
 test-results/
+
+# Playwright
 playwright-report/
