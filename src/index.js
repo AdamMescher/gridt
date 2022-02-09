@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './components/App';
-import Search from './pages/Search';
 import PageNotFound from './pages/PageNotFound';
 
 const cache = new InMemoryCache();
@@ -29,9 +28,6 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/">
             <App />
-          </Route>
-          <Route path="/search">
-            <Search />
           </Route>
           <Route path="*">
             <PageNotFound />
