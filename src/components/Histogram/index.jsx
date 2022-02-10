@@ -5,7 +5,6 @@ import {
   VictoryChart,
   VictoryLabel,
   VictoryBar,
-  VictoryTooltip,
   VictoryHistogram,
 } from 'victory';
 import StyledHistogram from './styled';
@@ -17,7 +16,7 @@ const Histogram = ({
   title,
   race,
   gender,
-  comparison = 'pop',
+  disability,
   selectedSchool,
 }) => {
   const bins = [
@@ -68,24 +67,24 @@ const Histogram = ({
           />
         ) : null}
         <VictoryHistogram
-          style={{ data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' } }}
+          style={{
+            data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
+          }}
           data={data}
           bins={bins}
         />
-        {selectedSchool?.[`RR_${race.value}_${gender.value}_POP`] > 0 &&
+        {selectedSchool?.[`RR_${race.value}_${gender.value}_POP`] >= 0 &&
         gender &&
-        race ? (
+        race &&
+        !disability ? (
           <VictoryBar
-            labelComponent={
-              <VictoryTooltip
-                style={{ fontFamily: `'Open Sans', sans-serif` }}
-              />
-            }
             data={[
               {
                 x: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
                 y: maxBinSize,
-                label: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
+                label: `Risk Ratio: ${
+                  selectedSchool[`RR_${race.value}_${gender.value}_POP`]
+                }`,
               },
             ]}
             style={{
@@ -94,6 +93,39 @@ const Histogram = ({
                 cursor: 'pointer',
                 fill: generateFill(
                   selectedSchool[`RR_${race.value}_${gender.value}_POP`],
+                ),
+              },
+            }}
+          />
+        ) : null}
+        {selectedSchool?.[
+          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+        ] >= 0 &&
+        gender &&
+        race &&
+        disability ? (
+          <VictoryBar
+            data={[
+              {
+                x: selectedSchool[
+                  `RR_${race.value}_${gender.value}_POP_${disability.value}`
+                ],
+                y: maxBinSize,
+                label: `Risk Ratio: ${
+                  selectedSchool[
+                    `RR_${race.value}_${gender.value}_POP_${disability.value}`
+                  ]
+                }`,
+              },
+            ]}
+            style={{
+              data: {
+                fontFamily: `'Open Sans', sans-serif`,
+                cursor: 'pointer',
+                fill: generateFill(
+                  selectedSchool[
+                    `RR_${race.value}_${gender.value}_POP_${disability.value}`
+                  ],
                 ),
               },
             }}

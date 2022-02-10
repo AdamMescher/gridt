@@ -11,6 +11,7 @@ import Histogram from '../Histogram';
 import Stats from '../Stats';
 import RiskRatioDescription from '../RiskRatioDescription';
 import RiskRatioKey from '../RiskRatioKey';
+import DisclosureModal from '../DisclosureModal';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
 
@@ -23,6 +24,8 @@ const App = () => {
   const [graphData, setGraphData] = React.useState([]);
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [modalIsOpen, setModalIsOpen] = React.useState(true);
+  const closeDisclosureModal = () => setModalIsOpen(false);
   const client = useApolloClient();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchSchools = async () => {
@@ -183,6 +186,10 @@ const App = () => {
     <StyledApp>
       <GlobalStyle />
       <Meta />
+      <DisclosureModal
+        closeDisclosureModal={closeDisclosureModal}
+        modalIsOpen={modalIsOpen}
+      />
       <div className="header-container">
         <Header />
       </div>
@@ -213,6 +220,7 @@ const App = () => {
               title={graphTitle}
               race={race}
               gender={gender}
+              disability={disability}
               selectedSchool={selectedSchool}
             />
           )}
