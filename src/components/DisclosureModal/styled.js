@@ -13,6 +13,7 @@ const StyledModalContent = styled.div`
   p,
   button {
     margin-top: 1rem;
+    border-radius: 4px;
   }
   button {
     border: none;
@@ -24,6 +25,17 @@ const StyledModalContent = styled.div`
     cursor: pointer;
     background: #0ea5e9;
   }
+  .topright {
+  position: absolute;
+  margin-top: 0;
+  padding: 15px;
+  right: -2px;
+  top: -2px;
+  border-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
 `;
 
 export default StyledModalContent;

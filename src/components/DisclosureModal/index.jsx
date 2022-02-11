@@ -12,6 +12,7 @@ const DisclosureModal = ({
     <Modal
       parentSelector={() => document.querySelector('#root')}
       isOpen={modalIsOpen}
+      style={{ content: { inset: 40, padding: 0 } }}
     >
       <StyledModalContent>
         <h2>GRID-T DISCLOSURE</h2>
@@ -34,6 +35,9 @@ const DisclosureModal = ({
           https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html
         </p>
         <button onClick={closeDisclosureModal}>I Understand</button>
+        <button onClick={closeDisclosureModal} className="topright">
+          X
+        </button>
       </StyledModalContent>
     </Modal>
   );

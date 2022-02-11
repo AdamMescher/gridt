@@ -4,7 +4,6 @@ const StyledYouTubeEmbed = styled.div`
   z-index: 5;
   height: 400px;
   aspect-ratio: 16/9;
-  background: red;
   iframe {
       height: 100%;
       width: 100%;
