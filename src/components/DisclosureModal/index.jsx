@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Modal from 'react-modal';
+import YouTubeEmbed from '../YouTubeEmbed';
 import StyledModalContent from './styled';
 
 const DisclosureModal = ({
@@ -14,6 +15,7 @@ const DisclosureModal = ({
     >
       <StyledModalContent>
         <h2>GRID-T DISCLOSURE</h2>
+        <YouTubeEmbed id={'lBO23HSRMAg'} />
         <p>
           I'm baby mustache meh kinfolk, four loko ennui tumblr bespoke cloud
           bread skateboard prism glossier retro crucifix squid. You probably
