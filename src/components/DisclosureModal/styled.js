@@ -26,16 +26,20 @@ const StyledModalContent = styled.div`
     background: #0ea5e9;
   }
   .topright {
-  position: absolute;
-  margin-top: 0;
-  padding: 15px;
-  right: -2px;
-  top: -2px;
-  border-radius: 0;
-  border-bottom-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
+    position: absolute;
+    margin-top: 0;
+    padding: 15px;
+    right: -2px;
+    top: -2px;
+    border-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .citation {
+    text-indent: -36px;
+    padding-left: 36px;
+    white-space: pre-line;
+  }
 `;
 
 export default StyledModalContent;

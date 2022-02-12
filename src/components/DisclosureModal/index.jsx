@@ -15,26 +15,44 @@ const DisclosureModal = ({
       style={{ content: { inset: 40, padding: 0 } }}
     >
       <StyledModalContent>
-        <h2>GRID-T DISCLOSURE</h2>
-        <YouTubeEmbed id={'lBO23HSRMAg'} />
         <p>
-          I'm baby mustache meh kinfolk, four loko ennui tumblr bespoke cloud
-          bread skateboard prism glossier retro crucifix squid. You probably
-          haven't heard of them distillery banjo yuccie. Lomo four loko artisan
-          affogato. Chillwave church-key ugh, hell of butcher sartorial
-          slow-carb. Four dollar toast hexagon fashion axe gentrify poutine
-          bitters. PBR&B iceland edison bulb butcher post-ironic 90's,
-          asymmetrical freegan kale chips normcore microdosing portland +1
-          prism. Put a bird on it pabst ethical, subway tile enamel pin 3 wolf
-          moon plaid four dollar toast fingerstache.
+          It is important for practitioners to use this data wisely to inform
+          their schools intervention plans. A working knowledge of risk ratios
+          and histograms is required for the use of this website. Please utilize
+          the video above and other attached resources below to familiarize
+          yourself with these elements of statistics before accessing the data
+          on these graphs.
         </p>
-        <p>
+        <h4>References</h4>
+        <p className="citation">
+          Bollmer, J., Bethel, J., Garrison-Mogren, R., & Brauen, M. (2007).
+          Using the risk ratio to assess racial/ethnic disproportionality in
+          special education at the school-district level.{' '}
+          <em>The Journal of Special Education</em>, 41(3), 186–198.
+        </p>
+        <p className="citation">
+          Cruz, R. A., & Rodl, J. E. (2018). An integrative synthesis of
+          literature on disproportionality in special education.{' '}
+          <em>The Journal of Special Education</em>, 52(1), 50–63.
+        </p>
+        <p className="citation">
           Office for Civil Rights. (2020). Civil Rights Data Collection (CRDC)
           for the 2017-18 School Year [Dataset]. Washington DC: Office for Civil
-          Rights.
-          https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html
+          Rights.{' '}
+          <a href="https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html">
+            https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html
+          </a>
         </p>
-        <button onClick={closeDisclosureModal}>I Understand</button>
+        <p className="citation">
+          Office for Civil Rights. (2020). Civil Rights Data Collection (CRDC)
+          for the 2017-18 School Year [Spreadsheet]. Washington DC: Office for
+          Civil Rights.{' '}
+          <a href="https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html">
+            https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html
+          </a>
+        </p>
+        <YouTubeEmbed id={'lBO23HSRMAg'} />
+        <button onClick={closeDisclosureModal}>I Understand and Agree</button>
         <button onClick={closeDisclosureModal} className="topright">
           X
         </button>
