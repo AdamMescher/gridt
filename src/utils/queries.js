@@ -11,6 +11,7 @@ import specificLearningDisabilityQueries from './queries/specificLearningDisabil
 import speechOrLanguageImpairmentQueries from './queries/speechOrLanguageImpairmentQueries';
 import emotionalDisturbanceQueries from './queries/emotionalDisturbanceQueries';
 import traumaticBrainInjuryQueries from './queries/traumaticBrainInjuryQueries';
+import visualImpairmentQueries from './queries/visualImpairmentQueries';
 
 const queries = {
   ...schoolQueries,
@@ -26,6 +27,7 @@ const queries = {
   ...speechOrLanguageImpairmentQueries,
   ...emotionalDisturbanceQueries,
   ...traumaticBrainInjuryQueries,
+  ...visualImpairmentQueries,
 };
 
 export default queries;

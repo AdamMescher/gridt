@@ -77,6 +77,10 @@ const AsyncSelectInput = ({
         type = 'traumaticbraininjuries';
         query = asyncSelectQueries.TRAUMATIC_BRAIN_INJURIES_BY_NAME_ASYNCSELECT;
         break;
+      case 'VI':
+        type = 'visualimpairments';
+        query = asyncSelectQueries.VISUAL_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
+        break;
       default:
         type = 'schools';
         query = asyncSelectQueries.SCHOOLS_BY_NAME_ASNYCSELECT;

@@ -11,6 +11,7 @@ import otherHealthImpairmentsAsyncSelectQueries from './otherHealthImpairmentsAs
 import specificLearningDisablitiesAsyncSelectQueries from './specificLearningDisablitiesAsyncSelectQueries';
 import speechOrLanguageImpairmentsAsyncSelectQueries from './speechOrLanguageImpairmentsAsyncSelectQueries';
 import traumaticBrainInjuriesAsyncSelectQueries from './traumaticBrainInjuriesAsyncSelectQueries';
+import visualImpairmentAsyncSelectQueries from './visualImpairmentAsyncSelectQueries';
 
 const asyncSelectQueries = {
   ...schoolsByNameAsyncSelectQueries,
@@ -26,6 +27,7 @@ const asyncSelectQueries = {
   ...specificLearningDisablitiesAsyncSelectQueries,
   ...speechOrLanguageImpairmentsAsyncSelectQueries,
   ...traumaticBrainInjuriesAsyncSelectQueries,
+  ...visualImpairmentAsyncSelectQueries,
 };
 
 export default asyncSelectQueries;

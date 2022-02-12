@@ -31,11 +31,9 @@ const selectOptions = {
     { value: 'OI', label: 'Orthopedic Impairment' },
     { value: 'OHI', label: 'Other Health Impairment' },
     { value: 'SLD', label: 'Specific Learning Disability' },
-    {
-      value: 'SLI',
-      label: 'Speech or Language Impairment',
-    },
+    { value: 'SLI', label: 'Speech or Language Impairment' },
     { value: 'TBI', label: 'Traumatic Brain Injury' },
+    { value: 'VI', label: 'Visual Impairment' },
   ],
 };
 
