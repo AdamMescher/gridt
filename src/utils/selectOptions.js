@@ -22,9 +22,10 @@ const selectOptions = {
   ],
   disabilityOptions: [
     { value: 'AUT', label: 'Autism' },
-    { value: 'DD', label: 'Developmental Delay' },
     { value: 'DB', label: 'Deaf-Blindness' },
+    { value: 'DD', label: 'Developmental Delay' },
     { value: 'HI', label: 'Hearing Impairment' },
+    { value: 'EMN', label: 'Emotional Disturbance' },
     { value: 'MD', label: 'Multiple Disabilities' },
     { value: 'MR', label: 'Intellectual Disability' },
     { value: 'OI', label: 'Orthopedic Impairment' },
@@ -34,7 +35,6 @@ const selectOptions = {
       value: 'SLI',
       label: 'Speech or Language Impairment',
     },
-    { value: 'EMN', label: 'Emotional Disturbance' },
     { value: 'TBI', label: 'Traumatic Brain Injury' },
   ],
 };

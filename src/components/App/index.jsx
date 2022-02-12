@@ -196,6 +196,9 @@ const App = () => {
       <div className="controls-container">
         <Controls
           comparison={comparison}
+          race={race}
+          gender={gender}
+          disability={disability}
           setRace={setRace}
           setGender={setGender}
           setDisability={setDisability}

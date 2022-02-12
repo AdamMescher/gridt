@@ -17,6 +17,9 @@ const customStyles = {
 
 const Controls = ({
   comparison,
+  gender,
+  race,
+  disability,
   setRace,
   setGender,
   setDisability,
@@ -85,6 +88,9 @@ const Controls = ({
         <AsyncSelectInput
           styles={customStyles}
           setSelectedSchool={setSelectedSchool}
+          gender={gender}
+          race={race}
+          disability={disability}
         />
         <div
           style={{ flexGrow: 1 }}

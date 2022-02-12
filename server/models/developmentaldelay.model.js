@@ -7,7 +7,7 @@ const developmentaldelaySchema = new mongoose.Schema({
   NCESLEAID: { type: String },
   LEA_NAME: { type: String },
   SCHID: { type: String },
-  SCHOOL_NAME: { type: String },
+  SCHOOL_NAME: { type: String, index: true },
   COMBOKEY: { type: String },
   JJ: { type: Number },
   DISABILITY_CATEGORY: { type: String },
@@ -147,7 +147,7 @@ const developmentaldelaySchema = new mongoose.Schema({
   TOT_DD_WO_WH_F: { type: Number },
   TOT_ENR_WO_WH_F: { type: Number },
   RI_WO_WH_F_DD: { type: Number },
-  RR_WH_F_POP_AUT: { type: Number, index: true },
+  RR_WH_F_POP_DD: { type: Number, index: true },
 });
 
 const Developmentaldelay = mongoose.model(

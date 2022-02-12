@@ -7,7 +7,7 @@ const otherhealthimpairmentSchema = new mongoose.Schema({
   NCESLEAID: { type: String },
   LEA_NAME: { type: String },
   SCHID: { type: String },
-  SCHOOL_NAME: { type: String },
+  SCHOOL_NAME: { type: String, index: true },
   COMBOKEY: { type: String },
   JJ: { type: Number },
   DISABILITY_CATEGORY: { type: String },
