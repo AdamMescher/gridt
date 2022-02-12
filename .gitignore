@@ -31,4 +31,8 @@ yarn-error.log*
 test-results/
 
 # Playwright
+<<<<<<< HEAD
 playwright-report/
+=======
+/playwright-report
+>>>>>>> 2bdf5a00f5aaf4bbc07f14f03a633a42b5a49523
