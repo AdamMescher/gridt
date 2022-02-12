@@ -34,6 +34,7 @@ const selectOptions = {
     { value: 'SLI', label: 'Speech or Language Impairment' },
     { value: 'TBI', label: 'Traumatic Brain Injury' },
     { value: 'VI', label: 'Visual Impairment' },
+    { value: 'TOTAL', label: 'Total Special Education' },
   ],
 };
 
