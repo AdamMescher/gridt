@@ -26,6 +26,7 @@ const Controls = ({
   setSelectedSchool,
   setComparison,
   setGraphTitle,
+  fetchSchools,
 }) => {
   return (
     <StyledControls>
@@ -107,6 +108,7 @@ const Controls = ({
           </div>
         </div>
       </div>
+      <button onClick={fetchSchools}>GENERATE GRAPH</button>
     </StyledControls>
   );
 };

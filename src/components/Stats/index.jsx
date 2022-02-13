@@ -4,17 +4,25 @@ import StyledStats from './styled';
 import Table from '../Table';
 
 const Stats = ({ data }) => {
-  const raw = data.map((item) => item.x);
-  const mean = d3.mean(raw);
-  const median = d3.median(raw);
-  const mode = d3.mode(raw);
-  const deviation = d3.deviation(raw);
-  const quartiles = {
-    min: d3.quantile(raw, 0),
-    first: d3.quantile(raw, 0.25),
+  let raw;
+  let mean;
+  let median;
+  let mode;
+  let deviation;
+  let quartiles;
+  let n;
+  n = n > 1 ? data.length : 'No data';
+  raw = data.map((item) => item.x) || 'No data';
+  mean = d3.mean(raw) || 'No data';
+  median = d3.median(raw) || 'No data';
+  mode = d3.mode(raw) || 'No data';
+  deviation = d3.deviation(raw) || 'No data';
+  quartiles = {
+    min: d3.quantile(raw, 0) || 'No data',
+    first: d3.quantile(raw, 0.25) || 'No data',
     median,
-    third: d3.quantile(raw, 0.75),
-    max: d3.quantile(raw, 1),
+    third: d3.quantile(raw, 0.75) || 'No data',
+    max: d3.quantile(raw, 1) || 'No data',
   };
   const columns = React.useMemo(
     () => [
@@ -33,7 +41,7 @@ const Stats = ({ data }) => {
     () => [
       {
         metric: 'N',
-        value: data.length,
+        value: n,
       },
       {
         metric: 'Mean',
@@ -73,7 +81,7 @@ const Stats = ({ data }) => {
       },
     ],
     [
-      data.length,
+      n,
       deviation,
       mean,
       median,
@@ -85,7 +93,7 @@ const Stats = ({ data }) => {
       quartiles.third,
     ],
   );
-  return data.length > 1 ? (
+  return data.length ? (
     <StyledStats>
       <Table data={rows} columns={columns} />
     </StyledStats>

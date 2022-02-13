@@ -25,163 +25,121 @@ const App = () => {
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [modalIsOpen, setModalIsOpen] = React.useState(true);
+  const [query, setQuery] = React.useState('');
+  const [variables, setVariables] = React.useState({});
+  const [thing, setThing] = React.useState('');
+  const [
+    shouldFetchSchoolDataFromDatabase,
+    setShouldFetchSchoolDataFromDatabase,
+  ] = React.useState(false);
+  const [
+    shouldFetchSchoolDataFromLocalForage,
+    setShouldFetchSchoolDataFromLocalForage,
+  ] = React.useState(false);
   const closeDisclosureModal = () => setModalIsOpen(false);
   const client = useApolloClient();
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(async () => {
+    if (shouldFetchSchoolDataFromLocalForage === true) {
+      const data = await localForage.getItem(thing);
+      setGraphData(data);
+      setIsLoading(false);
+      setShouldFetchSchoolDataFromDatabase(false);
+      return;
+    }
+    if (shouldFetchSchoolDataFromDatabase === true) {
+      const { data } = await client.query({ query, variables });
+      console.log({ data });
+      const dataTypeKey = Object.keys(data)[0];
+      const key = Object.keys(data[dataTypeKey][0])[0];
+      const cleanedData = data[dataTypeKey].map((institution) => ({
+        x: institution[key],
+      }));
+      await localForage.setItem(thing, cleanedData);
+      setGraphData(cleanedData);
+      setIsLoading(false);
+      setShouldFetchSchoolDataFromLocalForage(false);
+      return;
+    }
+  }, [
+    client,
+    query,
+    shouldFetchSchoolDataFromDatabase,
+    shouldFetchSchoolDataFromLocalForage,
+    thing,
+    variables,
+  ]);
   const fetchSchools = async () => {
+    if (!race || !gender || !disability) {
+      console.log('NOPE');
+      return;
+    }
     setIsLoading(true);
-    let query;
-    let variables = {};
+    let limit = -1;
+    let riskRatioFilterFloor = 0;
+    let enrollmentFilterFloor = 3;
+    let _operators;
+    let variables;
     let idb;
     if (comparison === 'pop') {
-      if (race && gender && disability) {
-        idb = `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`;
-      } else {
-        idb = `SCHOOLS_${race.value}_${gender.value}_QUERY`;
-      }
-      query = queries[idb];
-      if (gender && race && disability) {
-        variables = {
-          limit: -1,
-          filter: {
-            _operators: {
-              [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
-                gte: 0,
-              },
-              [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
-                gt: 3,
-              },
-            },
+      idb = `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`;
+      if (disability.value === 'TOTAL') {
+        _operators = {
+          [`RR_${race.value}_${gender.value}_POP`]: {
+            gte: riskRatioFilterFloor,
+          },
+          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+            gt: enrollmentFilterFloor,
           },
         };
       } else {
-        variables = {
-          limit: -1,
-          filter: {
-            _operators: {
-              [`RR_${race.value}_${gender.value}_POP`]: {
-                gte: 0,
-              },
-              [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
-                gt: 3,
-              },
-            },
+        _operators = {
+          [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
+            gte: riskRatioFilterFloor,
+          },
+          [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
+            gt: enrollmentFilterFloor,
           },
         };
       }
     }
-    if (comparison === 'wh' && disability) {
+    if (comparison === 'wh') {
       idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
-      query = queries[idb];
-      variables = {
-        limit: -1,
-        filter: {
-          _operators: {
-            [`RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`]:
-              {
-                gte: 0,
-              },
-            [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
-              gt: 3,
-            },
+      if (disability.value === 'TOTAL') {
+        _operators = {
+          [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
+            gte: riskRatioFilterFloor,
           },
-        },
-      };
-    } else if (comparison === 'wh' && !disability) {
-      idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
-      query = queries[idb];
-      variables = {
-        limit: -1,
-        filter: {
-          _operators: {
-            [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
-              gte: 0,
-            },
-            [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
-              gt: 3,
-            },
+          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+            gt: enrollmentFilterFloor,
           },
-        },
-      };
-    }
-    console.log({ query, variables });
-    const { data } = await client.query({
-      query,
-      variables,
-    });
-
-    const dataTypeKey = Object.keys(data)[0];
-    const key = Object.keys(data[dataTypeKey][0])[0];
-    return data
-      ? data[dataTypeKey].map((institution) => ({
-          x: institution[key],
-        }))
-      : [];
-  };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(async () => {
-    if (gender && race && disability) {
-      const idbKey =
-        comparison === 'pop'
-          ? `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`
-          : `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
-      setGraphTitle(
-        `${race.label}_${gender.label}_${disability.label} Compared to Rest of Population`,
-      );
-      const newGraphTitle = `${race.label}_${gender.label}_${
-        disability.label
-      } Compared to ${
-        comparison === 'wh' ? 'White population' : 'Rest of Popuation'
-      }`;
-      if (newGraphTitle !== graphTitle) {
-        setGraphTitle(
-          `${race.label}_${gender.label}_${disability.label} Compared to ${
-            comparison === 'wh' ? 'White population' : 'Rest of Population'
-          }`,
-        );
-      }
-      const local = await localForage.getItem(idbKey);
-      if (!local) {
-        const schools = await fetchSchools();
-        await localForage.setItem(idbKey, schools);
-        setGraphData(schools);
-        setIsLoading(false);
-        return;
+        };
       } else {
-        setGraphData(local);
-        setIsLoading(false);
-        return;
+        _operators = {
+          [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
+            gte: riskRatioFilterFloor,
+          },
+          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+            gt: enrollmentFilterFloor,
+          },
+        };
       }
     }
-    if (gender && race && !disability) {
-      const idbKey =
-        comparison === 'pop'
-          ? `SCHOOLS_${race.value}_${gender.value}_QUERY`
-          : `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_QUERY`;
-      const newGraphTitle = `${race.label}_${gender.label} Compared to ${
-        comparison === 'wh' ? 'White population' : 'Rest of Popuation'
-      }`;
-      if (newGraphTitle !== graphTitle) {
-        setGraphTitle(
-          `${race.label}_${gender.label} Compared to ${
-            comparison === 'wh' ? 'White population' : 'Rest of Popuation'
-          }`,
-        );
-        const local = await localForage.getItem(idbKey);
-        if (!local) {
-          const schools = await fetchSchools();
-          await localForage.setItem(idbKey, schools);
-          setGraphData(schools);
-          setIsLoading(false);
-          return;
-        } else {
-          setGraphData(local);
-          setIsLoading(false);
-          return;
-        }
-      }
+    const query = queries[idb];
+    variables = {
+      limit,
+      filter: { _operators },
+    };
+    setThing(idb);
+    setQuery(query);
+    setVariables(variables);
+    const local = await localForage.getItem(idb);
+    if (local) {
+      setShouldFetchSchoolDataFromLocalForage(true);
+    } else {
+      setShouldFetchSchoolDataFromDatabase(true);
     }
-  }, [comparison, disability, fetchSchools, gender, graphTitle, race]);
+  };
   return (
     <StyledApp>
       <GlobalStyle />
@@ -193,6 +151,9 @@ const App = () => {
       <div className="header-container">
         <Header />
       </div>
+      <h2>Welcome</h2>
+      <h2>Local Patterns of Disproportionalityphs</h2>
+      <h2>What Now?</h2>
       <div className="controls-container">
         <Controls
           comparison={comparison}
@@ -205,6 +166,7 @@ const App = () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          fetchSchools={fetchSchools}
         />
       </div>
       <div className="description-container">
@@ -217,7 +179,7 @@ const App = () => {
         <div className="graph-container">
           {isLoading ? (
             <Grid />
-          ) : (
+          ) : graphData?.length > 1 ? (
             <Histogram
               data={graphData}
               title={graphTitle}
@@ -226,10 +188,14 @@ const App = () => {
               disability={disability}
               selectedSchool={selectedSchool}
             />
-          )}
+          ) : null}
         </div>
         <div className="stats-container">
-          {isLoading ? <Ellipsis /> : <Stats data={graphData} />}
+          {isLoading ? (
+            <Ellipsis />
+          ) : graphData?.length >= 1 ? (
+            <Stats data={graphData} />
+          ) : null}
         </div>
       </div>
       <div className="footer-container">

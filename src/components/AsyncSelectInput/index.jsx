@@ -112,7 +112,6 @@ const AsyncSelectInput = ({
       query,
       variables,
     });
-    console.log({ data });
     return data
       ? data[type].map((school) => ({
           label: (

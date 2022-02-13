@@ -19,14 +19,25 @@ const Histogram = ({
   disability,
   selectedSchool,
 }) => {
+  React.useEffect(() => {
+    console.log('FIRED HISTORGRAM RERENDER ----');
+    console.log({ data });
+  });
   const bins = [
     0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5,
     3.75, 4, 4.25, 4.5, 4.75, 5,
   ];
-  const raw = data.map((school) => school.x);
-  const binSizes = generateBins(raw);
-  const arr = Object.values(binSizes);
-  const maxBinSize = Math.max(...arr);
+  let raw;
+  let binSizes;
+  let arr;
+  let maxBinSize;
+  if (data?.length >= 1) {
+    raw = data.map((school) => school.x);
+    binSizes = generateBins(raw);
+    arr = Object.values(binSizes);
+    maxBinSize = Math.max(...arr);
+  }
+
   return (
     <StyledHistogram>
       <VictoryChart
@@ -73,31 +84,6 @@ const Histogram = ({
           data={data}
           bins={bins}
         />
-        {selectedSchool?.[`RR_${race.value}_${gender.value}_POP`] >= 0 &&
-        gender &&
-        race &&
-        !disability ? (
-          <VictoryBar
-            data={[
-              {
-                x: selectedSchool[`RR_${race.value}_${gender.value}_POP`],
-                y: maxBinSize,
-                label: `Risk Ratio: ${
-                  selectedSchool[`RR_${race.value}_${gender.value}_POP`]
-                }`,
-              },
-            ]}
-            style={{
-              data: {
-                fontFamily: `'Open Sans', sans-serif`,
-                cursor: 'pointer',
-                fill: generateFill(
-                  selectedSchool[`RR_${race.value}_${gender.value}_POP`],
-                ),
-              },
-            }}
-          />
-        ) : null}
         {selectedSchool?.[
           `RR_${race.value}_${gender.value}_POP_${disability.value}`
         ] >= 0 &&
