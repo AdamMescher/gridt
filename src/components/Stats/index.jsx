@@ -11,7 +11,7 @@ const Stats = ({ data }) => {
   let deviation;
   let quartiles;
   let n;
-  n = n > 1 ? data.length : 'No data';
+  n = data.length;
   raw = data.map((item) => item.x) || 'No data';
   mean = d3.mean(raw) || 'No data';
   median = d3.median(raw) || 'No data';

@@ -22,6 +22,7 @@ const Histogram = ({
   React.useEffect(() => {
     console.log('FIRED HISTORGRAM RERENDER ----');
     console.log({ data });
+    console.log({ length: data.length });
   });
   const bins = [
     0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5,
@@ -31,7 +32,7 @@ const Histogram = ({
   let binSizes;
   let arr;
   let maxBinSize;
-  if (data?.length >= 1) {
+  if (data?.length > 1) {
     raw = data.map((school) => school.x);
     binSizes = generateBins(raw);
     arr = Object.values(binSizes);

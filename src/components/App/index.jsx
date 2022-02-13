@@ -16,6 +16,7 @@ import StyledApp from './styled';
 import queries from '../../utils/queries';
 
 const App = () => {
+  const graphFloor = 1;
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
@@ -42,21 +43,33 @@ const App = () => {
   React.useEffect(async () => {
     if (shouldFetchSchoolDataFromLocalForage === true) {
       const data = await localForage.getItem(thing);
-      setGraphData(data);
-      setIsLoading(false);
-      setShouldFetchSchoolDataFromDatabase(false);
-      return;
+      if (data?.length <= 1) {
+        setGraphData([]);
+        setIsLoading(false);
+        return;
+      } else {
+        setGraphData(data);
+        setIsLoading(false);
+        setShouldFetchSchoolDataFromDatabase(false);
+        return;
+      }
     }
     if (shouldFetchSchoolDataFromDatabase === true) {
       const { data } = await client.query({ query, variables });
       console.log({ data });
-      const dataTypeKey = Object.keys(data)[0];
-      const key = Object.keys(data[dataTypeKey][0])[0];
-      const cleanedData = data[dataTypeKey].map((institution) => ({
-        x: institution[key],
-      }));
-      await localForage.setItem(thing, cleanedData);
-      setGraphData(cleanedData);
+      if (data?.length <= 1) {
+        setGraphData([]);
+        setIsLoading(false);
+        return;
+      } else {
+        const dataTypeKey = Object.keys(data)[0];
+        const key = Object.keys(data[dataTypeKey][0])[0];
+        const cleanedData = data[dataTypeKey].map((institution) => ({
+          x: institution[key],
+        }));
+        await localForage.setItem(thing, cleanedData);
+        setGraphData(cleanedData);
+      }
       setIsLoading(false);
       setShouldFetchSchoolDataFromLocalForage(false);
       return;
@@ -179,7 +192,7 @@ const App = () => {
         <div className="graph-container">
           {isLoading ? (
             <Grid />
-          ) : graphData?.length > 1 ? (
+          ) : graphData?.length > graphFloor ? (
             <Histogram
               data={graphData}
               title={graphTitle}
@@ -188,7 +201,21 @@ const App = () => {
               disability={disability}
               selectedSchool={selectedSchool}
             />
-          ) : null}
+          ) : (
+            <div style={{ flexDirection: 'column' }}>
+              <p>
+                {`NO GRAPH GENERATED FOR COMPARISON OF ${race.label} ${
+                  gender.label
+                }s with
+                ${disability.label} TO ${
+                  comparison === 'pop'
+                    ? 'rest of population'
+                    : 'white population'
+                }`}
+              </p>
+              <p>N IS NOT GREATER THAN FLOOR OF {graphFloor} outcomes</p>
+            </div>
+          )}
         </div>
         <div className="stats-container">
           {isLoading ? (
