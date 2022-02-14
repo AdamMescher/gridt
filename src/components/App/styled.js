@@ -1,11 +1,39 @@
 import styled from 'styled-components';
 
 const StyledApp = styled.div`
+  --fuchsia: #f5d0fe;
+  --dark-fuchsia: #701a75;
+  --emerald: #6ee7b7;
+  --dark-emerald: #064e3b;
+  --sky: #bae6fd;
+  --dark-sky: #0c4a6e;
+  --orange: #fdba74;
+  --dark-orange: #7c2d12;
+
   height: 100vh;
   width: 100%;
-  display: grid;
-  grid-template-columns: 50px 1fr 3fr 50px;
-  grid-template-rows: 75px 1fr 1fr 3fr 50px;
+  padding-left: 20px;
+
+  ol {
+    list-style: number;
+    padding-left: 20px;
+  }
+  ul li {
+    list-style: none;
+    padding-left: 25px;
+  }
+
+  .generate-graph {
+    border: none;
+    background: #075985;
+    color: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  .generate-graph:hover {
+    cursor: pointer;
+    background: #0ea5e9;
+  }
 
   .header-container {
     grid-area: 1 / 2 / 2 / 4;
@@ -14,6 +42,25 @@ const StyledApp = styled.div`
     align-items: center;
   }
 
+  .steps {
+    width: 60%;
+  }
+
+  .steps-subtitle {
+    margin-top: 6px;
+  }
+
+  .steps li {
+    margin-top: 6px;
+  }
+
+  .steps-definitions li {
+    margin-top: 8px;
+  }
+
+  .steps-container .button {
+    margin-top: 8px;
+  }
   .description-container {
     padding-top: 20px;
     grid-area: 2 / 2 / 3 / 4;
@@ -25,11 +72,11 @@ const StyledApp = styled.div`
   }
 
   .content-container {
-    padding-top: 20px;
-    grid-area: 4 / 2 / 5 / 4;
     display: grid;
+    grid-area: 4 / 2 / 5 / 4;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding-top: 20px;
   }
 
   .legend-container {
@@ -56,6 +103,39 @@ const StyledApp = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .highlight {
+    font-size: 18px;
+  }
+
+  .definition {
+    display: inline-block;
+    martin-top: 40px;
+  }
+
+  .risk {
+    padding: 2px 4px 2px 4px;
+    background: var(--emerald);
+    color: var(--dark-emerald);
+  }
+
+  .outcome {
+    padding: 2px 4px 2px 4px;
+    background: var(--orange);
+    color: var(--dark-orange);
+  }
+
+  .overrepresentation {
+    padding: 2px 4px 2px 4px;
+    background: var(--fuchsia);
+    color: var(--dark-fuchsia);
+  }
+
+  .underrepresentation {
+    padding: 2px 4px 2px 4px;
+    background: var(--sky);
+    color: var(--dark-sky);
   }
 
   @media (max-width: 1280px) {

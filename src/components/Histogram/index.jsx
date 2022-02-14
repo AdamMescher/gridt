@@ -10,6 +10,7 @@ import {
 import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
+import * as d3 from 'd3';
 
 const Histogram = ({
   data,
@@ -24,10 +25,28 @@ const Histogram = ({
     console.log({ data });
     console.log({ length: data.length });
   });
-  const bins = [
-    0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5,
-    3.75, 4, 4.25, 4.5, 4.75, 5,
-  ];
+  const random = () => {
+    const result = [];
+    for (let i = 0; i < 1000; i++) {
+      result.push(d3.randomInt(1, 1000)());
+    }
+    return result;
+  };
+  const values = random();
+  const numberOfBins = d3.thresholdScott(
+    values,
+    d3.min(values),
+    d3.max(values),
+  );
+  console.log({ numberOfBins });
+  const binWidth = 3.49 * d3.deviation(values) * values.length ** -(1 / 3);
+  console.log({ binWidth });
+  const establishBins = (totalBins, binWidth) => {
+    const values = [];
+  };
+
+  // output
+  // [0, ..., max]
   let raw;
   let binSizes;
   let arr;
@@ -38,9 +57,22 @@ const Histogram = ({
     arr = Object.values(binSizes);
     maxBinSize = Math.max(...arr);
   }
-
   return (
     <StyledHistogram>
+      {(selectedSchool &&
+        selectedSchool?.[
+          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+        ] === null) ||
+      selectedSchool?.[
+        `RR_${race.value}_${gender.value}_POP_${disability.value}`
+      ] === undefined ? (
+        <p>{`The selected school - <SCHOOL NAME> does not have enough students in the subgroup to generate meaningful data.`}</p>
+      ) : null}
+      {race && gender && disability && title ? (
+        <p
+          style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}
+        >{`GRAPHTITLE Risk Ratio`}</p>
+      ) : null}
       <VictoryChart
         containerComponent={
           <VictoryContainer
@@ -69,28 +101,22 @@ const Histogram = ({
             },
           }}
         />
-        {title ? (
-          <VictoryLabel
-            style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}
-            text={`${title.replaceAll('_', ' ')} Risk Ratio`}
-            textAnchor="middle"
-            x={225}
-            y={10}
-          />
-        ) : null}
         <VictoryHistogram
           style={{
             data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
           }}
           data={data}
-          bins={bins}
         />
-        {selectedSchool?.[
-          `RR_${race.value}_${gender.value}_POP_${disability.value}`
-        ] >= 0 &&
-        gender &&
+        {gender &&
         race &&
-        disability ? (
+        disability &&
+        selectedSchool &&
+        selectedSchool?.[
+          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+        ] !== null &&
+        selectedSchool?.[
+          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+        ] !== undefined ? (
           <VictoryBar
             data={[
               {
@@ -117,8 +143,42 @@ const Histogram = ({
               },
             }}
           />
-        ) : null}
+        ) : (
+          <p>
+            {`NO RISK RATIO FOR ${race.value} ${gender.value} ${
+              disability.value
+            } GENERATED FOR ${
+              disability.value === 'TOTAL'
+                ? selectedSchool?.SCH_NAME
+                : selectedSchool?.SCHOOL_NAME
+            }`}
+          </p>
+        )}
       </VictoryChart>
+      {gender &&
+      race &&
+      disability &&
+      selectedSchool &&
+      selectedSchool?.[
+        `RR_${race.value}_${gender.value}_POP_${disability.value}`
+      ] !== null &&
+      selectedSchool?.[
+        `RR_${race.value}_${gender.value}_POP_${disability.value}`
+      ] !== undefined ? (
+        <p>
+          `Risk Ratio for $
+          {disability.value === 'TOTAL'
+            ? selectedSchool.SCH_NAME
+            : selectedSchool.SCHOOL_NAME}
+          $
+          {
+            selectedSchool?.[
+              `RR_${race.value}_${gender.value}_POP_${disability.value}`
+            ]
+          }
+          `
+        </p>
+      ) : null}
     </StyledHistogram>
   );
 };

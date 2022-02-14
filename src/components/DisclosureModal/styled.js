@@ -15,15 +15,8 @@ const StyledModalContent = styled.div`
     margin-top: 1rem;
     border-radius: 4px;
   }
-  button {
-    border: none;
-    padding: 8px 15px;
-    background: #075985;
-    color: #f1f5f9;
-  }
-  button:hover {
-    cursor: pointer;
-    background: #0ea5e9;
+  .video {
+    margin-top: '20px';
   }
   .topright {
     position: absolute;

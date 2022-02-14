@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 const StyledRiskRatioDescription = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  --orange: #fdba74;
+  --dark-orange: #7c2d12;
   font-size: 14px;
+  margin-top: 12px;
   p {
     align-self: flex-start;
-    width: 30%;
     font-size: 16px;
     margin-right: 100px;
     line-height: 1.5;
@@ -27,6 +26,15 @@ const StyledRiskRatioDescription = styled.div`
     background: #334155;
     color: white;
     padding: 3px 8px;
+  }
+  .outcome {
+    background: var(--orange);
+    color: var(--dark-orange);
+    padding: 2px 4px 2px 4px;
+  }
+  .risk {
+    background: #6ee7b7;
+    padding: 2px 4px 2px 4px;
   }
 `;
 

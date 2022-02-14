@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 const StyledYouTubeEmbed = styled.div`
   z-index: 5;
-  height: 400px;
+  height: 200px;
+  margin-top: 30px;
   aspect-ratio: 16/9;
   iframe {
-      height: 100%;
-      width: 100%;
+    height: 100%;
+    width: 100%;
   }
 `;
 

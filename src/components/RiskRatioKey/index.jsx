@@ -128,14 +128,6 @@ const RiskRatioKey = () => {
   return (
     <StyledRiskRatioKey>
       <Table columns={columns} data={data} />
-      <p className="description">
-        <span className="bold">Underrepresentation</span>: the target group is{' '}
-        <em>less</em> likely to experience that outcome.
-      </p>
-      <p className="description">
-        <span className="bold">Overrepresentation</span>: the target group is{' '}
-        <em>more</em> likely to experience the outcome.
-      </p>
     </StyledRiskRatioKey>
   );
 };
