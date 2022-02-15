@@ -320,27 +320,11 @@ const App = () => {
               race={race}
               gender={gender}
               disability={disability}
+              comparison={comparison}
               selectedSchool={selectedSchool}
             />
           ) : (
             <div style={{ flexDirection: 'column' }}>
-              <p>
-                {race &&
-                gender &&
-                disability &&
-                graphData.length < graphFloor &&
-                graphTitle ===
-                  `${race.value} ${gender.value} ${disability.value} ${comparison}`
-                  ? `NO GRAPH GENERATED FOR COMPARISON OF ${race.label} ${
-                      gender.label
-                    }s with
-                ${disability.label} TO ${
-                      comparison === 'pop'
-                        ? 'rest of population'
-                        : 'white population'
-                    }`
-                  : null}
-              </p>
               {race &&
               gender &&
               disability &&

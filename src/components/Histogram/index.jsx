@@ -16,6 +16,7 @@ const Histogram = ({
   race,
   gender,
   disability,
+  comparison,
   selectedSchool,
 }) => {
   let raw;
@@ -28,21 +29,38 @@ const Histogram = ({
     arr = Object.values(binSizes);
     maxBinSize = Math.max(...arr);
   }
+  console.log({ selectedSchool });
   return (
     <StyledHistogram>
-      {(selectedSchool &&
-        selectedSchool?.[
-          `RR_${race.value}_${gender.value}_POP_${disability.value}`
-        ] === null) ||
-      selectedSchool?.[
-        `RR_${race.value}_${gender.value}_POP_${disability.value}`
-      ] === undefined ? (
-        <p>{`The selected school - <SCHOOL NAME> does not have enough students in the subgroup to generate meaningful data.`}</p>
+      {selectedSchool &&
+      selectedSchool[
+        `${
+          comparison === 'pop'
+            ? `RR_${race.value}_${gender.value}_POP_${disability.value}`
+            : `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
+        }`
+      ] == null ? (
+        <p>{`The selected school of ${
+          disability.value === 'TOTAL'
+            ? selectedSchool.SCH_NAME
+            : selectedSchool.SCHOOL_NAME
+        } does not have enough students in the subgroup to generate meaningful data.`}</p>
       ) : null}
-      {race && gender && disability && title ? (
-        <p
-          style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}
-        >{`GRAPHTITLE Risk Ratio`}</p>
+      {race &&
+      gender &&
+      disability &&
+      title &&
+      title ===
+        `${race.value} ${gender.value} ${disability.value} ${comparison}` ? (
+        <p style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}>{`${
+          race.label
+        } ${gender.label}s ${
+          disability.value === 'TOTAL'
+            ? 'Within Total Special Education Population'
+            : ' with ' + disability.label
+        } Compared To ${
+          comparison === 'pop' ? 'Total Population' : 'White Population'
+        } Risk Ratio`}</p>
       ) : null}
       <VictoryChart
         containerComponent={
@@ -142,11 +160,13 @@ const Histogram = ({
             ? selectedSchool.SCH_NAME
             : selectedSchool.SCHOOL_NAME}
           $
-          {
-            selectedSchool?.[
-              `RR_${race.value}_${gender.value}_POP_${disability.value}`
-            ]
-          }
+          {comparison === 'pop'
+            ? selectedSchool?.[
+                `RR_${race.value}_${gender.value}_POP_${disability.value}`
+              ]
+            : selectedSchool[
+                `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
+              ]}
           `
         </p>
       ) : null}
