@@ -23,13 +23,14 @@ const Histogram = ({
   let binSizes;
   let arr;
   let maxBinSize;
+  let bins;
   if (data?.length > 1) {
+    bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
     raw = data.map((school) => school.x);
     binSizes = generateBins(raw);
     arr = Object.values(binSizes);
     maxBinSize = Math.max(...arr);
   }
-  console.log({ selectedSchool });
   return (
     <StyledHistogram>
       {selectedSchool &&
@@ -40,7 +41,7 @@ const Histogram = ({
             : `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
         }`
       ] == null ? (
-        <p>{`The selected school of ${
+        <p style={{ marginLeft: '10px' }}>{`${
           disability.value === 'TOTAL'
             ? selectedSchool.SCH_NAME
             : selectedSchool.SCHOOL_NAME
@@ -94,6 +95,7 @@ const Histogram = ({
           style={{
             data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
           }}
+          bins={bins}
           data={data}
         />
         {gender &&

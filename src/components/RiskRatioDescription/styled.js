@@ -7,7 +7,6 @@ const StyledRiskRatioDescription = styled.div`
   margin-top: 12px;
   p {
     align-self: flex-start;
-    font-size: 16px;
     margin-right: 100px;
     line-height: 1.5;
   }

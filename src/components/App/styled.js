@@ -36,7 +36,6 @@ const StyledApp = styled.div`
   }
 
   .header-container {
-    grid-area: 1 / 2 / 2 / 4;
     display: flex;
     justify-content: center;
     align-items: center;

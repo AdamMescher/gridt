@@ -59,10 +59,7 @@ const App = () => {
     }
     if (shouldFetchSchoolDataFromDatabase === true) {
       const { data } = await client.query({ query, variables });
-      console.log({ data });
-      console.log({ length: data.length });
       if (data?.length <= 1) {
-        console.log('FIRED LENGTH IS LESS THAN ONE');
         setGraphData([]);
         setIsLoading(false);
         return;
@@ -72,6 +69,7 @@ const App = () => {
           const key = Object.keys(data[dataTypeKey][0])[0];
           const cleanedData = data[dataTypeKey].map((institution) => ({
             x: institution[key],
+            SCH_NAME: institution.SCH_NAME,
           }));
           await localForage.setItem(IDBKEY, cleanedData);
           setGraphData(cleanedData);
@@ -173,45 +171,6 @@ const App = () => {
       </div>
       <div className="steps-container">
         <h2>Welcome</h2>
-        <h3 className="steps-subtitle">How to use GRID-T</h3>
-        <ol className="steps">
-          <li>
-            Select Race, Gender, and Disability Category or Total Special
-            Education population
-          </li>
-          <li>
-            A histogram will appear that represents the frequency of each{' '}
-            <span className="risk highlight">Risk Ratio</span> across the United
-            States. This gives a national perspective as to whether this
-            subgroup is either overrepresented, underrepresented, or
-            proportionate.
-          </li>
-          <li>
-            Examine the descriptive statistics table to see n (how many schools
-            are involved in the calculation), IQR (interquartile ranges), Mean
-            (average <span className="risk highlight">Risk Ratio</span> for that
-            subgroup intersection), and Mode (most common{' '}
-            <span className="risk highlight">Risk Ratio</span> for that subgroup
-            intersection)
-          </li>
-          <li>
-            Type your school’s name into the search box to see if the data is
-            present for that subgroup.
-          </li>
-          <li>
-            If the data is present and there are more than three students
-            represented in that subgroup, a color-coded line will appear with
-            your school’s <span className="risk highlight">Risk Ratio</span>.
-            The color signifies how underrepresented, overrepresented, or
-            proportionate your school’s subgroup is in the selected dis/ability
-            category or Total special Education population.
-          </li>
-          <li>
-            Read the “What Now?” section to look through resources that will
-            help you to address your local area’s patterns of
-            disproportionality.
-          </li>
-        </ol>
         <button className="button" onClick={openDisclosureModal}>
           Show Welcome to GRID-T Resources
         </button>
@@ -251,6 +210,46 @@ const App = () => {
             </p>
           </li>
         </ul>
+        <h3 className="steps-subtitle">How to use GRID-T</h3>
+        <ol className="steps">
+          <li>
+            Select Race, Gender, and Disability Category or Total Special
+            Education population
+          </li>
+          <li>
+            A histogram will appear that represents the frequency of each{' '}
+            <span className="risk highlight">Risk Ratio</span> across the United
+            States. This gives a national perspective as to whether this
+            subgroup is either overrepresented, underrepresented, or
+            proportionate.
+          </li>
+          <li>
+            Examine the descriptive statistics table to see n (how many schools
+            are involved in the calculation), IQR (interquartile ranges), Mean
+            (average <span className="risk highlight">Risk Ratio</span> for that
+            subgroup intersection), and Mode (most common{' '}
+            <span className="risk highlight">Risk Ratio</span> for that subgroup
+            intersection)
+          </li>
+          <li>
+            Type your school’s name into the search box to see if the data is
+            present for that subgroup.
+          </li>
+          <li>
+            If the data is present and there are more than three students
+            represented in that subgroup, a color-coded line will appear with
+            your school’s <span className="risk highlight">Risk Ratio</span>.
+            The color signifies how underrepresented, overrepresented, or
+            proportionate your school’s subgroup is in the selected dis/ability
+            category or Total special Education population.
+          </li>
+          <li>
+            Read the “What Now?” section to look through resources that will
+            help you to address your local area’s patterns of
+            disproportionality.
+          </li>
+        </ol>
+
         <div
           style={{
             display: 'flex',
@@ -328,7 +327,7 @@ const App = () => {
               {race &&
               gender &&
               disability &&
-              graphData.length < graphFloor &&
+              graphData?.length < graphFloor &&
               graphTitle ===
                 `${race.value} ${gender.value} ${disability.value} ${comparison}` ? (
                 <div>

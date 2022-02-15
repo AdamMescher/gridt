@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
-  height: 4vh;
   grid-area: header;
   display: flex;
   flex-direction: column;

@@ -6,6 +6,7 @@ const Header = () => (
   <StyledHeader>
     <Meta />
     <h1>Gender and Race Intersectional Disproportionality-Tool</h1>
+    <h2>(GRID-T)</h2>
   </StyledHeader>
 );
 
