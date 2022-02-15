@@ -188,7 +188,7 @@ const App = () => {
           <li>
             <p>
               <span className="outcome highlight definition">Outcome</span>:
-              special education placement
+              Placement of students in special education
             </p>
           </li>
           <li className="definition">
