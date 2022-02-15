@@ -3,7 +3,6 @@ import {
   VictoryAxis,
   VictoryContainer,
   VictoryChart,
-  VictoryLabel,
   VictoryBar,
   VictoryHistogram,
 } from 'victory';
@@ -20,33 +19,6 @@ const Histogram = ({
   disability,
   selectedSchool,
 }) => {
-  React.useEffect(() => {
-    console.log('FIRED HISTORGRAM RERENDER ----');
-    console.log({ data });
-    console.log({ length: data.length });
-  });
-  const random = () => {
-    const result = [];
-    for (let i = 0; i < 1000; i++) {
-      result.push(d3.randomInt(1, 1000)());
-    }
-    return result;
-  };
-  const values = random();
-  const numberOfBins = d3.thresholdScott(
-    values,
-    d3.min(values),
-    d3.max(values),
-  );
-  console.log({ numberOfBins });
-  const binWidth = 3.49 * d3.deviation(values) * values.length ** -(1 / 3);
-  console.log({ binWidth });
-  const establishBins = (totalBins, binWidth) => {
-    const values = [];
-  };
-
-  // output
-  // [0, ..., max]
   let raw;
   let binSizes;
   let arr;
