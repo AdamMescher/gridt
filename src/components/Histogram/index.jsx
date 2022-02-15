@@ -9,7 +9,6 @@ import {
 import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
-import * as d3 from 'd3';
 
 const Histogram = ({
   data,
