@@ -287,7 +287,7 @@ const App = () => {
           }}
         >
           <button
-            className="generate-graph"
+            className="button"
             onClick={async () => {
               if (race && gender && disability) {
                 setGraphTitle(
