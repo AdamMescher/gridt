@@ -61,19 +61,21 @@ const App = () => {
       const { data } = await client.query({ query, variables });
       console.log({ data });
       console.log({ length: data.length });
-      if (data?.length <= 1 || data.length === undefined) {
+      if (data?.length <= 1) {
         console.log('FIRED LENGTH IS LESS THAN ONE');
         setGraphData([]);
         setIsLoading(false);
         return;
       } else {
-        const dataTypeKey = Object.keys(data)[0];
-        const key = Object.keys(data[dataTypeKey][0])[0];
-        const cleanedData = data[dataTypeKey].map((institution) => ({
-          x: institution[key],
-        }));
-        await localForage.setItem(IDBKEY, cleanedData);
-        setGraphData(cleanedData);
+        if (data) {
+          const dataTypeKey = Object.keys(data)[0];
+          const key = Object.keys(data[dataTypeKey][0])[0];
+          const cleanedData = data[dataTypeKey].map((institution) => ({
+            x: institution[key],
+          }));
+          await localForage.setItem(IDBKEY, cleanedData);
+          setGraphData(cleanedData);
+        }
       }
       setIsLoading(false);
       setShouldFetchSchoolDataFromLocalForage(false);
