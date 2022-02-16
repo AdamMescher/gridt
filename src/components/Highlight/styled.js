@@ -9,9 +9,11 @@ const StyledHighlight = styled.span`
   --dark-emerald: #064e3b;
   --orange: #fdba74;
   --dark-orange: #7c2d12;
+
   display: inline-block;
   padding: 2px 4px 2px 4px;
   font-size: 18px;
+
   color: ${(props) => {
     switch (props.color) {
       case 'fuchsia':
@@ -20,10 +22,15 @@ const StyledHighlight = styled.span`
         return 'var(--dark-emerald)';
       case 'orange':
         return 'var(--dark-orange)';
+      case 'rose':
+        return 'var(--dark-rose)';
+      case 'slate':
+        return 'var(--dark-slate)';
       default:
         return 'var(--dark-slate)';
     }
   }};
+
   background: ${(props) => {
     switch (props.color) {
       case 'fuchsia':
@@ -32,6 +39,10 @@ const StyledHighlight = styled.span`
         return 'var(--emerald)';
       case 'orange':
         return 'var(--orange)';
+      case 'rose':
+        return 'var(--rose)';
+      case 'slate':
+        return 'var(--slate)';
       default:
         return 'var(--slate)';
     }
