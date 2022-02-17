@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  height: 5vh;
+  margin-top: 20px;
+  padding-bottom: 10px;
   @media (max-width: 1280px) {
     padding-top: 15px;
     font-size: 0.75rem;

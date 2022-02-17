@@ -28,11 +28,6 @@ const StyledModalContent = styled.div`
     border-bottom-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .citation {
-    text-indent: -36px;
-    padding-left: 36px;
-    white-space: pre-line;
-  }
 `;
 
 export default StyledModalContent;

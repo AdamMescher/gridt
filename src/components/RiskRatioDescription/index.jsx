@@ -6,11 +6,11 @@ const RiskRatioDescription = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: <span className="risk">Risk Ratio</span>,
+        Header: <span className="risk bold">Risk Ratio</span>,
         accessor: 'riskRatio',
       },
       {
-        Header: 'Interpretation',
+        Header: <span className="bold">Interpretation</span>,
         accessor: 'interpretation',
       },
     ],

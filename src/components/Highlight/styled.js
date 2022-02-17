@@ -9,6 +9,8 @@ const StyledHighlight = styled.span`
   --dark-emerald: #064e3b;
   --orange: #fdba74;
   --dark-orange: #7c2d12;
+  --sky: #bae6fd;
+  --dark-sky: #0c4a6e;
 
   display: inline-block;
   padding: 2px 4px 2px 4px;
@@ -24,6 +26,8 @@ const StyledHighlight = styled.span`
         return 'var(--dark-orange)';
       case 'rose':
         return 'var(--dark-rose)';
+      case 'sky':
+        return 'var(--dark-sky)';
       case 'slate':
         return 'var(--dark-slate)';
       default:
@@ -41,6 +45,8 @@ const StyledHighlight = styled.span`
         return 'var(--orange)';
       case 'rose':
         return 'var(--rose)';
+      case 'sky':
+        return 'var(--sky)';
       case 'slate':
         return 'var(--slate)';
       default:

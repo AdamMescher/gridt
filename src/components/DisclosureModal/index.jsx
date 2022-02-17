@@ -1,18 +1,14 @@
 import * as React from 'react';
 import Modal from 'react-modal';
 import YouTubeEmbed from '../YouTubeEmbed';
+import HyperLink from '../HyperLink';
 import StyledModalContent from './styled';
 
-const DisclosureModal = ({
-  modalIsOpen,
-  openDisclosureModal,
-  closeDisclosureModal,
-}) => {
+const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
   return (
     <Modal
       parentSelector={() => document.querySelector('#root')}
       isOpen={modalIsOpen}
-      style={{ content: { inset: 40, padding: 0 } }}
     >
       <StyledModalContent>
         <h2>
@@ -42,13 +38,16 @@ const DisclosureModal = ({
           Office for Civil Rights. (2020). Civil Rights Data Collection (CRDC)
           for the 2017-18 School Year [Dataset]. Washington DC: Office for Civil
           Rights.{' '}
-          <a href="https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html">
-            https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html
-          </a>
+          <HyperLink
+            href='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
+            text='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
+          />
         </p>
         <YouTubeEmbed className="video" id={'AEkaA-aZkYc'} />
-        <button className="button" onClick={closeDisclosureModal}>I Understand</button>
-        <button className="button topright" onClick={closeDisclosureModal} >
+        <button className="button" onClick={closeDisclosureModal}>
+          I Understand
+        </button>
+        <button className="button topright" onClick={closeDisclosureModal}>
           X
         </button>
       </StyledModalContent>

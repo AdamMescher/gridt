@@ -5,26 +5,12 @@ const StyledRiskRatioDescription = styled.div`
   --dark-orange: #7c2d12;
   font-size: 14px;
   margin-top: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   p {
     align-self: flex-start;
     margin-right: 100px;
     line-height: 1.5;
-  }
-  .bold {
-    font-weight: 700;
-  }
-  .word {
-    padding: 2px 5px;
-    background: #dce9fe;
-    color: #2463eb;
-  }
-  .word:hover {
-    cursor: pointer;
-  }
-  .definition {
-    background: #334155;
-    color: white;
-    padding: 3px 8px;
   }
   .outcome {
     background: var(--orange);

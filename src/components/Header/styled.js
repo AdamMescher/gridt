@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
+  margin-top: 20px;
   grid-area: header;
   display: flex;
   flex-direction: column;

@@ -26,12 +26,13 @@ const Controls = ({
   setSelectedSchool,
   setComparison,
   setGraphTitle,
-  fetchSchools,
 }) => {
   return (
     <StyledControls>
       <div className="grd-select-container" style={{ paddingRight: '25px' }}>
-        <label htmlFor="gender">Select Gender</label>
+        <label htmlFor="gender">
+          Select Gender
+        </label>
         <Select
           className="select"
           styles={customStyles}
@@ -81,10 +82,7 @@ const Controls = ({
           }}
         />
       </div>
-      <div
-        className="school-select-container"
-        style={{ flexGrow: 1, paddingLeft: '25px' }}
-      >
+      <div className="school-select-container">
         <label>Search School By Name</label>
         <AsyncSelectInput
           styles={customStyles}
@@ -98,7 +96,7 @@ const Controls = ({
           className="radio-container"
           onChange={(event) => setComparison(event.target.value)}
         >
-          <h3 style={{ marginTop: '10px' }}>Comparison</h3>
+          <label>Comparison</label>
           <div className="radio">
             <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
             Rest of Population
