@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
       background: gray;
       cursor: not-allowed;
     }
+
     // utility classes
     .topright {
     position: absolute;

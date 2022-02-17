@@ -43,6 +43,15 @@ const StyledApp = styled.div`
     display: flex;
     justify-content: center;
   }
+  .generate-graph-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .generate-graph-button {
+    margin-top: 20px;
+  }
 
   .stats-container {
     display: flex;

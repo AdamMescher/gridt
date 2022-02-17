@@ -40,6 +40,14 @@ const App = () => {
   const closeDisclosureModal = () => setModalIsOpen(false);
   const openDisclosureModal = () => setModalIsOpen(true);
   const client = useApolloClient();
+  const handleGenerateGraphButtonClick = async () => {
+    if (race && gender && disability) {
+      setGraphTitle(
+        `${race.value} ${gender.value} ${disability.value} ${comparison}`,
+      );
+    }
+    await fetchSchools();
+  };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     if (shouldFetchSchoolDataFromLocalForage === true) {
@@ -170,9 +178,7 @@ const App = () => {
         <Header />
       </div>
       <Welcome openDisclosureModal={openDisclosureModal} />
-      <h2 style={{ marginTop: '20px' }}>
-        Local Patterns of Disproportionality
-      </h2>
+      <h2 className="title">Local Patterns of Disproportionality</h2>
       <div className="controls-container">
         <Controls
           comparison={comparison}
@@ -187,29 +193,11 @@ const App = () => {
           setGraphTitle={setGraphTitle}
           fetchSchools={fetchSchools}
         />
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <div className="generate-graph-button-container">
           <button
-            className="button"
+            className="button generate-graph-button"
             disabled={isLoading}
-            onClick={async () => {
-              if (race && gender && disability) {
-                setGraphTitle(
-                  `${race.value} ${gender.value} ${disability.value} ${comparison}`,
-                );
-              }
-              await fetchSchools();
-            }}
-            style={{
-              marginTop: '20px',
-              padding: '10px 30px 10px 30px',
-            }}
+            onClick={handleGenerateGraphButtonClick}
           >
             Generate Graph
           </button>
