@@ -3,9 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     --button-background: #075985;
     --button-background-hover: #0ea5e9;
-    --link-color: #0ea5e9;
-    --link-color-hover: #d946ef;
-    --link-color-visited: #818cf8;
     * {
         box-sizing: border-box;
         margin: 0;
