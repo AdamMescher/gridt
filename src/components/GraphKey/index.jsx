@@ -1,17 +1,14 @@
 import * as React from 'react';
+import { Ripple } from 'react-awesome-spinners';
 import Table from '../Table';
-import StyledRiskRatioKey from './styled';
+import StyledGraphKey from './styled';
 
-const RiskRatioKey = () => {
+const GraphKey = ({ isLoading, race, gender, disability, graphTitle }) => {
   const columns = React.useMemo(
     () => [
       {
         Header: 'Category Description',
         accessor: 'description',
-      },
-      {
-        Header: 'Risk Ratio Range',
-        accessor: 'riskRatioRange',
       },
       {
         Header: 'Color',
@@ -24,7 +21,6 @@ const RiskRatioKey = () => {
     () => [
       {
         description: 'Major Underrepresentation ',
-        riskRatioRange: <div style={{ textAlign: 'center' }}>≤ 0.3</div>,
         color: (
           <div
             style={{
@@ -45,7 +41,6 @@ const RiskRatioKey = () => {
       },
       {
         description: 'Underrepresentation',
-        riskRatioRange: <div style={{ textAlign: 'center' }}>0.31 - 0.6</div>,
         color: (
           <div
             style={{
@@ -66,7 +61,6 @@ const RiskRatioKey = () => {
       },
       {
         description: 'Proportionate',
-        riskRatioRange: <div style={{ textAlign: 'center' }}>0.61 - 2.0</div>,
         color: (
           <div
             style={{
@@ -87,7 +81,6 @@ const RiskRatioKey = () => {
       },
       {
         description: 'Overrepresentation',
-        riskRatioRange: <div style={{ textAlign: 'center' }}>2.1 - 3.5</div>,
         color: (
           <div
             style={{
@@ -108,7 +101,6 @@ const RiskRatioKey = () => {
       },
       {
         description: 'Major Overrepresentation',
-        riskRatioRange: <div style={{ textAlign: 'center' }}>{'>'} 3.6</div>,
         color: (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div
@@ -126,10 +118,14 @@ const RiskRatioKey = () => {
     [],
   );
   return (
-    <StyledRiskRatioKey>
-      <Table columns={columns} data={data} />
-    </StyledRiskRatioKey>
+    <StyledGraphKey>
+      {isLoading ? (
+        <Ripple />
+      ) : race && gender && disability && graphTitle ? (
+        <Table columns={columns} data={data} />
+      ) : null}
+    </StyledGraphKey>
   );
 };
 
-export default RiskRatioKey;
+export default GraphKey;

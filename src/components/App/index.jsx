@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { useApolloClient } from '@apollo/client';
 import localForage from 'localforage';
-import { Grid, Ellipsis } from 'react-awesome-spinners';
+import ReactGA from 'react-ga4';
+import { Ellipsis } from 'react-awesome-spinners';
 import GlobalStyle from '../GlobalStyle';
 import Meta from '../Meta';
 import Header from '../Header';
 import Footer from '../Footer';
 import Controls from '../Controls';
-import Histogram from '../Histogram';
+import Graph from '../Graph';
 import Stats from '../Stats';
 import DisclosureModal from '../DisclosureModal';
 import Welcome from '../Welcome';
+import GraphKey from '../GraphKey';
 import WhatNow from '../WhatNow';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
@@ -40,28 +42,22 @@ const App = () => {
   const closeDisclosureModal = () => setModalIsOpen(false);
   const openDisclosureModal = () => setModalIsOpen(true);
   const client = useApolloClient();
-  const handleGenerateGraphButtonClick = async () => {
-    if (race && gender && disability) {
-      setGraphTitle(
-        `${race.value} ${gender.value} ${disability.value} ${comparison}`,
-      );
-    }
-    await fetchSchools();
-  };
+  React.useEffect(() => {
+    ReactGA.initialize('G-G5RN2PP9CD');
+    ReactGA.send('pageview');
+  });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     if (shouldFetchSchoolDataFromLocalForage === true) {
       const data = await localForage.getItem(IDBKEY);
-      console.log({ data });
       if (data?.length <= 1) {
         setGraphData([]);
         setIsLoading(false);
         return;
       } else {
-        console.log({ data });
         setGraphData(data);
         setIsLoading(false);
-        setShouldFetchSchoolDataFromDatabase(false);
+        setShouldFetchSchoolDataFromLocalForage(false);
         return;
       }
     }
@@ -84,7 +80,7 @@ const App = () => {
         }
       }
       setIsLoading(false);
-      setShouldFetchSchoolDataFromLocalForage(false);
+      setShouldFetchSchoolDataFromDatabase(false);
       return;
     }
   }, [
@@ -197,45 +193,38 @@ const App = () => {
           <button
             className="button generate-graph-button"
             disabled={isLoading}
-            onClick={handleGenerateGraphButtonClick}
+            onClick={async () => {
+              if (race && gender && disability) {
+                setGraphTitle(
+                  `${race.value} ${gender.value} ${disability.value} ${comparison}`,
+                );
+              }
+              await fetchSchools();
+            }}
           >
             Generate Graph
           </button>
         </div>
       </div>
       <div className="content-container">
-        <div className="graph-container">
-          {isLoading ? (
-            <Grid />
-          ) : graphData?.length > graphFloor ? (
-            <Histogram
-              data={graphData}
-              title={graphTitle}
-              race={race}
-              gender={gender}
-              disability={disability}
-              comparison={comparison}
-              selectedSchool={selectedSchool}
-            />
-          ) : (
-            <div style={{ flexDirection: 'column' }}>
-              {race &&
-              gender &&
-              disability &&
-              graphData?.length < graphFloor &&
-              graphTitle ===
-                `${race.value} ${gender.value} ${disability.value} ${comparison}` ? (
-                <div>
-                  <p>
-                    Sample size of {graphData.length} is not large enough to
-                    generate meaningful data for this subgroup.
-                  </p>
-                  <p>Please try another.</p>
-                </div>
-              ) : null}
-            </div>
-          )}
-        </div>
+        <GraphKey
+          isLoadingƒ={isLoading}
+          race={race}
+          gender={gender}
+          disability={disability}
+          graphTitle={graphTitle}
+        />
+        <Graph
+          isLoading={isLoading}
+          graphData={graphData}
+          graphFloor={graphFloor}
+          graphTitle={graphTitle}
+          gender={gender}
+          race={race}
+          disability={disability}
+          comparison={comparison}
+          selectedSchool={selectedSchool}
+        />
         <div className="stats-container">
           {isLoading ? (
             <Ellipsis />
@@ -245,9 +234,7 @@ const App = () => {
         </div>
       </div>
       <WhatNow />
-      <div className="footer-container">
-        <Footer />
-      </div>
+      <Footer />
     </StyledApp>
   );
 };

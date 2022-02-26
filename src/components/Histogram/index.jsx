@@ -47,22 +47,6 @@ const Histogram = ({
             : selectedSchool.SCHOOL_NAME
         } does not have enough students in the subgroup to generate meaningful data.`}</p>
       ) : null}
-      {race &&
-      gender &&
-      disability &&
-      title &&
-      title ===
-        `${race.value} ${gender.value} ${disability.value} ${comparison}` ? (
-        <p style={{ fontFamily: `'Open Sans', sans-serif`, fontSize: 11 }}>{`${
-          race.label
-        } ${gender.label}s ${
-          disability.value === 'TOTAL'
-            ? 'Within Total Special Education Population'
-            : ' with ' + disability.label
-        } Compared To ${
-          comparison === 'pop' ? 'Total Population' : 'White Population'
-        } Risk Ratio`}</p>
-      ) : null}
       <VictoryChart
         containerComponent={
           <VictoryContainer

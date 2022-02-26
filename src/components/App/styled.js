@@ -26,12 +26,8 @@ const StyledApp = styled.div`
     padding-top: 20px;
   }
 
-  .controls-container {
-    padding-top: 20px;
-  }
-
   .content-container {
-    padding-top: 20px;
+    display: flex;
   }
 
   .legend-container {

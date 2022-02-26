@@ -28,6 +28,11 @@ const StyledControls = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
+  summary {
+    margin-top: 6px;
+    margin-bottom: 2px;
+    font-weight: 700;
+  }
   summary:hover {
     cursor: pointer;
   }

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const StyledStats = styled.div`
-    font-size: 12px;
+  flex-grow: 1;
+  font-size: 12px;
 `;
 
 export default StyledStats;

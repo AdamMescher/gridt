@@ -94,7 +94,7 @@ const Controls = ({
           onChange={(event) => setComparison(event.target.value)}
         >
           <details>
-            <summary className="subtitle">Comparison</summary>
+            <summary>Comparison</summary>
             <div>
               <div className="radio">
                 <input

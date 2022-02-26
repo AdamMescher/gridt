@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 24px;
       margin-top: 20px;
       margin-bottom: 12px;
+      text-decoration: underline;
     }
     .subtitle {
       font-size: 20px;
