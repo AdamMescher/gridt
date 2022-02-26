@@ -1,3 +1,4 @@
+import * as React from 'react';
 import StyledWhatNow from './styled';
 import HyperLink from '../HyperLink';
 
@@ -25,9 +26,10 @@ const WhatNow = () => {
           Munk, T., O'Hara, N., and Sulzberger, L. (2019). Examining
           representation and identification: Over, under, or both?. (Version
           2.0). IDEA Data Center. Rockville, MD: Westat.{' '}
-          <a href="https://ideadata.org/resources/resource/1592/examining-representation-and-identification-over-under-or-both">
-            https://ideadata.org/resources/resource/1592/examining-representation-and-identification-over-under-or-both
-          </a>
+          <HyperLink
+            href="https://ideadata.org/resources/resource/1592/examining-representation-and-identification-over-under-or-both"
+            text="https://ideadata.org/resources/resource/1592/examining-representation-and-identification-over-under-or-both"
+          />
         </p>
         <p className="citation">
           Fergus, E. (2016). Solving disproportionality and achieving equity: A
