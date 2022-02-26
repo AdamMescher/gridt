@@ -55,6 +55,6 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
   );
 };
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 export default DisclosureModal;
