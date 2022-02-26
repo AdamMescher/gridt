@@ -26,7 +26,10 @@ const StyledControls = styled.div`
   .radio-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+  }
+  summary:hover {
+    cursor: pointer;
   }
   .radio {
     align-self: flex-start;
