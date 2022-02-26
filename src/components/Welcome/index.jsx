@@ -1,3 +1,4 @@
+import * as React from 'react';
 import StyledWelcome from './styled';
 import RiskRatioDescription from '../RiskRatioDescription';
 import RiskRatioKey from '../RiskRatioKey';
