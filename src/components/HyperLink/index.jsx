@@ -1,3 +1,4 @@
+import * as React from 'react';
 import StyledHyperLink from './styled';
 
 const HyperLink = (props) => (
