@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useTable } from 'react-table';
 import styled from 'styled-components';
 
