@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Select from 'react-select';
 import StyledControls from './styled.js';
 import AsyncSelectInput from '../AsyncSelectInput';
@@ -30,9 +30,7 @@ const Controls = ({
   return (
     <StyledControls>
       <div className="grd-select-container" style={{ paddingRight: '25px' }}>
-        <label htmlFor="gender">
-          Select Gender
-        </label>
+        <label htmlFor="gender">Select Gender</label>
         <Select
           className="select"
           styles={customStyles}
@@ -96,13 +94,25 @@ const Controls = ({
           className="radio-container"
           onChange={(event) => setComparison(event.target.value)}
         >
-          <label>Comparison</label>
+          <label className="subtitle">Comparison</label>
           <div className="radio">
-            <input type="radio" value="pop" name="comparison" defaultChecked />{' '}
-            Rest of Population
+            <input
+              type="radio"
+              value="pop"
+              name="comparison"
+              id="rest-of-population"
+              defaultChecked
+            />{' '}
+            <label htmlFor="rest-of-population">Rest of Population</label>
           </div>
           <div className="radio">
-            <input type="radio" value="wh" name="comparison" /> White Population
+            <input
+              type="radio"
+              value="wh"
+              name="comparison"
+              id="white-comparison"
+            />{' '}
+            <label htmlFor="white-comparison">White Population</label>
           </div>
         </div>
       </div>

@@ -31,6 +31,10 @@ const StyledControls = styled.div`
   .radio {
     align-self: flex-start;
   }
+  .radio:hover {
+    cursor: pointer;
+  }
+
   @media (max-width: 1280px) {
     padding-top: 15px;
     padding-left: 35px;
