@@ -3,6 +3,25 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     --button-background: #075985;
     --button-background-hover: #0ea5e9;
+    /* Set core root defaults */
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+    /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+    @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
     body {
       font-family: 'Open Sans', sans-serif;
     }
@@ -107,7 +126,7 @@ p, h1, h2, h3, h4, h5, h6 {
 /*
   9. Create a root stacking context
 */
-#root, #__next {
+#root {
   isolation: isolate;
 }
 `;
