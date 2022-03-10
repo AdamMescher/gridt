@@ -28,6 +28,7 @@ const StyledApp = styled.div`
 
   .content-container {
     display: flex;
+    margin-top: 14px;
   }
 
   .legend-container {

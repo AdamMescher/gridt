@@ -12,14 +12,18 @@ const StyledRiskRatioDescription = styled.div`
     margin-right: 100px;
     line-height: 1.5;
   }
+  .outcome,
+  .risk {
+    border-radius: 4px;
+  }
   .outcome {
     background: var(--orange);
     color: var(--dark-orange);
-    padding: 2px 4px 2px 4px;
+    padding: 3px 7px;
   }
   .risk {
     background: #6ee7b7;
-    padding: 2px 4px 2px 4px;
+    padding: 3px 7px;
   }
 `;
 

@@ -5,6 +5,7 @@ import {
   VictoryChart,
   VictoryBar,
   VictoryHistogram,
+  VictoryLabel,
 } from 'victory';
 import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
@@ -25,7 +26,10 @@ const Histogram = ({
   let maxBinSize;
   let bins;
   if (data?.length > 1) {
-    bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+    bins = [
+      0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9,
+      9.5, 10,
+    ];
     raw = data.map((school) => school.x);
     binSizes = generateBins(raw);
     arr = Object.values(binSizes);
@@ -60,18 +64,26 @@ const Histogram = ({
       >
         <VictoryAxis
           dependentAxis
+          label="Frequency"
           style={{
             tickLabels: {
               fontFamily: `'Open Sans', sans-serif`,
               fontSize: 11,
             },
+            axisLabel: {
+              padding: 35,
+            },
           }}
         />
         <VictoryAxis
+          label="Frequency of RRs across National Dataset"
           style={{
             tickLabels: {
               fontFamily: `'Open Sans', sans-serif`,
               fontSize: 12,
+            },
+            axisLabel: {
+              padding: 25,
             },
           }}
         />
@@ -99,11 +111,6 @@ const Histogram = ({
                   `RR_${race.value}_${gender.value}_POP_${disability.value}`
                 ],
                 y: maxBinSize,
-                label: `Risk Ratio: ${
-                  selectedSchool[
-                    `RR_${race.value}_${gender.value}_POP_${disability.value}`
-                  ]
-                }`,
               },
             ]}
             style={{
@@ -120,8 +127,8 @@ const Histogram = ({
           />
         ) : (
           <p>
-            {`NO RISK RATIO FOR ${race.value} ${gender.value} ${
-              disability.value
+            {`NO RISK RATIO FOR ${race.label} ${gender.label} ${
+              disability.label
             } GENERATED FOR ${
               disability.value === 'TOTAL'
                 ? selectedSchool?.SCH_NAME
@@ -140,21 +147,21 @@ const Histogram = ({
       selectedSchool?.[
         `RR_${race.value}_${gender.value}_POP_${disability.value}`
       ] !== undefined ? (
-        <p>
-          `Risk Ratio for $
-          {disability.value === 'TOTAL'
+        <p>{`The Risk Ratio for ${
+          disability.value === 'TOTAL'
             ? selectedSchool.SCH_NAME
-            : selectedSchool.SCHOOL_NAME}
-          $
-          {comparison === 'pop'
-            ? selectedSchool?.[
-                `RR_${race.value}_${gender.value}_POP_${disability.value}`
-              ]
-            : selectedSchool[
-                `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
-              ]}
-          `
-        </p>
+            : selectedSchool.SCHOOL_NAME
+        } is
+          ${
+            comparison === 'pop'
+              ? selectedSchool?.[
+                  `RR_${race.value}_${gender.value}_POP_${disability.value}`
+                ]
+              : selectedSchool[
+                  `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
+                ]
+          }
+          `}</p>
       ) : null}
     </StyledHistogram>
   );

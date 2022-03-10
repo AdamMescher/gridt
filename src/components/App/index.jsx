@@ -63,21 +63,23 @@ const App = () => {
     }
     if (shouldFetchSchoolDataFromDatabase === true) {
       const { data } = await client.query({ query, variables });
-      if (data?.length <= 1) {
+      const gqlKeys = Object?.keys(data);
+      if (data[gqlKeys[0]]?.length === 0) {
+        await localForage.setItem(IDBKEY, []);
         setGraphData([]);
         setIsLoading(false);
+        setShouldFetchSchoolDataFromDatabase(false);
         return;
-      } else {
-        if (data) {
-          const dataTypeKey = Object.keys(data)[0];
-          const key = Object.keys(data[dataTypeKey][0])[0];
-          const cleanedData = data[dataTypeKey].map((institution) => ({
-            x: institution[key],
-            SCH_NAME: institution.SCH_NAME,
-          }));
-          await localForage.setItem(IDBKEY, cleanedData);
-          setGraphData(cleanedData);
-        }
+      }
+      if (data) {
+        const dataTypeKey = Object?.keys(data)[0];
+        const key = Object?.keys(data[dataTypeKey][0])[0];
+        const cleanedData = data[dataTypeKey]?.map((institution) => ({
+          x: institution[key],
+          SCH_NAME: institution?.SCH_NAME,
+        }));
+        await localForage.setItem(IDBKEY, cleanedData);
+        setGraphData(cleanedData);
       }
       setIsLoading(false);
       setShouldFetchSchoolDataFromDatabase(false);
@@ -93,7 +95,6 @@ const App = () => {
   ]);
   const fetchSchools = async () => {
     if (!race || !gender || !disability) {
-      console.log('NOPE');
       return;
     }
     setIsLoading(true);
@@ -208,11 +209,12 @@ const App = () => {
       </div>
       <div className="content-container">
         <GraphKey
-          isLoadingƒ={isLoading}
+          isLoading={isLoading}
           race={race}
           gender={gender}
           disability={disability}
           graphTitle={graphTitle}
+          graphData={graphData}
         />
         <Graph
           isLoading={isLoading}

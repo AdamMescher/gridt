@@ -13,8 +13,9 @@ const StyledHighlight = styled.span`
   --dark-sky: #0c4a6e;
 
   display: inline-block;
-  padding: 2px 4px 2px 4px;
+  padding: 3px 5px;
   font-size: 18px;
+  border-radius: 4px;
 
   color: ${(props) => {
     switch (props.color) {

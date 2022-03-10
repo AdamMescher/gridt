@@ -19,6 +19,7 @@ const StyledWelcome = styled.section`
   .steps li::before {
     content: counter(steps);
     margin-right: 0.3rem;
+    font-weight: bold;
   }
   .tables {
     display: flex;

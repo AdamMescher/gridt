@@ -13,6 +13,7 @@ const StyledWhatNow = styled.section`
   ol li::before {
     content: counter(steps);
     margin-right: 0.3rem;
+    font-weight: bold;
   }
 `;
 

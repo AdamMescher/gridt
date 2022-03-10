@@ -3,7 +3,14 @@ import { Ripple } from 'react-awesome-spinners';
 import Table from '../Table';
 import StyledGraphKey from './styled';
 
-const GraphKey = ({ isLoading, race, gender, disability, graphTitle }) => {
+const GraphKey = ({
+  isLoading,
+  race,
+  gender,
+  disability,
+  graphTitle,
+  graphData,
+}) => {
   const columns = React.useMemo(
     () => [
       {
@@ -121,7 +128,11 @@ const GraphKey = ({ isLoading, race, gender, disability, graphTitle }) => {
     <StyledGraphKey>
       {isLoading ? (
         <Ripple />
-      ) : race && gender && disability && graphTitle ? (
+      ) : race &&
+        gender &&
+        disability &&
+        graphTitle &&
+        graphData?.length >= 1 ? (
         <Table columns={columns} data={data} />
       ) : null}
     </StyledGraphKey>

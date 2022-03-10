@@ -107,7 +107,6 @@ const AsyncSelectInput = ({
               },
             },
           });
-    console.log({ type, query, variables });
     const { data } = await client.query({
       query,
       variables,

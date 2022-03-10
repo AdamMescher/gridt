@@ -36,7 +36,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 24px;
       margin-top: 20px;
       margin-bottom: 12px;
-      text-decoration: underline;
     }
     .subtitle {
       font-size: 20px;
@@ -50,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
     }
     // BUTTON styling
     .button {
+      font-weight: 700;
       font-size: 16px;
       border-radius: 4px;
       border: none;

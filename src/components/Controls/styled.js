@@ -42,7 +42,9 @@ const StyledControls = styled.div`
   .radio:hover {
     cursor: pointer;
   }
-
+  .radio label {
+    font-weight: 400;
+  }
   @media (max-width: 1280px) {
     padding-top: 15px;
     padding-left: 35px;
