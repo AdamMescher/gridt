@@ -5,7 +5,6 @@ import {
   VictoryChart,
   VictoryBar,
   VictoryHistogram,
-  VictoryLabel,
 } from 'victory';
 import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
