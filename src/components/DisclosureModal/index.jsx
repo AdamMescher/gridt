@@ -22,27 +22,35 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
           with these elements of statistics before accessing the data on these
           graphs.
         </p>
-        <h4 style={{ marginTop: '10px' }}>References</h4>
-        <p className="citation">
-          Bollmer, J., Bethel, J., Garrison-Mogren, R., & Brauen, M. (2007).
-          Using the risk ratio to assess racial/ethnic disproportionality in
-          special education at the school-district level.{' '}
-          <em>The Journal of Special Education</em>, 41(3), 186–198.
-        </p>
-        <p className="citation">
-          Cruz, R. A., & Rodl, J. E. (2018). An integrative synthesis of
-          literature on disproportionality in special education.{' '}
-          <em>The Journal of Special Education</em>, 52(1), 50–63.
-        </p>
-        <p className="citation">
-          Office for Civil Rights. (2020). Civil Rights Data Collection (CRDC)
-          for the 2017-18 School Year [Dataset]. Washington DC: Office for Civil
-          Rights.{' '}
-          <HyperLink
-            href='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
-            text='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
-          />
-        </p>
+        <h4>References</h4>
+        <ul>
+          <li>
+            <p className="cite">
+              Bollmer, J., Bethel, J., Garrison-Mogren, R., & Brauen, M. (2007).
+              Using the risk ratio to assess racial/ethnic disproportionality in
+              special education at the school-district level.{' '}
+              <em>The Journal of Special Education</em>, 41(3), 186–198.
+            </p>
+          </li>
+          <li>
+            <p className="cite">
+              Cruz, R. A., & Rodl, J. E. (2018). An integrative synthesis of
+              literature on disproportionality in special education.{' '}
+              <em>The Journal of Special Education</em>, 52(1), 50–63.
+            </p>
+          </li>
+          <li>
+            <p className="cite">
+              Office for Civil Rights. (2020). Civil Rights Data Collection
+              (CRDC) for the 2017-18 School Year [Dataset]. Washington DC:
+              Office for Civil Rights.{' '}
+              <HyperLink
+                href='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
+                text='"https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html'
+              />
+            </p>
+          </li>
+        </ul>
         <YouTubeEmbed className="video" id={'AEkaA-aZkYc'} />
         <button className="button" onClick={closeDisclosureModal}>
           I Understand

@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 const StyledModalContent = styled.div`
-  height: 100%;
   display: flex;
+  overflow-y: hidden;
+  overflow-x: hidden;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 60%;
-  margin-left: 20%;
   line-height: 1.5;
   h2,
   p,
@@ -15,8 +14,17 @@ const StyledModalContent = styled.div`
     margin-top: 1rem;
     border-radius: 4px;
   }
+  h4 {
+    margin-top: 10px;
+  }
+  ul {
+    list-style-type: none;
+  }
+  li p {
+    padding: 12px;
+  }
   .video {
-    margin-top: '20px';
+    margin-top: 20px;
   }
   .topright {
     position: absolute;
