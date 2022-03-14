@@ -20,6 +20,9 @@ const StyledModalContent = styled.div`
   ul {
     list-style-type: none;
   }
+  li {
+    margin: 0;
+  }
   li p {
     padding: 12px;
   }
