@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -16,7 +16,7 @@ const client = new ApolloClient({
   cache,
 });
 
-if (process.env.USE_MSW_MOCK_API === 'yes') {
+if (process.env.USE_MSW_MOCK_API === true) {
   const { worker } = require('./mocks/browser');
   worker.start();
 }
