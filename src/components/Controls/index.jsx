@@ -1,6 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import Select from 'react-select';
-import StyledControls from './styled.js';
 import AsyncSelectInput from '../AsyncSelectInput';
 import selectOptions from '../../utils/selectOptions.js';
 
@@ -28,9 +28,9 @@ const Controls = ({
   setGraphTitle,
 }) => {
   return (
-    <StyledControls>
-      <div className="grd-select-container" style={{ paddingRight: '25px' }}>
-        <label htmlFor="gender">Select Gender</label>
+    <Wrapper>
+      <GenderRaceDisabilitySelectWrapper>
+        <SelectLabel htmlFor="gender">Select Gender</SelectLabel>
         <Select
           className="select"
           styles={customStyles}
@@ -45,7 +45,7 @@ const Controls = ({
             }
           }}
         />
-        <label htmlFor="race">Select Race</label>
+        <SelectLabel htmlFor="race">Select Race</SelectLabel>
         <Select
           className="select"
           styles={customStyles}
@@ -64,7 +64,7 @@ const Controls = ({
             }
           }}
         />
-        <label htmlFor="disability">Select Disability</label>
+        <SelectLabel htmlFor="disability">Select Disability</SelectLabel>
         <Select
           className="select"
           styles={customStyles}
@@ -79,9 +79,9 @@ const Controls = ({
             }
           }}
         />
-      </div>
-      <div className="school-select-container">
-        <label>Search School By Name</label>
+      </GenderRaceDisabilitySelectWrapper>
+      <SchoolSelectWrapper>
+        <SelectLabel>Search School By Name</SelectLabel>
         <AsyncSelectInput
           styles={customStyles}
           setSelectedSchool={setSelectedSchool}
@@ -89,38 +89,102 @@ const Controls = ({
           race={race}
           disability={disability}
         />
-        <div
-          className="radio-container"
-          onChange={(event) => setComparison(event.target.value)}
-        >
-          <details>
-            <summary>Comparison</summary>
-            <div>
-              <div className="radio">
-                <input
-                  type="radio"
-                  value="pop"
-                  name="comparison"
-                  id="rest-of-population"
-                  defaultChecked
-                />{' '}
-                <label htmlFor="rest-of-population">Rest of Population</label>
-              </div>
-              <div className="radio">
-                <input
-                  type="radio"
-                  value="wh"
-                  name="comparison"
-                  id="white-comparison"
-                />{' '}
-                <label htmlFor="white-comparison">White Population</label>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-    </StyledControls>
+        <RadioWrapper onChange={(event) => setComparison(event.target.value)}>
+          <Details>
+            <Summary>Comparison</Summary>
+            <RadioWrapper>
+              <Radio
+                type="radio"
+                value="pop"
+                name="comparison"
+                id="rest-of-population"
+                defaultChecked
+              />{' '}
+              <RadioLabel htmlFor="rest-of-population">
+                Rest of Population
+              </RadioLabel>
+            </RadioWrapper>
+            <RadioWrapper>
+              <Radio
+                type="radio"
+                value="wh"
+                name="comparison"
+                id="white-comparison"
+              />{' '}
+              <RadioLabel htmlFor="white-comparison">
+                White Population
+              </RadioLabel>
+            </RadioWrapper>
+          </Details>
+        </RadioWrapper>
+      </SchoolSelectWrapper>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  text-align: left;
+  @media (max-width: 1280px) {
+    padding-top: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+`;
+
+const GenderRaceDisabilitySelectWrapper = styled.div`
+  flex-grow: 1;
+  padding-right: 25px;
+`;
+
+const SchoolSelectWrapper = styled.div`
+  flex-grow: 1;
+  padding-left: 25px;
+`;
+
+const DetailsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const RadioGroupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const RadioWrapper = styled.div`
+  align-self: flex-start;
+`;
+
+const SelectLabel = styled.label`
+  font-weight: 700;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  text-align: left;
+  @media (max-width: 1280px) {
+    font-size: 0.8rem;
+  }
+`;
+
+const Details = styled.details``;
+const Summary = styled.summary`
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const Radio = styled.input``;
+const RadioLabel = styled.label`
+  font-weight: 400;
+  @media (max-width: 1280px) {
+    font-size: 0.8rem;
+  }
+`;
 
 export default Controls;
