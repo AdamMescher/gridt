@@ -1,108 +1,61 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    --button-background: #075985;
-    --button-background-hover: #0ea5e9;
-    /* Set core root defaults */
-    html:focus-within {
-      scroll-behavior: smooth;
-    }
-    /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-    @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+--button-background: #075985;
+--button-background-hover: #0ea5e9;
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
   }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
-    // Typography
-    body {
-      font-family: 'Open Sans', sans-serif;
-      color: #1e293b;
-    }
-    h1, h2, h3, h4, h5 {
-      font-family: 'Work Sans', sans-serif;
-      line-height: 1.3;
-    }
-    h1 {
+// Typography
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #1e293b;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.3;
+}
+h1 {
   margin-top: 0;
-  font-size: 3.052rem;
+  font-size: 2.488rem;
 }
 
 h2 {
-  font-size: 2.441rem;
+  font-size: 2.074rem;
 }
 
 h3 {
-  font-size: 1.953rem;
+  font-size: 1.728rem;
 }
 
 h4 {
-  font-size: 1.563rem;
+  font-size: 1.44rem;
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 
-small, {
-  font-size: 0.8rem;
+small {
+  font-size: 0.833rem;
 }
-    .bold {
-      font-weight: 700;
-    }
-    .title {
-      margin-top: 20px;
-      margin-bottom: 12px;
-    }
-    .subtitle {
-      font-size: 20px;
-      margin-top: 10px;
-      margin-bottom: 8px;
-    }
-    .citation {
-      text-indent: -36px;
-      padding-left: 36px;
-      white-space: pre-line;
-    }
-    // BUTTON styling
-    .button {
-      font-weight: 700;
-      font-size: 16px;
-      border-radius: 4px;
-      border: none;
-      padding: 8px 15px;
-      background: #075985;
-      color: #f1f5f9;
-    }
-    .button:hover {
-      cursor: pointer;
-      background: #0ea5e9;
-    }
-    .button:disabled {
-      background: gray;
-      cursor: not-allowed;
-    }
-
-    // utility classes
-    .topright {
-    position: absolute;
-    margin-top: 0;
-    padding: 15px;
-    right: -2px;
-    top: -2px;
-    border-radius: 0;
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-  /*
+/*
   1. Use a more-intuitive box-sizing model.
 */
 *, *::before, *::after {
