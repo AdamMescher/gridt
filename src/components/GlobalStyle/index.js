@@ -22,18 +22,43 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+    // Typography
     body {
       font-family: 'Open Sans', sans-serif;
+      color: #1e293b;
     }
     h1, h2, h3, h4, h5 {
       font-family: 'Work Sans', sans-serif;
+      line-height: 1.3;
     }
-    // Typography
+    h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+}
+
+h2 {
+  font-size: 2.441rem;
+}
+
+h3 {
+  font-size: 1.953rem;
+}
+
+h4 {
+  font-size: 1.563rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+small, {
+  font-size: 0.8rem;
+}
     .bold {
       font-weight: 700;
     }
     .title {
-      font-size: 24px;
       margin-top: 20px;
       margin-bottom: 12px;
     }
