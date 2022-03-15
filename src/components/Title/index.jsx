@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Title = ({ align, color, children, ...rest }) => (
+const Title = ({ align, color, size, children, ...rest }) => (
   <Base color={color} align={align} {...rest}>
     {children}
   </Base>
@@ -40,6 +40,7 @@ const H6 = ({ children, ...rest }) => (
 const Base = styled.span`
   color: ${({ color }) => color || 'inherit'};
   text-align: ${({ align }) => align || 'inherit'};
+  font-size: ${({ size }) => (size ? size : null)};
 `;
 
 const StyledH1 = styled(Base)``;
