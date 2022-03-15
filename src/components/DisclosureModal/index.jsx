@@ -4,6 +4,9 @@ import Modal from 'react-modal';
 import YouTubeEmbed from '../YouTubeEmbed';
 import HyperLink from '../HyperLink';
 import Button from '../Button';
+import Citations from '../Citations';
+import Title from '../Title';
+import MaxWidthWrapper from '../MaxWidthWrapper';
 
 const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
   return (
@@ -11,52 +14,48 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
       parentSelector={() => document.querySelector('#root')}
       isOpen={modalIsOpen}
     >
-      <ModalContentWrapper>
-        <ModalCloseButton onClick={closeDisclosureModal}>X</ModalCloseButton>
-        <ModalTitle>
-          Welcome to Gender and Race Intersectional Disproportionality-Tool
-        </ModalTitle>
-        <ModalCopy>
-          It is important for practitioners to use this data wisely to inform
-          their schools intervention plans. A working knowledge of risk ratios
-          and histograms is required for the use of this website. Please utilize
-          the video and other attached resources below to familiarize yourself
-          with these elements of statistics before accessing the data on these
-          graphs.
-        </ModalCopy>
-        <ModalSubtitle>References</ModalSubtitle>
-        <CitationList>
-          <CitatioListItem>
-            <Citation>
-              Bollmer, J., Bethel, J., Garrison-Mogren, R., & Brauen, M. (2007).
-              Using the risk ratio to assess racial/ethnic disproportionality in
-              special education at the school-district level.{' '}
-              <SourceTitle>The Journal of Special Education</SourceTitle>,
-              41(3), 186–198.
-            </Citation>
-          </CitatioListItem>
-          <CitatioListItem>
-            <Citation>
-              Cruz, R. A., & Rodl, J. E. (2018). An integrative synthesis of
-              literature on disproportionality in special education.{' '}
-              <SourceTitle>The Journal of Special Education</SourceTitle>,
-              52(1), 50–63.
-            </Citation>
-          </CitatioListItem>
-          <CitatioListItem>
-            <Citation>
+      <MaxWidthWrapper>
+        <ModalContentWrapper>
+          <ModalCloseButton onClick={closeDisclosureModal}>X</ModalCloseButton>
+          <Title.H2 align="center">
+            Welcome to Gender and Race Intersectional Disproportionality-Tool
+          </Title.H2>
+          <ModalCopy>
+            It is important for practitioners to use this data wisely to inform
+            their schools intervention plans. A working knowledge of risk ratios
+            and histograms is required for the use of this website. Please
+            utilize the video and other attached resources below to familiarize
+            yourself with these elements of statistics before accessing the data
+            on these graphs.
+          </ModalCopy>
+          <Title.H3>References</Title.H3>
+          <Citations>
+            <Citations.Item>
+              <Citations.Citation>
+                Bollmer, J., Bethel, J., Garrison-Mogren, R., & Brauen, M.
+                (2007). Using the Risk Ratio to Assess Racial/Ethnic
+                Disproportionality in Special Education at the School-District
+                Level. <Italic>The Journal of Special Education</Italic>,{' '}
+                <Italic>41(3)</Italic>, 186–198.
+              </Citations.Citation>
+            </Citations.Item>
+            <Citations.Item>
+              Cruz, R. A., & Rodl, J. E. (2018). An Integrative Synthesis of
+              Literature on Disproportionality in Special Education.{' '}
+              <Italic>The Journal of Special Education</Italic>,{' '}
+              <Italic>52(1)</Italic>, 50–63.
+            </Citations.Item>
+            <Citations.Item>
               Office for Civil Rights. (2020). Civil Rights Data Collection
               (CRDC) for the 2017-18 School Year [Dataset]. Washington DC:
               Office for Civil Rights.{' '}
               <HyperLink href="https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html" />
-            </Citation>
-          </CitatioListItem>
-        </CitationList>
-        <YouTubeEmbed className="video" id={'AEkaA-aZkYc'} />
-        <ButtonWrapper>
+            </Citations.Item>
+          </Citations>
+          <YouTubeEmbed className="video" id={'AEkaA-aZkYc'} />
           <Button onClick={closeDisclosureModal}>I Understand</Button>
-        </ButtonWrapper>
-      </ModalContentWrapper>
+        </ModalContentWrapper>
+      </MaxWidthWrapper>
     </Modal>
   );
 };
@@ -71,18 +70,9 @@ const ModalContentWrapper = styled.div`
   line-height: 1.5;
   padding: 12px;
 `;
-const ModalTitle = styled.h2`
-  text-align: center;
-  @media (max-width: 600px) {
-    font-size: 1.2rem;
-  }
-`;
+
 const ModalCopy = styled.p`
   margin-top: 18px;
-  width: 60%;
-  @media (max-width: 600px) {
-    width: 90%;
-  }
 `;
 const ModalSubtitle = styled.h4`
   margin-top: 12px;
@@ -95,26 +85,7 @@ const ModalCloseButton = styled(Button)`
   border-bottom-left-radius: 4px;
   border-top-right-radius: 4px;
 `;
-const CitationList = styled.ul`
-  list-style-type: none;
-  margin-top: 6px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-inline-start: 0;
-`;
-const CitatioListItem = styled.li`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 8px;
-  width: 60%;
-  @media (max-width: 600px) {
-    width: 90%;
-  }
-`;
-const Citation = styled.cite`
-  font-style: normal;
-`;
-const SourceTitle = styled.span`
+const Italic = styled.span`
   font-style: italic;
 `;
 const ButtonWrapper = styled.div`
