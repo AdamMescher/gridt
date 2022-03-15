@@ -6,7 +6,7 @@ import Title from '../Title';
 const Header = () => (
   <StyledHeader>
     <Meta />
-    <Title.H1 size="2em">
+    <Title.H1>
       Gender and Race Intersectional Disproportionality-Tool
     </Title.H1>
     <Title.H2>(GRID-T)</Title.H2>
