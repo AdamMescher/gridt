@@ -6,11 +6,15 @@ const MaxWidthWrapper = ({ children, ...rest }) => (
 );
 
 const Wrapper = styled.div`
-  max-width: 1200px;
+  width: clamp(320px, 95%, 1280px);
   padding-left: 32px;
   padding-right: 32px;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 768px) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 `;
 
 export default MaxWidthWrapper;
