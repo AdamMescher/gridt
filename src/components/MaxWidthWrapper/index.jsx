@@ -7,8 +7,8 @@ const MaxWidthWrapper = ({ children, ...rest }) => (
 
 const Wrapper = styled.div`
   width: clamp(320px, 95%, 1280px);
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin-left: auto;
   margin-right: auto;
   @media (max-width: 768px) {
