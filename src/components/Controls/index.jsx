@@ -130,16 +130,26 @@ const Wrapper = styled.div`
     padding-left: 35px;
     padding-right: 35px;
   }
+  @media (max-width: 800px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 const GenderRaceDisabilitySelectWrapper = styled.div`
   flex-grow: 1;
   padding-right: 25px;
+  @media (max-width: 800px) {
+    padding-right: 0;
+  }
 `;
 
 const SchoolSelectWrapper = styled.div`
   flex-grow: 1;
   padding-left: 25px;
+  @media (max-width: 800px) {
+    padding-left: 0;
+  }
 `;
 
 const DetailsWrapper = styled.div`
@@ -167,6 +177,9 @@ const SelectLabel = styled.label`
   text-align: left;
   @media (max-width: 1280px) {
     font-size: 0.8rem;
+  }
+  @media (max-width: 800px) {
+    margin-top: 8px;
   }
 `;
 
