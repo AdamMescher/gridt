@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import StyledWelcome from './styled';
 import RiskRatioDescription from '../RiskRatioDescription';
 import RiskRatioKey from '../RiskRatioKey';
 import Highlight from '../Highlight';
@@ -9,15 +8,19 @@ import UnorderedList from '../UnorderedList';
 import Button from '../Button';
 import OrderedList from '../OrderedList';
 import HyperLink from '../HyperLink';
+import Spacer from '../Spacer';
 
 const Welcome = ({ openDisclosureModal }) => {
   return (
-    <StyledWelcome className="welcome-container">
-      <Title.H2>Welcome</Title.H2>
+    <Wrapper>
+      <Title level={2}>Welcome</Title>
+      <Spacer size={12} />
       <Button onClick={openDisclosureModal}>
         Show Welcome to GRID-T Resources
       </Button>
-      <Title.H3>Important Definitions</Title.H3>
+      <Spacer size={10} />
+      <Title level={3}>Important Definitions</Title>
+      <Spacer size={8} />
       <UnorderedList>
         <UnorderedList.Item>
           <Highlight text="Risk Ratio" color="emerald" />: A single number
@@ -39,7 +42,9 @@ const Welcome = ({ openDisclosureModal }) => {
           education.
         </UnorderedList.Item>
       </UnorderedList>
-      <Title.H3>How to use GRID-T</Title.H3>
+      <Spacer size={10} />
+      <Title level={3}>How to use GRID-T</Title>
+      <Spacer size={8} />
       <OrderedList>
         <OrderedList.Item>
           Select Race, Gender, and Disability Category or Total Special
@@ -72,23 +77,24 @@ const Welcome = ({ openDisclosureModal }) => {
           special Education population.
         </OrderedList.Item>
         <OrderedList.Item>
-          Read the{' '}
-          <Italic>
-            <HyperLink href="/#what-now" text={'What Now'} />
-          </Italic>{' '}
-          section to look through resources that will help you to address your
-          local area's patterns of disproportionality.
+          Read the <HyperLink href="/#what-now" text={'What Now?'} /> section to
+          look through resources that will help you to address your local area's
+          patterns of disproportionality.
         </OrderedList.Item>
       </OrderedList>
-      <Title.H3>Interpretation Resources</Title.H3>
+      <Spacer size={10} />
+      <Title level={3}>Interpretation Resources</Title>
+      <Spacer size={8} />
       <div className="tables">
         <RiskRatioDescription />
+        <Spacer size={10} />
         <RiskRatioKey />
       </div>
-    </StyledWelcome>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.section``;
 const Italic = styled.span`
   font-style: italic;
 `;
