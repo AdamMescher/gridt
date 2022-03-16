@@ -5,14 +5,7 @@ const StyledFooter = styled.footer`
   justify-content: center;
   margin-top: 20px;
   padding-bottom: 10px;
-  @media (max-width: 1280px) {
-    padding-top: 15px;
-    font-size: 0.75rem;
-    text-align: center;
-  }
-  @media (max-width: 550px) {
-    font-size: 0.6rem;
-  }
+  text-align: center;
 `;
 
 export default StyledFooter;
