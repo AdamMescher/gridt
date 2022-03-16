@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const Title = ({ level, align, color, size, children, ...rest }) => {
   return (
     <StyledTitle
-      as={`h${level}` || 1}
+      as={level ? `h${level}` : 'h1'}
       level={level}
       color={color}
       align={align}
+      size={size}
       {...rest}
     >
       {children}
