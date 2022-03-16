@@ -4,11 +4,15 @@ import Citations from '../Citations';
 import OrderedList from '../OrderedList';
 import HyperLink from '../HyperLink';
 import Title from '../Title';
+import Spacer from '../Spacer';
 
 const WhatNow = () => {
   return (
-    <Wrapper>
-      <Title.H2 id="what-now">What Now?</Title.H2>
+    <Wrapper style={{ marginTop: '48px' }}>
+      <Title level={2} id="what-now">
+        What Now?
+      </Title>
+      <Spacer size={12} />
       <OrderedList>
         <OrderedList.Item>
           <HyperLink
@@ -23,8 +27,10 @@ const WhatNow = () => {
           subgroups might require different actions.
         </OrderedList.Item>
       </OrderedList>
+      <Spacer size={10} />
       <Resources>
-        <Title.H3>Additional Resources</Title.H3>
+        <Title level={3}>Additional Resources</Title>
+        <Spacer size={8} />
         <ResourcesContent>
           <Citations>
             <Citations.Item>
