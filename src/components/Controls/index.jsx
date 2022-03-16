@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 import AsyncSelectInput from '../AsyncSelectInput';
+import Spacer from '../Spacer';
 import selectOptions from '../../utils/selectOptions.js';
 
 const customStyles = {
@@ -45,6 +46,7 @@ const Controls = ({
             }
           }}
         />
+        <Spacer size={6} />
         <SelectLabel htmlFor="race">Select Race</SelectLabel>
         <Select
           className="select"
@@ -64,7 +66,9 @@ const Controls = ({
             }
           }}
         />
+        <Spacer size={6} />
         <SelectLabel htmlFor="disability">Select Disability</SelectLabel>
+        <Spacer size={2} />
         <Select
           className="select"
           styles={customStyles}
@@ -82,6 +86,7 @@ const Controls = ({
       </GenderRaceDisabilitySelectWrapper>
       <SchoolSelectWrapper>
         <SelectLabel>Search School By Name</SelectLabel>
+        <Spacer size={2} />
         <AsyncSelectInput
           styles={customStyles}
           setSelectedSchool={setSelectedSchool}
@@ -89,6 +94,7 @@ const Controls = ({
           race={race}
           disability={disability}
         />
+        <Spacer size={6} />
         <RadioWrapper onChange={(event) => setComparison(event.target.value)}>
           <Details>
             <Summary>Comparison</Summary>
@@ -104,6 +110,7 @@ const Controls = ({
                 Rest of Population
               </RadioLabel>
             </RadioWrapper>
+            <Spacer size={2} />
             <RadioWrapper>
               <Radio
                 type="radio"
@@ -173,11 +180,7 @@ const SelectLabel = styled.label`
   display: inline-block;
   align-self: flex-start;
   margin-top: 6px;
-  margin-bottom: 2px;
   text-align: left;
-  @media (max-width: 1280px) {
-    font-size: 0.8rem;
-  }
   @media (max-width: 800px) {
     margin-top: 8px;
   }
@@ -185,8 +188,6 @@ const SelectLabel = styled.label`
 
 const Details = styled.details``;
 const Summary = styled.summary`
-  margin-top: 6px;
-  margin-bottom: 2px;
   font-weight: 700;
   &:hover {
     cursor: pointer;
@@ -195,9 +196,6 @@ const Summary = styled.summary`
 const Radio = styled.input``;
 const RadioLabel = styled.label`
   font-weight: 400;
-  @media (max-width: 1280px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export default Controls;
