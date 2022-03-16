@@ -14,8 +14,7 @@ const StyledApp = styled.div`
 
   height: 100vh;
   width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+  overflow-x: hidden;
 
   .header-container {
     display: flex;
@@ -39,15 +38,6 @@ const StyledApp = styled.div`
   .graph-container {
     display: flex;
     justify-content: center;
-  }
-  .generate-graph-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .generate-graph-button {
-    margin-top: 20px;
   }
 
   .stats-container {
