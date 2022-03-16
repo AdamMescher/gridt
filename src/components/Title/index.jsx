@@ -1,11 +1,37 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Title = ({ align, color, size, children, ...rest }) => (
-  <Base color={color} align={align} {...rest}>
-    {children}
-  </Base>
-);
+const Title = ({ level, align, color, size, children, ...rest }) => {
+  let Component;
+  switch (level) {
+    case 1:
+      Component = H1;
+      break;
+    case 2:
+      Component = H2;
+      break;
+    case 3:
+      Component = H3;
+      break;
+    case 4:
+      Component = H4;
+      break;
+    case 5:
+      Component = H5;
+      break;
+    case 6:
+      Component = H6;
+      break;
+    default:
+      Component = H1;
+      break;
+  }
+  return (
+    <Component level={level} color={color} align={align} {...rest}>
+      {children}
+    </Component>
+  );
+};
 const H1 = ({ children, ...rest }) => (
   <StyledH1 as={'h1'} {...rest}>
     {children}
@@ -49,12 +75,5 @@ const StyledH3 = styled(Base)``;
 const StyledH4 = styled(Base)``;
 const StyledH5 = styled(Base)``;
 const StyledH6 = styled(Base)``;
-
-Title.H1 = H1;
-Title.H2 = H2;
-Title.H3 = H3;
-Title.H4 = H4;
-Title.H5 = H5;
-Title.H6 = H6;
 
 export default Title;
