@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 --button-background: #075985;
 --button-background-hover: #0ea5e9;
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -62,10 +63,11 @@ small {
   box-sizing: border-box;
 }
 /*
-  2. Remove default margin
+  2. Remove default margin and add accent color
 */
 * {
   margin: 0;
+  accent-color: #075985;
 }
 /*
   3. Allow percentage-based heights in the application
