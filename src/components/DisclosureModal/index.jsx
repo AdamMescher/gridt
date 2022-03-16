@@ -17,9 +17,9 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
       <MaxWidthWrapper>
         <ModalContentWrapper>
           <ModalCloseButton onClick={closeDisclosureModal}>X</ModalCloseButton>
-          <Title.H2 align="center">
+          <Title level={2} align="center">
             Welcome to Gender and Race Intersectional Disproportionality-Tool
-          </Title.H2>
+          </Title>
           <ModalCopy>
             It is important for practitioners to use this data wisely to inform
             their schools intervention plans. A working knowledge of risk ratios
@@ -28,7 +28,7 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
             yourself with these elements of statistics before accessing the data
             on these graphs.
           </ModalCopy>
-          <Title.H3>References</Title.H3>
+          <Title level={3}>References</Title>
           <Citations>
             <Citations.Item>
               <Citations.Citation>
