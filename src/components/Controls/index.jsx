@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Select from 'react-select';
+import Selection from '../Selection';
 import AsyncSelectInput from '../AsyncSelectInput';
 import Spacer from '../Spacer';
 import selectOptions from '../../utils/selectOptions.js';
@@ -31,13 +31,11 @@ const Controls = ({
   return (
     <Wrapper>
       <GenderRaceDisabilitySelectWrapper>
-        <SelectLabel htmlFor="gender">Select Gender</SelectLabel>
-        <Select
-          className="select"
+        <Selection
           styles={customStyles}
           isClearable
+          label="Select Gender"
           name="gender"
-          inputId="gender"
           options={selectOptions.genderOptions}
           onChange={(option) => {
             setGender(option);
@@ -46,14 +44,12 @@ const Controls = ({
             }
           }}
         />
-        <Spacer size={6} />
-        <SelectLabel htmlFor="race">Select Race</SelectLabel>
-        <Select
-          className="select"
-          styles={customStyles}
+        <Spacer size={4} />
+        <Selection
           isClearable
+          label="Select Race"
           name="race"
-          inputId="race"
+          styles={customStyles}
           options={
             comparison === 'wh'
               ? selectOptions.raceOptionsWhiteComparison
@@ -66,15 +62,12 @@ const Controls = ({
             }
           }}
         />
-        <Spacer size={6} />
-        <SelectLabel htmlFor="disability">Select Disability</SelectLabel>
-        <Spacer size={2} />
-        <Select
-          className="select"
+        <Spacer size={4} />
+        <Selection
           styles={customStyles}
           isClearable
+          label="Select Disability"
           name="disability"
-          inputId="disability"
           options={selectOptions.disabilityOptions}
           onChange={(option) => {
             setDisability(option);
@@ -85,9 +78,9 @@ const Controls = ({
         />
       </GenderRaceDisabilitySelectWrapper>
       <SchoolSelectWrapper>
-        <SelectLabel>Search School By Name</SelectLabel>
-        <Spacer size={2} />
         <AsyncSelectInput
+          name="selectschool"
+          labelText="Select School by Name"
           styles={customStyles}
           setSelectedSchool={setSelectedSchool}
           gender={gender}
@@ -159,31 +152,8 @@ const SchoolSelectWrapper = styled.div`
   }
 `;
 
-const DetailsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const RadioGroupWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 const RadioWrapper = styled.div`
   align-self: flex-start;
-`;
-
-const SelectLabel = styled.label`
-  font-weight: 700;
-  display: inline-block;
-  align-self: flex-start;
-  margin-top: 6px;
-  text-align: left;
-  @media (max-width: 800px) {
-    margin-top: 8px;
-  }
 `;
 
 const Details = styled.details``;
