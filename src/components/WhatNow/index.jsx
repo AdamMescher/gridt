@@ -8,18 +8,17 @@ import Spacer from '../Spacer';
 
 const WhatNow = () => {
   return (
-    <Wrapper style={{ marginTop: '48px' }}>
+    <Wrapper>
       <Title level={2} id="what-now">
         What Now?
       </Title>
       <Spacer size={12} />
       <OrderedList>
         <OrderedList.Item>
-          <HyperLink
-            href="https://docs.google.com/document/d/1KxDbYr8IV30PubICWSEtScYrlYi8dDyKJew3DUAXWDo/edit?usp=sharing"
-            text="Use the linked guide to take preliminary notes on your local
-            patterns of disproportionality and make a plan for moving forward."
-          />
+          <HyperLink href="https://docs.google.com/document/d/1KxDbYr8IV30PubICWSEtScYrlYi8dDyKJew3DUAXWDo/edit?usp=sharing">
+            Use the linked guide to take preliminary notes on your local
+            patterns of disproportionality and make a plan for moving forward.
+          </HyperLink>
         </OrderedList.Item>
         <OrderedList.Item>
           Explore possible interventions for your patterns of
