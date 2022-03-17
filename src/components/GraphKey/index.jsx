@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Ripple } from 'react-awesome-spinners';
+import styled from 'styled-components';
 import Table from '../Table';
-import StyledGraphKey from './styled';
 
 const GraphKey = ({
   isLoading,
@@ -125,7 +125,7 @@ const GraphKey = ({
     [],
   );
   return (
-    <StyledGraphKey>
+    <Wrapper>
       {isLoading ? (
         <Ripple />
       ) : race &&
@@ -135,8 +135,12 @@ const GraphKey = ({
         graphData?.length >= 1 ? (
         <Table columns={columns} data={data} />
       ) : null}
-    </StyledGraphKey>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: fit-content;
+`;
 
 export default GraphKey;
