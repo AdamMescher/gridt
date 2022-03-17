@@ -1,13 +1,23 @@
 import * as React from 'react';
-import StyledFooter from './styled.js';
+import styled from 'styled-components';
 
 const Footer = () => (
-  <StyledFooter>
-    <p>
-      Suggested citation: Ford, A.J. (2021). Gender and Race Intersectional
-      Disproportionality-Tool. grid-t.com
-    </p>
-  </StyledFooter>
+  <Container>
+    <Copy>
+      <Bold>Suggested citation</Bold>: Ford, A.J. (2021). Gender and Race
+      Intersectional Disproportionality-Tool. grid-t.com
+    </Copy>
+  </Container>
 );
+
+const Container = styled.footer`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+const Copy = styled.p``;
+const Bold = styled.span`
+  font-weight: bold;
+`;
 
 export default Footer;
