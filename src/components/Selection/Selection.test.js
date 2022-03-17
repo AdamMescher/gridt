@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import Selection from './index';
 
 describe('Selection', () => {
-  it('renders without crashing', () => {
+  it('renders without errors', () => {
     render(
       <Selection />,
       <Selection name="one" />,

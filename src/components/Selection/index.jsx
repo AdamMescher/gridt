@@ -26,11 +26,7 @@ const SelectLabel = styled.label`
   font-weight: 700;
   display: inline-block;
   align-self: flex-start;
-  margin-top: 6px;
   text-align: left;
-  @media (max-width: 800px) {
-    margin-top: 8px;
-  }
 `;
 
 export default Selection;
