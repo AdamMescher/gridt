@@ -32,7 +32,7 @@ const GraphSizeErrorMessage = ({ graphData }) => (
     </IconWrapper>
     <ErrorMessageCopyWrapper>
       <ErrorMessageCopy>
-        Sample size of {graphData.length} is not large enough to generate
+        Sample size of {graphData?.length} is not large enough to generate
         meaningful data for this subgroup.
       </ErrorMessageCopy>
       <ErrorMessageCopy>Please try another combination.</ErrorMessageCopy>
