@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const HyperLink = (props) => {
+const HyperLink = ({ href, children, ...rest }) => {
   return (
-    <AnchorTag href={props.href} {...props}>
-      {props.text || props.href}
+    <AnchorTag href={href} {...rest}>
+      {children || href}
     </AnchorTag>
   );
 };
