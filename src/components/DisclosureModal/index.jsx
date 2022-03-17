@@ -7,11 +7,14 @@ import Button from '../Button';
 import Citations from '../Citations';
 import Title from '../Title';
 import MaxWidthWrapper from '../MaxWidthWrapper';
+import Spacer from '../Spacer';
 
 const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
   return (
     <Modal
-      parentSelector={() => document.querySelector('#root')}
+      parentSelector={() =>
+        process.env.NODE_ENV !== 'test' ? document.querySelector('#root') : null
+      }
       isOpen={modalIsOpen}
     >
       <MaxWidthWrapper>
@@ -20,6 +23,7 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
           <Title level={2} align="center">
             Welcome to Gender and Race Intersectional Disproportionality-Tool
           </Title>
+          <Spacer size={12} />
           <ModalCopy>
             It is important for practitioners to use this data wisely to inform
             their schools intervention plans. A working knowledge of risk ratios
@@ -29,6 +33,7 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
             on these graphs.
           </ModalCopy>
           <Title level={3}>References</Title>
+          <Spacer size={8} />
           <Citations>
             <Citations.Item>
               <Citations.Citation>
@@ -52,7 +57,9 @@ const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => {
               <HyperLink href="https://www2.ed.gov/about/offices/list/ocr/docs/crdc-2017-18.html" />
             </Citations.Item>
           </Citations>
+          <Spacer size={24} />
           <YouTubeEmbed className="video" id={'AEkaA-aZkYc'} />
+          <Spacer size={18} />
           <Button onClick={closeDisclosureModal}>I Understand</Button>
         </ModalContentWrapper>
       </MaxWidthWrapper>
@@ -74,9 +81,6 @@ const ModalContentWrapper = styled.div`
 const ModalCopy = styled.p`
   margin-top: 18px;
 `;
-const ModalSubtitle = styled.h4`
-  margin-top: 12px;
-`;
 const ModalCloseButton = styled(Button)`
   position: absolute;
   right: 0;
@@ -88,10 +92,9 @@ const ModalCloseButton = styled(Button)`
 const Italic = styled.span`
   font-style: italic;
 `;
-const ButtonWrapper = styled.div`
-  margin-top: 12px;
-`;
 
-if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 export default DisclosureModal;

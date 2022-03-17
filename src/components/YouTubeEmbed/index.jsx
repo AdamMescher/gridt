@@ -1,9 +1,9 @@
-import React from 'react';
-import StyledYouTubeEmbed from './styled.js';
+import * as React from 'react';
+import styled from 'styled-components';
 
 const YoutubeEmbed = ({ id }) => (
-  <StyledYouTubeEmbed className="video-responsive">
-    <iframe
+  <Wrapper className="video-responsive">
+    <IFrame
       width="853"
       height="480"
       src={`https://www.youtube.com/embed/${id}`}
@@ -12,7 +12,17 @@ const YoutubeEmbed = ({ id }) => (
       allowFullScreen
       title="Embedded youtube"
     />
-  </StyledYouTubeEmbed>
+  </Wrapper>
 );
+
+const Wrapper = styled.div`
+  z-index: 5;
+  height: 200px;
+  aspect-ratio: 16/9;
+`;
+const IFrame = styled.iframe`
+  height: 100%;
+  width: 100%;
+`;
 
 export default YoutubeEmbed;
