@@ -1,22 +1,23 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
+import styled from 'styled-components';
 import { useApolloClient, gql } from '@apollo/client';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
-import StyledAsyncSelectInput from './styled';
+import Spacer from '../Spacer';
 import asyncSelectQueries from '../../utils/queries/asyncSelect/asyncSelectQueries';
 
 const SingleValue = (props) => (
   <components.SingleValue {...props}>
-    {props.data.selectedSchoolLabel}
+    {props.data.schoolSelected}
   </components.SingleValue>
 );
 
 const AsyncSelectInput = ({
+  labelText,
+  name,
   setSelectedSchool,
   styles,
-  race,
-  gender,
   disability,
 }) => {
   const client = useApolloClient();
@@ -114,26 +115,22 @@ const AsyncSelectInput = ({
     return data
       ? data[type].map((school) => ({
           label: (
-            <div>
-              <p>{type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}</p>
-              <p style={{ color: 'darkgray', fontSize: '11px' }}>
+            <SchoolOption>
+              <LabelSchoolName>
+                {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
+              </LabelSchoolName>
+              <LabelSchoolStateAndDistrict>
                 District: {school.LEA_NAME}, State: {school.LEA_STATE}
-              </p>
-            </div>
+              </LabelSchoolStateAndDistrict>
+            </SchoolOption>
           ),
-          selectedSchoolLabel: (
-            <p>
+          schoolSelected: (
+            <SchoolSelected>
               {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
-              <span
-                style={{
-                  marginLeft: '5px',
-                  color: 'darkgray',
-                  fontSize: '11px',
-                }}
-              >
+              <SchoolSelectedStateAndDistrict>
                 {school.LEA_NAME} {school.LEA_STATE}
-              </span>
-            </p>
+              </SchoolSelectedStateAndDistrict>
+            </SchoolSelected>
           ),
           value: school.COMBOKEY,
           ...school,
@@ -141,17 +138,45 @@ const AsyncSelectInput = ({
       : [];
   };
   return (
-    <StyledAsyncSelectInput>
+    <Wrapper>
+      {labelText ? (
+        <>
+          <SelectLabel htmlFor={name || labelText}>{labelText}</SelectLabel>
+          <Spacer size={2} />
+        </>
+      ) : null}
       <AsyncSelect
         isClearable
+        name={name}
+        labelText={labelText}
         styles={styles}
         components={{ SingleValue }}
         loadOptions={fetchOptions}
         onInputChange={(inputValue) => setSearchTerm(inputValue)}
         onChange={(option) => setSelectedSchool(option)}
       />
-    </StyledAsyncSelectInput>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div``;
+const SelectLabel = styled.label`
+  font-weight: 700;
+  display: inline-block;
+  align-self: flex-start;
+  text-align: left;
+`;
+const SchoolOption = styled.div``;
+const LabelSchoolName = styled.p``;
+const LabelSchoolStateAndDistrict = styled.p`
+  color: darkgray;
+  font-size: 11px;
+`;
+const SchoolSelected = styled.div``;
+const SchoolSelectedStateAndDistrict = styled.span`
+  margin-left: 5px;
+  color: darkgray;
+  font-size: 11px;
+`;
 
 export default AsyncSelectInput;
