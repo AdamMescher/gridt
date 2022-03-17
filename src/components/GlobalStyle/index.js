@@ -1,14 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
---button-background: #075985;
---button-background-hover: #0ea5e9;
+:root {
+  --button-background: #075985;
+  --button-background-hover: #0ea5e9;
+}
 
-/* Set core root defaults */
+// Set core root defaults
 html:focus-within {
   scroll-behavior: smooth;
 }
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+// Remove all animations, transitions and smooth scroll for people that prefer not to see them
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -56,56 +58,41 @@ h5 {
 small {
   font-size: 0.833rem;
 }
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
+
+// 1. Use a more-intuitive box-sizing model.
 *, *::before, *::after {
   box-sizing: border-box;
 }
-/*
-  2. Remove default margin and add accent color
-*/
+// 2. Remove default margin and add accent color
 * {
   margin: 0;
   accent-color: #075985;
 }
-/*
-  3. Allow percentage-based heights in the application
-*/
+// 3. Allow percentage-based heights in the application
 html, body {
   height: 100%;
 }
-/*
-  Typographic tweaks!
-  4. Add accessible line-height
-  5. Improve text rendering
-*/
+//  Typographic tweaks!
+//  4. Add accessible line-height
+//  5. Improve text rendering
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-/*
-  6. Improve media defaults
-*/
+// 6. Improve media defaults
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
-/*
-  7. Remove built-in form typography styles
-*/
+// 7. Remove built-in form typography styles
 input, button, textarea, select {
   font: inherit;
 }
-/*
-  8. Avoid text overflows
-*/ƒ
+// 8. Avoid text overflows
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
-/*
-  9. Create a root stacking context
-*/
+// 9. Create a root stacking context
 #root {
   isolation: isolate;
 }
