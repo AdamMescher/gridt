@@ -23,21 +23,22 @@ const Welcome = ({ openDisclosureModal }) => {
       <Spacer size={8} />
       <UnorderedList>
         <UnorderedList.Item>
-          <Highlight text="Risk Ratio" color="emerald" />: A single number
+          <Highlight color="emerald">Risk Ratio</Highlight>: A single number
           summary that describes the probability that a subgroup is placed in
           special education compared to the probability that the rest of the
           group is in special education (Cruz & Rodl, 2018).
         </UnorderedList.Item>
         <UnorderedList.Item>
-          <Highlight text="Outcome" color="orange" />: Placement of students in
-          special education.
+          <Highlight color="orange">Outcome</Highlight>: Placement of students
+          in special education.
         </UnorderedList.Item>
         <UnorderedList.Item>
-          <Highlight text="Underrepresentation" color="sky" />: the target group
-          is <Italic>less</Italic> likely to be placed in special education.
+          <Highlight color="sky">Underrepresentation</Highlight>: the target
+          group is <Italic>less</Italic> likely to be placed in special
+          education.
         </UnorderedList.Item>
         <UnorderedList.Item>
-          <Highlight text="Overrepresentation" color="fuchsia" />: the target
+          <Highlight color="fuchsia">Overrepresentation</Highlight>: the target
           group is <Italic>more</Italic> likely to be placed in special
           education.
         </UnorderedList.Item>
@@ -52,16 +53,16 @@ const Welcome = ({ openDisclosureModal }) => {
         </OrderedList.Item>
         <OrderedList.Item>
           A histogram will appear that represents the frequency of each{' '}
-          <Highlight text="Risk Ratio" color="emerald" /> across the United
+          <Highlight color="emerald">Risk Ratio</Highlight> across the United
           States. This gives a national perspective as to whether this subgroup
           is either overrepresented, underrepresented, or proportionate.
         </OrderedList.Item>
         <OrderedList.Item>
           Examine the descriptive statistics table to see n (how many schools
           are involved in the calculation), IQR (interquartile ranges), Mean
-          (average <Highlight text="Risk Ratio" color="emerald" /> for that
+          (average <Highlight color="emerald">Risk Ratio</Highlight> for that
           subgroup intersection), and Mode (most common{' '}
-          <Highlight text="Risk Ratio" color="emerald" /> for that subgroup
+          <Highlight color="emerald">Risk Ratio</Highlight> for that subgroup
           intersection).
         </OrderedList.Item>
         <OrderedList.Item>
@@ -71,13 +72,13 @@ const Welcome = ({ openDisclosureModal }) => {
         <OrderedList.Item>
           If the data is present and there are more than three students
           represented in that subgroup, a color-coded line will appear with your
-          school's <Highlight text="Risk Ratio" color="emerald" />. The color
+          school's <Highlight color="emerald">Risk Ratio</Highlight>. The color
           signifies how underrepresented, overrepresented, or proportionate your
           school's subgroup is in the selected dis/ability category or Total
           special Education population.
         </OrderedList.Item>
         <OrderedList.Item>
-          Read the <HyperLink href="/#what-now" text={'What Now?'} /> section to
+          Read the <HyperLink href="/#what-now">What Now?</HyperLink> section to
           look through resources that will help you to address your local area's
           patterns of disproportionality.
         </OrderedList.Item>
