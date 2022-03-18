@@ -29,96 +29,41 @@ const GraphKey = ({
       {
         description: 'Major Underrepresentation ',
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'cyan',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="cyan" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Underrepresentation',
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'steelblue',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="steelblue" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Proportionate',
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'green',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="green" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Overrepresentation',
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'lightcoral',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="lightcoral" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Major Overrepresentation',
         color: (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: '#8C001A',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="#8C001A" />
+          </CellWrapper>
         ),
       },
     ],
@@ -127,13 +72,13 @@ const GraphKey = ({
   return (
     <Wrapper>
       {isLoading ? (
-        <Ripple />
+        <Ripple className="fucking-shit" />
       ) : race &&
         gender &&
         disability &&
         graphTitle &&
         graphData?.length >= 1 ? (
-        <Table columns={columns} data={data} />
+        <Table data-testid="graphkey-table" columns={columns} data={data} />
       ) : null}
     </Wrapper>
   );
@@ -141,6 +86,18 @@ const GraphKey = ({
 
 const Wrapper = styled.div`
   width: fit-content;
+`;
+
+const CellWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LegendCircle = styled.div`
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  background: ${({ color }) => color};
 `;
 
 export default GraphKey;
