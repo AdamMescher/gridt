@@ -1,24 +1,19 @@
 import * as React from 'react';
+import styled from 'styled-components';
+
 import {
   VictoryAxis,
   VictoryContainer,
   VictoryChart,
   VictoryBar,
   VictoryHistogram,
+  VictoryPortal,
+  VictoryLabel,
 } from 'victory';
-import StyledHistogram from './styled';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
 
-const Histogram = ({
-  data,
-  title,
-  race,
-  gender,
-  disability,
-  comparison,
-  selectedSchool,
-}) => {
+const Histogram = ({ data, race, gender, disability, selectedSchool }) => {
   let raw;
   let binSizes;
   let arr;
@@ -31,139 +26,101 @@ const Histogram = ({
     ];
     raw = data.map((school) => school.x);
     binSizes = generateBins(raw);
+    console.log({ binSizes });
     arr = Object.values(binSizes);
     maxBinSize = Math.max(...arr);
   }
+  const containerStyles = {
+    pointerEvents: 'auto',
+    userSelect: 'auto',
+    touchAction: 'auto',
+  };
+  const xAxisStyles = {
+    tickLabels: {
+      fontFamily: `'Open Sans', sans-serif`,
+      fontSize: 12,
+    },
+    axisLabel: {
+      padding: 35,
+    },
+  };
+  const yAxisStyles = {
+    tickLabels: {
+      fontFamily: `'Open Sans', sans-serif`,
+      fontSize: 11,
+    },
+    axisLabel: {
+      padding: 50,
+    },
+  };
+  const histogramStyles = {
+    data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
+  };
+  const riskRatioBarStyles = {
+    data: {
+      fontFamily: `'Open Sans', sans-serif`,
+      cursor: 'pointer',
+      fill: generateFill(
+        selectedSchool[
+          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
+        ],
+      ),
+    },
+  };
   return (
-    <StyledHistogram>
-      {selectedSchool &&
-      selectedSchool[
-        `${
-          comparison === 'pop'
-            ? `RR_${race.value}_${gender.value}_POP_${disability.value}`
-            : `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
-        }`
-      ] == null ? (
-        <p style={{ marginLeft: '10px' }}>{`${
-          disability.value === 'TOTAL'
-            ? selectedSchool.SCH_NAME
-            : selectedSchool.SCHOOL_NAME
-        } does not have enough students in the subgroup to generate meaningful data.`}</p>
-      ) : null}
+    <Wrapper data-testid="histogram">
       <VictoryChart
-        containerComponent={
-          <VictoryContainer
-            style={{
-              pointerEvents: 'auto',
-              userSelect: 'auto',
-              touchAction: 'auto',
-            }}
-          />
-        }
+        containerComponent={<VictoryContainer style={containerStyles} />}
       >
         <VictoryAxis
           dependentAxis
           label="Frequency"
-          style={{
-            tickLabels: {
-              fontFamily: `'Open Sans', sans-serif`,
-              fontSize: 11,
-            },
-            axisLabel: {
-              padding: 35,
-            },
-          }}
+          axisLabelComponent={
+            <VictoryPortal>
+              <VictoryLabel />
+            </VictoryPortal>
+          }
+          style={yAxisStyles}
         />
         <VictoryAxis
           label="Frequency of RRs across National Dataset"
-          style={{
-            tickLabels: {
-              fontFamily: `'Open Sans', sans-serif`,
-              fontSize: 12,
-            },
-            axisLabel: {
-              padding: 25,
-            },
-          }}
+          axisLabelComponent={
+            <VictoryPortal>
+              <VictoryLabel />
+            </VictoryPortal>
+          }
+          style={xAxisStyles}
         />
-        <VictoryHistogram
-          style={{
-            data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
-          }}
-          bins={bins}
-          data={data}
-        />
+        <VictoryHistogram style={histogramStyles} bins={bins} data={data} />
         {gender &&
         race &&
         disability &&
         selectedSchool &&
         selectedSchool?.[
-          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
         ] !== null &&
         selectedSchool?.[
-          `RR_${race.value}_${gender.value}_POP_${disability.value}`
+          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
         ] !== undefined ? (
           <VictoryBar
             data={[
               {
                 x: selectedSchool[
-                  `RR_${race.value}_${gender.value}_POP_${disability.value}`
+                  `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
                 ],
                 y: maxBinSize,
               },
             ]}
-            style={{
-              data: {
-                fontFamily: `'Open Sans', sans-serif`,
-                cursor: 'pointer',
-                fill: generateFill(
-                  selectedSchool[
-                    `RR_${race.value}_${gender.value}_POP_${disability.value}`
-                  ],
-                ),
-              },
-            }}
+            style={riskRatioBarStyles}
           />
-        ) : (
-          <p>
-            {`NO RISK RATIO FOR ${race.label} ${gender.label} ${
-              disability.label
-            } GENERATED FOR ${
-              disability.value === 'TOTAL'
-                ? selectedSchool?.SCH_NAME
-                : selectedSchool?.SCHOOL_NAME
-            }`}
-          </p>
-        )}
+        ) : null}
       </VictoryChart>
-      {gender &&
-      race &&
-      disability &&
-      selectedSchool &&
-      selectedSchool?.[
-        `RR_${race.value}_${gender.value}_POP_${disability.value}`
-      ] !== null &&
-      selectedSchool?.[
-        `RR_${race.value}_${gender.value}_POP_${disability.value}`
-      ] !== undefined ? (
-        <p>{`The Risk Ratio for ${
-          disability.value === 'TOTAL'
-            ? selectedSchool.SCH_NAME
-            : selectedSchool.SCHOOL_NAME
-        } is
-          ${
-            comparison === 'pop'
-              ? selectedSchool?.[
-                  `RR_${race.value}_${gender.value}_POP_${disability.value}`
-                ]
-              : selectedSchool[
-                  `RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`
-                ]
-          }
-          `}</p>
-      ) : null}
-    </StyledHistogram>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  font-family: 'Open Sans', sans-serif;
+`;
 
 export default Histogram;
