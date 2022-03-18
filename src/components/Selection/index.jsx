@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import Spacer from '../Spacer';
 
-const Selection = ({ name, label, options, onChange }) => (
+const Selection = ({ name, label, options, onChange, styles }) => (
   <Wrapper>
     {label ? (
       <>
@@ -12,6 +12,7 @@ const Selection = ({ name, label, options, onChange }) => (
       </>
     ) : null}
     <Select
+      styles={styles}
       name={name}
       inputId={name}
       options={options}
