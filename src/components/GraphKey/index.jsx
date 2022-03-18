@@ -1,16 +1,9 @@
 import * as React from 'react';
-import { Ripple } from 'react-awesome-spinners';
 import styled from 'styled-components';
+import { Ripple } from 'react-awesome-spinners';
 import Table from '../Table';
 
-const GraphKey = ({
-  isLoading,
-  race,
-  gender,
-  disability,
-  graphTitle,
-  graphData,
-}) => {
+const GraphKey = ({ isLoading, visible }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -72,13 +65,11 @@ const GraphKey = ({
   return (
     <Wrapper>
       {isLoading ? (
-        <Ripple className="fucking-shit" />
-      ) : race &&
-        gender &&
-        disability &&
-        graphTitle &&
-        graphData?.length >= 1 ? (
-        <Table data-testid="graphkey-table" columns={columns} data={data} />
+        <div data-testid="graphkey-loading">
+          <Ripple />
+        </div>
+      ) : visible ? (
+        <Table columns={columns} data={data} />
       ) : null}
     </Wrapper>
   );
