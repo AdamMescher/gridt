@@ -5,6 +5,7 @@ import Welcome from './index';
 
 describe('Welcome Component', () => {
   it('should render without errors', () => {
-    render(<Welcome />);
+    const component = render(<Welcome />);
+    expect(component.queryByText('Welcome')).toBeInTheDocument();
   });
 });
