@@ -20,6 +20,7 @@ const AsyncSelectInput = ({
   styles,
   disability,
 }) => {
+  console.log({ asyncSelectQueries });
   const client = useApolloClient();
   const [searchTerm, setSearchTerm] = React.useState('');
   const fetchOptions = async () => {
@@ -85,7 +86,9 @@ const AsyncSelectInput = ({
       default:
         type = 'schools';
         query = asyncSelectQueries.SCHOOLS_BY_NAME_ASNYCSELECT;
+        break;
     }
+    console.log('QQ: ', query);
     type === 'schools'
       ? (variables = {
           limit: 10,
@@ -97,17 +100,16 @@ const AsyncSelectInput = ({
             },
           },
         })
-      : (variables = variables =
-          {
-            limit: 10,
-            filter: {
-              _operators: {
-                SCHOOL_NAME: {
-                  regex: `/${searchTerm}/i`,
-                },
+      : (variables = {
+          limit: 10,
+          filter: {
+            _operators: {
+              SCHOOL_NAME: {
+                regex: `/${searchTerm}/i`,
               },
             },
-          });
+          },
+        });
     const { data } = await client.query({
       query,
       variables,

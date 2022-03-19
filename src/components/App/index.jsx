@@ -2,20 +2,18 @@ import * as React from 'react';
 import { useApolloClient } from '@apollo/client';
 import localForage from 'localforage';
 import ReactGA from 'react-ga4';
-import { Ellipsis } from 'react-awesome-spinners';
 import GlobalStyle from '../GlobalStyle';
 import Meta from '../Meta';
 import Header from '../Header';
 import Footer from '../Footer';
-import Controls from '../Controls';
-import Graph from '../Graph';
-import Stats from '../Stats';
 import DisclosureModal from '../DisclosureModal';
 import Welcome from '../Welcome';
-import GraphKey from '../GraphKey';
 import WhatNow from '../WhatNow';
 import StyledApp from './styled';
 import queries from '../../utils/queries';
+import DataVisualization from '../DataVisualization';
+import MaxWidthWrapper from '../MaxWidthWrapper';
+import Spacer from '../Spacer';
 
 const App = () => {
   const graphFloor = 50;
@@ -42,6 +40,8 @@ const App = () => {
   const closeDisclosureModal = () => setModalIsOpen(false);
   const openDisclosureModal = () => setModalIsOpen(true);
   const client = useApolloClient();
+  console.log({ selectedSchool });
+
   React.useEffect(() => {
     ReactGA.initialize('G-G5RN2PP9CD');
     ReactGA.send('pageview');
@@ -63,6 +63,7 @@ const App = () => {
     }
     if (shouldFetchSchoolDataFromDatabase === true) {
       const { data } = await client.query({ query, variables });
+      console.log({ data });
       const gqlKeys = Object?.keys(data);
       if (data[gqlKeys[0]]?.length === 0) {
         await localForage.setItem(IDBKEY, []);
@@ -167,76 +168,41 @@ const App = () => {
     <StyledApp>
       <GlobalStyle />
       <Meta />
-      <DisclosureModal
-        closeDisclosureModal={closeDisclosureModal}
-        modalIsOpen={modalIsOpen}
-      />
-      <div className="header-container">
+      <MaxWidthWrapper>
+        <DisclosureModal
+          closeDisclosureModal={closeDisclosureModal}
+          modalIsOpen={modalIsOpen}
+        />
+        <Spacer size={16} />
         <Header />
-      </div>
-      <Welcome openDisclosureModal={openDisclosureModal} />
-      <h2 className="title">Local Patterns of Disproportionality</h2>
-      <div className="controls-container">
-        <Controls
+        <Spacer size={16} />
+        <Welcome openDisclosureModal={openDisclosureModal} />
+        <Spacer size={16} />
+        <DataVisualization
           comparison={comparison}
           race={race}
           gender={gender}
           disability={disability}
+          graphData={graphData}
+          graphTitle={graphTitle}
+          isLoading={isLoading}
+          selectedSchool={selectedSchool}
+          graphFloor={graphFloor}
           setRace={setRace}
           setGender={setGender}
           setDisability={setDisability}
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
+          setGraphData={setGraphData}
           setGraphTitle={setGraphTitle}
           fetchSchools={fetchSchools}
         />
-        <div className="generate-graph-button-container">
-          <button
-            className="button generate-graph-button"
-            disabled={isLoading}
-            onClick={async () => {
-              if (race && gender && disability) {
-                setGraphTitle(
-                  `${race.value} ${gender.value} ${disability.value} ${comparison}`,
-                );
-              }
-              await fetchSchools();
-            }}
-          >
-            Generate Graph
-          </button>
-        </div>
-      </div>
-      <div className="content-container">
-        <GraphKey
-          isLoading={isLoading}
-          race={race}
-          gender={gender}
-          disability={disability}
-          graphTitle={graphTitle}
-          graphData={graphData}
-        />
-        <Graph
-          isLoading={isLoading}
-          graphData={graphData}
-          graphFloor={graphFloor}
-          graphTitle={graphTitle}
-          gender={gender}
-          race={race}
-          disability={disability}
-          comparison={comparison}
-          selectedSchool={selectedSchool}
-        />
-        <div className="stats-container">
-          {isLoading ? (
-            <Ellipsis />
-          ) : graphData?.length >= 1 ? (
-            <Stats data={graphData} />
-          ) : null}
-        </div>
-      </div>
-      <WhatNow />
+        <Spacer size={10} />
+        <WhatNow />
+        <Spacer size={10} />
+      </MaxWidthWrapper>
       <Footer />
+      <Spacer size={24} />
     </StyledApp>
   );
 };

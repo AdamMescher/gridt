@@ -2,7 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const UnorderedList = ({ children, ...rest }) => (
-  <StyledList {...rest}>{children}</StyledList>
+  <List data-testid="unordered-list" {...rest}>
+    {children}
+  </List>
 );
 
 const List = ({ children, ...rest }) => (

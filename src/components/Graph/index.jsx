@@ -14,6 +14,7 @@ const Graph = ({
   gender,
   race,
   disability,
+  comparison,
   selectedSchool,
 }) => {
   if (isLoading) {
@@ -32,7 +33,9 @@ const Graph = ({
             race={race}
             gender={gender}
             disability={disability}
+            comparison={comparison}
             selectedSchool={selectedSchool}
+            riskRatioBarVisible={true}
           />
         </Wrapper>
       );
@@ -53,11 +56,9 @@ const Wrapper = styled.div`
   flex-grow: 2;
   display: flex;
   justify-content: center;
-  margin-left: 24px;
   @media (max-width: 1000px) {
     margin: 0;
   }
-  background: blue;
 `;
 const ErrorWrapper = styled.div`
   width: 100%;

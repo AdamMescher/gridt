@@ -1,9 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import * as d3 from 'd3';
+import { Ellipsis } from 'react-awesome-spinners';
 import Table from '../Table';
 
-const Stats = ({ data }) => {
+const Stats = ({ data, isLoading, visible }) => {
   let raw;
   let mean;
   let median;
@@ -109,12 +110,19 @@ const Stats = ({ data }) => {
   );
   return (
     <Wrapper>
-      <Table data={rows} columns={columns} />
+      {isLoading ? (
+        <div data-testid="stats-loading">
+          <Ellipsis />
+        </div>
+      ) : visible ? (
+        <Table data={rows} columns={columns} />
+      ) : null}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  align-self: center;
   flex-grow: 1;
   font-size: 12px;
 `;

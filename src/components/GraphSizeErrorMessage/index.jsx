@@ -2,6 +2,21 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { FiAlertTriangle } from 'react-icons/fi';
 
+const GraphSizeErrorMessage = ({ graphData }) => (
+  <GraphSizeErrorMessageWrapper>
+    <IconWrapper>
+      <FiAlertTriangle size={'2rem'} color="#fbbf24" />
+    </IconWrapper>
+    <ErrorMessageCopyWrapper>
+      <ErrorMessageCopy>
+        Sample size of {graphData?.length} is not large enough to generate
+        meaningful data for this subgroup.
+      </ErrorMessageCopy>
+      <ErrorMessageCopy>Please try another combination.</ErrorMessageCopy>
+    </ErrorMessageCopyWrapper>
+  </GraphSizeErrorMessageWrapper>
+);
+
 const GraphSizeErrorMessageWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -24,20 +39,5 @@ const ErrorMessageCopy = styled.p`
     margin-top: 4px;
   }
 `;
-
-const GraphSizeErrorMessage = ({ graphData }) => (
-  <GraphSizeErrorMessageWrapper>
-    <IconWrapper>
-      <FiAlertTriangle size={'2rem'} color="#fbbf24" />
-    </IconWrapper>
-    <ErrorMessageCopyWrapper>
-      <ErrorMessageCopy>
-        Sample size of {graphData?.length} is not large enough to generate
-        meaningful data for this subgroup.
-      </ErrorMessageCopy>
-      <ErrorMessageCopy>Please try another combination.</ErrorMessageCopy>
-    </ErrorMessageCopyWrapper>
-  </GraphSizeErrorMessageWrapper>
-);
 
 export default GraphSizeErrorMessage;

@@ -1,6 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import Table from '../Table';
-import StyledRiskRatioKey from './styled';
 
 const RiskRatioKey = () => {
   const columns = React.useMemo(
@@ -26,110 +26,70 @@ const RiskRatioKey = () => {
         description: 'Major Underrepresentation ',
         riskRatioRange: <div style={{ textAlign: 'center' }}>≤ 0.3</div>,
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'cyan',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="cyan" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Underrepresentation',
         riskRatioRange: <div style={{ textAlign: 'center' }}>0.31 - 0.6</div>,
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'steelblue',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="steelblue" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Proportionate',
         riskRatioRange: <div style={{ textAlign: 'center' }}>0.61 - 2.0</div>,
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'green',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="green" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Overrepresentation',
         riskRatioRange: <div style={{ textAlign: 'center' }}>2.1 - 3.5</div>,
         color: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: 'lightcoral',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="lightcoral" />
+          </CellWrapper>
         ),
       },
       {
         description: 'Major Overrepresentation',
         riskRatioRange: <div style={{ textAlign: 'center' }}>{'>'} 3.6</div>,
         color: (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div
-              style={{
-                height: '20px',
-                width: '20px',
-                background: '#8C001A',
-                borderRadius: '50px',
-              }}
-            ></div>
-          </div>
+          <CellWrapper>
+            <LegendCircle color="#8C001A" />
+          </CellWrapper>
         ),
       },
     ],
     [],
   );
   return (
-    <StyledRiskRatioKey>
+    <Wrapper>
       <Table columns={columns} data={data} />
-    </StyledRiskRatioKey>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  font-size: 14px;
+`;
+
+const CellWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const LegendCircle = styled.div`
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  background: ${({ color }) => color};
+`;
 
 export default RiskRatioKey;

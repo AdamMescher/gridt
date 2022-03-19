@@ -77,6 +77,8 @@ const GraphKey = ({ isLoading, visible }) => {
 
 const Wrapper = styled.div`
   width: fit-content;
+  font-size: 12px;
+  align-self: center;
 `;
 
 const CellWrapper = styled.div`
