@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import {
+  Bar,
   VictoryAxis,
   VictoryContainer,
   VictoryChart,
@@ -12,8 +13,17 @@ import {
 } from 'victory';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
+import generateSelecteSchoolRiskRatioProperty from '../../utils/generateSelectedSchoolRiskRatioProperty';
 
-const Histogram = ({ data, race, gender, disability, selectedSchool }) => {
+const Histogram = ({
+  data,
+  race,
+  gender,
+  disability,
+  comparison,
+  selectedSchool,
+  riskRatioBarVisible,
+}) => {
   let raw;
   let binSizes;
   let arr;
@@ -26,7 +36,6 @@ const Histogram = ({ data, race, gender, disability, selectedSchool }) => {
     ];
     raw = data.map((school) => school.x);
     binSizes = generateBins(raw);
-    console.log({ binSizes });
     arr = Object.values(binSizes);
     maxBinSize = Math.max(...arr);
   }
@@ -56,17 +65,20 @@ const Histogram = ({ data, race, gender, disability, selectedSchool }) => {
   const histogramStyles = {
     data: { stroke: 'gray', strokeWidth: 1, fill: 'gray' },
   };
-  const riskRatioBarStyles = {
-    data: {
-      fontFamily: `'Open Sans', sans-serif`,
-      cursor: 'pointer',
-      fill: generateFill(
-        selectedSchool[
-          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-        ],
-      ),
-    },
-  };
+  let riskRatioBarStyles;
+  if (selectedSchool) {
+    riskRatioBarStyles = {
+      data: {
+        fontFamily: `'Open Sans', sans-serif`,
+        cursor: 'pointer',
+        fill: generateFill(
+          selectedSchool[
+            `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
+          ],
+        ),
+      },
+    };
+  }
   return (
     <Wrapper data-testid="histogram">
       <VictoryChart
@@ -92,21 +104,20 @@ const Histogram = ({ data, race, gender, disability, selectedSchool }) => {
           style={xAxisStyles}
         />
         <VictoryHistogram style={histogramStyles} bins={bins} data={data} />
-        {gender &&
-        race &&
-        disability &&
-        selectedSchool &&
-        selectedSchool?.[
-          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-        ] !== null &&
-        selectedSchool?.[
-          `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-        ] !== undefined ? (
+        {riskRatioBarVisible ? (
           <VictoryBar
+            dataComponent={
+              <Bar pathComponent={<path data-testid="risk-ratio-bar" />} />
+            }
             data={[
               {
-                x: selectedSchool[
-                  `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
+                x: selectedSchool?.[
+                  generateSelecteSchoolRiskRatioProperty(
+                    race,
+                    gender,
+                    disability,
+                    comparison,
+                  )
                 ],
                 y: maxBinSize,
               },
