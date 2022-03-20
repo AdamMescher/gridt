@@ -42,12 +42,13 @@ const Graph = ({
     }
     if (showError) {
       return (
-        <ErrorWrapper>
+        <ErrorWrapper data-testid="graph-size-error-message-wrapper">
           <Spacer size={12} />
           <GraphSizeErrorMessage graphData={graphData} />
         </ErrorWrapper>
       );
     }
+    return null;
   }
   return null;
 };
