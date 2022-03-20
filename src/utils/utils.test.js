@@ -1,6 +1,8 @@
 import generateFill from './generateFill';
 import generateBins from './generateBins';
 import generateSelectedSchoolRiskRatioProperty from './generateSelectedSchoolRiskRatioProperty';
+import generateIdb from './generateIdb';
+import generateOperators from './generateOperators';
 
 describe('generateFill utility function', () => {
   it('should return a color for a given risk ratio', () => {
@@ -84,5 +86,35 @@ describe('generateBins utility function', () => {
       expect(restOfPopulationComparisonResult).toEqual(expectedPop);
       expect(whiteComparisonResult).toEqual(expectedWh);
     });
+  });
+});
+
+describe('generateIdb utility function', () => {
+  it('should return null if comparison is neither "pop" or "wh"', () => {
+    const comparison = 'test';
+    const gender = { value: 'M', label: 'Male' };
+    const race = { value: 'HI', label: 'Hispanic' };
+    const disability = { value: 'TOTAL', label: 'Total Special Education' };
+    const result = generateIdb(comparison, race, gender, disability);
+    const expected = null;
+    expect(result).toBe(expected);
+  });
+  it('should return expected string when comparison is "pop"', () => {
+    const comparison = 'pop';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'DD', label: 'Developmental Delay' };
+    const result = generateIdb(comparison, race, gender, disability);
+    const expected = 'SCHOOLS_AS_F_DD_QUERY';
+    expect(result).toBe(expected);
+  });
+  it('should return expected string when comparison is "wh"', () => {
+    const comparison = 'wh';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'DD', label: 'Developmental Delay' };
+    const result = generateIdb(comparison, race, gender, disability);
+    const expected = 'SCHOOLS_AS_F_WH_F_DD_QUERY';
+    expect(result).toBe(expected);
   });
 });
