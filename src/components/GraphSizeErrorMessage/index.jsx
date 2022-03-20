@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FiAlertTriangle } from 'react-icons/fi';
 
 const GraphSizeErrorMessage = ({ graphData }) => (
-  <GraphSizeErrorMessageWrapper>
+  <GraphSizeErrorMessageWrapper data-testid="graph-size-error-message">
     <IconWrapper>
       <FiAlertTriangle size={'2rem'} color="#fbbf24" />
     </IconWrapper>
