@@ -2,7 +2,10 @@ import { gql } from '@apollo/client';
 
 const developmentalDelaysAsyncSelectQueries = {
   DEVELOPMENTAL_DELAYS_BY_NAME_ASYNCSELECT: gql`
-    query Query($filter: FilterFindManyDevelopmentaldelayInput, $limit: Int) {
+    query schoolsByNameDD(
+      $filter: FilterFindManyDevelopmentaldelayInput
+      $limit: Int
+    ) {
       developmentaldelays(filter: $filter, limit: $limit) {
         SCHOOL_NAME
         COMBOKEY

@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const visualImpairmentAsyncSelectQueries = {
   VISUAL_IMPAIRMENTS_BY_NAME_ASYNCSELECT: gql`
-    query Query($filter: FilterFindManyVisualimpairmentInput, $limit: Int) {
+    query schoolsByNameVI($filter: FilterFindManyVisualimpairmentInput, $limit: Int) {
       visualimpairments(filter: $filter, limit: $limit) {
         SCHOOL_NAME
         COMBOKEY

@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const otherHealthImpairmentsAsyncSelectQueries = {
   OTHER_HEALTH_IMPAIRMENTS_BY_NAME_ASYNCSELECT: gql`
-    query Query(
+    query schoolsByNameOHI(
       $filter: FilterFindManyOtherhealthimpairmentInput
       $limit: Int
     ) {

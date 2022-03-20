@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const autismByNameAsyncSelectQueries = {
   AUTISMS_BY_NAME_ASYNCSELECT: gql`
-    query Query($filter: FilterFindManyAutismInput, $limit: Int) {
+    query schoolsByNameAUT($filter: FilterFindManyAutismInput, $limit: Int) {
       autisms(filter: $filter, limit: $limit) {
         SCHOOL_NAME
         COMBOKEY

@@ -2,7 +2,10 @@ import { gql } from '@apollo/client';
 
 const emotionalDisturbancesAsyncSelectQueries = {
   EMOTIONAL_DISTURBANCES_BY_NAME_ASYNCSELECT: gql`
-    query Query($filter: FilterFindManyEmotionaldisturbanceInput, $limit: Int) {
+    query schoolsByNameMR(
+      $filter: FilterFindManyEmotionaldisturbanceInput
+      $limit: Int
+    ) {
       emotionaldisturbances(filter: $filter, limit: $limit) {
         SCHOOL_NAME
         COMBOKEY

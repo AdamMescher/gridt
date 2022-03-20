@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const schoolsByNameAsyncSelectQueries = {
   SCHOOLS_BY_NAME_ASNYCSELECT: gql`
-    query Query($filter: FilterFindManySchoolInput, $limit: Int) {
+    query SchoolsByNameTOTAL($filter: FilterFindManySchoolInput, $limit: Int) {
       schools(limit: $limit, filter: $filter) {
         SCH_NAME
         COMBOKEY

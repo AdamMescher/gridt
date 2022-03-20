@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const intellectualDisabilitiesAsyncSelectQueries = {
   INTELLECTUAL_DISABILITIES_BY_NAME_ASYNCSELECT: gql`
-    query Query(
+    query schoolsByNameMR(
       $filter: FilterFindManyIntellectualdisabilityInput
       $limit: Int
     ) {
