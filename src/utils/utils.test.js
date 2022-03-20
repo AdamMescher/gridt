@@ -118,3 +118,87 @@ describe('generateIdb utility function', () => {
     expect(result).toBe(expected);
   });
 });
+
+describe('generateOperators utility function', () => {
+  it('should return null if comparison is not "pop" or "wh"', () => {
+    const comparison = 'test';
+    const result = generateOperators(comparison);
+    const expected = null;
+    expect(result).toBe(expected);
+  });
+  it('should return object with expected risk ratio and school enrollment filter operators if comparison is "pop" and disability value is "TOTAL"', () => {
+    const comparison = 'pop';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'TOTAL', label: 'Total Special Education' };
+    const riskRatioFilterFloor = -1;
+    const enrollmentFilterFloor = 5;
+    const expected = { RR_AS_F_POP: { gte: -1 }, SCH_IDEAENR_AS_F: { gt: 5 } };
+    const result = generateOperators(
+      comparison,
+      race,
+      gender,
+      disability,
+      riskRatioFilterFloor,
+      enrollmentFilterFloor,
+    );
+    expect(result).toStrictEqual(expected);
+  });
+  it('should return object with expected risk ratio and school enrollment filter operators if comparison is "pop" and disability value is not "TOTAL"', () => {
+    const comparison = 'pop';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'DD', label: 'Developmental Delay' };
+    const riskRatioFilterFloor = -1;
+    const enrollmentFilterFloor = 5;
+    const expected = {
+      RR_AS_F_POP_DD: { gte: -1 },
+      SCH_DD_ENR_AS_F: { gt: 5 },
+    };
+    const result = generateOperators(
+      comparison,
+      race,
+      gender,
+      disability,
+      riskRatioFilterFloor,
+      enrollmentFilterFloor,
+    );
+    expect(result).toStrictEqual(expected);
+  });
+  it('should return object with expected risk ratio and school enrollment filter operators if comparison is "wh" and disability value is "TOTAL"', () => {
+    const comparison = 'wh';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'TOTAL', label: 'Total Special Education' };
+    const riskRatioFilterFloor = -1;
+    const enrollmentFilterFloor = 5;
+    const expected = { RR_AS_F_WH_F: { gte: -1 }, SCH_IDEAENR_AS_F: { gt: 5 } };
+    const result = generateOperators(
+      comparison,
+      race,
+      gender,
+      disability,
+      riskRatioFilterFloor,
+      enrollmentFilterFloor,
+    );
+    expect(result).toStrictEqual(expected);
+  });
+  it('should return object with expected risk ratio and school enrollment filter operators if comparison is "wh" and disability value is not "TOTAL"', () => {
+    const comparison = 'wh';
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AS', label: 'Asian' };
+    const disability = { value: 'DD', label: 'Developmental Delay' };
+    const riskRatioFilterFloor = -1;
+    const enrollmentFilterFloor = 5;
+    const expected = { RR_AS_F_WH_F: { gte: -1 }, SCH_IDEAENR_AS_F: { gt: 5 } };
+    const result = generateOperators(
+      comparison,
+      race,
+      gender,
+      disability,
+      riskRatioFilterFloor,
+      enrollmentFilterFloor,
+    );
+    expect(result).toStrictEqual(expected);
+  });
+});
