@@ -2,7 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const OrderedList = ({ children, ...rest }) => (
-  <StyledList {...rest}>{children}</StyledList>
+  <StyledList {...rest} data-testid="ordered-list">
+    {children}
+  </StyledList>
 );
 
 const Item = ({ children, ...rest }) => <StyledItem>{children}</StyledItem>;
