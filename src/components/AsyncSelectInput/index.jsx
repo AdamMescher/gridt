@@ -20,9 +20,8 @@ const AsyncSelectInput = ({
   styles,
   disability,
 }) => {
-  console.log({ asyncSelectQueries });
   const client = useApolloClient();
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [inputValue, setInputValue] = React.useState('');
   const fetchOptions = async () => {
     let query;
     let variables;
@@ -88,14 +87,13 @@ const AsyncSelectInput = ({
         query = asyncSelectQueries.SCHOOLS_BY_NAME_ASNYCSELECT;
         break;
     }
-    console.log('QQ: ', query);
     type === 'schools'
       ? (variables = {
           limit: 10,
           filter: {
             _operators: {
               SCH_NAME: {
-                regex: `/${searchTerm}/i`,
+                regex: `/${inputValue}/i`,
               },
             },
           },
@@ -105,7 +103,7 @@ const AsyncSelectInput = ({
           filter: {
             _operators: {
               SCHOOL_NAME: {
-                regex: `/${searchTerm}/i`,
+                regex: `/${inputValue}/i`,
               },
             },
           },
@@ -114,6 +112,7 @@ const AsyncSelectInput = ({
       query,
       variables,
     });
+    console.log({ data });
     return data
       ? data[type].map((school) => ({
           label: (
@@ -148,13 +147,15 @@ const AsyncSelectInput = ({
         </>
       ) : null}
       <AsyncSelect
+        data-testid="asyncSelect"
         isClearable
         name={name}
         labelText={labelText}
+        inputId={name}
         styles={styles}
         components={{ SingleValue }}
         loadOptions={fetchOptions}
-        onInputChange={(inputValue) => setSearchTerm(inputValue)}
+        onInputChange={(inputValue) => setInputValue(inputValue)}
         onChange={(option) => setSelectedSchool(option)}
       />
     </Wrapper>
