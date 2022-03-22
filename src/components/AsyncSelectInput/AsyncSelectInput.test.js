@@ -168,6 +168,29 @@ describe('AsyncSelectInput Component', () => {
       school: '040973401517',
     });
   });
+  it('should query for multiple disability data if multiple disability option is selected', async () => {
+    const disability = { value: 'MD', label: 'Multiple Disabilities' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'branch' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'BRANCH BROOK SCHOOL');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '341134002244',
+    });
+  });
   it('should query for hearing impairment data if hearing impariment disability option is selected', async () => {
     const disability = { value: 'HI', label: 'Hearing Impairment' };
     const { queryByTestId, queryByLabelText } = render(
@@ -192,6 +215,173 @@ describe('AsyncSelectInput Component', () => {
     );
     expect(queryByTestId('form')).toHaveFormValues({
       school: '062271012924',
+    });
+  });
+  it('should query for intellectual disability data if intellectual disability option is selected', async () => {
+    const disability = { value: 'MR', label: 'Intellectual Disability' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'best' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'BEST EL');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '480783021293',
+    });
+  });
+  it('should query for orthopedic impairment data if orthopedic impairment option is selected', async () => {
+    const disability = { value: 'OI', label: 'Orthopedic Impairment' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'best' },
+    });
+    await selectEvent.select(
+      queryByLabelText('school'),
+      'ALBERT SHANKER SCHOOL FOR VISUAL AND PERFORMING ARTS',
+    );
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '360010202466',
+    });
+  });
+  it('should query for other health impairment data if other health impairment option is selected', async () => {
+    const disability = { value: 'OHI', label: 'Other Health Impairment' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'bench' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'Bench School');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '300387000061',
+    });
+  });
+  it('should query for Specific Learning Disability data if Specific Learning Disability option is selected', async () => {
+    const disability = { value: 'SLD', label: 'Specific Learning Disability' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'albright' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'ALBRIGHT MIDDLE');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '480783005840',
+    });
+  });
+  it('should query for Speech or Language Impairment data if Speech or Language Impairment option is selected', async () => {
+    const disability = { value: 'SLI', label: 'Speech or Language Impairment' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'model' },
+    });
+    await selectEvent.select(
+      queryByLabelText('school'),
+      'CL Scarborough Model Middle School',
+    );
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '010237000954',
+    });
+  });
+  it('should query for Traumatic Brain Injury data if Traumatic Brain Injury option is selected', async () => {
+    const disability = { value: 'TBI', label: 'Traumatic Brain Injury' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'charter' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'ABQ CHARTER ACADEMY');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '350006000893',
+    });
+  });
+  it('should query for Visual Impairment data if Visual Impairment option is selected', async () => {
+    const disability = { value: 'VI', label: 'Visual Impairment' };
+    const { queryByTestId, queryByLabelText } = render(
+      <ApolloProvider client={client}>
+        <form data-testid="form" htmlFor="school">
+          <AsyncSelectInput
+            labelText="school"
+            name="school"
+            disability={disability}
+            setSelectedSchool={setSelectedSchool}
+          />
+        </form>
+      </ApolloProvider>,
+    );
+    expect(queryByTestId('form')).toHaveFormValues({ school: '' });
+    fireEvent.change(queryByLabelText('school'), {
+      target: { value: 'arts' },
+    });
+    await selectEvent.select(queryByLabelText('school'), 'A+ Arts Academy');
+    expect(queryByTestId('form')).toHaveFormValues({
+      school: '390030504842',
     });
   });
 });
