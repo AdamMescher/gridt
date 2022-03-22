@@ -112,30 +112,28 @@ const AsyncSelectInput = ({
       query,
       variables,
     });
-    return data
-      ? data[type].map((school) => ({
-          label: (
-            <SchoolOption>
-              <LabelSchoolName>
-                {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
-              </LabelSchoolName>
-              <LabelSchoolStateAndDistrict>
-                District: {school.LEA_NAME}, State: {school.LEA_STATE}
-              </LabelSchoolStateAndDistrict>
-            </SchoolOption>
-          ),
-          schoolSelected: (
-            <SchoolSelected>
-              {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
-              <SchoolSelectedStateAndDistrict>
-                {school.LEA_NAME} {school.LEA_STATE}
-              </SchoolSelectedStateAndDistrict>
-            </SchoolSelected>
-          ),
-          value: school.COMBOKEY,
-          ...school,
-        }))
-      : [];
+    return data?.[type]?.map((school) => ({
+      label: (
+        <SchoolOption>
+          <LabelSchoolName>
+            {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
+          </LabelSchoolName>
+          <LabelSchoolStateAndDistrict>
+            District: {school.LEA_NAME}, State: {school.LEA_STATE}
+          </LabelSchoolStateAndDistrict>
+        </SchoolOption>
+      ),
+      schoolSelected: (
+        <SchoolSelected>
+          {type === 'schools' ? school.SCH_NAME : school.SCHOOL_NAME}
+          <SchoolSelectedStateAndDistrict>
+            {school.LEA_NAME} {school.LEA_STATE}
+          </SchoolSelectedStateAndDistrict>
+        </SchoolSelected>
+      ),
+      value: school.COMBOKEY,
+      ...school,
+    }));
   };
   return (
     <Wrapper>
