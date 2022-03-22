@@ -13,7 +13,7 @@ import {
 } from 'victory';
 import generateFill from '../../utils/generateFill';
 import generateBins from '../../utils/generateBins';
-import generateSelecteSchoolRiskRatioProperty from '../../utils/generateSelectedSchoolRiskRatioProperty';
+import generateSelectedSchoolRiskRatioProperty from '../../utils/generateSelectedSchoolRiskRatioProperty';
 
 const Histogram = ({
   data,
@@ -72,8 +72,13 @@ const Histogram = ({
         fontFamily: `'Open Sans', sans-serif`,
         cursor: 'pointer',
         fill: generateFill(
-          selectedSchool[
-            `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
+          selectedSchool?.[
+            generateSelectedSchoolRiskRatioProperty(
+              race,
+              gender,
+              disability,
+              comparison,
+            )
           ],
         ),
       },
@@ -112,7 +117,7 @@ const Histogram = ({
             data={[
               {
                 x: selectedSchool?.[
-                  generateSelecteSchoolRiskRatioProperty(
+                  generateSelectedSchoolRiskRatioProperty(
                     race,
                     gender,
                     disability,
