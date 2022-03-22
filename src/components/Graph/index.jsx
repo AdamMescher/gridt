@@ -4,6 +4,7 @@ import { Grid } from 'react-awesome-spinners';
 import Histogram from '../Histogram';
 import GraphSizeErrorMessage from '../GraphSizeErrorMessage';
 import Spacer from '../Spacer';
+import generateSelectedSchoolRiskRatioProperty from '../../utils/generateSelectedSchoolRiskRatioProperty';
 
 const Graph = ({
   isLoading,
@@ -35,7 +36,20 @@ const Graph = ({
             disability={disability}
             comparison={comparison}
             selectedSchool={selectedSchool}
-            riskRatioBarVisible={true}
+            riskRatioBarVisible={
+              race &&
+              gender &&
+              disability &&
+              selectedSchool &&
+              selectedSchool?.[
+                generateSelectedSchoolRiskRatioProperty(
+                  race,
+                  gender,
+                  disability,
+                  comparison,
+                )
+              ]
+            }
           />
         </Wrapper>
       );
