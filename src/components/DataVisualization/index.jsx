@@ -4,6 +4,7 @@ import Controls from '../Controls';
 import Graph from '../Graph';
 import Stats from '../Stats';
 import GraphKey from '../GraphKey';
+import RiskRatioMessage from '../RiskRatioMessage';
 import Button from '../Button';
 import Title from '../Title';
 import Spacer from '../Spacer';
@@ -34,6 +35,17 @@ const DataVisualization = ({
     }
     await fetchSchools();
   };
+  const graphVisible = () =>
+    race && gender && disability && graphTitle && graphData;
+  const tablesVisible = () =>
+    race &&
+    gender &&
+    disability &&
+    graphTitle &&
+    graphData?.length >= graphFloor;
+  const riskRatioInfoMessageVisible = () =>
+    race && gender && disability && selectedSchool !== null;
+
   return (
     <Wrapper>
       <Title level={2}>Local Patterns of Disproportionality</Title>
@@ -61,13 +73,7 @@ const DataVisualization = ({
       <GraphAndTables>
         <GraphKey
           isLoading={isLoading}
-          visible={
-            race &&
-            gender &&
-            disability &&
-            graphTitle &&
-            graphData?.length >= graphFloor
-          }
+          visible={tablesVisible()}
           race={race}
           gender={gender}
           disability={disability}
@@ -77,7 +83,7 @@ const DataVisualization = ({
         />
         <Graph
           isLoading={isLoading}
-          visible={true}
+          visible={graphVisible()}
           showGraph={
             race &&
             gender &&
@@ -104,23 +110,30 @@ const DataVisualization = ({
         <Stats
           data={graphData}
           isLoading={isLoading}
-          visible={
-            race &&
-            gender &&
-            disability &&
-            graphTitle &&
-            graphData?.length >= graphFloor
-          }
+          visible={tablesVisible()}
         />
       </GraphAndTables>
+      <Spacer size={10} />
+      <RiskRatioMessageWrapper>
+        <RiskRatioMessage
+          isLoading={isLoading}
+          visible={riskRatioInfoMessageVisible()}
+          gender={gender}
+          race={race}
+          disability={disability}
+          selectedSchool={selectedSchool}
+          comparison={comparison}
+        />
+      </RiskRatioMessageWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section``;
 const GraphAndTables = styled.div`
+  min-height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
@@ -131,6 +144,10 @@ const GenerateGraphButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const RiskRatioMessageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default DataVisualization;

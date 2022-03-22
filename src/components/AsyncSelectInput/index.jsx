@@ -136,7 +136,10 @@ const AsyncSelectInput = ({
     }));
   };
   return (
-    <Wrapper>
+    <Wrapper
+      htmlFor={name || labelText}
+      data-testid={`${name || labelText}-async-select-form`}
+    >
       {labelText ? (
         <>
           <SelectLabel htmlFor={name || labelText}>{labelText}</SelectLabel>

@@ -108,18 +108,29 @@ const Stats = ({ data, isLoading, visible }) => {
       quartiles.third,
     ],
   );
-  return (
-    <Wrapper>
-      {isLoading ? (
-        <div data-testid="stats-loading">
-          <Ellipsis />
-        </div>
-      ) : visible ? (
+  if (isLoading) {
+    return (
+      <LoadingWrapper data-testid="stats-loading">
+        <Ellipsis />
+      </LoadingWrapper>
+    );
+  }
+  if (visible) {
+    return (
+      <Wrapper>
         <Table data={rows} columns={columns} />
-      ) : null}
-    </Wrapper>
-  );
+      </Wrapper>
+    );
+  }
+  return null;
 };
+
+const LoadingWrapper = styled.div`
+  width: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   align-self: center;

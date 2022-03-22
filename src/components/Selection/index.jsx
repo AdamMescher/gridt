@@ -4,7 +4,7 @@ import Select from 'react-select';
 import Spacer from '../Spacer';
 
 const Selection = ({ name, label, options, onChange, styles }) => (
-  <Wrapper>
+  <Wrapper htmlFor={name || label} data-testid={`${name || label}-select-form`}>
     {label ? (
       <>
         <SelectLabel htmlFor={name || label}>{label}</SelectLabel>
@@ -22,7 +22,7 @@ const Selection = ({ name, label, options, onChange, styles }) => (
   </Wrapper>
 );
 
-const Wrapper = styled.div``;
+const Wrapper = styled.form``;
 const SelectLabel = styled.label`
   font-weight: 700;
   display: inline-block;

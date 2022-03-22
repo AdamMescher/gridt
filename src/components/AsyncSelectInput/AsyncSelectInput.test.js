@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import selectEvent from 'react-select-event';
 import '@testing-library/jest-dom';
 import { ApolloProvider } from '@apollo/client';
-import AsyncSelectInput from './index';
 import { client } from '../../ApolloClient';
+import AsyncSelectInput from './index';
 
 describe('AsyncSelectInput Component', () => {
   const setSelectedSchool = jest.fn((value) => value);

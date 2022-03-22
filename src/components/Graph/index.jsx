@@ -20,9 +20,9 @@ const Graph = ({
 }) => {
   if (isLoading) {
     return (
-      <div data-testid="graph-loading">
+      <LoadingWrapper data-testid="graph-loading">
         <Grid />
-      </div>
+      </LoadingWrapper>
     );
   }
   if (visible) {
@@ -66,7 +66,12 @@ const Graph = ({
   }
   return null;
 };
-
+const LoadingWrapper = styled.div`
+  width: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const Wrapper = styled.div`
   flex-grow: 2;
   display: flex;

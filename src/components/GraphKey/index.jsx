@@ -62,18 +62,29 @@ const GraphKey = ({ isLoading, visible }) => {
     ],
     [],
   );
-  return (
-    <Wrapper>
-      {isLoading ? (
-        <div data-testid="graphkey-loading">
-          <Ripple />
-        </div>
-      ) : visible ? (
+  if (isLoading) {
+    return (
+      <LoadingWrapper data-testid="graphkey-loading">
+        <Ripple />
+      </LoadingWrapper>
+    );
+  }
+  if (visible) {
+    return (
+      <Wrapper>
         <Table columns={columns} data={data} />
-      ) : null}
-    </Wrapper>
-  );
+      </Wrapper>
+    );
+  }
+  return null;
 };
+
+const LoadingWrapper = styled.div`
+  width: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   width: fit-content;

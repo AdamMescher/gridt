@@ -10,10 +10,12 @@ import DisclosureModal from '../DisclosureModal';
 import Welcome from '../Welcome';
 import WhatNow from '../WhatNow';
 import StyledApp from './styled';
-import queries from '../../utils/queries';
 import DataVisualization from '../DataVisualization';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import Spacer from '../Spacer';
+import queries from '../../utils/queries';
+import generateIdb from '../../utils/generateIdb';
+import generateOperators from '../../utils/generateOperators';
 
 const App = () => {
   const graphFloor = 50;
@@ -40,7 +42,6 @@ const App = () => {
   const closeDisclosureModal = () => setModalIsOpen(false);
   const openDisclosureModal = () => setModalIsOpen(true);
   const client = useApolloClient();
-  console.log({ selectedSchool });
 
   React.useEffect(() => {
     ReactGA.initialize('G-G5RN2PP9CD');
@@ -63,7 +64,6 @@ const App = () => {
     }
     if (shouldFetchSchoolDataFromDatabase === true) {
       const { data } = await client.query({ query, variables });
-      console.log({ data });
       const gqlKeys = Object?.keys(data);
       if (data[gqlKeys[0]]?.length === 0) {
         await localForage.setItem(IDBKEY, []);
@@ -105,50 +105,15 @@ const App = () => {
     let _operators;
     let variables;
     let idb;
-    if (comparison === 'pop') {
-      idb = `SCHOOLS_${race.value}_${gender.value}_${disability.value}_QUERY`;
-      if (disability.value === 'TOTAL') {
-        _operators = {
-          [`RR_${race.value}_${gender.value}_POP`]: {
-            gte: riskRatioFilterFloor,
-          },
-          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
-            gt: enrollmentFilterFloor,
-          },
-        };
-      } else {
-        _operators = {
-          [`RR_${race.value}_${gender.value}_POP_${disability.value}`]: {
-            gte: riskRatioFilterFloor,
-          },
-          [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
-            gt: enrollmentFilterFloor,
-          },
-        };
-      }
-    }
-    if (comparison === 'wh') {
-      idb = `SCHOOLS_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}_QUERY`;
-      if (disability.value === 'TOTAL') {
-        _operators = {
-          [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
-            gte: riskRatioFilterFloor,
-          },
-          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
-            gt: enrollmentFilterFloor,
-          },
-        };
-      } else {
-        _operators = {
-          [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
-            gte: riskRatioFilterFloor,
-          },
-          [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
-            gt: enrollmentFilterFloor,
-          },
-        };
-      }
-    }
+    idb = generateIdb(comparison, race, gender, disability);
+    _operators = generateOperators(
+      comparison,
+      race,
+      gender,
+      disability,
+      riskRatioFilterFloor,
+      enrollmentFilterFloor,
+    );
     const query = queries[idb];
     variables = {
       limit,

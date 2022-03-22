@@ -6,7 +6,7 @@ import Spacer from '../Spacer';
 import selectOptions from '../../utils/selectOptions.js';
 
 const customStyles = {
-  option: (styles, state) => ({
+  option: (styles) => ({
     ...styles,
     cursor: 'pointer',
   }),
