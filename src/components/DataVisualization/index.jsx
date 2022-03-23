@@ -35,7 +35,7 @@ const DataVisualization = ({
     }
     await fetchSchools();
   };
-  const graphVisible = () =>
+  const graphContainerVisible = () =>
     race && gender && disability && graphTitle && graphData;
   const tablesVisible = () =>
     race &&
@@ -45,6 +45,18 @@ const DataVisualization = ({
     graphData?.length >= graphFloor;
   const riskRatioInfoMessageVisible = () =>
     race && gender && disability && selectedSchool !== null;
+  const shouldShowGraph = () =>
+    race &&
+    gender &&
+    disability &&
+    graphTitle &&
+    graphData?.length >= graphFloor;
+  const shouldShowGraphErrorMessage = () =>
+    race &&
+    gender &&
+    disability &&
+    graphTitle &&
+    graphData?.length < graphFloor;
 
   return (
     <Wrapper>
@@ -83,21 +95,9 @@ const DataVisualization = ({
         />
         <Graph
           isLoading={isLoading}
-          visible={graphVisible()}
-          showGraph={
-            race &&
-            gender &&
-            disability &&
-            graphTitle &&
-            graphData?.length >= graphFloor
-          }
-          showError={
-            race &&
-            gender &&
-            disability &&
-            graphTitle &&
-            graphData?.length < graphFloor
-          }
+          visible={graphContainerVisible()}
+          showGraph={shouldShowGraph()}
+          showError={shouldShowGraphErrorMessage()}
           graphData={graphData}
           graphFloor={graphFloor}
           graphTitle={graphTitle}
