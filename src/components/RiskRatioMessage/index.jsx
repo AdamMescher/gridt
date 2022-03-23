@@ -53,7 +53,18 @@ const RiskRatioMessage = ({
   }
   if (visible && sufficientDataToGenerateResults()) {
     return (
-      <Wrapper>
+      <Wrapper
+        color={generateFill(
+          selectedSchool?.[
+            generateSelectedSchoolRiskRatioProperty(
+              race,
+              gender,
+              disability,
+              comparison,
+            )
+          ],
+        )}
+      >
         <Icon>
           <FiInfo
             size={'2rem'}
@@ -70,18 +81,7 @@ const RiskRatioMessage = ({
           />
         </Icon>
         <Spacer size={12} axis={'horizontal'} />
-        <RiskRatioInfo
-          color={generateFill(
-            selectedSchool?.[
-              generateSelectedSchoolRiskRatioProperty(
-                race,
-                gender,
-                disability,
-                comparison,
-              )
-            ],
-          )}
-        >
+        <RiskRatioInfo>
           The Risk Ratio for {race?.label} {gender?.label}s in{' '}
           {disability?.label} at{' '}
           <SchoolName>
@@ -113,7 +113,7 @@ const Wrapper = styled.div`
   max-width: 550px;
   border-radius: 4px;
   margin-top: 8px;
-  border: 2px solid;
+  border: 2px solid ${({ color }) => color};
   padding: 8px 18px;
 `;
 
