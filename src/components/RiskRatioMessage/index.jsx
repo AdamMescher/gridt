@@ -14,17 +14,6 @@ const RiskRatioMessage = ({
   selectedSchool,
   comparison,
 }) => {
-  const borderColor = generateFill(
-    selectedSchool?.[
-      generateSelectedSchoolRiskRatioProperty(
-        race,
-        gender,
-        disability,
-        comparison,
-      )
-    ],
-  );
-  console.log({ borderColor });
   const sufficientDataToGenerateResults = () =>
     selectedSchool?.[
       generateSelectedSchoolRiskRatioProperty(
@@ -42,7 +31,6 @@ const RiskRatioMessage = ({
         comparison,
       )
     ] === 0;
-  console.log({ sufficient: sufficientDataToGenerateResults() });
   if (isLoading) return null;
   if (visible && !sufficientDataToGenerateResults()) {
     return (
@@ -95,7 +83,7 @@ const RiskRatioMessage = ({
           )}
         >
           The Risk Ratio for {race?.label} {gender?.label}s in{' '}
-          {disability.label} at{' '}
+          {disability?.label} at{' '}
           <SchoolName>
             {disability?.value === 'TOTAL'
               ? selectedSchool?.SCH_NAME
@@ -118,61 +106,6 @@ const RiskRatioMessage = ({
   }
   return null;
 };
-// return (
-//   <Wrapper
-//     color={generateFill(
-//       comparison === 'pop'
-//         ? selectedSchool?.[
-//             `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-//           ]
-//         : selectedSchool[
-//             `RR_${race?.value}_${gender?.value}_WH_${gender?.value}_${disability?.value}`
-//           ],
-//     )}
-//   >
-//     <Icon>
-//       <FiInfo
-//         size={'2rem'}
-//         color={generateFill(
-//           comparison === 'pop'
-//             ? selectedSchool?.[
-//                 `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-//               ]
-//             : selectedSchool[
-//                 `RR_${race?.value}_${gender?.value}_WH_${gender?.value}_${disability?.value}`
-//               ],
-//         )}
-//       />
-//     </Icon>
-//     {`The Risk Ratio for ${
-//       disability.value === 'TOTAL'
-//         ? selectedSchool.SCH_NAME
-//         : selectedSchool.SCHOOL_NAME
-//     } is
-//               ${
-//                 comparison === 'pop'
-//                   ? selectedSchool?.[
-//                       `RR_${race?.value}_${gender?.value}_POP_${disability?.value}`
-//                     ]
-//                   : selectedSchool[
-//                       `RR_${race?.value}_${gender?.value}_WH_${gender?.value}_${disability?.value}`
-//                     ]
-//               }
-//               `}
-// </Wrapper>
-// );
-
-/*
-          <p>
-            {`NO RISK RATIO FOR ${race?.label} ${gender?.label} ${
-              disability?.label
-            } GENERATED FOR ${
-              disability?.value === 'TOTAL'
-                ? selectedSchool?.SCH_NAME
-                : selectedSchool?.SCHOOL_NAME
-            }`}
-          </p>
-*/
 
 const Wrapper = styled.div`
   display: flex;
