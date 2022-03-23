@@ -18,7 +18,6 @@ const Graph = ({
   comparison,
   selectedSchool,
 }) => {
-  console.log({ graphData });
   if (isLoading) {
     return (
       <LoadingWrapper data-testid="graph-loading">
