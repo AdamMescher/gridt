@@ -16,7 +16,6 @@ const YoutubeEmbed = ({ id }) => (
 );
 
 const Wrapper = styled.div`
-  z-index: 5;
   height: 200px;
   aspect-ratio: 16/9;
 `;
