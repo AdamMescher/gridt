@@ -99,6 +99,10 @@ const App = () => {
     shouldFetchSchoolDataFromLocalForage,
     IDBKEY,
     variables,
+    comparison,
+    disability,
+    gender,
+    race,
   ]);
   const fetchSchools = async () => {
     if (!race || !gender || !disability) {
