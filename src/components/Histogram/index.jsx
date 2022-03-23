@@ -124,7 +124,7 @@ const Histogram = ({
                     comparison,
                   )
                 ],
-                y: maxBinSize || 0,
+                y: maxBinSize,
               },
             ]}
             style={riskRatioBarStyles}
