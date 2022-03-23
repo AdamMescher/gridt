@@ -5,6 +5,9 @@ import Graph from './index';
 
 describe('Graph Component', () => {
   it('should render without errors', () => {
+    render(<Graph showGraph={true} />);
+  });
+  it('should return null if visible is false, showGraph is false, and showError are false', () => {
     render(
       <Graph
         isLoading={false}
@@ -14,58 +17,67 @@ describe('Graph Component', () => {
       />,
     );
   });
+  it('should return null if visible is true but showGraph and showError are false', () => {
+    const { queryByTestId } = render(<Graph visible />);
+    expect(queryByTestId('histogram')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).not.toBeInTheDocument();
+  });
   it('should not render loading, graph, or error message if no props passed', () => {
-    const component = render(<Graph />);
-    expect(component.queryByTestId('histogram')).not.toBeInTheDocument();
-    expect(component.queryByTestId('graph-loading')).not.toBeInTheDocument();
-    expect(
-      component.queryByTestId('graph-size-error-message'),
-    ).not.toBeInTheDocument();
+    const { queryByTestId } = render(<Graph />);
+    expect(queryByTestId('histogram')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).not.toBeInTheDocument();
   });
   it('should render loading animation if isLoading is true', () => {
-    const component = render(<Graph isLoading />);
-    expect(component.queryByTestId('graph-loading')).toBeInTheDocument();
+    const { queryByTestId } = render(<Graph isLoading />);
+    expect(queryByTestId('graph-loading')).toBeInTheDocument();
   });
   it('should render the loading animation only if isLoading is true and visible is true', () => {
-    const component = render(<Graph isLoading visible />);
-    expect(component.queryByTestId('graph-loading')).toBeInTheDocument();
-    expect(component.queryByTestId('histogram')).not.toBeInTheDocument();
-    expect(
-      component.queryByTestId('graph-size-error-message'),
-    ).not.toBeInTheDocument();
+    const { queryByTestId } = render(<Graph isLoading visible />);
+    expect(queryByTestId('graph-loading')).toBeInTheDocument();
+    expect(queryByTestId('histogram')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).not.toBeInTheDocument();
+  });
+  it('should render the error message if visible is true and showError is true', () => {
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const { queryByTestId } = render(
+      <Graph visible showError graphData={graphData} />,
+    );
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).toBeInTheDocument();
   });
   it('should render the histogram if visible is true and showGraph is true', () => {
-    const component = render(<Graph visible showGraph />);
-    expect(component.queryByTestId('histogram')).toBeInTheDocument();
-    expect(component.queryByTestId('graph-loading')).not.toBeInTheDocument();
-    expect(
-      component.queryByTestId('graph-size-error-message'),
-    ).not.toBeInTheDocument();
+    const { queryByTestId } = render(<Graph visible showGraph />);
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).not.toBeInTheDocument();
   });
   it('should render the histogram and not the error message if visible is true, showgraph is true, and showerror is true', () => {
-    const component = render(<Graph visible showGraph showError />);
-    expect(component.queryByTestId('histogram')).toBeInTheDocument();
-    expect(component.queryByTestId('graph-loading')).not.toBeInTheDocument();
-    expect(
-      component.queryByTestId('graph-size-error-message'),
-    ).not.toBeInTheDocument();
+    const { queryByTestId } = render(<Graph visible showGraph showError />);
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-size-error-message')).not.toBeInTheDocument();
   });
-  it('should render the error message if visible is true and showerror is true', () => {
+  it('should render the histogram with the risk ratio bar', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
     const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
     const gender = { value: 'F', label: 'Female' };
     const race = { value: 'AM', label: 'American Indian / Alaskan Native' };
     const disability = { value: 'AUT', label: 'Autism' };
+    const comparison = 'pop';
     const selectedSchool = {
-      SCH_NAME: 'school name',
       RR_AM_F_POP_AUT: 1.068944478,
     };
-    const comparison = 'pop';
-    const component = render(
+    const { queryByTestId } = render(
       <Graph
         visible
-        isLoading={false}
-        showGraph={false}
-        showError={true}
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
         graphData={graphData}
         gender={gender}
         race={race}
@@ -75,17 +87,173 @@ describe('Graph Component', () => {
       />,
     );
     expect(
-      component.queryByTestId('graph-size-error-message-wrapper'),
-    ).toBeInTheDocument();
-    expect(component.queryByTestId('histogram')).not.toBeInTheDocument();
-    expect(component.queryByTestId('graph-loading')).not.toBeInTheDocument();
-  });
-  it('should return null if visible is true but showGraph and showError are false', () => {
-    const component = render(<Graph visible />);
-    expect(component.queryByTestId('histogram')).not.toBeInTheDocument();
-    expect(component.queryByTestId('graph-loading')).not.toBeInTheDocument();
-    expect(
-      component.queryByTestId('graph-size-error-message'),
+      queryByTestId('graph-size-error-message-wrapper'),
     ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+  });
+  it('should render histogram without risk ratio bar if race value is falsy', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const gender = { value: 'F', label: 'Female' };
+    const race = '';
+    const disability = { value: 'AUT', label: 'Autism' };
+    const comparison = 'pop';
+    const selectedSchool = {
+      RR_AM_F_POP_AUT: 1.068944478,
+    };
+    const { queryByTestId } = render(
+      <Graph
+        visible
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
+        graphData={graphData}
+        gender={gender}
+        race={race}
+        disability={disability}
+        selectedSchool={selectedSchool}
+        comparison={comparison}
+      />,
+    );
+    expect(
+      queryByTestId('graph-size-error-message-wrapper'),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+  });
+  it('should render histogram without risk ratio bar if gender value is falsy', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const gender = '';
+    const race = { value: 'AM', label: 'American Indian / Alaskan Native' };
+    const disability = { value: 'AUT', label: 'Autism' };
+    const comparison = 'pop';
+    const selectedSchool = {
+      RR_AM_F_POP_AUT: 1.068944478,
+    };
+    const { queryByTestId } = render(
+      <Graph
+        visible
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
+        graphData={graphData}
+        gender={gender}
+        race={race}
+        disability={disability}
+        selectedSchool={selectedSchool}
+        comparison={comparison}
+      />,
+    );
+    expect(
+      queryByTestId('graph-size-error-message-wrapper'),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+  });
+  it('should render histogram without risk ratio bar if disability value is falsy', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AM', label: 'American Indian / Alaskan Native' };
+    const disability = '';
+    const comparison = 'pop';
+    const selectedSchool = {
+      RR_AM_F_POP_AUT: 1.068944478,
+    };
+    const { queryByTestId } = render(
+      <Graph
+        visible
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
+        graphData={graphData}
+        gender={gender}
+        race={race}
+        disability={disability}
+        selectedSchool={selectedSchool}
+        comparison={comparison}
+      />,
+    );
+    expect(
+      queryByTestId('graph-size-error-message-wrapper'),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+  });
+  it('should render histogram without risk ratio bar if selectedSchool value is falsy', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AM', label: 'American Indian / Alaskan Native' };
+    const disability = { value: 'AUT', label: 'Autism' };
+    const comparison = 'pop';
+    const selectedSchool = null;
+    const { queryByTestId } = render(
+      <Graph
+        visible
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
+        graphData={graphData}
+        gender={gender}
+        race={race}
+        disability={disability}
+        selectedSchool={selectedSchool}
+        comparison={comparison}
+      />,
+    );
+    expect(
+      queryByTestId('graph-size-error-message-wrapper'),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
+  });
+  it('should render histogram without risk ratio bar if risk ratio value is null', () => {
+    const isLoading = false;
+    const showGraph = true;
+    const showError = false;
+    const graphData = [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }];
+    const gender = { value: 'F', label: 'Female' };
+    const race = { value: 'AM', label: 'American Indian / Alaskan Native' };
+    const disability = { value: 'AUT', label: 'Autism' };
+    const comparison = 'pop';
+    const selectedSchool = {
+      RR_AM_F_POP_AUT: null,
+    };
+    const { queryByTestId } = render(
+      <Graph
+        visible
+        isLoading={isLoading}
+        showGraph={showGraph}
+        showError={showError}
+        graphData={graphData}
+        gender={gender}
+        race={race}
+        disability={disability}
+        selectedSchool={selectedSchool}
+        comparison={comparison}
+      />,
+    );
+    expect(
+      queryByTestId('graph-size-error-message-wrapper'),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId('histogram')).toBeInTheDocument();
+    expect(queryByTestId('risk-ratio-bar')).not.toBeInTheDocument();
+    expect(queryByTestId('graph-loading')).not.toBeInTheDocument();
   });
 });

@@ -18,6 +18,28 @@ const Graph = ({
   comparison,
   selectedSchool,
 }) => {
+  const riskRatioBarVisible = () =>
+    (showGraph &&
+      race &&
+      gender &&
+      disability &&
+      selectedSchool &&
+      selectedSchool?.[
+        generateSelectedSchoolRiskRatioProperty(
+          race,
+          gender,
+          disability,
+          comparison,
+        )
+      ]) ||
+    selectedSchool?.[
+      generateSelectedSchoolRiskRatioProperty(
+        race,
+        gender,
+        disability,
+        comparison,
+      )
+    ] === 0;
   if (isLoading) {
     return (
       <LoadingWrapper data-testid="graph-loading">
@@ -36,28 +58,7 @@ const Graph = ({
             disability={disability}
             comparison={comparison}
             selectedSchool={selectedSchool}
-            riskRatioBarVisible={
-              (race &&
-                gender &&
-                disability &&
-                selectedSchool &&
-                selectedSchool?.[
-                  generateSelectedSchoolRiskRatioProperty(
-                    race,
-                    gender,
-                    disability,
-                    comparison,
-                  )
-                ]) ||
-              selectedSchool?.[
-                generateSelectedSchoolRiskRatioProperty(
-                  race,
-                  gender,
-                  disability,
-                  comparison,
-                )
-              ] === 0
-            }
+            riskRatioBarVisible={riskRatioBarVisible()}
           />
         </Wrapper>
       );
