@@ -18,6 +18,7 @@ const Graph = ({
   comparison,
   selectedSchool,
 }) => {
+  console.log({ graphData });
   if (isLoading) {
     return (
       <LoadingWrapper data-testid="graph-loading">
@@ -37,10 +38,18 @@ const Graph = ({
             comparison={comparison}
             selectedSchool={selectedSchool}
             riskRatioBarVisible={
-              race &&
-              gender &&
-              disability &&
-              selectedSchool &&
+              (race &&
+                gender &&
+                disability &&
+                selectedSchool &&
+                selectedSchool?.[
+                  generateSelectedSchoolRiskRatioProperty(
+                    race,
+                    gender,
+                    disability,
+                    comparison,
+                  )
+                ]) ||
               selectedSchool?.[
                 generateSelectedSchoolRiskRatioProperty(
                   race,
@@ -48,7 +57,7 @@ const Graph = ({
                   disability,
                   comparison,
                 )
-              ]
+              ] === 0
             }
           />
         </Wrapper>

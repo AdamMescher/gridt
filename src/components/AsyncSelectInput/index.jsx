@@ -89,7 +89,7 @@ const AsyncSelectInput = ({
     }
     type === 'schools'
       ? (variables = {
-          limit: 10,
+          limit: -1,
           filter: {
             _operators: {
               SCH_NAME: {
@@ -99,7 +99,7 @@ const AsyncSelectInput = ({
           },
         })
       : (variables = {
-          limit: 10,
+          limit: -1,
           filter: {
             _operators: {
               SCHOOL_NAME: {

@@ -16,6 +16,7 @@ import Spacer from '../Spacer';
 import queries from '../../utils/queries';
 import generateIdb from '../../utils/generateIdb';
 import generateOperators from '../../utils/generateOperators';
+import generateSelectedSchoolRiskRatioProperty from '../../utils/generateSelectedSchoolRiskRatioProperty';
 
 const App = () => {
   const graphFloor = 50;
@@ -74,10 +75,15 @@ const App = () => {
       }
       if (data) {
         const dataTypeKey = Object?.keys(data)[0];
-        const key = Object?.keys(data[dataTypeKey][0])[0];
-        const cleanedData = data[dataTypeKey]?.map((institution) => ({
-          x: institution[key],
-          SCH_NAME: institution?.SCH_NAME,
+        const cleanedData = data[dataTypeKey].map((institution) => ({
+          x: institution[
+            generateSelectedSchoolRiskRatioProperty(
+              race,
+              gender,
+              disability,
+              comparison,
+            )
+          ],
         }));
         await localForage.setItem(IDBKEY, cleanedData);
         setGraphData(cleanedData);
