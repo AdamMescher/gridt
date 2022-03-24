@@ -12,6 +12,8 @@ const Selection = ({ name, label, options, onChange, styles }) => (
       </>
     ) : null}
     <Select
+      menuPortalTarge={document.body}
+      menuPosition="fixed"
       styles={styles}
       name={name}
       inputId={name}

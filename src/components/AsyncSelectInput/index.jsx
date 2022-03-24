@@ -21,7 +21,6 @@ const AsyncSelectInput = ({
   disability,
   schoolState,
 }) => {
-  console.log({ schoolState });
   const client = useApolloClient();
   const [inputValue, setInputValue] = React.useState('');
   const fetchOptions = async () => {
