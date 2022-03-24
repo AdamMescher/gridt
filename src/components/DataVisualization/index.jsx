@@ -46,7 +46,12 @@ const DataVisualization = ({
     graphTitle &&
     graphData?.length >= graphFloor;
   const riskRatioInfoMessageVisible = () =>
-    race && gender && disability && selectedSchool !== null;
+    race &&
+    gender &&
+    disability &&
+    selectedSchool !== null &&
+    graphTitle ===
+      `${race.value} ${gender.value} ${disability.value} ${comparison}`;
   const shouldShowGraph = () =>
     race &&
     gender &&
@@ -58,6 +63,8 @@ const DataVisualization = ({
     gender &&
     disability &&
     graphTitle &&
+    graphTitle ===
+      `${race.value} ${gender.value} ${disability.value} ${comparison}` &&
     graphData?.length < graphFloor;
 
   return (

@@ -111,7 +111,10 @@ const Controls = ({
         <Spacer size={12} />
         <RadioWrapper onChange={(event) => setComparison(event.target.value)}>
           <Details>
-            <Summary>Comparison (only available for TOTAL SPECIAL EDUCATION disability option)</Summary>
+            <Summary>
+              Comparison (only available for TOTAL SPECIAL EDUCATION disability
+              option)
+            </Summary>
             <RadioWrapper>
               <Radio
                 type="radio"

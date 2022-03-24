@@ -17,12 +17,15 @@ const Graph = ({
   disability,
   comparison,
   selectedSchool,
+  graphTitle,
 }) => {
   const riskRatioBarVisible = () =>
     (showGraph &&
       race &&
       gender &&
       disability &&
+      graphTitle ===
+        `${race.value} ${gender.value} ${disability.value} ${comparison}` &&
       selectedSchool &&
       selectedSchool?.[
         generateSelectedSchoolRiskRatioProperty(
