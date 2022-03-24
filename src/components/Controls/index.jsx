@@ -29,7 +29,7 @@ const Controls = ({
   setGraphTitle,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="controls-form">
       <GenderRaceDisabilitySelectWrapper>
         <Selection
           styles={customStyles}
@@ -122,7 +122,7 @@ const Controls = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   display: flex;
   text-align: left;
   @media (max-width: 1280px) {

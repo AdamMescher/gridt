@@ -22,7 +22,7 @@ const Selection = ({ name, label, options, onChange, styles }) => (
   </Wrapper>
 );
 
-const Wrapper = styled.form``;
+const Wrapper = styled.div``;
 const SelectLabel = styled.label`
   font-weight: 700;
   display: inline-block;

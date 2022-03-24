@@ -4,6 +4,16 @@ const GlobalStyle = createGlobalStyle`
 :root {
   --button-background: #075985;
   --button-background-hover: #0ea5e9;
+  --fuchsia: #f5d0fe;
+  --dark-fuchsia: #701a75;
+  --emerald: #6ee7b7;
+  --dark-emerald: #064e3b;
+  --sky: #bae6fd;
+  --dark-sky: #0c4a6e;
+  --orange: #fdba74;
+  --dark-orange: #7c2d12;
+  --rose: #fda4af;
+  --dark-rose: #881337;
 }
 
 // Set core root defaults

@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, selectEvent } from '@testing-library/react';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../../ApolloClient';
 import App from './index';
@@ -14,17 +14,17 @@ describe('App Component', () => {
       <div id="root" />,
     );
   });
-  // it('can fetch msw mocked data', async () => {
-  //   const { getByTestId, getByLabelText } = render(
-  //     <ApolloProvider client={client}>
-  //       <App />
-  //     </ApolloProvider>,
-  //   );
-  //   await selectEvent.select(getByLabelText('Select Gender'), 'Female');
-  //   await selectEvent.select(
-  //     getByLabelText('Select Race'),
-  //     'American Indian / Alaskan Native',
-  //   );
-  //   expect(getByTestId('form')).toHaveFormValues({ gender: 'F', race: 'AM' });
-  // });
+  it('can fetch msw mocked data', async () => {
+    const { getByTestId, getByLabelText } = render(
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>,
+    );
+    await selectEvent.select(getByLabelText('Select Gender'), 'Female');
+    await selectEvent.select(
+      getByLabelText('Select Race'),
+      'American Indian / Alaskan Native',
+    );
+    expect(getByTestId('form')).toHaveFormValues({ gender: 'F', race: 'AM' });
+  });
 });
