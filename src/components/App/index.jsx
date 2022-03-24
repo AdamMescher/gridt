@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { useApolloClient } from '@apollo/client';
 import localForage from 'localforage';
 import ReactGA from 'react-ga4';
@@ -9,7 +10,6 @@ import Footer from '../Footer';
 import DisclosureModal from '../DisclosureModal';
 import Welcome from '../Welcome';
 import WhatNow from '../WhatNow';
-import StyledApp from './styled';
 import DataVisualization from '../DataVisualization';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import Spacer from '../Spacer';
@@ -140,7 +140,7 @@ const App = () => {
     }
   };
   return (
-    <StyledApp>
+    <Wrapper>
       <GlobalStyle />
       <Meta />
       <MaxWidthWrapper>
@@ -178,8 +178,18 @@ const App = () => {
       </MaxWidthWrapper>
       <Footer />
       <Spacer size={24} />
-    </StyledApp>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  @media (max-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 export default App;
