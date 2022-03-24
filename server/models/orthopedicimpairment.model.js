@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { composeMongoose } = require('graphql-compose-mongoose');
 
 const orthopedicimpairmentSchema = new mongoose.Schema({
-  LEA_STATE: { type: String },
+  LEA_STATE: { type: String, index: true },
   LEA_STATE_NAME: { type: String },
   NCESLEAID: { type: String },
   LEA_NAME: { type: String },

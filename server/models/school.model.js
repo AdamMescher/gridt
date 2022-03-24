@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { composeMongoose } = require('graphql-compose-mongoose');
 
 const schoolSchema = new mongoose.Schema({
-  LEA_STATE: { type: String },
+  LEA_STATE: { type: String, index: true },
   LEA_STATE_NAME: { type: String },
   LEAID: { type: String, text: true, index: true },
   LEA_NAME: { type: String },
