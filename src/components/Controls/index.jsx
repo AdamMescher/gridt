@@ -144,6 +144,7 @@ const Controls = ({
 };
 
 const Wrapper = styled.form`
+  z-index: 1;
   display: flex;
   text-align: left;
   @media (max-width: 1280px) {

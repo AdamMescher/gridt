@@ -136,6 +136,7 @@ const Histogram = ({
 };
 
 const Wrapper = styled.div`
+  z-index: -1;
   font-family: 'Open Sans', sans-serif;
 `;
 
