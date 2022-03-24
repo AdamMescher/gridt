@@ -21,9 +21,11 @@ const Controls = ({
   gender,
   race,
   disability,
+  schoolState,
   setRace,
   setGender,
   setDisability,
+  setSchoolState,
   setSelectedSchool,
   setComparison,
   setGraphTitle,
@@ -82,12 +84,31 @@ const Controls = ({
           name="selectschool"
           labelText="Select School by Name"
           styles={customStyles}
+          schoolState={schoolState}
           setSelectedSchool={setSelectedSchool}
           gender={gender}
           race={race}
           disability={disability}
         />
         <Spacer size={6} />
+        <div>
+          <Details>
+            <Summary>Advanced School Search Filter</Summary>
+            <Selection
+              label="Filter Schools by State"
+              name="state"
+              onChange={(option) => {
+                setSchoolState(option);
+                if (!option) {
+                  setGraphTitle(null);
+                }
+              }}
+              options={selectOptions.stateOptions}
+              styles={customStyles}
+            />
+          </Details>
+        </div>
+        <Spacer size={12} />
         <RadioWrapper onChange={(event) => setComparison(event.target.value)}>
           <Details>
             <Summary>Comparison</Summary>

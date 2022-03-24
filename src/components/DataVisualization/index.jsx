@@ -14,9 +14,11 @@ const DataVisualization = ({
   race,
   gender,
   disability,
+  schoolState,
   setRace,
   setGender,
   setDisability,
+  setSchoolState,
   setSelectedSchool,
   setComparison,
   setGraphTitle,
@@ -67,9 +69,11 @@ const DataVisualization = ({
         race={race}
         gender={gender}
         disability={disability}
+        schoolState={schoolState}
         setRace={setRace}
         setGender={setGender}
         setDisability={setDisability}
+        setSchoolState={setSchoolState}
         setSelectedSchool={setSelectedSchool}
         setComparison={setComparison}
         setGraphTitle={setGraphTitle}

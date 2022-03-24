@@ -25,6 +25,7 @@ const App = () => {
   const [disability, setDisability] = React.useState('');
   const [selectedSchool, setSelectedSchool] = React.useState(null);
   const [comparison, setComparison] = React.useState('pop');
+  const [schoolState, setSchoolState] = React.useState('');
   const [graphData, setGraphData] = React.useState([]);
   const [graphTitle, setGraphTitle] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -158,6 +159,7 @@ const App = () => {
           race={race}
           gender={gender}
           disability={disability}
+          schoolState={schoolState}
           graphData={graphData}
           graphTitle={graphTitle}
           isLoading={isLoading}
@@ -168,6 +170,7 @@ const App = () => {
           setDisability={setDisability}
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
+          setSchoolState={setSchoolState}
           setGraphData={setGraphData}
           setGraphTitle={setGraphTitle}
           fetchSchools={fetchSchools}
