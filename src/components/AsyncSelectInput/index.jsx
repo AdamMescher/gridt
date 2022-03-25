@@ -140,6 +140,7 @@ const AsyncSelectInput = ({
         </>
       ) : null}
       <AsyncSelect
+        className="something"
         data-testid="asyncSelect"
         isClearable
         name={name}

@@ -5,7 +5,6 @@ import selectEvent from 'react-select-event';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../../ApolloClient';
 import Controls from './index';
-import selectOptions from '../../utils/selectOptions';
 
 describe('Controls Component', () => {
   const setRace = jest.fn((value) => value);
@@ -14,6 +13,7 @@ describe('Controls Component', () => {
   const setSelectedSchool = jest.fn((value) => value);
   const setComparison = jest.fn((value) => value);
   const setGraphTitle = jest.fn((value) => value);
+  const setSchoolState = jest.fn((value) => value);
   it('should render without errors', () => {
     render(
       <ApolloProvider client={client}>
@@ -24,9 +24,22 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
+    expect(screen.queryByTestId('controls-form')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Select Gender')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Select Race')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Select Disability')).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText('Select School by Name'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText('Filter Schools by State'),
+    ).toBeInTheDocument();
+    expect(screen.queryByLabelText('Rest of Population')).toBeInTheDocument();
+    expect(screen.queryByLabelText('White Population')).toBeInTheDocument();
   });
   it('should be able to select a gender from expected options', async () => {
     const { queryByLabelText, queryByTestId } = render(
@@ -38,6 +51,7 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
@@ -59,6 +73,7 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
@@ -71,7 +86,7 @@ describe('Controls Component', () => {
     expect(queryByTestId('controls-form')).toHaveFormValues({ race: '' });
   });
   it('should be able to select a race from expected options when comparison', async () => {
-    const { queryByLabelText, queryByTestId } = render(
+    render(
       <ApolloProvider client={client}>
         <Controls
           setRace={setRace}
@@ -80,16 +95,24 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
-    expect(queryByTestId('controls-form')).toHaveFormValues({ gender: '' });
-    await selectEvent.select(queryByLabelText('Select Disability'), 'Autism');
-    expect(queryByTestId('controls-form')).toHaveFormValues({
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
+      gender: '',
+    });
+    await selectEvent.select(
+      screen.queryByLabelText('Select Disability'),
+      'Autism',
+    );
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
       disability: 'AUT',
     });
-    await selectEvent.clearAll(queryByLabelText('Select Disability'));
-    expect(queryByTestId('controls-form')).toHaveFormValues({ disability: '' });
+    await selectEvent.clearAll(screen.queryByLabelText('Select Disability'));
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
+      disability: '',
+    });
   });
   it('should update race options to not include "White" when comparison is set to "White Population', () => {
     render(
@@ -101,6 +124,7 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
@@ -130,6 +154,7 @@ describe('Controls Component', () => {
           setSelectedSchool={setSelectedSchool}
           setComparison={setComparison}
           setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
         />
       </ApolloProvider>,
     );
@@ -144,5 +169,36 @@ describe('Controls Component', () => {
     expect(queryByTestId('controls-form')).toHaveFormValues({ race: 'HI' });
     await selectEvent.clearAll(queryByLabelText('Select Race'));
     expect(queryByTestId('controls-form')).toHaveFormValues({ race: '' });
+  });
+  it('should be able to filter school search by name with state selection', async () => {
+    render(
+      <ApolloProvider client={client}>
+        <Controls
+          setRace={setRace}
+          setGender={setGender}
+          setDisability={setDisability}
+          setSelectedSchool={setSelectedSchool}
+          setComparison={setComparison}
+          setGraphTitle={setGraphTitle}
+          setSchoolState={setSchoolState}
+        />
+      </ApolloProvider>,
+    );
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
+      state: '',
+    });
+    await selectEvent.select(
+      screen.queryByLabelText('Filter Schools by State'),
+      'COLORADO',
+    );
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
+      state: 'CO',
+    });
+    await selectEvent.clearAll(
+      screen.queryByLabelText('Filter Schools by State'),
+    );
+    expect(screen.queryByTestId('controls-form')).toHaveFormValues({
+      state: '',
+    });
   });
 });

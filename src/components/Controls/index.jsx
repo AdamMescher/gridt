@@ -4,6 +4,7 @@ import Selection from '../Selection';
 import AsyncSelectInput from '../AsyncSelectInput';
 import Spacer from '../Spacer';
 import selectOptions from '../../utils/selectOptions.js';
+import selectEvent from 'react-select-event';
 
 const customStyles = {
   option: (styles) => ({
@@ -71,13 +72,17 @@ const Controls = ({
           label="Select Disability"
           name="disability"
           options={selectOptions.disabilityOptions}
-          onChange={(option) => {
+          onChange={async (option) => {
             setDisability(option);
+            setSelectedSchool(null);
             if (!option) {
               setGraphTitle(null);
             }
           }}
         />
+        <p style={{ fontWeight: 'bold', color: '#d97706' }}>
+          Note: Please re-type school name if disability category is changed.
+        </p>
       </GenderRaceDisabilitySelectWrapper>
       <SchoolSelectWrapper>
         <AsyncSelectInput
@@ -90,6 +95,9 @@ const Controls = ({
           race={race}
           disability={disability}
         />
+        <p style={{ fontWeight: 'bold', color: '#d97706' }}>
+          Note: Please re-type school name if disability category is changed.
+        </p>
         <Spacer size={6} />
         <div>
           <Details>
