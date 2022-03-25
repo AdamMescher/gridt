@@ -4,7 +4,6 @@ import Selection from '../Selection';
 import AsyncSelectInput from '../AsyncSelectInput';
 import Spacer from '../Spacer';
 import selectOptions from '../../utils/selectOptions.js';
-import selectEvent from 'react-select-event';
 
 const customStyles = {
   option: (styles) => ({
