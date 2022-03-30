@@ -1,0 +1,16 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import YouTubeEmbed from './YouTubeEmbed';
+
+<Meta title="YouTubeEmbed" component={YouTubeEmbed} />
+
+export const Template = (args) => <YouTubeEmbed {...args} />;
+
+# YouTubeEmbed
+
+Pass `id` prop to render YouTube video.
+
+<Canvas>
+  <Story name="Default" args={{ id: 'AEkaA-aZkYc' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
