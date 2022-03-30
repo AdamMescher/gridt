@@ -20,6 +20,27 @@ export const Template = (args) => (
   </Citations>
 );
 
+# Citations Component
+
+`Citations` component is unordered list wrapper.
+
+It has two compound components for rendering within the unordered list:
+
+1. `Item` component
+2. `Citation` component
+
+## Example
+
+```
+<Citations>
+  <Citations.Item>
+    <Citations.Citation>
+      citation text goes here
+    </Citations.Citation>
+  </Citations.Item>
+</>
+```
+
 <Canvas>
   <Story name="Default">{Template.bind({})}</Story>
 </Canvas>
