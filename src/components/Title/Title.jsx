@@ -19,7 +19,7 @@ const Title = ({ level, align, color, size, children, ...rest }) => {
 const StyledTitle = styled.span`
   color: ${({ color }) => color || 'inherit'};
   text-align: ${({ align }) => align || 'inherit'};
-  font-size: ${({ size }) => (size ? size : null)};
+  font-size: ${({ size }) => (size ? size + 'px' : null)};
 `;
 
 export default Title;

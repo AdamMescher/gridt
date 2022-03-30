@@ -1,0 +1,163 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Title from './Title';
+
+<Meta
+  title="Title"
+  component={Title}
+  argTypes={{
+    level: {
+      control: {
+        options: [1, 2, 3, 4, 5, 6],
+        type: 'select',
+      },
+    },
+    color: {
+      control: {
+        type: 'color',
+      },
+    },
+    children: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Title Text',
+    },
+  }}
+/>
+
+export const Template = (args) => <Title {...args} />;
+
+# Title Component
+
+## Title Sizes (H1 - H6 via `level` prop)
+
+Default is H1
+
+<Canvas>
+  <Story name="Default" args={{ children: 'Default level: 1' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 1
+
+<Canvas>
+  <Story name="Level 1" args={{ level: 1, children: 'Level One' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 2
+
+<Canvas>
+  <Story name="Level 2" args={{ level: 2, children: 'Level Two' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 3
+
+<Canvas>
+  <Story name="Level 3" args={{ level: 3, children: 'Level Three' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 4
+
+<Canvas>
+  <Story name="Level 4" args={{ level: 4, children: 'Level Four' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 5
+
+<Canvas>
+  <Story name="Level 5" args={{ level: 5, children: 'Level Five' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Level 6
+
+<Canvas>
+  <Story name="Level 6" args={{ level: 6, children: 'Level Six' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Title Color
+
+Update `Title` component `color` css property via `color` prop.
+
+<Canvas>
+  <Story name="User Defined Color" args={{ color: 'rebeccapurple' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Title `font-size` via `size` prop
+
+Update `Title` component `font-size` css property in `pixels` via `size` prop.
+
+<Canvas>
+  <Story name="User Defined Font Size" args={{ size: 64 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Title `text-align` css property via `align` prop
+
+### Left
+
+<Canvas>
+  <Story
+    name="User Defined Text Alignemnt - Left"
+    args={{
+      align: 'left',
+      children: 'Left Aligned',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Center
+
+<Canvas>
+  <Story
+    name="User Defined Text Alignemnt - Center"
+    args={{
+      align: 'center',
+      children: 'Center Aligned',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Right
+
+<Canvas>
+  <Story
+    name="User Defined Text Alignemnt - Right"
+    args={{
+      align: 'right',
+      children: 'Right Aligned',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Justify
+
+<Canvas>
+  <Story
+    name="User Defined Text Alignemnt - Justify"
+    args={{ align: 'justify', children: 'Justified' }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
