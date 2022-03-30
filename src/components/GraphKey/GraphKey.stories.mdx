@@ -1,0 +1,20 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import GraphKey from './GraphKey';
+
+<Meta title="GraphKey" component={GraphKey} />
+
+export const Template = (args) => <GraphKey {...args} />;
+
+# GraphKey Component
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      isLoading: false,
+      visible: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
