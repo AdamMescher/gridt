@@ -1,0 +1,12 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Footer from './Footer';
+
+<Meta title="Footer" component={Footer} />
+
+export const Template = (args) => <Footer {...args} />;
+
+# Footer
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
