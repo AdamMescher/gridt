@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Header from './Header';
+
+<Meta title="Header" component={Header} />
+
+export const Template = (args) => <Header {...args} />;
+
+# Header
+
+Display component for tool title and acronym.
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
