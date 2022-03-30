@@ -44,7 +44,7 @@ const Welcome = ({ openDisclosureModal }) => {
         </UnorderedList.Item>
       </UnorderedList>
       <Spacer size={10} />
-      <Title level={3}>How to use GRID-T</Title>
+      <Title level={3}>How to Use GRID-T</Title>
       <Spacer size={8} />
       <OrderedList>
         <OrderedList.Item>

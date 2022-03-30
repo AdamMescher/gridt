@@ -1,0 +1,18 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Welcome from './Welcome';
+
+<Meta title="Welcome" component={Welcome} />
+
+export const Template = (args) => <Welcome {...args} />;
+
+# Welcome
+
+Display component for Welcome content, including:
+
+- Important Definitions
+- How To Use GRID-T
+- Interpretation Resources
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
