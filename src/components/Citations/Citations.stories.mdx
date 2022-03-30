@@ -1,0 +1,25 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Citations from './Citations';
+
+<Meta title="Citations" component={Citations} />
+
+export const Template = (args) => (
+  <Citations {...args}>
+    <Citations.Item>
+      <Citations.Citation>
+        {`Astley, R. (2009, October 25). Rick Astley - Never Gonna Give You Up
+        (Official Music Video). YouTube. Retrieved March 30, 2022, from
+        https://www.youtube.com/watch?v=dQw4w9WgXcQ`}
+      </Citations.Citation>
+    </Citations.Item>
+    <Citations.Item>
+      <Citations.Citation>
+        {`Schimkowitz, M. (2022). Hello There. Know Your Meme. Retrieved 30 March 2022, from https://knowyourmeme.com/memes/hello-there.`}
+      </Citations.Citation>
+    </Citations.Item>
+  </Citations>
+);
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
