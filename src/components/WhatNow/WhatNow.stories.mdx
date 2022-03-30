@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import WhatNow from './WhatNow';
+
+<Meta title="WhatNow" component={WhatNow} />
+
+export const Template = (args) => <WhatNow {...args} />;
+
+# WhatNow
+
+Display component for next steps and additional resources.
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
