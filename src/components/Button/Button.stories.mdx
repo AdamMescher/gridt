@@ -5,6 +5,7 @@ import Button from './Button';
   title="Button"
   component={Button}
   argTypes={{
+    onClick: { action: 'clicked' },
     children: {
       control: {
         type: 'text',
@@ -24,7 +25,18 @@ export const Template = (args) => <Button {...args} />;
 
 # Button
 
+## Default
+
 <Canvas>
-  <Story name="Default">{Template.bind({})}</Story>
-  <Story name="Disabled">{Template.bind({})}</Story>
+  <Story name="Default" args={{ disabled: false }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+
+<Canvas>
+  <Story name="Disabled" args={{ disabled: true }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
