@@ -1,0 +1,42 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Table from './Table';
+
+<Meta title="Table" component={Table} />
+
+export const Template = (args) => <Table {...args} />;
+
+# Table
+
+Consumes [react-table](https://react-table.js.org/)
+
+Recieves `columns` and `data` props and renders a table with the data.
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      columns: [
+        {
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          Header: 'Age',
+          accessor: 'age',
+        },
+      ],
+      data: [
+        {
+          name: 'John Doe',
+          age: 32,
+        },
+        {
+          name: 'Jane Doe',
+          age: 25,
+        },
+      ],
+    }}
+  >
+    {Template.bind()}
+  </Story>
+</Canvas>
