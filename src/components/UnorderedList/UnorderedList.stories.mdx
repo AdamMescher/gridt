@@ -1,0 +1,21 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import UnorderedList from './UnorderedList';
+
+<Meta title="UnorderedList" component={UnorderedList} />
+
+export const Template = (args) => (
+  <UnorderedList {...args}>
+    <UnorderedList.Item>this is a list item</UnorderedList.Item>
+    <UnorderedList.Item>a different list item</UnorderedList.Item>
+  </UnorderedList>
+);
+
+# UnorderedList
+
+`UnorderedList` is a component that renders an unordered list.
+
+It has one compound component — `Item` for rendering an item within the list.
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
