@@ -72,6 +72,7 @@ describe('Graph Component', () => {
     const selectedSchool = {
       RR_AM_F_POP_AUT: 1.068944478,
     };
+    const graphTitle = 'AM F AUT pop';
     const { queryByTestId } = render(
       <Graph
         visible
@@ -79,6 +80,7 @@ describe('Graph Component', () => {
         showGraph={showGraph}
         showError={showError}
         graphData={graphData}
+        graphTitle={graphTitle}
         gender={gender}
         race={race}
         disability={disability}
