@@ -4,9 +4,9 @@ Audrey Ford's GRID-T
 
 Suggested citation: Ford, A.J. (2021). Gender and Race Intersectional Disproportionality-Tool. grid-t.com
 
-Live Site: https://grid-t.com/
+**Live Site**: https://grid-t.com/
 
-Storybook: https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/
+**Storybook**: https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/
 
 | Netlify Build Status | Heroku Environment Status | Storybook | Code Coverage | License Scan |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
