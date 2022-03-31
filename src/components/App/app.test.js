@@ -14,7 +14,7 @@ describe('App Component', () => {
       <div id="root" />,
     );
   });
-  it('can fetch msw mocked data', async () => {
+  it.skip('can fetch msw mocked data', async () => {
     const { getByTestId, getByLabelText } = render(
       <ApolloProvider client={client}>
         <App />
