@@ -8,7 +8,7 @@ Live Site: https://grid-t.com/
 
 | Netlify Build Status  | Heroku Environment Status | Storybook |
 | ------------- | ------------- | ------------- |
-| [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys)  | [![Heroku Status](https://heroku-status-badges.herokuapp.com/gridt-apollo)]  | [![Storybook Live Link](https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/?path=/story/button--default-story)](https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg) |
+| [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys)  | ![Heroku Status](https://heroku-status-badges.herokuapp.com/gridt-apollo)  | [![Storybook Live Link](https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/?path=/story/button--default-story)](https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg) |
 
 #### Screenshot
 
