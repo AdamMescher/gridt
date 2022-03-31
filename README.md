@@ -5,11 +5,12 @@ Audrey Ford's GRID-T
 Suggested citation: Ford, A.J. (2021). Gender and Race Intersectional Disproportionality-Tool. grid-t.com
 
 Live Site: https://grid-t.com/
+Storybook: https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/
 
-| Netlify Build Status | License Scan | Heroku Environment Status | Storybook |
-| ------------- | ------------- | ------------- | ------------- |
-| [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys) | [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAdamMescher%2Fgridt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAdamMescher%2Fgridt?ref=badge_shield) |
- | ![Heroku Status](https://heroku-status-badges.herokuapp.com/gridt-apollo)  | <a href="https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a> |
+| Netlify Build Status | Heroku Environment Status | Storybook | Code Coverage | License Scan |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| [![Netlify Status](https://api.netlify.com/api/v1/badges/e86b99c3-8e6c-4886-b30d-c427cd968e51/deploy-status)](https://app.netlify.com/sites/priceless-wilson-fee0d4/deploys) | ![Heroku Status](https://heroku-status-badges.herokuapp.com/gridt-apollo) | <a href="https://6246184e1936a9003a15745a-ucvoczhbct.chromatic.com/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a> | [![codecov](https://codecov.io/gh/AdamMescher/gridt/branch/main/graph/badge.svg?token=XdGLm4ddpz)](https://codecov.io/gh/AdamMescher/gridt) | [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAdamMescher%2Fgridt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAdamMescher%2Fgridt?ref=badge_shield) |
+
 
 #### Screenshot
 
