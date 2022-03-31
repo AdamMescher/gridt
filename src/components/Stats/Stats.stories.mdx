@@ -1,0 +1,40 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Stats from './Stats';
+
+<Meta title="Stats" component={Stats} />
+
+export const Template = (args) => <Stats {...args} />;
+
+# Stats
+
+## Default
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      visible: true,
+      data: [{ x: 0 }, { x: 1 }, { x: 2 }, { x: 3 }, { x: 4 }],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Loading
+
+<Canvas>
+  <Story name="Loading" args={{ isLoading: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Not Visible
+
+Expected behavior is component not rendering to the DOM.
+
+<Canvas>
+  <Story name="Not Visible" args={{ visible: false }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
