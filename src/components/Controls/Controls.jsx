@@ -34,6 +34,7 @@ const Controls = ({
     <Wrapper data-testid="controls-form">
       <GenderRaceDisabilitySelectWrapper>
         <Selection
+          isRequired={true}
           styles={customStyles}
           isClearable
           label="Select Gender"
