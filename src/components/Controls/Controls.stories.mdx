@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Controls from './Controls';
+import asyncSelectQueries from '../../utils/queries/asyncSelect/asyncSelectQueries';
+
+const setComparison = (value) => value;
+
+<Meta title="Controls" component={Controls} />
+
+export const Template = (args) => {
+  const [gender, setGender] = React.useState('');
+  const [race, setRace] = React.useState('');
+  const [disability, setDisability] = React.useState('');
+  const [selectedSchool, setSelectedSchool] = React.useState('');
+  const [schoolState, setSchoolState] = React.useState('');
+  const [comparison, setComparison] = React.useState('pop');
+  const [graphTitle, setGraphTitle] = React.useState('');
+  return (
+    <Controls
+      setGender={setGender}
+      setRace={setRace}
+      setDisability={setDisability}
+      setSelectedSchool={setSelectedSchool}
+      setSchoolState={setSchoolState}
+      setComparison={setComparison}
+      setGraphTitle={setGraphTitle}
+      {...args}
+    />
+  );
+};
+
+# Controls
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      apolloClient: {
+        mocks: [
+          {
+            request: {
+              query: asyncSelectQueries.AUTISMS_BY_NAME_ASYNCSELECT,
+            },
+            result: {
+              data: { autisms: [] },
+            },
+          },
+        ],
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

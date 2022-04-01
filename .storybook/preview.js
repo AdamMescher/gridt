@@ -1,5 +1,10 @@
 import { themes } from '@storybook/theming';
+import { MockedProvider } from '@apollo/client/testing';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
 import './global.css';
+
+// Initialize MSW
+initialize();
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -10,9 +15,12 @@ export const parameters = {
     },
   },
   darkMode: {
-    // Override the default dark theme
     dark: { ...themes.dark },
-    // Override the default light theme
     light: { ...themes.normal },
   },
+  apolloClient: {
+    MockedProvider,
+  },
 };
+
+export const decorators = [mswDecorator];
