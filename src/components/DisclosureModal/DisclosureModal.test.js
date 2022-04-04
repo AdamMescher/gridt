@@ -1,27 +1,24 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import DisclosureModal from './index';
+import DisclosureModal from './DisclosureModal';
 
 describe('DisclosureModal component', () => {
-  it('should render without errors', () => {
-    const closeDisclosureModal = jest.fn();
-    render(
-      <div id="root" />,
-      <DisclosureModal
-        modalIsOpen={true}
-        closeDisclosureModal={closeDisclosureModal}
-      />,
-    );
+  it('Should render without errors', () => {
+    const { queryByText } = render(<DisclosureModal modalIsOpen={true} />);
+    expect(
+      queryByText(
+        'Welcome to Gender and Race Intersectional Disproportionality-Tool',
+      ),
+    ).toBeInTheDocument();
   });
-  it('should not render if isOpen is false', () => {
-    const closeDisclosureModal = jest.fn();
-    render(
-      <div id="root" />,
-      <DisclosureModal
-        modalIsOpen={false}
-        closeDisclosureModal={closeDisclosureModal}
-      />,
-    );
+  it('Should not be rendered to the DOM if modalIsOpen is false', () => {
+    const { queryByText } = render(<DisclosureModal modalIsOpen={false} />);
+    expect(
+      queryByText(
+        'Welcome to Gender and Race Intersectional Disproportionality-Tool',
+      ),
+    ).not.toBeInTheDocument();
   });
 });

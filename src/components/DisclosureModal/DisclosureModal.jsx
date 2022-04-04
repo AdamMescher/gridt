@@ -10,7 +10,7 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 import Spacer from '../Spacer';
 
 const DisclosureModal = ({ modalIsOpen, closeDisclosureModal }) => (
-  <Modal isOpen={modalIsOpen}>
+  <Modal isOpen={modalIsOpen} data-testid={'disclosure-modal'}>
     <MaxWidthWrapper>
       <ModalContentWrapper>
         <ModalCloseButton onClick={closeDisclosureModal}>X</ModalCloseButton>
@@ -86,6 +86,10 @@ const Italic = styled.span`
   font-style: italic;
 `;
 
-if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+} else {
+  Modal.setAppElement(document.body);
+}
 
 export default DisclosureModal;
