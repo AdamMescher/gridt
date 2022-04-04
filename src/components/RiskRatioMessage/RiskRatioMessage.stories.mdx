@@ -1,0 +1,23 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import RiskRatioMessage from './RiskRatioMessage';
+
+<Meta title="RiskRatioMessage" component={RiskRatioMessage} />
+
+export const Template = (args) => <RiskRatioMessage {...args} />;
+
+# RiskRatioMessage
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      isLoading: false,
+      visible: true,
+      selectedSchool: {
+        SCHOOL_NAME: 'NAME OF SCHOOL',
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
