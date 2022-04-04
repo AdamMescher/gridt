@@ -20,6 +20,11 @@ import generateSelectedSchoolRiskRatioProperty from '../../utils/generateSelecte
 
 const App = () => {
   const graphFloor = 50;
+  const [error, setError] = React.useState({
+    gender: null,
+    race: null,
+    disability: null,
+  });
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
