@@ -6,12 +6,11 @@ import { client } from '../../ApolloClient';
 import App from './index';
 
 describe('App Component', () => {
-  it.skip('renders without errors', () => {
+  it('renders without errors', () => {
     render(
       <ApolloProvider client={client}>
         <App />
       </ApolloProvider>,
-      <div id="root" />,
     );
   });
   it.skip('can fetch msw mocked data', async () => {
