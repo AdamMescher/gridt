@@ -384,6 +384,8 @@ describe('RiskRatioMessage Component', () => {
       />,
     );
     expect(queryByText(/The Risk Ratio for/i)).toBeInTheDocument();
-    expect(queryByText(/does not have enough students/i)).not.toBeInTheDocument();
+    expect(
+      queryByText(/does not have enough students/i),
+    ).not.toBeInTheDocument();
   });
 });

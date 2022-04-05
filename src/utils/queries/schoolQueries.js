@@ -2,14 +2,20 @@ import { gql } from '@apollo/client';
 
 const schoolQueries = {
   SCHOOLS_AM_F_TOTAL_QUERY: gql`
-    query SCHOOLS_AM_F_TOTAL_QUERY($filter: FilterFindManySchoolInput, $limit: Int) {
+    query SCHOOLS_AM_F_TOTAL_QUERY(
+      $filter: FilterFindManySchoolInput
+      $limit: Int
+    ) {
       schools(filter: $filter, limit: $limit) {
         RR_AM_F_POP
       }
     }
   `,
   SCHOOLS_AM_M_TOTAL_QUERY: gql`
-    query SCHOOLS_AM_M_TOTAL_QUERY($filter: FilterFindManySchoolInput, $limit: Int) {
+    query SCHOOLS_AM_M_TOTAL_QUERY(
+      $filter: FilterFindManySchoolInput
+      $limit: Int
+    ) {
       schools(filter: $filter, limit: $limit) {
         RR_AM_M_POP
       }
