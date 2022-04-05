@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import selectEvent from 'react-select-event';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../../ApolloClient';
-import Controls from './index';
+import Controls from './Controls';
 
 describe('Controls Component', () => {
   const setRace = jest.fn((value) => value);

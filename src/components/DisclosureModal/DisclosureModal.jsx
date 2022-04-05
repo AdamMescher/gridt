@@ -86,6 +86,7 @@ const Italic = styled.span`
   font-style: italic;
 `;
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== 'test') {
   Modal.setAppElement('#root');
 } else {
