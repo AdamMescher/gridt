@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const traumaticBrainInjuriesAsyncSelectQueries = {
   TRAUMATIC_BRAIN_INJURIES_BY_NAME_ASYNCSELECT: gql`
-    query SCHOOLS_BY_NAME_TBI(
+    query SCHOOLS_BY_NAME_TBI_QUERY(
       $filter: FilterFindManyTraumaticbraininjuryInput
       $limit: Int
     ) {

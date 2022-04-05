@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const speechOrLanguageImpairmentsAsyncSelectQueries = {
   SPEECH_LANGUAGE_IMPAIRMENTS_BY_NAME_ASYNCSELECT: gql`
-    query SCHOOLS_BY_NAME_SLI(
+    query SCHOOLS_BY_NAME_SLI_QUERY(
       $filter: FilterFindManySpeechlanguageimpairmentInput
       $limit: Int
     ) {

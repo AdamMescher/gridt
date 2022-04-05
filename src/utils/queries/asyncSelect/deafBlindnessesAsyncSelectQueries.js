@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 const deafBlindnessesAsyncSelectQueries = {
   DEAF_BLINDNESSES_BY_NAME_ASNYCSELECT: gql`
-    query SCHOOLS_BY_NAME_DB(
+    query SCHOOLS_BY_NAME_DB_QUERY(
       $filter: FilterFindManyDeafblindnessInput
       $limit: Int
     ) {
