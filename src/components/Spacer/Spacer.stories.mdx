@@ -1,0 +1,39 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import Spacer from './Spacer';
+
+<Meta
+  title="Spacer"
+  component={Spacer}
+  argTypes={{
+    size: {
+      control: {
+        type: 'number',
+      },
+      defaultValue: 8,
+    },
+    axis: {
+      control: {
+        type: 'select',
+        options: ['horizontal', 'vertical'],
+      },
+    },
+  }}
+/>
+
+export const Template = (args) => <Spacer {...args} />;
+
+# Spacer
+
+Allows margin between elements to not need to be defined within individual components and allows it to live in larger components, pages, or the App component.
+
+Based on Josh Comeau's [Let's Bring Spacer GIFs Back!](https://www.joshwcomeau.com/react/modern-spacer-gif/) blog post.
+
+Accepts two props: `size` and `direction`.
+
+`size` is the size of the spacer.
+
+`axis` is an optional prop which defaults to both, but can be `horizontal` or `vertical`.
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
