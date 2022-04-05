@@ -49,7 +49,6 @@ const App = () => {
   const closeDisclosureModal = () => setModalIsOpen(false);
   const openDisclosureModal = () => setModalIsOpen(true);
   const client = useApolloClient();
-  console.log({ graphData });
   React.useEffect(() => {
     ReactGA.initialize('G-G5RN2PP9CD');
     ReactGA.send('pageview');

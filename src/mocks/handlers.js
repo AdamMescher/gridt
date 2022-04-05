@@ -3,7 +3,7 @@ import ALL_SCHOOLS_RESPONSES from './MSW_QUERIES/ALL_SCHOOLS_BY_NAME_RESPONSES';
 import ALL_GENDER_RACE_DISABILITY_RESPONSES from './MSW_QUERIES/ALL_SCHOOLS_BY_NAME_RESPONSES';
 
 export const handlers = [
-  graphql.query('SCHOOLS_BY_NAME_AUT_QUERY ', (request, response, context) => {
+  graphql.query('SCHOOLS_BY_NAME_AUT_QUERY', (request, response, context) => {
     return response(
       context.data({
         autisms: ALL_SCHOOLS_RESPONSES.AUT,
