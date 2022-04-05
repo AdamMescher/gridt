@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import App from './App';
+
+<Meta title="App" component={App} />
+
+export const Template = (args) => <App {...args} />;
+
+# App
+
+More a question of if I can rather than why I should render the entire application in storybook
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
