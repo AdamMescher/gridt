@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import Spacer from '../Spacer';
 
-const Selection = ({ name, label, options, onChange, styles }) => (
+const Selection = ({ name, label, options, onChange, styles, isRequired }) => (
   <Wrapper htmlFor={name || label} data-testid={`${name || label}-select-form`}>
     {label ? (
       <>
@@ -12,8 +12,7 @@ const Selection = ({ name, label, options, onChange, styles }) => (
       </>
     ) : null}
     <Select
-      menuPortalTarge={document.body}
-      menuPosition="fixed"
+      required={isRequired}
       styles={styles}
       name={name}
       inputId={name}

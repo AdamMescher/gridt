@@ -1,0 +1,51 @@
+import { Canvas, Meta, Story } from './Selection';
+import Selection from './Selection';
+
+<Meta
+  title="Selection"
+  component={Selection}
+  argTypes={{
+    onChange: { action: 'onChange' },
+  }}
+/>
+
+export const Template = (args) => <Selection {...args} />;
+
+# Selection
+
+Consumes the [react-select](https://react-select.com/home) NPM package.
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      label: 'Select Label Text',
+      name: 'select',
+      options: [
+        { label: 'thing one', value: 't1' },
+        { label: 'thing two', value: 't2' },
+        { label: 'thing three', value: 't3' },
+      ],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Gender Select Example
+
+<Canvas>
+  <Story
+    name="Gender Select"
+    args={{
+      label: 'Select Gender',
+      name: 'gender',
+      options: [
+        { value: 'F', label: 'Female' },
+        { value: 'M', label: 'Male' },
+      ],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
