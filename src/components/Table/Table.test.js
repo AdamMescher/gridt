@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Table from '../Table';
 
@@ -14,5 +14,7 @@ describe('Table Component', () => {
       { headerOne: 3, headerTwo: 4 },
     ];
     render(<Table data={data} columns={columns} />);
+    expect(screen.queryByText('Header One')).toBeInTheDocument();
+    expect(screen.queryByText('Header Two')).toBeInTheDocument();
   });
 });
