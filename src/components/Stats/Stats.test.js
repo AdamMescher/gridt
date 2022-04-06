@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Stats from './index';
 
 describe('Stats Component', () => {
   it('should render without errors with no data passed', () => {
-    render(<Stats />);
+    const data = [{ x: 1 }, { x: 2 }, { x: 3 }];
+    render(<Stats data={data} visible={true} />);
+    expect(screen.queryByText('Standard Deviation')).toBeInTheDocument();
   });
   it('should not display loading animaton or table if isLoading is false and visible is false', () => {
     const component = render(<Stats visible={false} isLoading={false} />);
