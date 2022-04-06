@@ -5,7 +5,7 @@ const getHeight = ({ axis, size }) => (axis === 'horizontal' ? 1 : size);
 const getWidth = ({ axis, size }) => (axis === 'vertical' ? 1 : size);
 
 const Spacer = ({ children, ...rest }) => (
-  <StyledSpacer aria-hidden="true" {...rest}>
+  <StyledSpacer aria-hidden="true" data-testid="spacer" {...rest}>
     {children}
   </StyledSpacer>
 );
@@ -16,6 +16,7 @@ const StyledSpacer = styled.span`
   min-width: ${getWidth}px;
   height: ${getHeight}px;
   max-height: ${getHeight}px;
+  background: blue;
 `;
 
 export default Spacer;
