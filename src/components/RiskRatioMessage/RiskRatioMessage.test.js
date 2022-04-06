@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RiskRatioMessage from './index';
 import selectOptions from '../../utils/selectOptions';
 
 describe('RiskRatioMessage Component', () => {
   it('should render without errors', () => {
-    render(<RiskRatioMessage />);
+    render(<RiskRatioMessage visible={true} />);
+    expect(
+      screen.queryByText(/does not have enough students/),
+    ).toBeInTheDocument();
   });
   it('should not render if isLoading is true', () => {
     const { queryByText } = render(<RiskRatioMessage isLoading />);
