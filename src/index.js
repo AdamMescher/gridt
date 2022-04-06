@@ -16,10 +16,10 @@ const client = new ApolloClient({
   cache,
 });
 
-// if (process.env.USE_MSW_MOCK_API === true) {
-const { worker } = require('./mocks/browser');
-worker.start();
-// }
+if (process.env.USE_MSW_MOCK_API === true) {
+  const { worker } = require('./mocks/browser');
+  worker.start();
+}
 
 ReactDOM.render(
   <React.StrictMode>
