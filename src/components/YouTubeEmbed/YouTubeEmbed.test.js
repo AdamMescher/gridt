@@ -7,5 +7,6 @@ describe('YouTubeEmbed Component', () => {
   it('should render without errors', () => {
     const id = 'AEkaA-aZkYc';
     render(<YouTubeEmbed id={id} />);
+    expect(screen.queryByTestId('youtube-embed-' + id)).toBeInTheDocument();
   });
 });

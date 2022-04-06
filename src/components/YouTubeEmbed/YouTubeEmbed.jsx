@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const YouTubeEmbed = ({ id }) => (
-  <Wrapper className="video-responsive">
+  <Wrapper data-testid={`youtube-embed-${id}`}>
     <IFrame
       width="853"
       height="480"
