@@ -1,11 +1,12 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Title from './index';
 
 describe('Title component', () => {
   it('renders without crashing', () => {
     render(<Title>render this</Title>);
+    expect(screen.queryByText('render this')).toBeInTheDocument();
   });
   it('should render default level of 1 if no level prop is passed', () => {
     render(<Title>render this</Title>);
