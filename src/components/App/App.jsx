@@ -11,6 +11,7 @@ import DisclosureModal from '../DisclosureModal';
 import Welcome from '../Welcome';
 import WhatNow from '../WhatNow';
 import DataVisualization from '../DataVisualization';
+import Title from '../Title';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import Spacer from '../Spacer';
 import queries from '../../utils/queries';
@@ -20,11 +21,6 @@ import generateSelectedSchoolRiskRatioProperty from '../../utils/generateSelecte
 
 const App = () => {
   const graphFloor = 50;
-  const [error, setError] = React.useState({
-    gender: null,
-    race: null,
-    disability: null,
-  });
   const [gender, setGender] = React.useState('');
   const [race, setRace] = React.useState('');
   const [disability, setDisability] = React.useState('');
@@ -154,7 +150,13 @@ const App = () => {
           modalIsOpen={modalIsOpen}
         />
         <Spacer size={16} />
-        <Header />
+        <Header>
+          <Title level={1}>
+            Gender and Race Intersectional Disproportionality-Tool
+          </Title>
+          <Spacer size={4} />
+          <Title level={2}>(GRID-T)</Title>
+        </Header>
         <Spacer size={16} />
         <Welcome openDisclosureModal={openDisclosureModal} />
         <Spacer size={16} />

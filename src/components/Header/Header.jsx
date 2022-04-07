@@ -1,17 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Meta from '../Meta';
-import Title from '../Title';
-import Spacer from '../Spacer';
 
-const Header = () => (
-  <StyledHeader>
+const Header = ({ children, ...rest }) => (
+  <StyledHeader {...rest}>
     <Meta />
-    <Title level={1}>
-      Gender and Race Intersectional Disproportionality-Tool
-    </Title>
-    <Spacer size={4} />
-    <Title level={2}>(GRID-T)</Title>
+    {children}
   </StyledHeader>
 );
 

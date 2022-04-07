@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import HyperLink from './index';
 
 describe('HyperLink Component', () => {
   it('should render without errors', () => {
     render(<HyperLink href="https://www.google.com/" />);
+    expect(screen.getByRole('link')).toBeInTheDocument();
   });
   it('should render href as link text if no children are provided', () => {
     const link = render(<HyperLink href="https://www.twitter.com/" />);

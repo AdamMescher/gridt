@@ -2,7 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const MaxWidthWrapper = ({ children, ...rest }) => (
-  <Wrapper {...rest}>{children}</Wrapper>
+  <Wrapper data-testid="max-width-wrapper" {...rest}>
+    {children}
+  </Wrapper>
 );
 
 const Wrapper = styled.div`

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Graph from './index';
 
 describe('Graph Component', () => {
   it('should render without errors', () => {
-    render(<Graph showGraph={true} />);
+    render(<Graph visible={true} showGraph={true} />);
+    expect(screen.queryByTestId('histogram')).toBeInTheDocument();
   });
   it('should return null if visible is false, showGraph is false, and showError are false', () => {
     render(
@@ -16,6 +17,7 @@ describe('Graph Component', () => {
         showError={false}
       />,
     );
+    expect(screen.queryByTestId('histogram')).not.toBeInTheDocument();
   });
   it('should return null if visible is true but showGraph and showError are false', () => {
     const { queryByTestId } = render(<Graph visible />);

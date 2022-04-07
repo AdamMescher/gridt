@@ -16,7 +16,6 @@ const StyledSpacer = styled.span`
   min-width: ${getWidth}px;
   height: ${getHeight}px;
   max-height: ${getHeight}px;
-  background: blue;
 `;
 
 export default Spacer;

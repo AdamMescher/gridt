@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
 const Meta = () => (
-  <Helmet>
+  <Helmet data-testid="header-meta">
     <meta charSet="utf-8" />
     <title>GRID-T</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />

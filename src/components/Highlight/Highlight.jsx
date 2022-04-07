@@ -1,30 +1,40 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+const COLORS = {
+  slate: '#e2e8f0',
+  darkSlate: '#1e293b;',
+  fuchsia: '#f5d0fe',
+  darkFuchsia: '#701a75',
+  emerald: '#6ee7b7',
+  darkEmerald: '#064e3b',
+  orange: '#fdba74',
+  darkOrange: '#7c2d12',
+  sky: '#bae6fd',
+  darkSky: '#0c4a6e',
+};
+
 const Highlight = ({ children, ...rest }) => (
   <StyledHighlight {...rest}>{children}</StyledHighlight>
 );
 
 const StyledHighlight = styled.span`
-  :root {
-    --slate: #e2e8f0;
-    --dark-slate: #1e293b;
-    --fuchsia: #f5d0fe;
-    --dark-fuchsia: #701a75;
-    --emerald: #6ee7b7;
-    --dark-emerald: #064e3b;
-    --orange: #fdba74;
-    --dark-orange: #7c2d12;
-    --sky: #bae6fd;
-    --dark-sky: #0c4a6e;
-  }
-
+  --slate: ${COLORS.slate};
+  --dark-slate: ${COLORS.darkSlate};
+  --fuchsia: ${COLORS.fuchsia};
+  --dark-fuchsia: ${COLORS.darkFuchsia};
+  --emerald: ${COLORS.emerald};
+  --dark-emerald: ${COLORS.darkEmerald};
+  --orange: ${COLORS.orange};
+  --dark-orange: ${COLORS.darkOrange};
+  --sky: ${COLORS.sky};
+  --dark-sky: ${COLORS.darkSky};
   display: inline-block;
   padding: 2px 4px;
   font-size: 18px;
   border-radius: 4px;
   color: ${({ color }) => setColor(color)};
-  background: ${({ color }) => setBackground(color)};
+  background-color: ${({ color }) => setBackground(color)};
 `;
 
 const setColor = (color) => {

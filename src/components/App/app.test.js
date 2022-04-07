@@ -8,11 +8,12 @@ import App from './index';
 
 describe('App Component', () => {
   it('renders without errors', () => {
-    render(
+    const { queryByText } = render(
       <ApolloProvider client={client}>
         <App />
       </ApolloProvider>,
     );
+    expect(queryByText('Welcome')).toBeInTheDocument();
   });
   it('shows the disclosure modal on first load', () => {
     const { queryByText } = render(
@@ -43,18 +44,5 @@ describe('App Component', () => {
         'Welcome to Gender and Race Intersectional Disproportionality-Tool',
       ),
     ).not.toBeInTheDocument();
-  });
-  it.skip('can fetch msw mocked data', async () => {
-    const { getByTestId, getByLabelText } = render(
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>,
-    );
-    await selectEvent.select(getByLabelText('Select Gender'), 'Female');
-    await selectEvent.select(
-      getByLabelText('Select Race'),
-      'American Indian / Alaskan Native',
-    );
-    expect(getByTestId('form')).toHaveFormValues({ gender: 'F', race: 'AM' });
   });
 });

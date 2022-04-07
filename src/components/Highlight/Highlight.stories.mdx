@@ -1,0 +1,37 @@
+import { Canvas, Meta, Story } from './Highlight';
+import Highlight from './Highlight';
+
+<Meta
+  title="Highlight"
+  component={Highlight}
+  argTypes={{
+    children: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Highlighted text',
+    },
+    color: {
+      control: {
+        type: 'select',
+        options: [
+          'default',
+          'fuchsia',
+          'emerald',
+          'orange',
+          'rose',
+          'sky',
+          'slate',
+        ],
+      },
+    },
+  }}
+/>
+
+export const Template = (args) => <Highlight {...args} />;
+
+# Highlight
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>

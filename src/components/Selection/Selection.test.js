@@ -6,12 +6,8 @@ import Selection from '../Selection';
 
 describe('Selection', () => {
   it('renders without errors', () => {
-    render(
-      <Selection />,
-      <Selection name="one" />,
-      <Selection name="frank" label="label maker" />,
-      <Selection label="Billy Joel" />,
-    );
+    render(<Selection name="frank" label="label maker" />);
+    expect(screen.queryByLabelText('label maker')).toBeInTheDocument();
   });
   it('should not render a label if neither name or label prop are provided', () => {
     render(<Selection />);

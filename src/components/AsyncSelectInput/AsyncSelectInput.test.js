@@ -11,9 +11,11 @@ describe('AsyncSelectInput Component', () => {
   it('should render without errors', () => {
     render(
       <ApolloProvider client={client}>
-        <AsyncSelectInput />
+        <AsyncSelectInput name="thing-one" labelText="thing-two" />
       </ApolloProvider>,
     );
+    expect(screen.queryByText('thing-two')).toBeInTheDocument();
+    expect(screen.queryByTestId('thing-one-async-select-form')).toBeInTheDocument();
   });
   it('should not render a label if neither name or label prop are provided', () => {
     render(

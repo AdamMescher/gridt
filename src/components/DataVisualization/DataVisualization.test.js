@@ -46,7 +46,7 @@ describe('DataVisualization Component', () => {
       { x: 9 },
       { x: 10 },
     ];
-    const { queryByText, queryByLabelText, queryByTestId } = render(
+    const { queryByText, queryByLabelText } = render(
       <ApolloProvider client={client}>
         <DataVisualization
           isLoading={isLoading}

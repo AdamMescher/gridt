@@ -1,0 +1,15 @@
+import { Canvas, Story, Meta } from '@storybook/addon-docs/blocks';
+import AsyncSelectInput from './AsyncSelectInput';
+
+<Meta title="AsyncSelectInput" component={AsyncSelectInput} />
+
+export const template = (args) => <AsyncSelectInput {...args} />;
+
+# AsyncSelectInput
+
+<Canvas>
+    <Story name="default" args={{
+        name="default",
+        labelText="Select a value",
+    }}>
+</Canvas>
