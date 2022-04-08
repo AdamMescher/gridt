@@ -5,7 +5,7 @@ import { useApolloClient, gql } from '@apollo/client';
 import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
 import Spacer from '../Spacer';
-import asyncSelectQueries from '../../utils/queries/asyncSelect/asyncSelectQueries';
+import setTypeAndQueryFromDisability from '../../utils/setTypeAndQueryFromDisability';
 
 const SingleValue = (props) => (
   <components.SingleValue {...props}>
@@ -24,71 +24,9 @@ const AsyncSelectInput = ({
   const client = useApolloClient();
   const [inputValue, setInputValue] = React.useState('');
   const fetchOptions = async () => {
-    let query;
-    let variables;
-    let type;
-    switch (disability.value) {
-      case 'AUT':
-        type = 'autisms';
-        query = asyncSelectQueries.AUTISMS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'DB':
-        type = 'deafblindnesses';
-        query = asyncSelectQueries.DEAF_BLINDNESSES_BY_NAME_ASNYCSELECT;
-        break;
-      case 'DD':
-        type = 'developmentaldelays';
-        query = asyncSelectQueries.DEVELOPMENTAL_DELAYS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'HI':
-        type = 'hearingimpairments';
-        query = asyncSelectQueries.HEARING_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'EMN':
-        type = 'emotionaldisturbances';
-        query = asyncSelectQueries.EMOTIONAL_DISTURBANCES_BY_NAME_ASYNCSELECT;
-        break;
-      case 'MD':
-        type = 'multipledisabilities';
-        query = asyncSelectQueries.MULTIPLE_DISABILITIES_BY_NAME_ASYNCSELECT;
-        break;
-      case 'MR':
-        type = 'intellectualdisabilities';
-        query =
-          asyncSelectQueries.INTELLECTUAL_DISABILITIES_BY_NAME_ASYNCSELECT;
-        break;
-      case 'OI':
-        type = 'orthopedicimpairments';
-        query = asyncSelectQueries.ORTHOPEDIC_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'OHI':
-        type = 'otherhealthimpairments';
-        query = asyncSelectQueries.OTHER_HEALTH_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'SLD':
-        type = 'specificlearningdisabilities';
-        query =
-          asyncSelectQueries.SPECIFIC_LEARNING_DISABILITIES_BY_NAME_ASYNCSELECT;
-        break;
-      case 'SLI':
-        type = 'speechlanguageimpairments';
-        query =
-          asyncSelectQueries.SPEECH_LANGUAGE_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
-        break;
-      case 'TBI':
-        type = 'traumaticbraininjuries';
-        query = asyncSelectQueries.TRAUMATIC_BRAIN_INJURIES_BY_NAME_ASYNCSELECT;
-        break;
-      case 'VI':
-        type = 'visualimpairments';
-        query = asyncSelectQueries.VISUAL_IMPAIRMENTS_BY_NAME_ASYNCSELECT;
-        break;
-      default:
-        type = 'schools';
-        query = asyncSelectQueries.SCHOOLS_BY_NAME_ASNYCSELECT;
-        break;
-    }
-    variables = {
+    const typeAndQuery = setTypeAndQueryFromDisability(disability);
+    const { type, query } = typeAndQuery;
+    const variables = {
       limit: schoolState ? -1 : 100,
       filter: {
         _operators: {

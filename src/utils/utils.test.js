@@ -3,6 +3,8 @@ import generateBins from './generateBins';
 import generateSelectedSchoolRiskRatioProperty from './generateSelectedSchoolRiskRatioProperty';
 import generateIdb from './generateIdb';
 import generateOperators from './generateOperators';
+import setTypeAndQueryFromDisability from './setTypeAndQueryFromDisability';
+import asyncSelectQueries from './queries/asyncSelect/asyncSelectQueries';
 
 describe('generateFill utility function', () => {
   it('should return a color for a given risk ratio', () => {
@@ -202,6 +204,26 @@ describe('generateOperators utility function', () => {
       riskRatioFilterFloor,
       enrollmentFilterFloor,
     );
+    expect(result).toStrictEqual(expected);
+  });
+});
+
+describe('setTypeAndQueryFromDisability utility function', () => {
+  it('should return an object with default type and query properties if no disability provided', () => {
+    const result = setTypeAndQueryFromDisability('TOTAL');
+    const expected = {
+      type: 'schools',
+      query: asyncSelectQueries.SCHOOLS_BY_NAME_ASNYCSELECT,
+    };
+    expect(result).toStrictEqual(expected);
+  });
+  it('should return expected object with expected type and disability when disabilty is set to OHI', () => {
+    const disability = { value: 'OHI', label: 'Other Health Issue' };
+    const result = setTypeAndQueryFromDisability(disability);
+    const expected = {
+      type: 'otherhealthimpairments',
+      query: asyncSelectQueries.OTHER_HEALTH_IMPAIRMENTS_BY_NAME_ASYNCSELECT,
+    };
     expect(result).toStrictEqual(expected);
   });
 });
