@@ -10,7 +10,8 @@ module.exports = {
     '@storybook/addon-measure',
     '@storybook/addon-backgrounds',
     'storybook-dark-mode',
-    "storybook-addon-apollo-client",
+    'storybook-addon-apollo-client',
+    'storybook-addon-designs',
   ],
   framework: '@storybook/react',
   core: {

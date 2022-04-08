@@ -16,8 +16,8 @@ const client = new ApolloClient({
   cache,
 });
 
+const { worker } = require('./mocks/browser');
 if (process.env.USE_MSW_MOCK_API === true) {
-  const { worker } = require('./mocks/browser');
   worker.start();
 }
 
