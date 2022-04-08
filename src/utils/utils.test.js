@@ -190,7 +190,10 @@ describe('generateOperators utility function', () => {
     const disability = { value: 'DD', label: 'Developmental Delay' };
     const riskRatioFilterFloor = -1;
     const enrollmentFilterFloor = 5;
-    const expected = { RR_AS_F_WH_F: { gte: -1 }, SCH_IDEAENR_AS_F: { gt: 5 } };
+    const expected = {
+      RR_AS_F_WH_F_DD: { gte: -1 },
+      SCH_DD_ENR_AS_F: { gt: 5 },
+    };
     const result = generateOperators(
       comparison,
       race,
