@@ -39,10 +39,11 @@ const generateOperators = (
       };
     } else {
       return {
-        [`RR_${race.value}_${gender.value}_WH_${gender.value}`]: {
-          gte: riskRatioFilterFloor,
-        },
-        [`SCH_IDEAENR_${race.value}_${gender.value}`]: {
+        [`RR_${race.value}_${gender.value}_WH_${gender.value}_${disability.value}`]:
+          {
+            gte: riskRatioFilterFloor,
+          },
+        [`SCH_${disability.value}_ENR_${race.value}_${gender.value}`]: {
           gt: enrollmentFilterFloor,
         },
       };

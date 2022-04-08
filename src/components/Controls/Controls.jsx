@@ -120,8 +120,7 @@ const Controls = ({
         <RadioWrapper onChange={(event) => setComparison(event.target.value)}>
           <Details>
             <Summary>
-              Comparison (only available for TOTAL SPECIAL EDUCATION disability
-              option)
+              Comparison
             </Summary>
             <RadioWrapper>
               <Radio
